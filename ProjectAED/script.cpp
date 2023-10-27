@@ -74,7 +74,7 @@ void Script::listSchedules(){
                 cin.ignore( numeric_limits<streamsize>::max(),'\n');
                 cin >> up;
             }
-            //getstudentschedule();
+            data.get_student_from_up(to_string(up)).print_schedule();
             break;
         }
         case '2': {

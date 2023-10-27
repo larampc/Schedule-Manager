@@ -1,7 +1,11 @@
 #include "lesson.h"
 using namespace std;
 
-Lesson::Lesson(string weekday, Time starttime, Time duration, string type): Weekday(weekday), StartTime(starttime), Duration(duration), Type(type) {}
+Lesson::Lesson(string thisclass, string weekday, Time starttime, Time duration, string type): Class(thisclass), Weekday(weekday), StartTime(starttime), Duration(duration), Type(type) {}
+
+std::string Lesson::get_thisclass() {
+    return Class;
+}
 
 string Lesson::get_weekday() {
     return Weekday;

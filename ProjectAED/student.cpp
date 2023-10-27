@@ -25,5 +25,13 @@ void Student::remove_class(Class* c) {
 }
 
 void Student::print_schedule() {
-    cout << "sou um horário";
+    cout << "Schedule of " << name << endl;
+    set<Lesson> allclasses;
+    for(Class* someclass: classes) {
+        set<Lesson> thislessons = someclass->get_lessons();
+        allclasses.insert(thislessons.begin(), thislessons.end());
+    }
+    for(Lesson lesson: allclasses) {
+        cout << lesson.get_weekday() << ": " << lesson.get_starttime().get_hour() << " " << lesson.get_thisclass() << endl;
+    }
 }

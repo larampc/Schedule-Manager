@@ -15,7 +15,8 @@ LEIC::LEIC(std::string filenameclasses, std::string filenamestudents) {
         getline(iss, duration, ',');
         iss >> type; // to do: try with getline
         Class c = Class(classcode, uccode);
-        Lesson lesson = Lesson(weekday, Time(starthour), Time(duration), type); // create new lesson
+        string thisclass = classcode + " " + uccode;
+        Lesson lesson = Lesson(thisclass, weekday, Time(starthour), Time(duration), type); // create new lesson
         auto it = find(classes.begin(), classes.end(), c);
         if(it != classes.end()){
             it->add_lesson(lesson);
