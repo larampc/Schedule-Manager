@@ -1,4 +1,5 @@
 #include "lesson.h"
+#include <map>
 using namespace std;
 
 Lesson::Lesson(string thisclass, string weekday, Time starttime, Time duration, string type): Class(thisclass), Weekday(weekday), StartTime(starttime), Duration(duration), Type(type) {}
@@ -24,6 +25,11 @@ string Lesson::get_type() const {
 }
 
 bool Lesson::operator<(const Lesson &l) const{
-    if (this->Weekday < l.Weekday) return true; //weekday é string
-    return !(this->Weekday > l.Weekday) && this->StartTime < l.StartTime;
+    map<string, int> weekday_to_int = {{"Monday", 1},
+                                       {"Tuesday", 2},
+                                       {"Wednesday", 3},
+                                       {"Thursday", 4},
+                                       {"Friday", 5}};
+    if (weekday_to_int[this->Weekday] < weekday_to_int[l.Weekday]) return true;
+    return weekday_to_int[this->Weekday] <= weekday_to_int[l.Weekday] && this->StartTime < l.StartTime;
 }
