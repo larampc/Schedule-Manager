@@ -11,6 +11,7 @@ public:
     void request();
     void listings();
     void listSchedules();
+    void listStudents();
 };
 
 

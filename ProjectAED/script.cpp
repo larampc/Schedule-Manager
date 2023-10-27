@@ -49,6 +49,9 @@ void Script::listings(){
             listSchedules();
             break;
         }
+        case '2': {
+            listStudents();
+        }
     }
 }
 
@@ -78,6 +81,20 @@ void Script::listSchedules(){
 
         }
     }
+}
 
+void Script::listStudents() {
+    cout << "Consult list of students of: 1- Course 2- UC 3- Class";
+    string option;
+    cin >> option;
+    while(option != "1" && option != "2" && option != "3") {
+        invalid();
+        cin >> option;
+    }
+    switch(option[0]){
+        case '1': {
+            data.listStudents();
+        }
+    }
 }
 

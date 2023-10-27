@@ -56,3 +56,12 @@ Student LEIC::get_student_from_up(std::string up) {
     return up_students.at(up);
 }
 
+void LEIC::listStudents() {
+    //mudar sorts
+
+    cout << "UPNUMBER\tNAME\n-----------------------------------------\n";
+    for(pair<string, Student> p : up_students){
+        cout << p.first << " | " << p.second.get_name() << '\n';
+    }
+}
+
