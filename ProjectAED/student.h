@@ -16,6 +16,7 @@ public:
     std::list<Class*> get_classes();
     void add_class(Class* c);
     void remove_class(Class* c); //faz sentido ser pointers?
+    void print_schedule();
 };
 
 #endif //PROJECTAED_STUDENT_H
