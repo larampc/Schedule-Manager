@@ -51,22 +51,27 @@ void Script::listings(){
         }
     }
 }
+
 void Script::listSchedules(){
     cout << "Consult schedule of: 1- Student 2- Class 3- UC\n";
-    char option; cin >> option;
-    while(!isdigit(option) || option < '1' || option > '3') {
+    string option;
+    cin >> option;
+    while(option != "1" && option != "2") {
         invalid();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cin >> option; cout << '\n';
+        cin >> option;
     }
-    switch(option){
+    switch(option[0]){
         case '1': {
             cout << "Insert student up: ";
-            string up;
+            long up;
             cin >> up;
-            while(!isdigit(option) || option < '100000000' || option > '3') {invalid(); cin.ignore(numeric_limits<streamsize>::max(), '\n'); cin >> option; cout << '\n';}
-
-            //getstudentschedule
+            while(cin.fail() || up < 200000000 || up > 202300000){
+                invalid();
+                cin.clear();
+                cin.ignore( numeric_limits<streamsize>::max(),'\n');
+                cin >> up;
+            }
+            //getstudentschedule();
             break;
         }
         case '2': {
