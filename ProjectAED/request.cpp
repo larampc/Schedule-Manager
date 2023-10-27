@@ -1,4 +1,4 @@
-#include "Request.h"
+#include "request.h"
 using namespace std;
 
 Request::Request(string type, string student_up, std::string current, std::string new_) :
