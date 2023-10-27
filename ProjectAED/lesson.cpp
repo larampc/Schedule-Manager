@@ -2,7 +2,7 @@
 #include <map>
 using namespace std;
 
-Lesson::Lesson(string thisclass, string weekday, Time starttime, Time duration, string type): Class(thisclass), Weekday(weekday), StartTime(starttime), Duration(duration), Type(type) {}
+Lesson::Lesson(string thisclass, string weekday, Time starttime, Time endtime, string type): Class(thisclass), Weekday(weekday), StartTime(starttime), EndTime(endtime), Type(type) {}
 
 std::string Lesson::get_thisclass() {
     return Class;
@@ -16,8 +16,8 @@ Time Lesson::get_starttime() {
     return StartTime;
 }
 
-Time Lesson::get_duration() {
-    return Duration;
+Time Lesson::get_endtime() {
+    return EndTime;
 }
 
 string Lesson::get_type() const {
