@@ -21,7 +21,8 @@ private:
 public:
   LEIC(std::string filenameclasses, std::string filenamestudents); //ler ficheiros e guardar info
   Student get_student_from_up(std::string up);
-  void listStudents();
+  void listStudentsByUP();
+    void listStudentsByName();
   //outras funções: sorts, listings, pedidos...
   //opcao -> criar class script para ter as funcionlidades
 };
