@@ -16,7 +16,7 @@ LEIC::LEIC(std::string filenameclasses, std::string filenamestudents) {
         iss >> type; // to do: try with getline
         Class c = Class(classcode, uccode);
         string thisclass = classcode + " " + uccode;
-        Lesson lesson = Lesson(thisclass, weekday, Time(starthour), Time(duration), type); // create new lesson
+        Lesson lesson = Lesson(thisclass, weekday, Time(starthour), Time(stof(duration)+stof(starthour)), type); // create new lesson
         auto it = find(classes.begin(), classes.end(), c);
         if(it != classes.end()){
             it->add_lesson(lesson);
@@ -58,14 +58,23 @@ Student LEIC::get_student_from_up(std::string up) {
     return up_students.at(up);
 }
 
-void LEIC::listStudents() {
-    //mudar sorts
-
-    cout << "UPNUMBER\tNAME\n-----------------------------------------\n";
+void LEIC::listStudentsByUP() {
+    cout << "UPNUMBER\tNAME\n------------------------------------\n";
     for(pair<string, Student> p : up_students){
         cout << p.first << " | " << p.second.get_name() << '\n';
     }
 }
+void LEIC::listStudentsByName(){
+    cout << "NAME\tUPNUMBER\n------------------------------------\n";
+    map<string, string> students_up;
+    for(pair<string, Student> p : up_students){
+        students_up[p.second.get_name()] = p.first;
+    }
+    for(pair<string, string> p : students_up){
+        cout << p.second << '\t' << p.first << '\n';
+    }
+}
+
 
 bool LEIC::classBalanceValid(Class newclass) {
     int max = newclass.get_students().size() + 1;

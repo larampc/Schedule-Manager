@@ -91,7 +91,7 @@ void Script::listSchedules(){
 }
 
 void Script::listStudents() {
-    cout << "Consult list of students of: 1- Course 2- UC 3- Class";
+    cout << "Consult list of students of: 1- Course 2- UC 3- Class\n";
     string option;
     cin >> option;
     while(option != "1" && option != "2" && option != "3") {
@@ -100,7 +100,14 @@ void Script::listStudents() {
     }
     switch(option[0]){
         case '1': {
-            data.listStudents();
+            cout << "Sort student by? 1- upNumber 2- Student Name\n";
+            cin >> option;
+            while(option != "1" && option != "2") {
+                invalid();
+                cin >> option;
+            }
+            if(option == "1") data.listStudentsByUP();
+            else data.listStudentsByName();
         }
     }
 }

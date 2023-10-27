@@ -1,5 +1,6 @@
 #include "student.h"
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 Student::Student(string name, string studentup): name(name), student_up(studentup), classes() {}
@@ -31,7 +32,20 @@ void Student::print_schedule() {
         set<Lesson> thislessons = someclass->get_lessons();
         allclasses.insert(thislessons.begin(), thislessons.end());
     }
+    string current = "";
     for(Lesson lesson: allclasses) {
-        cout << lesson.get_weekday() << ": " << lesson.get_starttime().get_hour() << " " << lesson.get_thisclass() << endl;
+        if (current == "") {
+            current = lesson.get_weekday();
+            cout << lesson.get_weekday() << endl;
+        }
+        if (lesson.get_weekday() != current) {
+            current = lesson.get_weekday();
+            cout << lesson.get_weekday() << endl;
+        }
+        else cout << setw(2) << setfill('0') << lesson.get_starttime().get_hour() << ":" <<
+        setw(2) << setfill('0') << lesson.get_starttime().get_minute() <<
+        " - " << setw(2) << setfill('0') << lesson.get_endtime().get_hour() << ":" <<
+        setw(2) << setfill('0') << lesson.get_endtime().get_minute() <<
+        "\t" << lesson.get_thisclass() << endl;
     }
 }
