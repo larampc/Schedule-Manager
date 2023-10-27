@@ -10,13 +10,13 @@
 #include <iomanip>
 #include <algorithm>
 #include "student.h"
-#include "Request.h"
+#include "request.h"
 
 class LEIC {
 private:
   std::vector<Class> classes;
   std::map<std::string, Student> up_students;
-  std::queue<Request> requests; //pedidos para serem tratados class Request?
+  std::queue<Request> requests; //pedidos para serem tratados class request?
   std::stack<Request> processed_requests; //últimos pedidos
 public:
   LEIC(std::string filenameclasses, std::string filenamestudents); //ler ficheiros e guardar info
