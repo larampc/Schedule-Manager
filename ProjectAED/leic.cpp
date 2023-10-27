@@ -46,6 +46,7 @@ LEIC::LEIC(std::string filenameclasses, std::string filenamestudents) {
         Class c = Class(classcode,uccode);
         auto it2 = find(classes.begin(), classes.end(), c);
         up_students.at(up).add_class(&(*it2));
+        it2->add_student(up);
     }
     studentsFile.close();
 //    for(pair<string, Student> p : up_students){
@@ -63,6 +64,32 @@ void LEIC::listStudents() {
     cout << "UPNUMBER\tNAME\n-----------------------------------------\n";
     for(pair<string, Student> p : up_students){
         cout << p.first << " | " << p.second.get_name() << '\n';
+    }
+}
+
+bool LEIC::classBalanceValid(Class newclass) {
+    int max = newclass.get_students().size() + 1;
+    int min = newclass.get_students().size();
+    for (Class c: classes) {
+        if (c.get_classCode()[0] == newclass.get_classCode()[0]){
+            if (c.get_ucCode() == newclass.get_ucCode()){
+                if (c.get_students().size() < min){
+                    min = c.get_students().size();
+                }
+                if (c.get_students().size() > max){
+                    max = c.get_students().size();
+                }
+            }
+        }
+    }
+    return max-min <= 4;
+}
+
+Class LEIC::get_class_from_classcode_and_uccode(std::string classcode, std::string uccode) {
+    for (Class c: classes) {
+        if (c.get_classCode() == classcode && c.get_ucCode() == uccode){
+            return c;
+        }
     }
 }
 

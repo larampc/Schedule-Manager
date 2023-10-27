@@ -28,12 +28,19 @@ void Script::run() {
 }
 
 void Script::request(){
-    std::string type, uc_or_class;
+    std::string type, uc_or_class, uccode, classcode;
     cout << "Pick: ADD / REMOVE / SWITCH\n";
     cin >> type; while(type != "ADD" && type != "REMOVE" && type != "SWITCH") {invalid(); cin >> type; cout << '\n';}
     cout << "Pick: UC / CLASS\n";
     cin >> uc_or_class; while(uc_or_class != "UC" && uc_or_class != "CLASS") {invalid(); cin >> uc_or_class;}
- //   data.processRequest();
+
+    // Temporary just for testing class balance
+    cout << "UC:\n";
+    cin >> uccode;
+    cout << "CLASS:\n";
+    cin >> classcode;
+    cout << data.classBalanceValid(data.get_class_from_classcode_and_uccode(classcode,uccode));
+ //   data.processRequest(type, uc_or_class == "UC");
 }
 
 void Script::listings(){
@@ -97,4 +104,3 @@ void Script::listStudents() {
         }
     }
 }
-
