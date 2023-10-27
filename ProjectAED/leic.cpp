@@ -102,3 +102,42 @@ Class LEIC::get_class_from_classcode_and_uccode(std::string classcode, std::stri
     }
 }
 
+bool LEIC::compatibleSchedules(Student student, Class newclass, Class oldclass) {
+    string weekday1 = newclass.get_lessons().begin()->get_weekday();
+    Time startTime1 = newclass.get_lessons().begin()->get_starttime();
+    Time endTime1 = newclass.get_lessons().begin()->get_endtime();
+    string weekday2 = newclass.get_lessons().end()->get_weekday();
+    Time startTime2 = newclass.get_lessons().begin()->get_starttime();
+    Time endTime2 = newclass.get_lessons().begin()->get_endtime();
+    for (Class* c: student.get_classes()) {
+        if (*c == oldclass){
+            continue;
+        }
+        if (c->get_lessons().begin()->get_weekday() == weekday1){
+            if (!(c->get_lessons().begin()->get_endtime() < startTime1 || (c->get_lessons().begin()->get_endtime() < startTime1 && startTime1 < c->get_lessons().begin()->get_endtime()))
+                && !(endTime1 < c->get_lessons().begin()->get_starttime() || (endTime1 < c->get_lessons().begin()->get_starttime() && c->get_lessons().begin()->get_starttime() < endTime1))){
+                return false;
+            }
+        }
+        if (c->get_lessons().begin()->get_weekday() == weekday2){
+            if (!(c->get_lessons().begin()->get_endtime() < startTime2  || (c->get_lessons().begin()->get_endtime() < startTime2 && startTime2 < c->get_lessons().begin()->get_endtime()))
+                && !(endTime2 < c->get_lessons().begin()->get_starttime() || (endTime2 < c->get_lessons().begin()->get_starttime() && c->get_lessons().begin()->get_starttime() < endTime2))){
+                return false;
+            }
+        }
+        if (c->get_lessons().end()->get_weekday() == weekday1){
+            if (!(c->get_lessons().end()->get_endtime() < startTime1 || (c->get_lessons().end()->get_endtime() < startTime1 && startTime1 < c->get_lessons().end()->get_endtime()))
+                && !(endTime1 < c->get_lessons().end()->get_starttime() || (endTime1 < c->get_lessons().end()->get_starttime() && c->get_lessons().end()->get_starttime() < endTime1))){
+                return false;
+            }
+        }
+        if (c->get_lessons().end()->get_weekday() == weekday2){
+            if (!(c->get_lessons().end()->get_endtime() < startTime2  || (c->get_lessons().end()->get_endtime() < startTime2 && startTime2 < c->get_lessons().end()->get_endtime()))
+                && !(endTime2 < c->get_lessons().end()->get_starttime() || (endTime2 < c->get_lessons().end()->get_starttime() && c->get_lessons().end()->get_starttime() < endTime2))){
+                return false;
+            }
+        }
+    }
+    return true;
+}
+

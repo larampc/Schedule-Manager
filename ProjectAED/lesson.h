@@ -13,10 +13,10 @@ private:
 public:
     Lesson(std::string thisclass, std::string weekday, Time starttime, Time endtime, std::string type);
     std::string get_thisclass();
-    std::string get_weekday();
+    std::string get_weekday() const;
     std::string get_type() const;
-    Time get_starttime();
-    Time get_endtime();
+    Time get_starttime() const;
+    Time get_endtime() const;
     // To do: método de comparação :  Lesson operator<(lesson l);
     bool operator<(const Lesson &l) const;
 };

@@ -8,15 +8,15 @@ std::string Lesson::get_thisclass() {
     return Class;
 }
 
-string Lesson::get_weekday() {
+string Lesson::get_weekday() const {
     return Weekday;
 }
 
-Time Lesson::get_starttime() {
+Time Lesson::get_starttime() const {
     return StartTime;
 }
 
-Time Lesson::get_endtime() {
+Time Lesson::get_endtime() const {
     return EndTime;
 }
 
