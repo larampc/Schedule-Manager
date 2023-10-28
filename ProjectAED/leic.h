@@ -32,6 +32,7 @@ public:
   void numberstudents_class();
   void addStudenttoClass(Student student, Class* newclass);
   void removeStudentfromClass(Student student, Class* newclass);
+  int get_UCnumber_from_Student(Student student, std::string newuccode = "null");
   //outras funções: sorts, listings, pedidos...
   //opcao -> criar class script para ter as funcionlidades
 };
