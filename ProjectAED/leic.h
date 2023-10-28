@@ -34,7 +34,6 @@ public:
   void list_class_students_by_Name(Class* class_) const;
   Class* get_class_from_classcode_and_uccode(std::string classcode, std::string uccode);
   std::vector<Class*> get_classes_from_uccode(std::string uccode);
-  //void listStudents();
   bool class_balance_valid(Class newClass);
   bool compatible_schedules(Student student, Class* newclass, Class* oldclass = nullptr);
   void numberstudents_class();
@@ -42,8 +41,6 @@ public:
   void remove_student_from_class(Student* student, Class* newclass);
   bool uc_has_vacancy(std::string uccode, int cap);
   bool process_request(Request request);
-  //outras funções: sorts, listings, pedidos...
-  //opcao -> criar class script para ter as funcionlidades
 };
 
 #endif

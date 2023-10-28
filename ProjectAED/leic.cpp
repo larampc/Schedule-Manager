@@ -87,9 +87,8 @@ void LEIC::listUCStudentsByUP(string uc) {
     cout << "UPNUMBER\tNAME\n------------------------------------\n";
     for(Class c : classes){
         if(c.get_ucCode() == uc){
-            for(string up : c.get_students()){
+            for(string up : c.get_students())
                 cout << up << " | " << up_students.at(up).get_name() << endl;
-            }
         }
     }
 }
