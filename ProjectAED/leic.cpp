@@ -193,6 +193,7 @@ bool LEIC::add_request(Request request, Student* student) {
             cout << "Student is now in the class " << newclass->get_classCode() << " in the UC " << newclass->get_ucCode() << endl;
             return true;
         }
+        return false;
     }
     else {
         if (uc_has_vacancy(request.get_new_uc(), CAP) && student->get_classes().size()<7) {

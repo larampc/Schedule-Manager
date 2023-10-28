@@ -55,12 +55,9 @@ void Script::request(){
             cout << "Pick: UC / CLASS\n";
             cin >> uc_or_class; while(uc_or_class != "UC" && uc_or_class != "CLASS") {invalid(); cin >> uc_or_class;}
             if (uc_or_class == "CLASS") {
-                cout << "CURRENT UC:\n";
+                cout << "UC:\n";
                 cin >> current_uc;
-                cout << "CURRENT CLASS:\n";
-                cin >> current_class;
-                cout << "NEW UC:\n";
-                cin >> new_uc;
+                new_uc = current_uc;
                 cout << "NEW CLASS:\n";
                 cin >> new_class;
             }
@@ -69,6 +66,13 @@ void Script::request(){
                 cin >> current_uc;
                 cout << "NEW UC:\n";
                 cin >> new_uc;
+                cout << "Do you want to join a specific class: [Y/N]?\n";
+                string answer;
+                cin >> answer;
+                if (answer=="Y") {
+                    cout << "CLASS:\n";
+                    cin >> new_class;
+                }
             }
             break;
         }
