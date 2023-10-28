@@ -172,7 +172,7 @@ void LEIC::add_student_to_class(Student* student, Class *newclass) {
 
 void LEIC::remove_student_from_class(Student* student, Class *newclass) {
     newclass->remove_student(student->get_student_up());
-    student->remove_class(newclass);
+    student->remove_class_from_uc(newclass->get_ucCode());
 }
 
 bool LEIC::uc_has_vacancy(std::string uccode, int cap) {
@@ -189,20 +189,30 @@ bool LEIC::process_request(Request request) {
     switch (request.get_type()[0]) {
         case 'A': {
             if (request.get_uc_class()) {
-
+                Class* newclass = get_class_from_classcode_and_uccode(request.get_new_class(), request.get_new_uc());
+                if (newclass->get_students().size()<CAP
+                    && !student->has_uc(request.get_new_uc()) && compatible_schedules(*student, newclass)) {
+                    add_student_to_class(student, newclass);
+                    cout << "Student is now in the class " << newclass->get_classCode() << " in the UC " << newclass->get_ucCode() << endl;
+                }
             }
             else {
                 if (uc_has_vacancy(request.get_new_uc(), CAP) && student->get_classes().size()<7) {
                     vector<Class*> classes_uccode = get_classes_from_uccode(request.get_new_uc());
                     for (Class* c: classes_uccode) {
                         if (compatible_schedules(*student, c)) {
-                            cout << "Student is now in the class " << c->get_classCode() << " in the UC " << c->get_ucCode() << endl;
                             add_student_to_class(student, c);
+                            cout << "Student is now in the class " << c->get_classCode() << " in the UC " << c->get_ucCode() << endl;
                             return true;
                         }
                     }
                 }
             }
+        }
+        case 'R': {
+            cout << "Did nothing";
+            remove_student_from_class(student, get_class_from_classcode_and_uccode(student->get_class_from_uc(request.get_current_uc()), request.get_current_uc()));
+            return true;
         }
     }
     cout << "The request was rejected";
