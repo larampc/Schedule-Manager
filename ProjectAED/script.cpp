@@ -123,6 +123,42 @@ void Script::listSchedules(){
             break;
         }
         case '2': {
+            set<string> classcodes;
+            for(Class c: data.get_classes()) classcodes.insert(c.get_classCode());
+            cout << "Enter Class: ";
+            string class_;
+            cin >> class_;
+            while(!classcodes.count(class_)) {
+                invalid();
+                cin >> class_;
+            }
+            vector<Class> classCodeClasses;
+            for(Class c : data.get_classes()){
+                if(c.get_classCode() == class_){
+                    classCodeClasses.push_back(c);
+                }
+            }
+            set<Lesson> classLessons;
+            for(Class c : classCodeClasses){
+                set<Lesson> lessons = c.get_lessons();
+                classLessons.insert(lessons.begin(),lessons.end());
+            }
+            string currentDay;
+            for(Lesson lesson: classLessons) {
+                if (currentDay.empty()) {
+                    currentDay = lesson.get_weekday();
+                    cout << lesson.get_weekday() << endl;
+                }
+                if (lesson.get_weekday() != currentDay) {
+                    currentDay = lesson.get_weekday();
+                    cout << lesson.get_weekday() << endl;
+                }
+                cout << setw(2) << setfill('0') << lesson.get_starttime().get_hour() << ":"
+                     << setw(2) << setfill('0') << lesson.get_starttime().get_minute()
+                     << " - " << setw(2) << setfill('0') << lesson.get_endtime().get_hour() << ":"
+                     << setw(2) << setfill('0') << lesson.get_endtime().get_minute()
+                     << "\t" << setw(2) << setfill(' ') << lesson.get_type() << " " << lesson.get_thisclass() << endl;
+            }
 
         }
     }
