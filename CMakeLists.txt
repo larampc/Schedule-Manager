@@ -39,4 +39,5 @@ add_executable(AEDProject main.cpp
         ProjectAED/script.cpp
         ProjectAED/script.h
         ProjectAED/request.cpp
+        ProjectAED/request.h
 )

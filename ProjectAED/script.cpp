@@ -7,11 +7,13 @@ void invalid(){ cout << "Invalid Input, please try again\n"; }
 Script::Script(): data(LEIC("../classes.csv", "../students_classes.csv")) {}
 
 void Script::run() {
-    cout << "------------------------------------\n\tSchedule Management System\n------------------------------------\nSelect option:\n"
+    cout << "\n\n-----------------------------------\n\tSchedule Management System\n------------------------------------\nSelect option:\n"
          << "Get Information - press 1\n"
-         << "Make request - press 2\n";
+         << "Make request - press 2\n"
+         << "Settings - press 3\n"
+         << "Quit Manager - press 4\n";
     string option; cin >> option;
-    while(option != "1" && option != "2") {
+    while(option != "1" && option != "2" && option != "3" && option != "4") {
         invalid();
         cin >> option;
     }
@@ -24,18 +26,36 @@ void Script::run() {
             request();
             break;
         }
+        case '3': {
+            cout << "1- Change Class CAP\t2- Cancel\n";
+            cin >> option;
+            while(option != "1" && option != "2") {
+                invalid();
+                cin >> option;
+            }
+            if(option == "1"){} //do something
+            else run();
+            break;
+        }
+        case '4': {
+            exit(0);
+        }
     }
 }
 
 void Script::request(){
     string type, uc_or_class;
-    cout << "Pick: ADD / REMOVE / SWITCH\n";
-    cin >> type; while(type != "ADD" && type != "REMOVE" && type != "SWITCH") {invalid(); cin >> type; cout << '\n';}
+    cout << "Pick: 1- ADD 2- REMOVE 3- SWITCH 4- Cancel\n";
+    cin >> type; while(type != "1" && type != "2" && type != "3" && type != "4") {invalid(); cin >> type; cout << '\n';}
+    if(type == "4") {
+        run();
+        return;
+    }
     string student_up, current_class, new_class, current_uc, new_uc;
     cout << "UP:\n";
     cin >> student_up;
     switch (type[0]) {
-        case 'A': {
+        case '1': {
             cout << "Pick: UC / CLASS\n";
             cin >> uc_or_class; while(uc_or_class != "UC" && uc_or_class != "CLASS") {invalid(); cin >> uc_or_class;}
             cout << "UC:\n";
@@ -46,12 +66,12 @@ void Script::request(){
             }
             break;
         }
-        case 'R': {
+        case '2': {
             cout << "UC:\n";
             cin >> current_uc;
             break;
         }
-        case 'S': {
+        case '3': {
             cout << "Pick: UC / CLASS\n";
             cin >> uc_or_class; while(uc_or_class != "UC" && uc_or_class != "CLASS") {invalid(); cin >> uc_or_class;}
             if (uc_or_class == "CLASS") {
@@ -86,9 +106,9 @@ void Script::request(){
 
 void Script::listings(){
     cout << "What would you like to check?\n"
-    << "1- Schedules 2- Student Lists 3- Occupations\n";
+    << "1- Schedules 2- Student Lists 3- Occupations 4- Cancel\n";
     string option; cin >> option;
-    while(option != "1" && option != "2" && option != "3") {
+    while(option != "1" && option != "2" && option != "3" && option != "4") {
         invalid();
         cin >> option;
     }
@@ -104,14 +124,15 @@ void Script::listings(){
         case '3': {
             data.numberstudents_class();
         }
+        case '4': run();
     }
 }
 
 void Script::listSchedules(){
-    cout << "Consult schedule of: 1- Student 2- Class 3- UC\n";
+    cout << "Consult schedule of: 1- Student 2- Class 3- UC 4-Cancel\n";
     string option;
     cin >> option;
-    while(option != "1" && option != "2") {
+    while(option != "1" && option != "2" && option != "3" && option != "4") {
         invalid();
         cin >> option;
     }
@@ -120,7 +141,7 @@ void Script::listSchedules(){
             cout << "Insert student up: ";
             long up;
             cin >> up;
-            while(cin.fail() || data.get_student_from_up(to_string(up))->get_name() == ""){
+            while(cin.fail() || data.get_student_from_up(to_string(up)) == nullptr){
                 invalid();
                 cin.clear();
                 cin.ignore( numeric_limits<streamsize>::max(),'\n');
@@ -160,22 +181,49 @@ void Script::listSchedules(){
                     currentDay = lesson.get_weekday();
                     cout << lesson.get_weekday() << endl;
                 }
-                cout << setw(2) << setfill('0') << lesson.get_starttime().get_hour() << ":"
-                     << setw(2) << setfill('0') << lesson.get_starttime().get_minute()
-                     << " - " << setw(2) << setfill('0') << lesson.get_endtime().get_hour() << ":"
-                     << setw(2) << setfill('0') << lesson.get_endtime().get_minute()
-                     << "\t" << setw(2) << setfill(' ') << lesson.get_type() << " " << lesson.get_thisclass() << endl;
+                lesson.print_lesson();
             }
-
+            break;
+        }
+        case '3': {
+            cout << "Enter UC: ";
+            string uc;
+            cin >> uc;
+            while(!data.get_ucs().count(uc)) {
+                invalid();
+                cin >> uc;
+            }
+            vector<Class*> classesUc = data.get_classes_from_uccode(uc);
+            multiset<Lesson> total_lessons;
+            for(Class* c : classesUc) {
+                set<Lesson> lessons = c->get_lessons();
+                total_lessons.insert(lessons.begin(), lessons.end());
+            }
+            string currentDay;
+            for(Lesson lesson: total_lessons) {
+                if (currentDay.empty()) {
+                    currentDay = lesson.get_weekday();
+                    cout << lesson.get_weekday() << endl;
+                }
+                if (lesson.get_weekday() != currentDay) {
+                    currentDay = lesson.get_weekday();
+                    cout << lesson.get_weekday() << endl;
+                }
+                lesson.print_lesson();
+            }
+            break;
+        }
+        case '4':{
+            listings();
         }
     }
 }
 
 void Script::listStudents() {
-    cout << "Consult list of students of: 1- Course 2- UC 3- Class\n";
+    cout << "Consult list of students of: 1- Course 2- UC 3- Class 4- Cancel\n";
     string option;
     cin >> option;
-    while(option != "1" && option != "2" && option != "3") {
+    while(option != "1" && option != "2" && option != "3" && option != "4") {
         invalid();
         cin >> option;
     }
@@ -230,5 +278,6 @@ void Script::listStudents() {
             if(option == "1") data.list_class_students_by_UP(data.get_class_from_classcode_and_uccode(class_,UC));
             else data.list_class_students_by_Name(data.get_class_from_classcode_and_uccode(class_,UC));
         }
+        case '4': listings();
     }
 }
