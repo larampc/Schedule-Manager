@@ -136,18 +136,4 @@ void LEIC::removeStudentfromClass(Student student, Class *newclass) {
     student.remove_class(newclass);
 }
 
-int LEIC::get_UCnumber_from_Student(Student student, std::string newuccode) {
-    set<string> uccodes;
-    if (newuccode != "null"){
-        uccodes.insert(newuccode);
-    }
-    for (Class *c: student.get_classes()) {
-        if (uccodes.count(c->get_ucCode()) == 0){
-            uccodes.insert(c->get_ucCode());
-        }
-    }
-
-    return uccodes.size();
-}
-
 

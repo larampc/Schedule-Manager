@@ -49,3 +49,7 @@ void Student::print_schedule() {
         "\t" << setw(2) << setfill(' ') << lesson.get_type() << "  2" << lesson.get_thisclass() << endl;
     }
 }
+
+bool Student::valid_UCnumber() {
+    return classes.size() <= 7;
+}
