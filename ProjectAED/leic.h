@@ -29,12 +29,12 @@ public:
   void listUCStudentsByName(std::string uc);
   Class* get_class_from_classcode_and_uccode(std::string classcode, std::string uccode);
   //void listStudents();
-  bool classBalanceValid(Class newClass);
-  bool compatibleSchedules(Student student, Class* newclass, Class* oldclass = nullptr);
+  bool class_balance_valid(Class newClass);
+  bool compatible_schedules(Student student, Class* newclass, Class* oldclass = nullptr);
   void numberstudents_class();
-  void addStudenttoClass(Student student, Class* newclass);
-  void removeStudentfromClass(Student student, Class* newclass);
-  bool uc_Has_Vacancy(std::string uccode, int cap);
+  void add_student_to_class(Student student, Class* newclass);
+  void remove_student_from_class(Student student, Class* newclass);
+  bool uc_has_vacancy(std::string uccode, int cap);
   //outras funções: sorts, listings, pedidos...
   //opcao -> criar class script para ter as funcionlidades
 };

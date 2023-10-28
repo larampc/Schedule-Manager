@@ -102,7 +102,7 @@ void LEIC::listUCStudentsByName(std::string uc) {
     for (pair<string, string> p: UCstudents_up) cout << p.second << '\t' << p.first << '\n';
 }
 
-bool LEIC::classBalanceValid(Class newClass) {
+bool LEIC::class_balance_valid(Class newClass) {
     int max = newClass.get_students().size() + 1;
     int min = newClass.get_students().size();
     for (Class c: classes) {
@@ -121,7 +121,7 @@ Class* LEIC::get_class_from_classcode_and_uccode(std::string classcode, std::str
     return nullptr;
 }
 
-bool LEIC::compatibleSchedules(Student student, Class* newclass, Class* oldclass) {
+bool LEIC::compatible_schedules(Student student, Class* newclass, Class* oldclass) {
     for (Lesson newlesson: newclass->get_lessons()) {
         if (newlesson.get_type() == "PL" || newlesson.get_type() == "TP") {
             for (Class* c: student.get_classes()) {
@@ -148,17 +148,17 @@ void LEIC::numberstudents_class() {
     }
 }
 
-void LEIC::addStudenttoClass(Student student, Class *newclass) {
+void LEIC::add_student_to_class(Student student, Class *newclass) {
     newclass->add_student(student.get_student_up());
     student.add_class(newclass);
 }
 
-void LEIC::removeStudentfromClass(Student student, Class *newclass) {
+void LEIC::remove_student_from_class(Student student, Class *newclass) {
     newclass->remove_student(student.get_student_up());
     student.remove_class(newclass);
 }
 
-bool LEIC::uc_Has_Vacancy(std::string uccode, int cap) {
+bool LEIC::uc_has_vacancy(std::string uccode, int cap) {
     for (Class& c: classes) {
         if (c.get_ucCode() == uccode){
             if (c.get_students().size() < cap) return true;

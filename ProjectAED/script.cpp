@@ -43,14 +43,14 @@ void Script::request(){
     cin >> up;
     Class* c = data.get_class_from_classcode_and_uccode(classcode,uccode);
     Student s = data.get_student_from_up(up);
-    cout << data.classBalanceValid(*c) << endl;
+    cout << data.class_balance_valid(*c) << endl;
     string classcode_to, uccode_to;
 //    cout << "UC TO:\n";
 //    cin >> uccode_to;
 //    cout << "CLASS TO:\n";
 //    cin >> classcode_to;
     //Class* c_to = data.get_class_from_classcode_and_uccode(classcode_to,uccode_to);
-    cout << data.compatibleSchedules(s, c) << endl;
+    cout << data.compatible_schedules(s, c) << endl;
  //   data.processRequest(type, uc_or_class == "UC");
 }
 
