@@ -28,7 +28,7 @@ void Script::run() {
 }
 
 void Script::request(){
-    std::string type, uc_or_class, uccode, classcode, up;
+    string type, uc_or_class, uccode, classcode, up;
     cout << "Pick: ADD / REMOVE / SWITCH\n";
     cin >> type; while(type != "ADD" && type != "REMOVE" && type != "SWITCH") {invalid(); cin >> type; cout << '\n';}
     cout << "Pick: UC / CLASS\n";
@@ -41,18 +41,24 @@ void Script::request(){
     cin >> classcode;
     cout << "UP:\n";
     cin >> up;
-    Class c = data.get_class_from_classcode_and_uccode(classcode,uccode);
+    Class* c = data.get_class_from_classcode_and_uccode(classcode,uccode);
     Student s = data.get_student_from_up(up);
-    cout << data.classBalanceValid(c) << endl;
-    cout << data.compatibleSchedules(s, c, c);
+    cout << data.classBalanceValid(*c) << endl;
+    string classcode_to, uccode_to;
+//    cout << "UC TO:\n";
+//    cin >> uccode_to;
+//    cout << "CLASS TO:\n";
+//    cin >> classcode_to;
+    //Class* c_to = data.get_class_from_classcode_and_uccode(classcode_to,uccode_to);
+    cout << data.compatibleSchedules(s, c);
  //   data.processRequest(type, uc_or_class == "UC");
 }
 
 void Script::listings(){
     cout << "What would you like to check?\n"
-    << "1- Schedules 2- Student Lists 3- ...\n";
+    << "1- Schedules 2- Student Lists 3-Number of students in each class\n";
     string option; cin >> option;
-    while(option != "1" && option != "2") {
+    while(option != "1" && option != "2" && option != "3") {
         invalid();
         cin >> option;
     }
@@ -63,6 +69,9 @@ void Script::listings(){
         }
         case '2': {
             listStudents();
+        }
+        case '3': {
+            data.numberstudents_class();
         }
     }
 }
