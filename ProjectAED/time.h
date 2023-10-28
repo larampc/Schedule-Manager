@@ -28,9 +28,12 @@ public:
  */
     int get_minute() const;
 /**
- * \brief Less than operator for Time comparison.
+ * \brief Getter function time in float format.
  */
     float get_timefloat() const;
+/**
+ * \brief Less than operator for Time comparison.
+ */
     bool operator<(const Time &t) const;
 };
 
