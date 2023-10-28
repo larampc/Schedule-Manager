@@ -90,7 +90,7 @@ void Script::listSchedules(){
             cout << "Insert student up: ";
             long up;
             cin >> up;
-            while(cin.fail() || up < 200000000 || up > 202300000){
+            while(cin.fail() || data.get_student_from_up(to_string(up)).get_name() == ""){
                 invalid();
                 cin.clear();
                 cin.ignore( numeric_limits<streamsize>::max(),'\n');

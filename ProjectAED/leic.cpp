@@ -53,7 +53,8 @@ LEIC::LEIC(std::string filenameclasses, std::string filenamestudents) {
 }
 
 Student LEIC::get_student_from_up(std::string up) {
-    return up_students.at(up);
+    if(up_students.find(up) == up_students.end()) return Student("","");
+    else return up_students.at(up);
 }
 
 std::set<std::string> LEIC::get_ucs() const {
