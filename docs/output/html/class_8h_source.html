@@ -87,27 +87,35 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;lesson.h&quot;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;set&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="foldopen" id="foldopen00006" data-start="{" data-end="};">
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="class_class.html">    6</a></span><span class="keyword">class </span><a class="code hl_class" href="class_class.html">Class</a> {</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    std::string classCode;</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    std::string ucCode; </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    std::set&lt;Lesson&gt; lessons; <span class="comment">//unir sets de lessons para formar horário</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    std::set&lt;std::string&gt; students_up;</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <a class="code hl_class" href="class_class.html">Class</a>(std::string classcode, std::string uccode);</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    std::string get_classCode();</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    std::string get_ucCode();</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    std::set&lt;Lesson&gt; get_lessons();</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    std::set&lt;std::string&gt; get_students(); </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordtype">void</span> add_lesson(<a class="code hl_class" href="class_lesson.html">Lesson</a> l);</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keywordtype">void</span> add_student(std::string student_up);</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keywordtype">void</span> remove_student(std::string student_up);</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordtype">bool</span> operator == (<span class="keyword">const</span> <a class="code hl_class" href="class_class.html">Class</a>&amp; c) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>};</div>
+<div class="foldopen" id="foldopen00012" data-start="{" data-end="};">
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="class_class.html">   12</a></span><span class="keyword">class </span><a class="code hl_class" href="class_class.html">Class</a> {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    std::string classCode;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    std::string ucCode; </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    std::set&lt;Lesson&gt; lessons; <span class="comment">//unir sets de lessons para formar horário</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    std::set&lt;std::string&gt; students_up;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <a class="code hl_class" href="class_class.html">Class</a>(std::string classcode, std::string uccode);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    std::string <a class="code hl_function" href="class_class.html#ab39fed5db34f17f61bca9e019ba00d35">get_classCode</a>();</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    std::string <a class="code hl_function" href="class_class.html#a0c3fe4514a98da514c492bdd4de5a502">get_ucCode</a>();</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    std::set&lt;Lesson&gt; <a class="code hl_function" href="class_class.html#a1fb10cda5abbbd8118a90b9560b85c8c">get_lessons</a>();</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    std::set&lt;std::string&gt; <a class="code hl_function" href="class_class.html#a8d89c17a45d924ad220f434914826d6a">get_students</a>();</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_class.html#a271444f4b07167c333a507d06eb4f9fc">add_lesson</a>(<a class="code hl_class" href="class_lesson.html">Lesson</a> l);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_class.html#a6f7dc46a01e229971c4ce97216ee6c92">add_student</a>(std::string student_up);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_class.html#a3d43abcf75eb258f4c1ec3426241dff5">remove_student</a>(std::string student_up);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_class.html#a493c660f130d7b1f1a34fd786e51838f">operator == </a>(<span class="keyword">const</span> <a class="code hl_class" href="class_class.html">Class</a>&amp; c) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>};</div>
 </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#endif </span><span class="comment">//PROJECTAED_CLASS_H</span></div>
-<div class="ttc" id="aclass_class_html"><div class="ttname"><a href="class_class.html">Class</a></div><div class="ttdef"><b>Definition</b> class.h:6</div></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="preprocessor">#endif </span><span class="comment">//PROJECTAED_CLASS_H</span></div>
+<div class="ttc" id="aclass_class_html"><div class="ttname"><a href="class_class.html">Class</a></div><div class="ttdoc">This is a class for representing Classes.</div><div class="ttdef"><b>Definition</b> class.h:12</div></div>
+<div class="ttc" id="aclass_class_html_a0c3fe4514a98da514c492bdd4de5a502"><div class="ttname"><a href="class_class.html#a0c3fe4514a98da514c492bdd4de5a502">Class::get_ucCode</a></div><div class="ttdeci">std::string get_ucCode()</div><div class="ttdoc">Gets the UC code of the Class.</div><div class="ttdef"><b>Definition</b> class.cpp:11</div></div>
+<div class="ttc" id="aclass_class_html_a1fb10cda5abbbd8118a90b9560b85c8c"><div class="ttname"><a href="class_class.html#a1fb10cda5abbbd8118a90b9560b85c8c">Class::get_lessons</a></div><div class="ttdeci">std::set&lt; Lesson &gt; get_lessons()</div><div class="ttdoc">Gets all Lesson of the Class.</div><div class="ttdef"><b>Definition</b> class.cpp:15</div></div>
+<div class="ttc" id="aclass_class_html_a271444f4b07167c333a507d06eb4f9fc"><div class="ttname"><a href="class_class.html#a271444f4b07167c333a507d06eb4f9fc">Class::add_lesson</a></div><div class="ttdeci">void add_lesson(Lesson l)</div><div class="ttdoc">Adds a new Lesson to the Class.</div><div class="ttdef"><b>Definition</b> class.cpp:23</div></div>
+<div class="ttc" id="aclass_class_html_a3d43abcf75eb258f4c1ec3426241dff5"><div class="ttname"><a href="class_class.html#a3d43abcf75eb258f4c1ec3426241dff5">Class::remove_student</a></div><div class="ttdeci">void remove_student(std::string student_up)</div><div class="ttdoc">Removes a Student from the Class.</div><div class="ttdef"><b>Definition</b> class.cpp:31</div></div>
+<div class="ttc" id="aclass_class_html_a493c660f130d7b1f1a34fd786e51838f"><div class="ttname"><a href="class_class.html#a493c660f130d7b1f1a34fd786e51838f">Class::operator==</a></div><div class="ttdeci">bool operator==(const Class &amp;c) const</div><div class="ttdoc">Equal operator for Class comparison.</div><div class="ttdef"><b>Definition</b> class.cpp:35</div></div>
+<div class="ttc" id="aclass_class_html_a6f7dc46a01e229971c4ce97216ee6c92"><div class="ttname"><a href="class_class.html#a6f7dc46a01e229971c4ce97216ee6c92">Class::add_student</a></div><div class="ttdeci">void add_student(std::string student_up)</div><div class="ttdoc">Adds a new Student to the Class.</div><div class="ttdef"><b>Definition</b> class.cpp:27</div></div>
+<div class="ttc" id="aclass_class_html_a8d89c17a45d924ad220f434914826d6a"><div class="ttname"><a href="class_class.html#a8d89c17a45d924ad220f434914826d6a">Class::get_students</a></div><div class="ttdeci">std::set&lt; std::string &gt; get_students()</div><div class="ttdoc">Gets all Student of the Class.</div><div class="ttdef"><b>Definition</b> class.cpp:19</div></div>
+<div class="ttc" id="aclass_class_html_ab39fed5db34f17f61bca9e019ba00d35"><div class="ttname"><a href="class_class.html#ab39fed5db34f17f61bca9e019ba00d35">Class::get_classCode</a></div><div class="ttdeci">std::string get_classCode()</div><div class="ttdoc">Gets the class code of the Class.</div><div class="ttdef"><b>Definition</b> class.cpp:7</div></div>
 <div class="ttc" id="aclass_lesson_html"><div class="ttname"><a href="class_lesson.html">Lesson</a></div><div class="ttdoc">This is a class for representing Lessons.</div><div class="ttdef"><b>Definition</b> lesson.h:12</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

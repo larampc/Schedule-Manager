@@ -71,6 +71,9 @@ public:
      * @return True if this Lesson is before in time of the Lesson to compare.
      */
     bool operator<(const Lesson &l) const;
+    /**
+     * \brief Prints the Lesson.
+     */
     void print_lesson() const;
 };
 

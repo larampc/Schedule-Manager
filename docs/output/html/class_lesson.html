@@ -89,7 +89,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a1a1da5b060e563ea1317b9872e96ff7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="class_lesson.html" title="This is a class for representing Lessons.">Lesson</a>.  <br /></td></tr>
 <tr class="separator:a1a1da5b060e563ea1317b9872e96ff7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9428086c12e8ac0f58c85bcef9da87b9" id="r_a9428086c12e8ac0f58c85bcef9da87b9"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lesson.html#a9428086c12e8ac0f58c85bcef9da87b9">get_thisclass</a> ()</td></tr>
-<tr class="memdesc:a9428086c12e8ac0f58c85bcef9da87b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the parent <a class="el" href="class_class.html">Class</a> of the <a class="el" href="class_lesson.html" title="This is a class for representing Lessons.">Lesson</a>.  <br /></td></tr>
+<tr class="memdesc:a9428086c12e8ac0f58c85bcef9da87b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the parent <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> of the <a class="el" href="class_lesson.html" title="This is a class for representing Lessons.">Lesson</a>.  <br /></td></tr>
 <tr class="separator:a9428086c12e8ac0f58c85bcef9da87b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e2996ef61ab3373746caa965f1c97c6" id="r_a7e2996ef61ab3373746caa965f1c97c6"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lesson.html#a7e2996ef61ab3373746caa965f1c97c6">get_weekday</a> () const</td></tr>
 <tr class="memdesc:a7e2996ef61ab3373746caa965f1c97c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the weekday of the <a class="el" href="class_lesson.html" title="This is a class for representing Lessons.">Lesson</a>.  <br /></td></tr>
@@ -109,6 +109,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad1c385b46636a8c86d394b70f017bb39" id="r_ad1c385b46636a8c86d394b70f017bb39"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_lesson.html#ad1c385b46636a8c86d394b70f017bb39">operator&lt;</a> (const <a class="el" href="class_lesson.html">Lesson</a> &amp;l) const</td></tr>
 <tr class="memdesc:ad1c385b46636a8c86d394b70f017bb39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Less than operator for <a class="el" href="class_lesson.html" title="This is a class for representing Lessons.">Lesson</a> comparison.  <br /></td></tr>
 <tr class="separator:ad1c385b46636a8c86d394b70f017bb39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fc7aff09d61ca6f70e0b4820587a55c" id="r_a9fc7aff09d61ca6f70e0b4820587a55c"><td class="memItemLeft" align="right" valign="top"><a id="a9fc7aff09d61ca6f70e0b4820587a55c" name="a9fc7aff09d61ca6f70e0b4820587a55c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>print_lesson</b> () const</td></tr>
+<tr class="memdesc:a9fc7aff09d61ca6f70e0b4820587a55c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the <a class="el" href="class_lesson.html" title="This is a class for representing Lessons.">Lesson</a>. <br /></td></tr>
+<tr class="separator:a9fc7aff09d61ca6f70e0b4820587a55c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -130,7 +134,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>type</b></td><
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is a class for representing Lessons. </p>
-<p>This class keeps track of the weekday, start time, end time, type and the parent <a class="el" href="class_class.html">Class</a>. </p>
+<p>This class keeps track of the weekday, start time, end time, type and the parent <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a1a1da5b060e563ea1317b9872e96ff7c" name="a1a1da5b060e563ea1317b9872e96ff7c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1a1da5b060e563ea1317b9872e96ff7c">&#9670;&#160;</a></span>Lesson()</h2>
@@ -179,7 +183,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>type</b></td><
 <p>Creates a new <a class="el" href="class_lesson.html" title="This is a class for representing Lessons.">Lesson</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">thisclass</td><td>Parent <a class="el" href="class_class.html">Class</a> code. </td></tr>
+    <tr><td class="paramname">thisclass</td><td>Parent <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> code. </td></tr>
     <tr><td class="paramname">weekday</td><td>Weekday of the <a class="el" href="class_lesson.html" title="This is a class for representing Lessons.">Lesson</a>. </td></tr>
     <tr><td class="paramname">starttime</td><td>Start time of the <a class="el" href="class_lesson.html" title="This is a class for representing Lessons.">Lesson</a>. </td></tr>
     <tr><td class="paramname">endtime</td><td>End time of the <a class="el" href="class_lesson.html" title="This is a class for representing Lessons.">Lesson</a>. </td></tr>
@@ -246,8 +250,8 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>type</b></td><
       </table>
 </div><div class="memdoc">
 
-<p>Gets the parent <a class="el" href="class_class.html">Class</a> of the <a class="el" href="class_lesson.html" title="This is a class for representing Lessons.">Lesson</a>. </p>
-<dl class="section return"><dt>Returns</dt><dd>The parent <a class="el" href="class_class.html">Class</a> of the <a class="el" href="class_lesson.html" title="This is a class for representing Lessons.">Lesson</a>. </dd></dl>
+<p>Gets the parent <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> of the <a class="el" href="class_lesson.html" title="This is a class for representing Lessons.">Lesson</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>The parent <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> of the <a class="el" href="class_lesson.html" title="This is a class for representing Lessons.">Lesson</a>. </dd></dl>
 
 </div>
 </div>
