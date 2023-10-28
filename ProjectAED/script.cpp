@@ -56,7 +56,7 @@ void Script::request(){
 
 void Script::listings(){
     cout << "What would you like to check?\n"
-    << "1- Schedules 2- Student Lists 3-Number of students in each class\n";
+    << "1- Schedules 2- Student Lists 3- Occupations\n";
     string option; cin >> option;
     while(option != "1" && option != "2" && option != "3") {
         invalid();
@@ -69,6 +69,7 @@ void Script::listings(){
         }
         case '2': {
             listStudents();
+            break;
         }
         case '3': {
             data.numberstudents_class();
@@ -122,6 +123,22 @@ void Script::listStudents() {
             }
             if(option == "1") data.listStudentsByUP();
             else data.listStudentsByName();
+        }
+        case '2': {
+            cout << "Enter UC to check: ";
+            string UC; cin >> UC;
+            while(!data.get_ucs().count(UC)) {
+                invalid();
+                cin >> UC;
+            }
+            cout << "Sort student by? 1- upNumber 2- Student Name\n";
+            cin >> option;
+            while(option != "1" && option != "2") {
+                invalid();
+                cin >> option;
+            }
+            if(option == "1") data.listUCStudentsByUP(UC);
+            else data.listUCStudentsByName(UC);
         }
     }
 }

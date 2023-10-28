@@ -22,11 +22,12 @@ private:
 public:
   LEIC(std::string filenameclasses, std::string filenamestudents); //ler ficheiros e guardar info
   Student get_student_from_up(std::string up);
-  std::set<std::string> get_ucs();
+  std::set<std::string> get_ucs() const;
   void listStudentsByUP();
   void listStudentsByName();
+  void listUCStudentsByUP(std::string uc);
+  void listUCStudentsByName(std::string uc);
   Class* get_class_from_classcode_and_uccode(std::string classcode, std::string uccode);
-  std::set<std::string> get_UCs() const;
   //void listStudents();
   bool classBalanceValid(Class newClass);
   bool compatibleSchedules(Student student, Class* newclass, Class* oldclass = nullptr);

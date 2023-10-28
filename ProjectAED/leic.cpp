@@ -50,16 +50,13 @@ LEIC::LEIC(std::string filenameclasses, std::string filenamestudents) {
         it2->add_student(up);
     }
     studentsFile.close();
-//    for(pair<string, Student> p : up_students){
-//        cout << p.first << ' ' << p.second.get_name() << ' ' << p.second.get_classes().front()->get_classCode() << ' ' << p.second.get_classes().back()->get_classCode() << endl;
-//    }
 }
 
 Student LEIC::get_student_from_up(std::string up) {
     return up_students.at(up);
 }
 
-std::set<std::string> LEIC::get_ucs() {
+std::set<std::string> LEIC::get_ucs() const {
     return ucs;
 }
 
@@ -70,7 +67,7 @@ void LEIC::listStudentsByUP() {
     }
 }
 void LEIC::listStudentsByName(){
-    cout << "NAME\tUPNUMBER\n------------------------------------\n";
+    cout << "UPNUMBER\tNAME\n------------------------------------\n";
     map<string, string> students_up;
     for(pair<string, Student> p : up_students){
         students_up[p.second.get_name()] = p.first;
@@ -78,6 +75,30 @@ void LEIC::listStudentsByName(){
     for(pair<string, string> p : students_up){
         cout << p.second << '\t' << p.first << '\n';
     }
+}
+
+void LEIC::listUCStudentsByUP(string uc) {
+    cout << "Students of UC " << uc << endl;
+    cout << "UPNUMBER\tNAME\n------------------------------------\n";
+    for(Class c : classes){
+        if(c.get_ucCode() == uc){
+            for(string up : c.get_students()){
+                cout << up << " | " << up_students.at(up).get_name() << '\n';
+            }
+        }
+    }
+}
+
+void LEIC::listUCStudentsByName(std::string uc) {
+    cout << "Students of UC " << uc << endl;
+    cout << "UPNUMBER\tNAME\n------------------------------------\n";
+    map<string, string> UCstudents_up;
+    for(Class c : classes){
+        if(c.get_ucCode() == uc) {
+            for (string up: c.get_students()) UCstudents_up[up_students.at(up).get_name()] = up;
+        }
+    }
+    for (pair<string, string> p: UCstudents_up) cout << p.second << '\t' << p.first << '\n';
 }
 
 bool LEIC::classBalanceValid(Class newClass) {
@@ -90,10 +111,6 @@ bool LEIC::classBalanceValid(Class newClass) {
         }
     }
     return max-min <= 4;
-}
-
-set<string> LEIC::get_UCs() const {
-    return ucs;
 }
 
 Class* LEIC::get_class_from_classcode_and_uccode(std::string classcode, std::string uccode) {
@@ -139,5 +156,7 @@ void LEIC::removeStudentfromClass(Student student, Class *newclass) {
     newclass->remove_student(student.get_student_up());
     student.remove_class(newclass);
 }
+
+
 
 
