@@ -212,6 +212,7 @@ bool LEIC::add_request(Request request, Student* student) {
 }
 
 bool LEIC::remove_request(Request request, Student *student) {
+    cout << student->get_class_from_uc(request.get_current_uc()) << endl;
     Class* currentClass = get_class_from_classcode_and_uccode(student->get_class_from_uc(request.get_current_uc()), request.get_current_uc());
     string currentclass = currentClass->get_classCode();
     string currentUc = request.get_current_uc();
@@ -241,13 +242,13 @@ bool LEIC::switch_request(Request request, Student *student) {
 bool LEIC::process_requests(Request request) {
     Student* student = get_student_from_up(request.get_student_up());
     switch (request.get_type()[0]) {
-        case 'A': {
+        case '1': {
             return add_request(request, student);
         }
-        case 'R': {
+        case '2': {
             return remove_request(request, student);
         }
-        case 'S': {
+        case '3': {
             return switch_request(request, student);
         }
     }
@@ -266,15 +267,15 @@ bool LEIC::undo_request() {
     Request thisrequest = processed_requests.top();
     processed_requests.pop();
     switch (thisrequest.get_type()[0]) {
-        case 'A': {
+        case '1': {
             Request newrequest = Request("REMOVE", false, thisrequest.get_student_up(), "", "", thisrequest.get_new_uc(), "");
             return process_requests(newrequest);
         }
-        case 'R': {
+        case '2': {
             Request newrequest = Request("ADD", false, thisrequest.get_student_up(), "", "",  "", thisrequest.get_new_uc());
             return process_requests(newrequest);
         }
-        case 'S': {
+        case '3': {
             Request newrequest = Request("SWITCH", thisrequest.get_uc_class(), thisrequest.get_student_up(), thisrequest.get_new_class(), thisrequest.get_current_class(),  thisrequest.get_new_uc(), thisrequest.get_current_uc());
             return process_requests(newrequest);
         }
