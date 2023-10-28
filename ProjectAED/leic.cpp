@@ -121,3 +121,13 @@ void LEIC::numberstudents_class() {
     }
 }
 
+void LEIC::addStudenttoClass(Student student, Class *newclass) {
+    newclass->add_student(student.get_student_up());
+    student.add_class(newclass);
+}
+
+void LEIC::removeStudentfromClass(Student student, Class *newclass) {
+    newclass->remove_student(student.get_student_up());
+    student.remove_class(newclass);
+}
+
