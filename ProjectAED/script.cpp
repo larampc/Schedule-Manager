@@ -7,11 +7,15 @@ void invalid(){ cout << "Invalid Input, please try again\n"; }
 Script::Script(): data(LEIC("../classes.csv", "../students_classes.csv")) {}
 
 void Script::run() {
-    cout << "\n\n-----------------------------------\n\tSchedule Management System\n------------------------------------\nSelect option:\n"
+    system("Color 0A");
+    cout << "\n\n-----------------------------------\n\tSchedule Management System\n------------------------------------\n";
+    system("Color 0B");
+    cout << "Select option:\n"
          << "Get Information - press 1\n"
          << "Make request - press 2\n"
          << "Settings - press 3\n"
          << "Quit Manager - press 4\n";
+    system("Color 07");
     string option; cin >> option;
     while(option != "1" && option != "2" && option != "3" && option != "4") {
         invalid();
@@ -138,7 +142,9 @@ void Script::request(){
     }
     Request request = Request(type, (uc_or_class == "CLASS"), student_up, current_class, new_class, current_uc, new_uc);
     if (!data.process_requests(request)) {
+        system("Color 04");
         cout << "The request was rejected";
+        system("Color 07");
     }
     run();
 }
