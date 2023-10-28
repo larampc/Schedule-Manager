@@ -14,6 +14,7 @@ LEIC::LEIC(std::string filenameclasses, std::string filenamestudents) {
         getline(iss, starthour, ',');
         getline(iss, duration, ',');
         iss >> type; // to do: try with getline
+        ucs.insert(uccode);
         Class c = Class(classcode, uccode);
         string thisclass = classcode + " " + uccode;
         Lesson lesson = Lesson(thisclass, weekday, Time(starthour), Time(stof(duration)+stof(starthour)), type); // create new lesson
@@ -85,6 +86,10 @@ bool LEIC::classBalanceValid(Class newClass) {
         }
     }
     return max-min <= 4;
+}
+
+set<string> LEIC::get_UCs() const {
+    return ucs;
 }
 
 Class* LEIC::get_class_from_classcode_and_uccode(std::string classcode, std::string uccode) {
