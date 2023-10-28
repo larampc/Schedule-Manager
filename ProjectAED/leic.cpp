@@ -59,6 +59,10 @@ Student LEIC::get_student_from_up(std::string up) {
     return up_students.at(up);
 }
 
+std::set<std::string> LEIC::get_ucs() {
+    return ucs;
+}
+
 void LEIC::listStudentsByUP() {
     cout << "UPNUMBER\tNAME\n------------------------------------\n";
     for(pair<string, Student> p : up_students){
@@ -135,4 +139,5 @@ void LEIC::removeStudentfromClass(Student student, Class *newclass) {
     newclass->remove_student(student.get_student_up());
     student.remove_class(newclass);
 }
+
 

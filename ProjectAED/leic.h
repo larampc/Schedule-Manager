@@ -22,6 +22,7 @@ private:
 public:
   LEIC(std::string filenameclasses, std::string filenamestudents); //ler ficheiros e guardar info
   Student get_student_from_up(std::string up);
+  std::set<std::string> get_ucs();
   void listStudentsByUP();
   void listStudentsByName();
   Class* get_class_from_classcode_and_uccode(std::string classcode, std::string uccode);
