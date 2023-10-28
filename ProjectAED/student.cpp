@@ -49,3 +49,16 @@ void Student::print_schedule() {
         "\t" << setw(2) << setfill(' ') << lesson.get_type() << "  2" << lesson.get_thisclass() << endl;
     }
 }
+
+bool Student::valid_UCnumber() {
+    return classes.size() <= 7;
+}
+
+bool Student::has_uc(std::string uccode) {
+    for (Class *c: classes) {
+        if (c->get_ucCode() == uccode){
+            return true;
+        }
+    }
+    return false;
+}

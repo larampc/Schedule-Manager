@@ -17,6 +17,8 @@ public:
     void add_class(Class* c);
     void remove_class(Class* c); //faz sentido ser pointers?
     void print_schedule();
+    bool valid_UCnumber();
+    bool has_uc(std::string uccode);
 };
 
 #endif //PROJECTAED_STUDENT_H
