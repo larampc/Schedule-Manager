@@ -95,17 +95,15 @@ Class* LEIC::get_class_from_classcode_and_uccode(std::string classcode, std::str
 }
 
 bool LEIC::compatibleSchedules(Student student, Class* newclass, Class* oldclass) {
-    set<Lesson> newlessons = newclass->get_lessons();
-    for (Lesson newlesson: newlessons) {
+    for (Lesson newlesson: newclass->get_lessons()) {
         if (newlesson.get_type() == "PL" || newlesson.get_type() == "TP") {
             for (Class* c: student.get_classes()) {
                 if (c == oldclass) {
                     continue;
                 }
-                set<Lesson> oldlessons = c->get_lessons();
-                for (Lesson oldlesson: oldlessons) {
-                    if (oldlesson.get_type() == "PL" || oldlesson.get_type() == "TP") {
-                        if (newlesson.overlap(oldlesson)) return false;
+                for (Lesson currentlesson: c->get_lessons()) {
+                    if (currentlesson.get_type() == "PL" || currentlesson.get_type() == "TP") {
+                        if (newlesson.overlap(currentlesson)) return false;
                     }
                 }
 
