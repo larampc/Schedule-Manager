@@ -12,6 +12,8 @@
 #include "student.h"
 #include "request.h"
 
+const int CAP = 30;
+
 class LEIC {
 private:
   std::vector<Class> classes;

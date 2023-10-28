@@ -28,30 +28,20 @@ void Script::run() {
 }
 
 void Script::request(){
-    string type, uc_or_class, uccode, classcode, up;
+    string type, uc_or_class;
     cout << "Pick: ADD / REMOVE / SWITCH\n";
     cin >> type; while(type != "ADD" && type != "REMOVE" && type != "SWITCH") {invalid(); cin >> type; cout << '\n';}
     cout << "Pick: UC / CLASS\n";
     cin >> uc_or_class; while(uc_or_class != "UC" && uc_or_class != "CLASS") {invalid(); cin >> uc_or_class;}
-
-    // Temporary just for testing class balance and schedule compatibility
+    string student_up, current_class, new_class, current_uc, new_uc;
     cout << "UC:\n";
-    cin >> uccode;
-    cout << "CLASS:\n";
-    cin >> classcode;
+    cin >> new_uc;
+//    cout << "CLASS:\n";
+//    cin >> classcode;
     cout << "UP:\n";
-    cin >> up;
-    Class* c = data.get_class_from_classcode_and_uccode(classcode,uccode);
-    Student* s = data.get_student_from_up(up);
-    cout << data.class_balance_valid(*c) << endl;
-    string classcode_to, uccode_to;
-//    cout << "UC TO:\n";
-//    cin >> uccode_to;
-//    cout << "CLASS TO:\n";
-//    cin >> classcode_to;
-    //Class* c_to = data.get_class_from_classcode_and_uccode(classcode_to,uccode_to);
-    cout << data.compatible_schedules(*s, c) << endl;
- //   data.processRequest(type, uc_or_class == "UC");
+    cin >> student_up;
+    Request request = Request(type, (uc_or_class == "CLASS"), student_up, current_class, new_class, current_uc, new_uc);
+    data.process_request(request);
 }
 
 void Script::listings(){

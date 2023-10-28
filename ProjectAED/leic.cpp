@@ -154,7 +154,6 @@ bool LEIC::compatible_schedules(Student student, Class* newclass, Class* oldclas
 
             }
         }
-
     }
     return true;
 }
@@ -193,31 +192,26 @@ bool LEIC::process_request(Request request) {
 
             }
             else {
-                int cap;
-                cout << "Max capacity of occupation \n";
-                cin >> cap;
-                if (uc_has_vacancy(request.get_new_uc(), cap) && student->get_classes().size()>=7) {
+                if (uc_has_vacancy(request.get_new_uc(), CAP) && student->get_classes().size()<7) {
                     vector<Class*> classes_uccode = get_classes_from_uccode(request.get_new_uc());
                     for (Class* c: classes_uccode) {
                         if (compatible_schedules(*student, c)) {
+                            cout << "Student is now in the class " << c->get_classCode() << " in the UC " << c->get_ucCode() << endl;
                             add_student_to_class(student, c);
-                            cout << "Student is now in the class" << c->get_classCode() << " in the UC " << c->get_ucCode() << endl;
                             return true;
                         }
                     }
                 }
-                else {
-                    cout << "The request was rejected";
-                }
             }
         }
     }
-
+    cout << "The request was rejected";
+    return false;
 }
 
 vector<Class*> LEIC::get_classes_from_uccode(string uccode) {
     vector<Class*> classes_uccode;
-    for (Class c: classes) {
+    for (Class& c: classes) {
         if (c.get_ucCode() == uccode) classes_uccode.push_back(&c);
     }
     return classes_uccode;
