@@ -54,10 +54,6 @@ void Student::print_schedule() {
     }
 }
 
-bool Student::valid_UCnumber() {
-    return classes.size() <= 7;
-}
-
 bool Student::has_uc(std::string uccode) {
     for (Class *c: classes) {
         if (c->get_ucCode() == uccode){

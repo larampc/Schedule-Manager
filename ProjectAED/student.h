@@ -60,12 +60,6 @@ public:
      */
     void print_schedule();
     /**
-     * \brief Checks if the student is enrolled in less than 8 UC's.
-     *
-     * @return True if the student is enrolled in less than 8 UC's.
-     */
-    bool valid_UCnumber();
-    /**
      * \brief Checks if the student is enrolled in the given UC.
      *
      * @param uccode The code of the UC to check.

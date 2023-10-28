@@ -26,6 +26,7 @@ public:
   Student* get_student_from_up(std::string up);
   std::set<std::string> get_ucs() const;
   std::vector<Class> get_classes() const;
+  std::set<std::string> get_classcodes() const;
   void listStudentsByUP();
   void listStudentsByName();
   void listUCStudentsByUP(std::string uc);

@@ -212,7 +212,6 @@ bool LEIC::add_request(Request request, Student* student) {
 }
 
 bool LEIC::remove_request(Request request, Student *student) {
-    cout << student->get_class_from_uc(request.get_current_uc()) << endl;
     Class* currentClass = get_class_from_classcode_and_uccode(student->get_class_from_uc(request.get_current_uc()), request.get_current_uc());
     string currentclass = currentClass->get_classCode();
     string currentUc = request.get_current_uc();
@@ -242,13 +241,13 @@ bool LEIC::switch_request(Request request, Student *student) {
 bool LEIC::process_requests(Request request) {
     Student* student = get_student_from_up(request.get_student_up());
     switch (request.get_type()[0]) {
-        case '1': {
+        case 'A': {
             return add_request(request, student);
         }
-        case '2': {
+        case 'R': {
             return remove_request(request, student);
         }
-        case '3': {
+        case 'S': {
             return switch_request(request, student);
         }
     }
@@ -281,6 +280,12 @@ bool LEIC::undo_request() {
         }
     }
     return false;
+}
+
+std::set<std::string> LEIC::get_classcodes() const {
+    set<string> classcodes;
+    for(Class c: classes) classcodes.insert(c.get_classCode());
+    return classcodes;
 }
 
 

@@ -44,18 +44,23 @@ void Script::run() {
 }
 
 void Script::request(){
-    string type, uc_or_class;
+    string type, option, uc_or_class;
     cout << "Pick: 1- ADD 2- REMOVE 3- SWITCH 4- Cancel\n";
-    cin >> type; while(type != "1" && type != "2" && type != "3" && type != "4") {invalid(); cin >> type; cout << '\n';}
-    if(type == "4") {
+    cin >> option; while(option != "1" && option != "2" && option != "3" && option != "4") {invalid(); cin >> option; cout << '\n';}
+    if(option == "4") {
         run();
         return;
     }
     string student_up, current_class, new_class, current_uc, new_uc;
     cout << "UP:\n";
     cin >> student_up;
-    switch (type[0]) {
+    while(data.get_student_from_up(student_up) == nullptr){
+        invalid();
+        cin >> student_up;
+    }
+    switch (option[0]) {
         case '1': {
+            type = "ADD";
             cout << "Pick: UC / CLASS\n";
             cin >> uc_or_class; while(uc_or_class != "UC" && uc_or_class != "CLASS") {invalid(); cin >> uc_or_class;}
             cout << "UC:\n";
@@ -63,35 +68,69 @@ void Script::request(){
             if (uc_or_class == "CLASS") {
                 cout << "CLASS:\n";
                 cin >> new_class;
+                while(!data.get_classcodes().count(new_class)) {
+                    invalid();
+                    cin >> new_class;
+                }
             }
             break;
         }
         case '2': {
+            type = "REMOVE";
             cout << "UC:\n";
             cin >> current_uc;
+            while(!data.get_ucs().count(current_uc) || !data.get_student_from_up(student_up)->has_uc(current_uc)) {
+                invalid();
+                cin >> current_uc;
+            }
             break;
         }
         case '3': {
+            type = "SWITCH";
             cout << "Pick: UC / CLASS\n";
             cin >> uc_or_class; while(uc_or_class != "UC" && uc_or_class != "CLASS") {invalid(); cin >> uc_or_class;}
             if (uc_or_class == "CLASS") {
                 cout << "UC:\n";
                 cin >> current_uc;
+                while(!data.get_ucs().count(current_uc) && data.get_student_from_up(student_up)->has_uc(current_uc)) {
+                    invalid();
+                    cin >> current_uc;
+                }
                 new_uc = current_uc;
                 cout << "NEW CLASS:\n";
                 cin >> new_class;
+                while(!data.get_classcodes().count(new_class)) {
+                    invalid();
+                    cin >> new_class;
+                }
             }
             else {
                 cout << "CURRENT UC:\n";
                 cin >> current_uc;
+                while(!data.get_ucs().count(current_uc) && data.get_student_from_up(student_up)->has_uc(current_uc)) {
+                    invalid();
+                    cin >> current_uc;
+                }
                 cout << "NEW UC:\n";
                 cin >> new_uc;
+                while(!data.get_ucs().count(new_uc)) {
+                    invalid();
+                    cin >> new_uc;
+                }
                 cout << "Do you want to join a specific class: [Y/N]?\n";
                 string answer;
                 cin >> answer;
+                while(answer != "Y" && answer != "N") {
+                    invalid();
+                    cin >> answer;
+                }
                 if (answer=="Y") {
                     cout << "CLASS:\n";
                     cin >> new_class;
+                    while(!data.get_classcodes().count(new_class)) {
+                        invalid();
+                        cin >> new_class;
+                    }
                 }
             }
             break;
@@ -139,24 +178,20 @@ void Script::listSchedules(){
     switch(option[0]){
         case '1': {
             cout << "Insert student up: ";
-            long up;
+            string up;
             cin >> up;
-            while(cin.fail() || data.get_student_from_up(to_string(up)) == nullptr){
+            while(data.get_student_from_up(up) == nullptr){
                 invalid();
-                cin.clear();
-                cin.ignore( numeric_limits<streamsize>::max(),'\n');
                 cin >> up;
             }
-            data.get_student_from_up(to_string(up))->print_schedule();
+            data.get_student_from_up(up)->print_schedule();
             break;
         }
         case '2': {
-            set<string> classcodes;
-            for(Class c: data.get_classes()) classcodes.insert(c.get_classCode());
             cout << "Enter Class: ";
             string class_;
             cin >> class_;
-            while(!classcodes.count(class_)) {
+            while(!data.get_classcodes().count(class_)) {
                 invalid();
                 cin >> class_;
             }
