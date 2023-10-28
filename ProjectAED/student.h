@@ -15,10 +15,11 @@ public:
     std::string get_student_up() const;
     std::list<Class*> get_classes();
     void add_class(Class* c);
-    void remove_class(Class* c); //faz sentido ser pointers?
+    void remove_class_from_uc(std::string uccode); //faz sentido ser pointers?
     void print_schedule();
     bool valid_UCnumber();
     bool has_uc(std::string uccode);
+    std::string get_class_from_uc(std::string uccode);
 };
 
 #endif //PROJECTAED_STUDENT_H

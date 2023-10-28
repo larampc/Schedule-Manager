@@ -31,15 +31,48 @@ void Script::request(){
     string type, uc_or_class;
     cout << "Pick: ADD / REMOVE / SWITCH\n";
     cin >> type; while(type != "ADD" && type != "REMOVE" && type != "SWITCH") {invalid(); cin >> type; cout << '\n';}
-    cout << "Pick: UC / CLASS\n";
-    cin >> uc_or_class; while(uc_or_class != "UC" && uc_or_class != "CLASS") {invalid(); cin >> uc_or_class;}
     string student_up, current_class, new_class, current_uc, new_uc;
-    cout << "UC:\n";
-    cin >> new_uc;
-//    cout << "CLASS:\n";
-//    cin >> classcode;
     cout << "UP:\n";
     cin >> student_up;
+    switch (type[0]) {
+        case 'A': {
+            cout << "Pick: UC / CLASS\n";
+            cin >> uc_or_class; while(uc_or_class != "UC" && uc_or_class != "CLASS") {invalid(); cin >> uc_or_class;}
+            cout << "UC:\n";
+            cin >> new_uc;
+            if (uc_or_class == "CLASS") {
+                cout << "CLASS:\n";
+                cin >> new_class;
+            }
+            break;
+        }
+        case 'R': {
+            cout << "UC:\n";
+            cin >> current_uc;
+            break;
+        }
+        case 'S': {
+            cout << "Pick: UC / CLASS\n";
+            cin >> uc_or_class; while(uc_or_class != "UC" && uc_or_class != "CLASS") {invalid(); cin >> uc_or_class;}
+            if (uc_or_class == "CLASS") {
+                cout << "CURRENT UC:\n";
+                cin >> new_class;
+                cout << "CURRENT CLASS:\n";
+                cin >> new_class;
+                cout << "NEW UC:\n";
+                cin >> new_uc;
+                cout << "NEW CLASS:\n";
+                cin >> new_class;
+            }
+            else {
+                cout << "CURRENT UC:\n";
+                cin >> current_uc;
+                cout << "NEW UC:\n";
+                cin >> new_uc;
+            }
+            break;
+        }
+    }
     Request request = Request(type, (uc_or_class == "CLASS"), student_up, current_class, new_class, current_uc, new_uc);
     data.process_request(request);
 }
