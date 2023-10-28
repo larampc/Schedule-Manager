@@ -140,5 +140,27 @@ void Script::listStudents() {
             if(option == "1") data.listUCStudentsByUP(UC);
             else data.listUCStudentsByName(UC);
         }
+        case '3': {
+            cout << "Enter UC of Class to check: ";
+            string UC; cin >> UC;
+            while(!data.get_ucs().count(UC)) {
+                invalid();
+                cin >> UC;
+            }
+            cout << "Enter Class to check: ";
+            string class_; cin >> class_;
+            while(data.get_class_from_classcode_and_uccode(class_,UC) == nullptr) {
+                invalid();
+                cin >> class_;
+            }
+            cout << "Sort student by? 1- upNumber 2- Student Name\n";
+            cin >> option;
+            while(option != "1" && option != "2") {
+                invalid();
+                cin >> option;
+            }
+            if(option == "1") data.list_class_students_by_UP(data.get_class_from_classcode_and_uccode(class_,UC));
+            else data.list_class_students_by_Name(data.get_class_from_classcode_and_uccode(class_,UC));
+        }
     }
 }

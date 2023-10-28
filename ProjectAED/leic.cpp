@@ -61,6 +61,10 @@ std::set<std::string> LEIC::get_ucs() const {
     return ucs;
 }
 
+vector<Class> LEIC::get_classes() const {
+    return classes;
+}
+
 void LEIC::listStudentsByUP() {
     cout << "UPNUMBER\tNAME\n------------------------------------\n";
     for(pair<string, Student> p : up_students){
@@ -84,7 +88,7 @@ void LEIC::listUCStudentsByUP(string uc) {
     for(Class c : classes){
         if(c.get_ucCode() == uc){
             for(string up : c.get_students()){
-                cout << up << " | " << up_students.at(up).get_name() << '\n';
+                cout << up << " | " << up_students.at(up).get_name() << endl;
             }
         }
     }
@@ -99,6 +103,20 @@ void LEIC::listUCStudentsByName(std::string uc) {
             for (string up: c.get_students()) UCstudents_up[up_students.at(up).get_name()] = up;
         }
     }
+    for (pair<string, string> p: UCstudents_up) cout << p.second << '\t' << p.first << '\n';
+}
+
+void LEIC::list_class_students_by_UP(Class* class_) const {
+    cout << "Students of Class " << class_->get_classCode() << " of UC " << class_->get_ucCode() << endl;
+    cout << "UPNUMBER\tNAME\n------------------------------------\n";
+    for(string up : class_->get_students()) cout << up << " | " << up_students.at(up).get_name() << endl;
+}
+
+void LEIC::list_class_students_by_Name(Class *class_) const {
+    cout << "Students of Class " << class_->get_classCode() << " of UC " << class_->get_ucCode() << endl;
+    cout << "UPNUMBER\tNAME\n------------------------------------\n";
+    map<string, string> UCstudents_up;
+    for (string up: class_->get_students()) UCstudents_up[up_students.at(up).get_name()] = up;
     for (pair<string, string> p: UCstudents_up) cout << p.second << '\t' << p.first << '\n';
 }
 
@@ -166,6 +184,12 @@ bool LEIC::uc_Has_Vacancy(std::string uccode, int cap) {
     }
     return false;
 }
+
+
+
+
+
+
 
 
 
