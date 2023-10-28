@@ -46,6 +46,6 @@ void Student::print_schedule() {
         setw(2) << setfill('0') << lesson.get_starttime().get_minute() <<
         " - " << setw(2) << setfill('0') << lesson.get_endtime().get_hour() << ":" <<
         setw(2) << setfill('0') << lesson.get_endtime().get_minute() <<
-        "\t" << lesson.get_type() << " " << lesson.get_thisclass() << endl;
+        "\t" << setw(2) << setfill(' ') << lesson.get_type() << "  2" << lesson.get_thisclass() << endl;
     }
 }

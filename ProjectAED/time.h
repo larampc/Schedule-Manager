@@ -9,6 +9,7 @@
  ******************************************************************************/
 private:
     int hour, minute;
+    float timefloat;
 public:
 /*******************************************************************************
  * \brief Constructor with string.
@@ -29,6 +30,7 @@ public:
 /*******************************************************************************
  * \brief Less than operator for Time comparison.
  ******************************************************************************/
+    float get_timefloat() const;
     bool operator<(const Time &t) const;
 };
 

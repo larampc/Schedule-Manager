@@ -23,10 +23,11 @@ public:
   Student get_student_from_up(std::string up);
   void listStudentsByUP();
   void listStudentsByName();
-  Class get_class_from_classcode_and_uccode(std::string classcode, std::string uccode);
-  void listStudents();
-  bool classBalanceValid(Class newclass);
-  bool compatibleSchedules(Student student, Class newclass, Class oldclass);
+  Class* get_class_from_classcode_and_uccode(std::string classcode, std::string uccode);
+  //void listStudents();
+  bool classBalanceValid(Class newClass);
+  bool compatibleSchedules(Student student, Class* newclass, Class* oldclass = nullptr);
+  void numberstudents_class();
   //outras funções: sorts, listings, pedidos...
   //opcao -> criar class script para ter as funcionlidades
 };

@@ -75,69 +75,51 @@ void LEIC::listStudentsByName(){
     }
 }
 
-
-bool LEIC::classBalanceValid(Class newclass) {
-    int max = newclass.get_students().size() + 1;
-    int min = newclass.get_students().size();
+bool LEIC::classBalanceValid(Class newClass) {
+    int max = newClass.get_students().size() + 1;
+    int min = newClass.get_students().size();
     for (Class c: classes) {
-        if (c.get_classCode()[0] == newclass.get_classCode()[0]){
-            if (c.get_ucCode() == newclass.get_ucCode()){
-                if (c.get_students().size() < min){
-                    min = c.get_students().size();
-                }
-                if (c.get_students().size() > max){
-                    max = c.get_students().size();
-                }
-            }
+        if (c.get_ucCode() == newClass.get_ucCode()){
+            if (c.get_students().size() < min) min = c.get_students().size();
+            if (c.get_students().size() > max) max = c.get_students().size();
         }
     }
     return max-min <= 4;
 }
 
-Class LEIC::get_class_from_classcode_and_uccode(std::string classcode, std::string uccode) {
-    for (Class c: classes) {
-        if (c.get_classCode() == classcode && c.get_ucCode() == uccode){
-            return c;
-        }
+Class* LEIC::get_class_from_classcode_and_uccode(std::string classcode, std::string uccode) {
+    for (Class& c: classes) {
+        if (c.get_classCode() == classcode && c.get_ucCode() == uccode) return &c;
     }
+    return nullptr;
 }
 
-bool LEIC::compatibleSchedules(Student student, Class newclass, Class oldclass) {
-    string weekday1 = newclass.get_lessons().begin()->get_weekday();
-    Time startTime1 = newclass.get_lessons().begin()->get_starttime();
-    Time endTime1 = newclass.get_lessons().begin()->get_endtime();
-    string weekday2 = newclass.get_lessons().end()->get_weekday();
-    Time startTime2 = newclass.get_lessons().begin()->get_starttime();
-    Time endTime2 = newclass.get_lessons().begin()->get_endtime();
-    for (Class* c: student.get_classes()) {
-        if (*c == oldclass){
-            continue;
-        }
-        if (c->get_lessons().begin()->get_weekday() == weekday1){
-            if (!(c->get_lessons().begin()->get_endtime() < startTime1 || (c->get_lessons().begin()->get_endtime() < startTime1 && startTime1 < c->get_lessons().begin()->get_endtime()))
-                && !(endTime1 < c->get_lessons().begin()->get_starttime() || (endTime1 < c->get_lessons().begin()->get_starttime() && c->get_lessons().begin()->get_starttime() < endTime1))){
-                return false;
+bool LEIC::compatibleSchedules(Student student, Class* newclass, Class* oldclass) {
+    set<Lesson> newlessons = newclass->get_lessons();
+    for (Lesson newlesson: newlessons) {
+        if (newlesson.get_type() == "PL" || newlesson.get_type() == "TP") {
+            for (Class* c: student.get_classes()) {
+                if (c == oldclass) {
+                    continue;
+                }
+                set<Lesson> oldlessons = c->get_lessons();
+                for (Lesson oldlesson: oldlessons) {
+                    if (oldlesson.get_type() == "PL" || oldlesson.get_type() == "TP") {
+                        if (newlesson.overlap(oldlesson)) return false;
+                    }
+                }
+
             }
         }
-        if (c->get_lessons().begin()->get_weekday() == weekday2){
-            if (!(c->get_lessons().begin()->get_endtime() < startTime2  || (c->get_lessons().begin()->get_endtime() < startTime2 && startTime2 < c->get_lessons().begin()->get_endtime()))
-                && !(endTime2 < c->get_lessons().begin()->get_starttime() || (endTime2 < c->get_lessons().begin()->get_starttime() && c->get_lessons().begin()->get_starttime() < endTime2))){
-                return false;
-            }
-        }
-        if (c->get_lessons().end()->get_weekday() == weekday1){
-            if (!(c->get_lessons().end()->get_endtime() < startTime1 || (c->get_lessons().end()->get_endtime() < startTime1 && startTime1 < c->get_lessons().end()->get_endtime()))
-                && !(endTime1 < c->get_lessons().end()->get_starttime() || (endTime1 < c->get_lessons().end()->get_starttime() && c->get_lessons().end()->get_starttime() < endTime1))){
-                return false;
-            }
-        }
-        if (c->get_lessons().end()->get_weekday() == weekday2){
-            if (!(c->get_lessons().end()->get_endtime() < startTime2  || (c->get_lessons().end()->get_endtime() < startTime2 && startTime2 < c->get_lessons().end()->get_endtime()))
-                && !(endTime2 < c->get_lessons().end()->get_starttime() || (endTime2 < c->get_lessons().end()->get_starttime() && c->get_lessons().end()->get_starttime() < endTime2))){
-                return false;
-            }
-        }
+
     }
     return true;
+}
+
+void LEIC::numberstudents_class() {
+    for (Class c: classes) {
+        int currentSize = c.get_students().size();
+        cout << c.get_classCode() << " " << c.get_ucCode() << " " << currentSize << endl;
+    }
 }
 
