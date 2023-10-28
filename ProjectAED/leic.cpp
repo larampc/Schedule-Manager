@@ -157,7 +157,7 @@ void LEIC::removeStudentfromClass(Student student, Class *newclass) {
     student.remove_class(newclass);
 }
 
-bool LEIC::ucHasVacancy(std::string uccode, int cap) {
+bool LEIC::uc_Has_Vacancy(std::string uccode, int cap) {
     for (Class& c: classes) {
         if (c.get_ucCode() == uccode){
             if (c.get_students().size() < cap) return true;

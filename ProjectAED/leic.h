@@ -34,7 +34,7 @@ public:
   void numberstudents_class();
   void addStudenttoClass(Student student, Class* newclass);
   void removeStudentfromClass(Student student, Class* newclass);
-  bool ucHasVacancy(std::string uccode, int cap);
+  bool uc_Has_Vacancy(std::string uccode, int cap);
   //outras funções: sorts, listings, pedidos...
   //opcao -> criar class script para ter as funcionlidades
 };
