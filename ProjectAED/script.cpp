@@ -56,9 +56,9 @@ void Script::request(){
             cin >> uc_or_class; while(uc_or_class != "UC" && uc_or_class != "CLASS") {invalid(); cin >> uc_or_class;}
             if (uc_or_class == "CLASS") {
                 cout << "CURRENT UC:\n";
-                cin >> new_class;
+                cin >> current_uc;
                 cout << "CURRENT CLASS:\n";
-                cin >> new_class;
+                cin >> current_class;
                 cout << "NEW UC:\n";
                 cin >> new_uc;
                 cout << "NEW CLASS:\n";

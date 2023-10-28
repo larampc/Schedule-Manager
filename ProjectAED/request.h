@@ -21,6 +21,7 @@ public:
     std::string get_new_class();
     std::string get_current_uc();
     std::string get_new_uc();
+    void set_type(std::string type);
 };
 
 #endif //AEDPROJECT_REQUEST_H

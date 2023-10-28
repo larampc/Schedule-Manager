@@ -32,4 +32,7 @@ std::string Request::get_new_uc() {
     return new_uc;
 }
 
+void Request::set_type(string type) {
+    this->type = type;
+}
 

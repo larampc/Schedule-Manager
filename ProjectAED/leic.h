@@ -44,6 +44,7 @@ public:
   bool add_request(Request request, Student* student);
   bool remove_request(Request request, Student* student);
   bool switch_request(Request request, Student* student);
+  bool undo_request();
 };
 
 #endif

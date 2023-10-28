@@ -189,7 +189,9 @@ bool LEIC::add_request(Request request, Student* student) {
         if (newclass->get_students().size()<CAP
             && !student->has_uc(request.get_new_uc()) && compatible_schedules(*student, newclass)) {
             add_student_to_class(student, newclass);
+            processed_requests.push(request);
             cout << "Student is now in the class " << newclass->get_classCode() << " in the UC " << newclass->get_ucCode() << endl;
+            return true;
         }
     }
     else {
@@ -198,6 +200,7 @@ bool LEIC::add_request(Request request, Student* student) {
             for (Class* c: classes_uccode) {
                 if (compatible_schedules(*student, c)) {
                     add_student_to_class(student, c);
+                    processed_requests.push(request);
                     cout << "Student is now in the class " << c->get_classCode() << " in the UC " << c->get_ucCode() << endl;
                     return true;
                 }
@@ -208,13 +211,30 @@ bool LEIC::add_request(Request request, Student* student) {
 }
 
 bool LEIC::remove_request(Request request, Student *student) {
-    remove_student_from_class(student, get_class_from_classcode_and_uccode(student->get_class_from_uc(request.get_current_uc()), request.get_current_uc()));
-    cout << "Student was removed as requested";
+    Class* currentClass = get_class_from_classcode_and_uccode(student->get_class_from_uc(request.get_current_uc()), request.get_current_uc());
+    string currentclass = currentClass->get_classCode();
+    string currentUc = request.get_current_uc();
+    remove_student_from_class(student, currentClass);
+    cout << "Student was removed from class " << currentclass << " in the UC " << currentUc << endl;
+    processed_requests.push(request);
     return true;
 }
 
 bool LEIC::switch_request(Request request, Student *student) {
-    return true;
+    request.set_type("REMOVE");
+    remove_request(request, student);
+    request.set_type("ADD");
+    if (add_request(request, student)) {
+        processed_requests.pop();
+        processed_requests.pop();
+        request.set_type("SWITCH");
+        processed_requests.push(request);
+        return true;
+    }
+    else {
+        undo_request();
+    }
+    return false;
 }
 
 bool LEIC::process_requests(Request request) {
@@ -239,6 +259,26 @@ vector<Class*> LEIC::get_classes_from_uccode(string uccode) {
         if (c.get_ucCode() == uccode) classes_uccode.push_back(&c);
     }
     return classes_uccode;
+}
+
+bool LEIC::undo_request() {
+    Request thisrequest = processed_requests.top();
+    processed_requests.pop();
+    switch (thisrequest.get_type()[0]) {
+        case 'A': {
+            Request newrequest = Request("REMOVE", false, thisrequest.get_student_up(), "", "", thisrequest.get_new_uc(), "");
+            return process_requests(newrequest);
+        }
+        case 'R': {
+            Request newrequest = Request("ADD", false, thisrequest.get_student_up(), "", "",  "", thisrequest.get_new_uc());
+            return process_requests(newrequest);
+        }
+        case 'S': {
+            Request newrequest = Request("SWITCH", thisrequest.get_uc_class(), thisrequest.get_student_up(), thisrequest.get_new_class(), thisrequest.get_current_class(),  thisrequest.get_new_uc(), thisrequest.get_current_uc());
+            return process_requests(newrequest);
+        }
+    }
+    return false;
 }
 
 
