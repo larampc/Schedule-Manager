@@ -52,7 +52,6 @@ void Script::request(){
     //Class* c_to = data.get_class_from_classcode_and_uccode(classcode_to,uccode_to);
     cout << data.compatibleSchedules(s, c) << endl;
  //   data.processRequest(type, uc_or_class == "UC");
-    cout << data.get_UCnumber_from_Student(s, c->get_ucCode());
 }
 
 void Script::listings(){
