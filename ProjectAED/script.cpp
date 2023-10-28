@@ -312,6 +312,7 @@ void Script::listStudents() {
             }
             if(option == "1") data.list_class_students_by_UP(data.get_class_from_classcode_and_uccode(class_,UC));
             else data.list_class_students_by_Name(data.get_class_from_classcode_and_uccode(class_,UC));
+            break;
         }
         case '4': listings();
     }
