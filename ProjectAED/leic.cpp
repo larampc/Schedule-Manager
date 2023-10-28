@@ -14,6 +14,7 @@ LEIC::LEIC(std::string filenameclasses, std::string filenamestudents) {
         getline(iss, starthour, ',');
         getline(iss, duration, ',');
         iss >> type; // to do: try with getline
+        ucs.insert(uccode);
         Class c = Class(classcode, uccode);
         string thisclass = classcode + " " + uccode;
         Lesson lesson = Lesson(thisclass, weekday, Time(starthour), Time(stof(duration)+stof(starthour)), type); // create new lesson
@@ -56,6 +57,10 @@ LEIC::LEIC(std::string filenameclasses, std::string filenamestudents) {
 
 Student LEIC::get_student_from_up(std::string up) {
     return up_students.at(up);
+}
+
+std::set<std::string> LEIC::get_ucs() {
+    return ucs;
 }
 
 void LEIC::listStudentsByUP() {
@@ -130,4 +135,5 @@ void LEIC::removeStudentfromClass(Student student, Class *newclass) {
     newclass->remove_student(student.get_student_up());
     student.remove_class(newclass);
 }
+
 

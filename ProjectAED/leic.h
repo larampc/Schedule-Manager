@@ -15,12 +15,14 @@
 class LEIC {
 private:
   std::vector<Class> classes;
+  std::set<std::string> ucs;
   std::map<std::string, Student> up_students;
   std::queue<Request> requests; //pedidos para serem tratados class request?
   std::stack<Request> processed_requests; //últimos pedidos
 public:
   LEIC(std::string filenameclasses, std::string filenamestudents); //ler ficheiros e guardar info
   Student get_student_from_up(std::string up);
+  std::set<std::string> get_ucs();
   void listStudentsByUP();
   void listStudentsByName();
   Class* get_class_from_classcode_and_uccode(std::string classcode, std::string uccode);
