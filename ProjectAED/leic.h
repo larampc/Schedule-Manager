@@ -30,6 +30,8 @@ public:
   bool classBalanceValid(Class newClass);
   bool compatibleSchedules(Student student, Class* newclass, Class* oldclass = nullptr);
   void numberstudents_class();
+  void addStudenttoClass(Student student, Class* newclass);
+  void removeStudentfromClass(Student student, Class* newclass);
   //outras funções: sorts, listings, pedidos...
   //opcao -> criar class script para ter as funcionlidades
 };
