@@ -266,15 +266,15 @@ bool LEIC::undo_request() {
     Request thisrequest = processed_requests.top();
     processed_requests.pop();
     switch (thisrequest.get_type()[0]) {
-        case '1': {
+        case 'A': {
             Request newrequest = Request("REMOVE", false, thisrequest.get_student_up(), "", "", thisrequest.get_new_uc(), "");
             return process_requests(newrequest);
         }
-        case '2': {
+        case 'R': {
             Request newrequest = Request("ADD", false, thisrequest.get_student_up(), "", "",  "", thisrequest.get_new_uc());
             return process_requests(newrequest);
         }
-        case '3': {
+        case 'S': {
             Request newrequest = Request("SWITCH", thisrequest.get_uc_class(), thisrequest.get_student_up(), thisrequest.get_new_class(), thisrequest.get_current_class(),  thisrequest.get_new_uc(), thisrequest.get_current_uc());
             return process_requests(newrequest);
         }
