@@ -40,7 +40,10 @@ public:
   void add_student_to_class(Student* student, Class* newclass);
   void remove_student_from_class(Student* student, Class* newclass);
   bool uc_has_vacancy(std::string uccode, int cap);
-  bool process_request(Request request);
+  bool process_requests(Request request);
+  bool add_request(Request request, Student* student);
+  bool remove_request(Request request, Student* student);
+  bool switch_request(Request request, Student* student);
 };
 
 #endif

@@ -183,38 +183,53 @@ bool LEIC::uc_has_vacancy(std::string uccode, int cap) {
     return false;
 }
 
-bool LEIC::process_request(Request request) {
+bool LEIC::add_request(Request request, Student* student) {
+    if (request.get_uc_class()) {
+        Class* newclass = get_class_from_classcode_and_uccode(request.get_new_class(), request.get_new_uc());
+        if (newclass->get_students().size()<CAP
+            && !student->has_uc(request.get_new_uc()) && compatible_schedules(*student, newclass)) {
+            add_student_to_class(student, newclass);
+            cout << "Student is now in the class " << newclass->get_classCode() << " in the UC " << newclass->get_ucCode() << endl;
+        }
+    }
+    else {
+        if (uc_has_vacancy(request.get_new_uc(), CAP) && student->get_classes().size()<7) {
+            vector<Class*> classes_uccode = get_classes_from_uccode(request.get_new_uc());
+            for (Class* c: classes_uccode) {
+                if (compatible_schedules(*student, c)) {
+                    add_student_to_class(student, c);
+                    cout << "Student is now in the class " << c->get_classCode() << " in the UC " << c->get_ucCode() << endl;
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+
+bool LEIC::remove_request(Request request, Student *student) {
+    remove_student_from_class(student, get_class_from_classcode_and_uccode(student->get_class_from_uc(request.get_current_uc()), request.get_current_uc()));
+    cout << "Student was removed as requested";
+    return true;
+}
+
+bool LEIC::switch_request(Request request, Student *student) {
+    return true;
+}
+
+bool LEIC::process_requests(Request request) {
     Student* student = get_student_from_up(request.get_student_up());
     switch (request.get_type()[0]) {
         case 'A': {
-            if (request.get_uc_class()) {
-                Class* newclass = get_class_from_classcode_and_uccode(request.get_new_class(), request.get_new_uc());
-                if (newclass->get_students().size()<CAP
-                    && !student->has_uc(request.get_new_uc()) && compatible_schedules(*student, newclass)) {
-                    add_student_to_class(student, newclass);
-                    cout << "Student is now in the class " << newclass->get_classCode() << " in the UC " << newclass->get_ucCode() << endl;
-                }
-            }
-            else {
-                if (uc_has_vacancy(request.get_new_uc(), CAP) && student->get_classes().size()<7) {
-                    vector<Class*> classes_uccode = get_classes_from_uccode(request.get_new_uc());
-                    for (Class* c: classes_uccode) {
-                        if (compatible_schedules(*student, c)) {
-                            add_student_to_class(student, c);
-                            cout << "Student is now in the class " << c->get_classCode() << " in the UC " << c->get_ucCode() << endl;
-                            return true;
-                        }
-                    }
-                }
-            }
+            return add_request(request, student);
         }
         case 'R': {
-            cout << "Did nothing";
-            remove_student_from_class(student, get_class_from_classcode_and_uccode(student->get_class_from_uc(request.get_current_uc()), request.get_current_uc()));
-            return true;
+            return remove_request(request, student);
+        }
+        case 'S': {
+            return switch_request(request, student);
         }
     }
-    cout << "The request was rejected";
     return false;
 }
 

@@ -74,7 +74,10 @@ void Script::request(){
         }
     }
     Request request = Request(type, (uc_or_class == "CLASS"), student_up, current_class, new_class, current_uc, new_uc);
-    data.process_request(request);
+    if (!data.process_requests(request)) {
+        cout << "The request was rejected";
+    }
+    run();
 }
 
 void Script::listings(){
