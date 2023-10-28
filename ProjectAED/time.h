@@ -2,11 +2,11 @@
 #define AEDPROJECT_TIME_H
 #include <string>
 
- class Time {
 /*******************************************************************************
- * \class Time
- * \brief This is a class for handling time provided in float or string format.
- ******************************************************************************/
+* \class Time
+* \brief This is a class for handling time provided in float or string format.
+******************************************************************************/
+ class Time {
 private:
     int hour, minute;
     float timefloat;
