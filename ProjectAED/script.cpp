@@ -182,6 +182,7 @@ void Script::listStudents() {
             }
             if(option == "1") data.listStudentsByUP();
             else data.listStudentsByName();
+            break;
         }
         case '2': {
             cout << "Enter UC to check: ";
@@ -198,6 +199,7 @@ void Script::listStudents() {
             }
             if(option == "1") data.listUCStudentsByUP(UC);
             else data.listUCStudentsByName(UC);
+            break;
         }
         case '3': {
             cout << "Enter UC of Class to check: ";
