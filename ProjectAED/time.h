@@ -11,29 +11,42 @@ private:
     int hour, minute;
     float timefloat;
 public:
-/**
- * \brief Constructor with string.
- */
+     /**
+      * \brief Creates a new Time from a string.
+      *
+      * @param time The Time to be created in string format.
+      */
     Time(std::string time);
-/**
- * \brief Constructor with float.
- */
+    /**
+     * \brief Creates a new Time from a float.
+     *
+     * @param time The Time to be created in float format.
+     */
     Time(float time);
-/**
- * \brief Getter function for hour.
- */
+    /**
+     * \brief Gets the hour.
+     *
+     * @return The hour of the Time.
+     */
     int get_hour() const;
-/**
- * \brief Getter function for minute.
- */
+    /**
+     * \brief Gets the minutes.
+     *
+     * @return The minutes of the Time.
+     */
     int get_minute() const;
-/**
- * \brief Getter function time in float format.
- */
+    /**
+     * \brief Gets the Time in float format.
+     *
+     * @return The Time in float format.
+     */
     float get_timefloat() const;
-/**
- * \brief Less than operator for Time comparison.
- */
+    /**
+     * \brief Less than operator for Time comparison.
+     *
+     * @param t The Time to compare.
+     * @return True if this Time is before the Time to compare.
+     */
     bool operator<(const Time &t) const;
 };
 
