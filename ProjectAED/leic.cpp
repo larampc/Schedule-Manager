@@ -52,9 +52,9 @@ LEIC::LEIC(std::string filenameclasses, std::string filenamestudents) {
     studentsFile.close();
 }
 
-Student LEIC::get_student_from_up(std::string up) {
-    if(up_students.find(up) == up_students.end()) return Student("","");
-    else return up_students.at(up);
+Student* LEIC::get_student_from_up(std::string up) {
+    if(up_students.find(up) == up_students.end()) return nullptr;
+    return &up_students.at(up);
 }
 
 std::set<std::string> LEIC::get_ucs() const {
@@ -148,14 +148,14 @@ void LEIC::numberstudents_class() {
     }
 }
 
-void LEIC::add_student_to_class(Student student, Class *newclass) {
-    newclass->add_student(student.get_student_up());
-    student.add_class(newclass);
+void LEIC::add_student_to_class(Student* student, Class *newclass) {
+    newclass->add_student(student->get_student_up());
+    student->add_class(newclass);
 }
 
-void LEIC::remove_student_from_class(Student student, Class *newclass) {
-    newclass->remove_student(student.get_student_up());
-    student.remove_class(newclass);
+void LEIC::remove_student_from_class(Student* student, Class *newclass) {
+    newclass->remove_student(student->get_student_up());
+    student->remove_class(newclass);
 }
 
 bool LEIC::uc_has_vacancy(std::string uccode, int cap) {
@@ -165,6 +165,44 @@ bool LEIC::uc_has_vacancy(std::string uccode, int cap) {
         }
     }
     return false;
+}
+
+bool LEIC::process_request(Request request) {
+    Student* student = get_student_from_up(request.get_student_up());
+    switch (request.get_type()[0]) {
+        case 'A': {
+            if (request.get_uc_class()) {
+
+            }
+            else {
+                int cap;
+                cout << "Max capacity of occupation \n";
+                cin >> cap;
+                if (uc_has_vacancy(request.get_new_uc(), cap) && student->get_classes().size()>=7) {
+                    vector<Class*> classes_uccode = get_classes_from_uccode(request.get_new_uc());
+                    for (Class* c: classes_uccode) {
+                        if (compatible_schedules(*student, c)) {
+                            add_student_to_class(student, c);
+                            cout << "Student is now in the class" << c->get_classCode() << " in the UC " << c->get_ucCode() << endl;
+                            return true;
+                        }
+                    }
+                }
+                else {
+                    cout << "The request was rejected";
+                }
+            }
+        }
+    }
+
+}
+
+vector<Class*> LEIC::get_classes_from_uccode(string uccode) {
+    vector<Class*> classes_uccode;
+    for (Class c: classes) {
+        if (c.get_ucCode() == uccode) classes_uccode.push_back(&c);
+    }
+    return classes_uccode;
 }
 
 

@@ -42,7 +42,7 @@ void Script::request(){
     cout << "UP:\n";
     cin >> up;
     Class* c = data.get_class_from_classcode_and_uccode(classcode,uccode);
-    Student s = data.get_student_from_up(up);
+    Student* s = data.get_student_from_up(up);
     cout << data.class_balance_valid(*c) << endl;
     string classcode_to, uccode_to;
 //    cout << "UC TO:\n";
@@ -50,7 +50,7 @@ void Script::request(){
 //    cout << "CLASS TO:\n";
 //    cin >> classcode_to;
     //Class* c_to = data.get_class_from_classcode_and_uccode(classcode_to,uccode_to);
-    cout << data.compatible_schedules(s, c) << endl;
+    cout << data.compatible_schedules(*s, c) << endl;
  //   data.processRequest(type, uc_or_class == "UC");
 }
 
@@ -90,13 +90,13 @@ void Script::listSchedules(){
             cout << "Insert student up: ";
             long up;
             cin >> up;
-            while(cin.fail() || data.get_student_from_up(to_string(up)).get_name() == ""){
+            while(cin.fail() || data.get_student_from_up(to_string(up))->get_name() == ""){
                 invalid();
                 cin.clear();
                 cin.ignore( numeric_limits<streamsize>::max(),'\n');
                 cin >> up;
             }
-            data.get_student_from_up(to_string(up)).print_schedule();
+            data.get_student_from_up(to_string(up))->print_schedule();
             break;
         }
         case '2': {
