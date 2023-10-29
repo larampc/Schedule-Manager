@@ -221,6 +221,9 @@ public:
      * @return The number of Student with at least the given number of UCs.
      */
     int students_in_nUcs(int n);
+    /**
+     * \brief Uploads all the Request in the requests.csv file to the queue and runs them.
+     */
     void upload_requests();
 };
 

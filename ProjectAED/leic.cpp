@@ -387,8 +387,8 @@ void LEIC::upload_requests() {
         iss >> newClassCode;
         requests.emplace(Type,!newClassCode.empty(),StudentCode,oldClassCode,newClassCode,oldUcCode,newUcCode);
     }
-    process_requests();
     requestsFile.close();
+    process_requests();
 }
 
 
