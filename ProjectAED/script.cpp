@@ -176,7 +176,8 @@ void Script::new_registration() {
         cin >> new_up;
     }
     cout << "Name of new student:";
-    cin >> name;
+    cin.ignore();
+    getline(cin, name);
     data.add_student(Student(name, new_up));
     cout << "How many UC's would you like to register to?:";
     cin >> number_ucs;
