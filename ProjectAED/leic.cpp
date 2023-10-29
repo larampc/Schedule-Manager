@@ -50,8 +50,9 @@ LEIC::LEIC(std::string filenameclasses, std::string filenamestudents, bool save_
         it2->add_student(up);
     }
     studentsFile.close();
+
     if(save_file){
-        ifstream requestsFile("../accepted_requests");
+        ifstream requestsFile("../accepted_requests.csv");
         getline(requestsFile, line);
         string StudentCode,Type,oldUcCode,newUcCode,oldClassCode,newClassCode;
         stack<Request> reverseOrderRequest;
