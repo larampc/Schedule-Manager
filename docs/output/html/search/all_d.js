@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['script_0',['script',['../class_script.html',1,'Script'],['../class_script.html#a10975b78b03162488c522f095fd7707f',1,'Script::Script()']]],
-  ['set_5ftype_1',['set_type',['../class_request.html#a48bee5c53e5d88620e247f15bd22b86f',1,'Request']]],
-  ['student_2',['student',['../class_student.html',1,'Student'],['../class_student.html#a20ea4b5d4a87c05ba2b4d95ffd475776',1,'Student::Student()']]]
+  ['remove_5fclass_5ffrom_5fuc_0',['remove_class_from_uc',['../class_student.html#aa5969798f7615331216c6c1efda8c9e6',1,'Student']]],
+  ['remove_5fstudent_1',['remove_student',['../class_class.html#a3d43abcf75eb258f4c1ec3426241dff5',1,'Class']]],
+  ['request_2',['request',['../class_request.html',1,'Request'],['../class_script.html#a9309ec209659e298c6a9dac1aa6de442',1,'Script::request()'],['../class_request.html#ac70a2698978cb47ca1efc07d2ea4dad7',1,'Request::Request()']]],
+  ['run_3',['run',['../class_script.html#a73a1254b03be5b6150f8029f898615da',1,'Script']]]
 ];

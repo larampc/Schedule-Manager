@@ -48,7 +48,7 @@ public:
      */
     void listings();
     /**
-     * \brief Allows the registration of a new student.
+     * \brief Handles the creation of a new Student and inserts it into the data.
      */
     void new_registration();
     /**
