@@ -268,6 +268,7 @@ void Script::listSchedules(){
             listings();
         }
     }
+    run();
 }
 
 void Script::listStudents() {
@@ -332,4 +333,5 @@ void Script::listStudents() {
         }
         case '4': listings();
     }
+    run();
 }
