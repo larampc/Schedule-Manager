@@ -297,7 +297,9 @@ int LEIC::get_cap() {
 
 void LEIC::save_to_files() {
     ofstream students_classesSaveFile("../students_classes_save.csv", ofstream::out | ofstream::trunc);
+    ofstream accepted_requests("../accepted_requests.csv", ofstream::out | ofstream::trunc);
     students_classesSaveFile << "StudentCode,StudentName,UcCode,ClassCode" << endl;
+    accepted_requests << "Type,oldUC,newUC,oldClass,newClass" << endl;
     for (pair<string, Student> up_s: up_students) {
         for (Class *c: up_s.second.get_classes()) {
             students_classesSaveFile << up_s.first << ','
@@ -306,7 +308,18 @@ void LEIC::save_to_files() {
                                      << c->get_classCode() << endl;
         }
     }
+    while(!processed_requests.empty()){
+        Request r = processed_requests.top();
+        processed_requests.pop();
+        accepted_requests << r.get_student_up() << ','
+                          << r.get_type() << ','
+                          << r.get_current_uc() << ','
+                          << r.get_new_uc() << ','
+                          << r.get_current_class() << ','
+                          << r.get_new_class() << endl;
+    }
     students_classesSaveFile.close();
+    accepted_requests.close();
 }
 
 void LEIC::add_student(Student student) {
