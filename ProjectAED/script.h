@@ -61,6 +61,8 @@ public:
     void listStudents();
 
     int Students_in_nUcs(int n);
+
+    void quit();
 };
 
 

@@ -12,6 +12,11 @@ bool is_number(string s) {
 
 Script::Script(bool save_file) : data(LEIC("../classes.csv", save_file ? "../students_classes_save.csv" : "../students_classes.csv" , save_file)){}
 
+void Script::quit(){
+    data.save_to_files();
+    exit(0);
+}
+
 void Script::run() {
     cout << "\n\n-----------------------------------\n\tSchedule Management System\n------------------------------------\n";
     cout << "Select option:\n"
@@ -26,7 +31,7 @@ void Script::run() {
         invalid();
         cin >> option;
     }
-    switch (option.at(0)) {
+    switch (option[0]) {
         case '1': {
             listings();
             break;
@@ -44,7 +49,7 @@ void Script::run() {
             break;
         }
         case '5': {
-            cout << "1- Change Class CAP\t2- Cancel\n";
+            cout << "1- Change Class CAP (current is " << data.get_cap() << ")\t2- Cancel\n";
             cin >> option;
             while(option != "1" && option != "2") {
                 invalid();
@@ -58,18 +63,23 @@ void Script::run() {
                    invalid();
                    cin >> cap;
                }
-               cout << cap;
                data.set_cap(stoi(cap));
-               run();
             }
             else run();
             break;
         }
         case '6': {
-            data.save_to_files();
-            exit(0);
+            quit();
+            break;
         }
     }
+    cout << "Make another operation? [Y/N]\n";
+    cin >> option;
+    while(option != "Y" && option != "N") {
+        invalid();
+        cin >> option;
+    }
+    option == "Y" ? run() : quit();
 }
 
 void Script::request(){
@@ -169,12 +179,11 @@ void Script::request(){
     if (!data.process_requests(request)) {
         cout << "The request was rejected";
     }
-    run();
 }
 
 void Script::new_registration() {
     string new_up, name, number_ucs, new_uc, new_class;
-    cout << "New UP:";
+    cout << "New StudentCode:";
     cin >> new_up;
     while (!is_number(new_up) || new_up.length() != 9 || data.get_student_from_up(new_up) != nullptr) {
         invalid();
@@ -220,7 +229,7 @@ void Script::new_registration() {
 
 void Script::listings(){
     cout << "What would you like to check?\n"
-    << "1- Schedules 2- Student Lists 3- Occupations 4- Cancel\n";
+    << "1- Schedules 2- Student Lists 3- Class Occupations 4- Cancel\n";
     string option; cin >> option;
     while(option != "1" && option != "2" && option != "3" && option != "4") {
         invalid();
@@ -241,7 +250,6 @@ void Script::listings(){
         }
         case '4': run();
     }
-    run();
 }
 
 void Script::listSchedules(){
@@ -254,7 +262,7 @@ void Script::listSchedules(){
     }
     switch(option[0]){
         case '1': {
-            cout << "Insert student up: ";
+            cout << "Insert StudentCode: ";
             string up;
             cin >> up;
             while(data.get_student_from_up(up) == nullptr){
@@ -329,7 +337,6 @@ void Script::listSchedules(){
             listings();
         }
     }
-    run();
 }
 
 void Script::listStudents() {
@@ -342,7 +349,7 @@ void Script::listStudents() {
     }
     switch(option[0]){
         case '1': {
-            cout << "Sort student by? 1- upNumber 2- Student Name\n";
+            cout << "Sort student by? 1- StudentCode 2- Student Name\n";
             cin >> option;
             while(option != "1" && option != "2") {
                 invalid();
@@ -359,7 +366,7 @@ void Script::listStudents() {
                 invalid();
                 cin >> UC;
             }
-            cout << "Sort student by? 1- upNumber 2- Student Name\n";
+            cout << "Sort student by? 1- StudentCode 2- Student Name\n";
             cin >> option;
             while(option != "1" && option != "2") {
                 invalid();
@@ -382,7 +389,7 @@ void Script::listStudents() {
                 invalid();
                 cin >> class_;
             }
-            cout << "Sort student by? 1- upNumber 2- Student Name\n";
+            cout << "Sort student by? 1- StudentCode 2- Student Name\n";
             cin >> option;
             while(option != "1" && option != "2") {
                 invalid();
@@ -394,7 +401,6 @@ void Script::listStudents() {
         }
         case '4': listings();
     }
-    run();
 }
 
 
@@ -402,6 +408,6 @@ void Script::listStudents() {
 int Script::Students_in_nUcs(int n){
     set<string> total_ucs = data.get_ucs();
     map<string, set<string>> uc_to_students;
-    for(Class c: data.get_classes());
+    for(Class c: data.get_classes()) break;
 
 }
