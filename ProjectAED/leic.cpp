@@ -296,20 +296,6 @@ int LEIC::get_cap() {
 }
 
 void LEIC::save_to_files() {
-    ofstream classesSaveFile("../classes_save.csv", ofstream::out | ofstream::trunc);
-    classesSaveFile << "ClassCode,UcCode,Weekday,StartHour,Duration,Type" << endl;
-    for (Class c: classes) {
-        for (Lesson l: c.get_lessons()) {
-            classesSaveFile << c.get_classCode() << ','
-                            << c.get_ucCode() << ','
-                            << l.get_weekday() << ','
-                            << l.get_starttime().get_timefloat() << ','
-                            << l.get_endtime().get_timefloat() - l.get_starttime().get_timefloat() << ','
-                            << l.get_type() << endl;
-        }
-    }
-    classesSaveFile.close();
-
     ofstream students_classesSaveFile("../students_classes_save.csv", ofstream::out | ofstream::trunc);
     students_classesSaveFile << "StudentCode,StudentName,UcCode,ClassCode" << endl;
     for (pair<string, Student> up_s: up_students) {
