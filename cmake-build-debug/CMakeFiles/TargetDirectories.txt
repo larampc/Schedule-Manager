@@ -1,3 +1,0 @@
-/home/francisco/CLionProjects/ScheduleManagement/cmake-build-debug/CMakeFiles/AEDProject.dir
-/home/francisco/CLionProjects/ScheduleManagement/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/francisco/CLionProjects/ScheduleManagement/cmake-build-debug/CMakeFiles/rebuild_cache.dir
