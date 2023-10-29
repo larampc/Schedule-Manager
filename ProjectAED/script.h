@@ -7,13 +7,13 @@
  *
  * \section description_sec Project description
  *
- * Place Project description here.
+ * This program allows the visualization of schedules and related information, new registrations and update existing registrations.
  *
  * \section utility_sec What can this project do?
  *
  * \subsection part1_subsec Part 1
  *
- * This is part 1.
+ * This program provides several options for consulting data such as sorted lists of students in a given class and number of students in a class.
  *
  * \subsection part2_subsec Part 2
  *
