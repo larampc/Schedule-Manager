@@ -47,6 +47,9 @@ public:
      * \brief Outputs the listings menu and handles the respective inputs.
      */
     void listings();
+    /**
+     * \brief Allows the registration of a new student.
+     */
     void new_registration();
     /**
      * \brief Outputs the schedule listing menu and handles the respective inputs.
