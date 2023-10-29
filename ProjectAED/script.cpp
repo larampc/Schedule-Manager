@@ -38,10 +38,7 @@ void Script::run() {
             handle_requests();
             break;
         }
-        case '4': {
-
-        }
-        case '5': {
+        case '3': {
             cout << "1- Change Class CAP (current is " << data.get_cap() << ")\t2- Cancel\n";
             cin >> option;
             while(option != "1" && option != "2") {
@@ -61,7 +58,7 @@ void Script::run() {
             else run();
             break;
         }
-        case '6': {
+        case '4': {
             quit();
             break;
         }
