@@ -72,6 +72,12 @@ public:
      * @return True if this Class is equal to the Class to compare.
      */
     bool operator == (const Class& c) const;
+    /**
+     * \brief Less than operator for Class comparison.
+     *
+     * @param c Class to compare.
+     * @return True if this Class Class code is less than the Class code of the Class to compare, and if equal if this Class UC code is less than the UC code of the Class to compare.
+     */
     bool operator < (const Class& c) const;
 };
 #endif //PROJECTAED_CLASS_H

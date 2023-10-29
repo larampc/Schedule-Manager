@@ -171,10 +171,7 @@ public:
      */
     bool uc_has_vacancy(std::string uccode);
     /**
-     * \brief Checks the type of the given Request and runs it, returning True if the Request was valid and had no errors.
-     *
-     * @param request The Request to check and run.
-     * @return True if the given Request is valid and ran with no errors.
+     * \brief Executes all Request in the queue by checking the type running it.
      */
     void process_requests();
     /**
@@ -211,7 +208,18 @@ public:
      * \brief Saves all modifications and all successful Requests to files.
      */
     void save_to_files();
+    /**
+     * \brief Adds the given Request to the Request queue to be executed later.
+     *
+     * @param request The Request to add to the queue.
+     */
     void add_request_to_process(Request request);
+    /**
+     * \brief Gets the number of Student with at least the given number of UCs.
+     *
+     * @param n The number of UCs to check.
+     * @return The number of Student with at least the given number of UCs.
+     */
     int students_in_nUcs(int n);
 };
 
