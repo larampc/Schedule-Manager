@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['valid_5fucnumber_0',['valid_UCnumber',['../class_student.html#a19dac673df2277495b67fe369a1dcd02',1,'Student']]]
+  ['time_0',['time',['../class_time.html#a15f171401599a9a058e89e6cf3244f2b',1,'Time::Time(std::string time)'],['../class_time.html#a6a5659e8c5ba951a1a2711be2184eba6',1,'Time::Time(float time)']]]
 ];
