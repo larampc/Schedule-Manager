@@ -18,10 +18,11 @@ void Script::run() {
          << "Get Information - press 1\n"
          << "New registration - press 2\n"
          << "Update registration - press 3\n"
-         << "Settings - press 4\n"
-         << "Quit Manager - press 5\n";
+         << "Undo Previous Operation - press 4\n"
+         << "Settings - press 5\n"
+         << "Quit Manager - press 6\n";
     string option; cin >> option;
-    while(option != "1" && option != "2" && option != "3" && option != "4" && option != "5") {
+    while(option != "1" && option != "2" && option != "3" && option != "4" && option != "5" && option != "6") {
         invalid();
         cin >> option;
     }
@@ -30,15 +31,19 @@ void Script::run() {
             listings();
             break;
         }
-        case '3': {
-            request();
-            break;
-        }
         case '2': {
             new_registration();
             break;
         }
+        case '3': {
+            request();
+            break;
+        }
         case '4': {
+            data.undo_request();
+            break;
+        }
+        case '5': {
             cout << "1- Change Class CAP\t2- Cancel\n";
             cin >> option;
             while(option != "1" && option != "2") {
@@ -60,7 +65,7 @@ void Script::run() {
             else run();
             break;
         }
-        case '5': {
+        case '6': {
             data.save_to_files();
             exit(0);
         }
