@@ -40,7 +40,7 @@ void Script::run() {
             break;
         }
         case '4': {
-            data.undo_request();
+            if(!data.undo_request()) cout << "No request to undo\n";
             break;
         }
         case '5': {

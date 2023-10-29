@@ -284,6 +284,7 @@ vector<Class*> LEIC::get_classes_from_uccode(string uccode) {
 }
 
 bool LEIC::undo_request() {
+    if(processed_requests.empty()) return false;
     Request thisrequest = processed_requests.top();
     processed_requests.pop();
     switch (thisrequest.get_type()[0]) {
