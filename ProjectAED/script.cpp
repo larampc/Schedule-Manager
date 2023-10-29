@@ -180,9 +180,11 @@ void Script::listings(){
         }
         case '3': {
             data.numberstudents_class();
+            break;
         }
         case '4': run();
     }
+    run();
 }
 
 void Script::listSchedules(){
