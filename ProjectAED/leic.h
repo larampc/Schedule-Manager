@@ -12,7 +12,6 @@
 #include "student.h"
 #include "request.h"
 
-
 class LEIC {
 private:
   std::vector<Class> classes;

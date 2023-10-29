@@ -27,10 +27,8 @@ string Lesson::get_type() const {
 }
 
 bool Lesson::overlap(Lesson oldlesson) const {
-    if (oldlesson.get_weekday() == weekday){
-        return (max(startTime.get_timefloat(), oldlesson.startTime.get_timefloat()) < min(endTime.get_timefloat(), oldlesson.endTime.get_timefloat()));
-    }
-    return false;
+    return oldlesson.get_weekday() == weekday && (max(startTime.get_timefloat(), oldlesson.startTime.get_timefloat()) <
+                                                  min(endTime.get_timefloat(), oldlesson.endTime.get_timefloat()));
 }
 
 bool Lesson::operator<(const Lesson &l) const{
@@ -39,8 +37,7 @@ bool Lesson::operator<(const Lesson &l) const{
                                        {"Wednesday", 3},
                                        {"Thursday", 4},
                                        {"Friday", 5}};
-    if (weekday_to_int[this->weekday] < weekday_to_int[l.weekday]) return true;
-    return weekday_to_int[this->weekday] <= weekday_to_int[l.weekday] && this->startTime < l.startTime;
+    return (weekday_to_int[this->weekday] < weekday_to_int[l.weekday]) || (weekday_to_int[this->weekday] <= weekday_to_int[l.weekday] && this->startTime < l.startTime);
 }
 
 void Lesson::print_lesson() const {
