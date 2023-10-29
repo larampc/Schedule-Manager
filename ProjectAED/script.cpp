@@ -61,6 +61,7 @@ void Script::run() {
             break;
         }
         case '5': {
+            data.save_to_files();
             exit(0);
         }
     }
