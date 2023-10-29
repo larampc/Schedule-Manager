@@ -95,6 +95,12 @@ std::vector&lt; <a class="el" href="class_class.html">Class</a> &gt;&#160;</td><
 <tr class="memitem:ae2642663da87e5c1fe65b37ca3426720" id="r_ae2642663da87e5c1fe65b37ca3426720"><td class="memItemLeft" align="right" valign="top"><a id="ae2642663da87e5c1fe65b37ca3426720" name="ae2642663da87e5c1fe65b37ca3426720"></a>
 std::set&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>get_classcodes</b> () const</td></tr>
 <tr class="separator:ae2642663da87e5c1fe65b37ca3426720"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5109feb2b28aa7c33c2ec151b51cc635" id="r_a5109feb2b28aa7c33c2ec151b51cc635"><td class="memItemLeft" align="right" valign="top"><a id="a5109feb2b28aa7c33c2ec151b51cc635" name="a5109feb2b28aa7c33c2ec151b51cc635"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>set_cap</b> (int cap)</td></tr>
+<tr class="separator:a5109feb2b28aa7c33c2ec151b51cc635"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07eee72b0f73bfded732eb667b59d566" id="r_a07eee72b0f73bfded732eb667b59d566"><td class="memItemLeft" align="right" valign="top"><a id="a07eee72b0f73bfded732eb667b59d566" name="a07eee72b0f73bfded732eb667b59d566"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>get_cap</b> ()</td></tr>
+<tr class="separator:a07eee72b0f73bfded732eb667b59d566"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a32748a8c62772dda4f6143c971886334" id="r_a32748a8c62772dda4f6143c971886334"><td class="memItemLeft" align="right" valign="top"><a id="a32748a8c62772dda4f6143c971886334" name="a32748a8c62772dda4f6143c971886334"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>listStudentsByUP</b> ()</td></tr>
 <tr class="separator:a32748a8c62772dda4f6143c971886334"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -134,9 +140,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>add_student_to_class<
 <tr class="memitem:a661369e6ce1641dd95576d45fbb0fa84" id="r_a661369e6ce1641dd95576d45fbb0fa84"><td class="memItemLeft" align="right" valign="top"><a id="a661369e6ce1641dd95576d45fbb0fa84" name="a661369e6ce1641dd95576d45fbb0fa84"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>remove_student_from_class</b> (<a class="el" href="class_student.html">Student</a> *student, <a class="el" href="class_class.html">Class</a> *newclass)</td></tr>
 <tr class="separator:a661369e6ce1641dd95576d45fbb0fa84"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2270e899b55807cef210fe5f659c1e75" id="r_a2270e899b55807cef210fe5f659c1e75"><td class="memItemLeft" align="right" valign="top"><a id="a2270e899b55807cef210fe5f659c1e75" name="a2270e899b55807cef210fe5f659c1e75"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>uc_has_vacancy</b> (std::string uccode, int cap)</td></tr>
-<tr class="separator:a2270e899b55807cef210fe5f659c1e75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af137094e4e74add1f0d0257d2b87d750" id="r_af137094e4e74add1f0d0257d2b87d750"><td class="memItemLeft" align="right" valign="top"><a id="af137094e4e74add1f0d0257d2b87d750" name="af137094e4e74add1f0d0257d2b87d750"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>uc_has_vacancy</b> (std::string uccode)</td></tr>
+<tr class="separator:af137094e4e74add1f0d0257d2b87d750"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a202819906c670513c9ed10481c7f407f" id="r_a202819906c670513c9ed10481c7f407f"><td class="memItemLeft" align="right" valign="top"><a id="a202819906c670513c9ed10481c7f407f" name="a202819906c670513c9ed10481c7f407f"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>process_requests</b> (<a class="el" href="class_request.html">Request</a> request)</td></tr>
 <tr class="separator:a202819906c670513c9ed10481c7f407f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -170,6 +176,9 @@ std::queue&lt; <a class="el" href="class_request.html">Request</a> &gt;&#160;</t
 <tr class="memitem:a3ac6eb8b99b8cbecd3f6b5880cba7719" id="r_a3ac6eb8b99b8cbecd3f6b5880cba7719"><td class="memItemLeft" align="right" valign="top"><a id="a3ac6eb8b99b8cbecd3f6b5880cba7719" name="a3ac6eb8b99b8cbecd3f6b5880cba7719"></a>
 std::stack&lt; <a class="el" href="class_request.html">Request</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>processed_requests</b></td></tr>
 <tr class="separator:a3ac6eb8b99b8cbecd3f6b5880cba7719"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45d1b706528e93d24d1751ef036c0fb3" id="r_a45d1b706528e93d24d1751ef036c0fb3"><td class="memItemLeft" align="right" valign="top"><a id="a45d1b706528e93d24d1751ef036c0fb3" name="a45d1b706528e93d24d1751ef036c0fb3"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>CAP</b> = 30</td></tr>
+<tr class="separator:a45d1b706528e93d24d1751ef036c0fb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>ProjectAED/<a class="el" href="leic_8h_source.html">leic.h</a></li>
