@@ -34,6 +34,7 @@ public:
      *
      * @param filenameclasses The file name and location for the Classes file.
      * @param filenamestudents The file name and location for the Students file.
+     * @param save_file Whether to read the modified files or the original files, True or False.
      */
     LEIC(std::string filenameclasses, std::string filenamestudents, bool save_file); //ler ficheiros e guardar info
     /**
@@ -162,12 +163,53 @@ public:
      * @param newclass The Class to remove the given Student.
      */
     void remove_student_from_class(Student* student, Class* newclass);
+    /**
+     * \brief Checks if any Class with the given UC code has less Student than the Cap.
+     *
+     * @param uccode The UC code of the UC to check.
+     * @return True if any Class with the given UC code has less Student than the Cap.
+     */
     bool uc_has_vacancy(std::string uccode);
+    /**
+     * \brief Checks the type of the given Request and runs it, returning True if the Request was valid and had no errors.
+     *
+     * @param request The Request to check and run.
+     * @return True if the given Request is valid and ran with no errors.
+     */
     bool process_requests(Request request);
+    /**
+     * \brief Runs the given Request of type ADD about the given Student and returns True if it is valid and ran with no errors.
+     *
+     * @param request The Request to run.
+     * @param student The Student related to the Request.
+     * @return True if the given Request is valid and ran with no errors.
+     */
     bool request_add(Request request, Student* student);
+    /**
+     * \brief Runs the given Request of type REMOVE about the given Student and returns True if it is valid and ran with no errors.
+     *
+     * @param request The Request to run.
+     * @param student The Student related to the Request.
+     * @return True if the given Request is valid and ran with no errors.
+     */
     bool request_remove(Request request, Student* student);
+    /**
+     * \brief Runs the given Request of type SWITCH about the given Student and returns True if it is valid and ran with no errors.
+     *
+     * @param request The Request to run.
+     * @param student The Student related to the Request.
+     * @return True if the given Request is valid and ran with no errors.
+     */
     bool request_switch(Request request, Student* student);
+    /**
+     * \brief Undoes the last Request that was done successfully.
+     *
+     * @return True if it undid with no errors.
+     */
     bool undo_request();
+    /**
+     * \brief Saves all modifications and all successful Requests to files.
+     */
     void save_to_files();
 };
 
