@@ -37,7 +37,19 @@ void Script::run() {
                 invalid();
                 cin >> option;
             }
-            if(option == "1"){} //do something
+            if(option == "1"){
+               cout << "New CAP: ";
+               int cap;
+               cin >> cap;
+               while (cin.fail()) {
+                   invalid();
+                   cin.clear();
+                   cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                   cin >> cap;
+               }
+               cout << cap;
+               data.set_cap(cap);
+            }
             else run();
             break;
         }

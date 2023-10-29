@@ -174,10 +174,10 @@ void LEIC::remove_student_from_class(Student* student, Class *newclass) {
     student->remove_class_from_uc(newclass->get_ucCode());
 }
 
-bool LEIC::uc_has_vacancy(std::string uccode, int cap) {
+bool LEIC::uc_has_vacancy(std::string uccode) {
     for (Class& c: classes) {
         if (c.get_ucCode() == uccode){
-            if (c.get_students().size() < cap) return true;
+            if (c.get_students().size() < CAP) return true;
         }
     }
     return false;
@@ -196,7 +196,7 @@ bool LEIC::add_request(Request request, Student* student) {
         return false;
     }
     else {
-        if (uc_has_vacancy(request.get_new_uc(), CAP) && student->get_classes().size()<7) {
+        if (uc_has_vacancy(request.get_new_uc()) && student->get_classes().size()<7) {
             vector<Class*> classes_uccode = get_classes_from_uccode(request.get_new_uc());
             for (Class* c: classes_uccode) {
                 if (compatible_schedules(*student, c)) {
@@ -286,6 +286,14 @@ std::set<std::string> LEIC::get_classcodes() const {
     set<string> classcodes;
     for(Class c: classes) classcodes.insert(c.get_classCode());
     return classcodes;
+}
+
+void LEIC::set_cap(int cap) {
+    CAP = cap;
+}
+
+int LEIC::get_cap() {
+    return CAP;
 }
 
 
