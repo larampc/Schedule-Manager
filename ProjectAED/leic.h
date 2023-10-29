@@ -35,7 +35,7 @@ public:
      * @param filenameclasses The file name and location for the Classes file.
      * @param filenamestudents The file name and location for the Students file.
      */
-    LEIC(std::string filenameclasses, std::string filenamestudents); //ler ficheiros e guardar info
+    LEIC(std::string filenameclasses, std::string filenamestudents, bool save_file); //ler ficheiros e guardar info
     /**
     * \brief Gets the Student with the given up.
     *

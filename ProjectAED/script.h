@@ -34,7 +34,7 @@ public:
     /**
      * \brief Creates a new Script.
      */
-    Script();
+    Script(bool save_file);
     /**
      * \brief Outputs the main menu and handles the respective inputs.
      */

@@ -1,7 +1,7 @@
 #include "leic.h"
 using namespace std;
 
-LEIC::LEIC(std::string filenameclasses, std::string filenamestudents) {
+LEIC::LEIC(std::string filenameclasses, std::string filenamestudents, bool save_file) {
     ifstream classesFile(filenameclasses);
     string line;
     getline(classesFile, line);
@@ -50,6 +50,27 @@ LEIC::LEIC(std::string filenameclasses, std::string filenamestudents) {
         it2->add_student(up);
     }
     studentsFile.close();
+    if(save_file){
+        ifstream requestsFile("../accepted_requests");
+        getline(requestsFile, line);
+        string StudentCode,Type,oldUcCode,newUcCode,oldClassCode,newClassCode;
+        stack<Request> reverseOrderRequest;
+        while (getline(requestsFile, line)) {     // read all lines from the given file
+            istringstream iss(line);
+            getline(iss, StudentCode, ',');
+            getline(iss, Type, ',');
+            getline(iss, oldUcCode, ',');
+            getline(iss, newUcCode, ',');
+            getline(iss, oldClassCode, ',');
+            iss >> newClassCode;
+            reverseOrderRequest.push(Request(type,!newClassCode.empty(),StudentCode,oldClassCode,newClassCode,oldUcCode,newUcCode));
+        }
+        while(!reverseOrderRequest.empty()){
+            processed_requests.push(reverseOrderRequest.top());
+            reverseOrderRequest.pop();
+        }
+        requestsFile.close();
+    }
 }
 
 Student* LEIC::get_student_from_up(std::string up) {

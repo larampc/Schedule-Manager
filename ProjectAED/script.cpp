@@ -10,7 +10,7 @@ bool is_number(string s) {
     return true;
 }
 
-Script::Script(): data(LEIC("../classes.csv", "../students_classes.csv")) {}
+Script::Script(bool save_file) : data(LEIC("../classes.csv", save_file ? "../students_classes_save.csv" : "../students_classes.csv" , save_file)){}
 
 void Script::run() {
     cout << "\n\n-----------------------------------\n\tSchedule Management System\n------------------------------------\n";
@@ -392,6 +392,8 @@ void Script::listStudents() {
     run();
 }
 
+
+//ajuda
 int Script::Students_in_nUcs(int n){
     set<string> total_ucs = data.get_ucs();
     map<string, set<string>> uc_to_students;
