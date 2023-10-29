@@ -47,6 +47,7 @@ public:
   bool remove_request(Request request, Student* student);
   bool switch_request(Request request, Student* student);
   bool undo_request();
+  void save_to_files();
 };
 
 #endif
