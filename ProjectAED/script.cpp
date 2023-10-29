@@ -83,14 +83,13 @@ void Script::run() {
 }
 
 void Script::request(){
-    string type, option, uc_or_class;
+    string type, option, uc_or_class, student_up, current_class, new_class, current_uc, new_uc;
     cout << "Pick: 1- ADD 2- REMOVE 3- SWITCH 4- Cancel\n";
     cin >> option; while(option != "1" && option != "2" && option != "3" && option != "4") {invalid(); cin >> option; cout << '\n';}
     if(option == "4") {
         run();
         return;
     }
-    string student_up, current_class, new_class, current_uc, new_uc;
     cout << "UP:\n";
     cin >> student_up;
     while(data.get_student_from_up(student_up) == nullptr){
@@ -104,6 +103,10 @@ void Script::request(){
             cin >> uc_or_class; while(uc_or_class != "UC" && uc_or_class != "CLASS") {invalid(); cin >> uc_or_class;}
             cout << "UC:\n";
             cin >> new_uc;
+            while(!data.get_ucs().count(new_uc)) {
+                invalid();
+                cin >> new_uc;
+            }
             if (uc_or_class == "CLASS") {
                 cout << "CLASS:\n";
                 cin >> new_class;
@@ -177,7 +180,7 @@ void Script::request(){
     }
     Request request = Request(type, (uc_or_class == "CLASS"), student_up, current_class, new_class, current_uc, new_uc);
     if (!data.process_requests(request)) {
-        cout << "The request was rejected";
+        cout << "The request was rejected\n";
     }
 }
 
