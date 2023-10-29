@@ -176,7 +176,7 @@ public:
      * @param request The Request to check and run.
      * @return True if the given Request is valid and ran with no errors.
      */
-    bool process_requests(Request request);
+    void process_requests();
     /**
      * \brief Runs the given Request of type ADD about the given Student and returns True if it is valid and ran with no errors.
      *
@@ -184,7 +184,7 @@ public:
      * @param student The Student related to the Request.
      * @return True if the given Request is valid and ran with no errors.
      */
-    bool request_add(Request request, Student* student);
+    bool request_add(Request request);
     /**
      * \brief Runs the given Request of type REMOVE about the given Student and returns True if it is valid and ran with no errors.
      *
@@ -192,7 +192,7 @@ public:
      * @param student The Student related to the Request.
      * @return True if the given Request is valid and ran with no errors.
      */
-    bool request_remove(Request request, Student* student);
+    bool request_remove(Request request);
     /**
      * \brief Runs the given Request of type SWITCH about the given Student and returns True if it is valid and ran with no errors.
      *
@@ -200,7 +200,7 @@ public:
      * @param student The Student related to the Request.
      * @return True if the given Request is valid and ran with no errors.
      */
-    bool request_switch(Request request, Student* student);
+    bool request_switch(Request request);
     /**
      * \brief Undoes the last Request that was done successfully.
      *
@@ -211,6 +211,8 @@ public:
      * \brief Saves all modifications and all successful Requests to files.
      */
     void save_to_files();
+    void add_request_to_process(Request request);
+    int students_in_nUcs(int n);
 };
 
 #endif

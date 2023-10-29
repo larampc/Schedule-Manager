@@ -56,10 +56,10 @@ void Script::run() {
                 cin >> option;
             }
             if(option == "1"){
-               cout << "New CAP: ";
+               cout << "New CAP:";
                string cap;
                cin >> cap;
-               while (!is_number(cap)) {
+               while (!is_number(cap) || stoi(cap) > 50) {
                    invalid();
                    cin >> cap;
                }
@@ -178,11 +178,18 @@ void Script::request(){
             break;
         }
     }
-    Request request = Request(type, (uc_or_class == "CLASS"), student_up, current_class, new_class, current_uc, new_uc);
-    if (!data.process_requests(request)) {
-        cout << "The request was rejected\n";
+    data.add_request_to_process(Request(type, (uc_or_class == "CLASS"), student_up, current_class, new_class, current_uc, new_uc));
+    cout << "Would you like to make another request? [Y/N]\n";
+    string answer;
+    cin >> answer;
+    while(answer != "Y" && answer != "N") {
+        invalid();
+        cin >> answer;
     }
+    if (answer == "Y") request();
+    data.process_requests();
 }
+
 
 void Script::new_registration() {
     string new_up, name, number_ucs, new_uc, new_class;
@@ -224,17 +231,17 @@ void Script::new_registration() {
                 cin >> new_class;
             }
         }
-        Request request = Request("ADD", answer == "Y", new_up, "", new_class, "", new_uc);
-        data.process_requests(request);
+        data.add_request_to_process(Request("ADD", answer == "Y", new_up, "", new_class, "", new_uc));
     }
+    data.process_requests();
     run();
 }
 
 void Script::listings(){
     cout << "What would you like to check?\n"
-    << "1- Schedules 2- Student Lists 3- Class Occupations 4- Cancel\n";
+    << "1- Schedules 2- Student Lists 3- Class Occupations 4- Students with at least n UC's 5- Cancel\n";
     string option; cin >> option;
-    while(option != "1" && option != "2" && option != "3" && option != "4") {
+    while(option != "1" && option != "2" && option != "3" && option != "4" && option != "5") {
         invalid();
         cin >> option;
     }
@@ -251,7 +258,18 @@ void Script::listings(){
             data.numberstudents_class();
             break;
         }
-        case '4': run();
+        case '4': {
+            cout << "N:";
+            string n;
+            cin >> n;
+            while (!is_number(n) || stoi(n) > 7) {
+                invalid();
+                cin >> n;
+            }
+            cout << data.students_in_nUcs(stoi(n)) << endl;
+            break;
+        }
+        case '5': run();
     }
 }
 
@@ -380,13 +398,13 @@ void Script::listStudents() {
             break;
         }
         case '3': {
-            cout << "Enter UC of Class to check: ";
+            cout << "Enter UC of Class to check:";
             string UC; cin >> UC;
             while(!data.get_ucs().count(UC)) {
                 invalid();
                 cin >> UC;
             }
-            cout << "Enter Class to check: ";
+            cout << "Enter Class to check:";
             string class_; cin >> class_;
             while(data.get_class_from_classcode_and_uccode(class_,UC) == nullptr) {
                 invalid();
@@ -407,10 +425,3 @@ void Script::listStudents() {
 }
 
 
-//ajuda
-int Script::Students_in_nUcs(int n){
-    set<string> total_ucs = data.get_ucs();
-    map<string, set<string>> uc_to_students;
-    for(Class c: data.get_classes()) break;
-
-}

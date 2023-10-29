@@ -203,7 +203,8 @@ bool LEIC::uc_has_vacancy(std::string uccode) {
     return false;
 }
 
-bool LEIC::request_add(Request request, Student* student) {
+bool LEIC::request_add(Request request) {
+    Student* student = get_student_from_up(request.get_student_up());
     if (request.get_uc_class()) {
         Class* newclass = get_class_from_classcode_and_uccode(request.get_new_class(), request.get_new_uc());
         if (newclass->get_students().size()<CAP
@@ -231,7 +232,8 @@ bool LEIC::request_add(Request request, Student* student) {
     return false;
 }
 
-bool LEIC::request_remove(Request request, Student *student) {
+bool LEIC::request_remove(Request request) {
+    Student* student = get_student_from_up(request.get_student_up());
     Class* currentClass = get_class_from_classcode_and_uccode(student->get_class_from_uc(request.get_current_uc()), request.get_current_uc());
     string currentclass = currentClass->get_classCode();
     string currentUc = request.get_current_uc();
@@ -241,11 +243,11 @@ bool LEIC::request_remove(Request request, Student *student) {
     return true;
 }
 
-bool LEIC::request_switch(Request request, Student *student) {
+bool LEIC::request_switch(Request request) {
     request.set_type("REMOVE");
-    request_remove(request, student);
+    request_remove(request);
     request.set_type("ADD");
-    if (request_add(request, student)) {
+    if (request_add(request)) {
         processed_requests.pop();
         processed_requests.pop();
         request.set_type("SWITCH");
@@ -258,20 +260,24 @@ bool LEIC::request_switch(Request request, Student *student) {
     return false;
 }
 
-bool LEIC::process_requests(Request request) {
-    Student* student = get_student_from_up(request.get_student_up());
-    switch (request.get_type()[0]) {
-        case 'A': {
-            return request_add(request, student);
-        }
-        case 'R': {
-            return request_remove(request, student);
-        }
-        case 'S': {
-            return request_switch(request, student);
+void LEIC::process_requests() {
+    while (!requests.empty()) {
+        Request request = requests.front();
+        requests.pop();
+        Student* student = get_student_from_up(request.get_student_up());
+        switch (request.get_type()[0]) {
+            case 'A': {
+                request_add(request);
+            }
+            case 'R': {
+                request_remove(request);
+            }
+            case 'S': {
+                request_switch(request);
+            }
         }
     }
-    return false;
+
 }
 
 vector<Class*> LEIC::get_classes_from_uccode(string uccode) {
@@ -290,19 +296,19 @@ bool LEIC::undo_request() {
     switch (thisrequest.get_type()[0]) {
         case 'A': {
             Request newrequest = Request("REMOVE", false, thisrequest.get_student_up(), "", "", thisrequest.get_new_uc(), "");
-            res = process_requests(newrequest);
+            res = request_remove(newrequest);
             if (res) processed_requests.pop();
             return res;
         }
         case 'R': {
             Request newrequest = Request("ADD", false, thisrequest.get_student_up(), "", "",  "", thisrequest.get_new_uc());
-            res = process_requests(newrequest);
+            res = request_add(newrequest);
             if (res) processed_requests.pop();
             return res;
         }
         case 'S': {
             Request newrequest = Request("SWITCH", thisrequest.get_uc_class(), thisrequest.get_student_up(), thisrequest.get_new_class(), thisrequest.get_current_class(),  thisrequest.get_new_uc(), thisrequest.get_current_uc());
-            res = process_requests(newrequest);
+            res = request_switch(newrequest);
             if (res) processed_requests.pop();
             return res;
         }
@@ -355,6 +361,17 @@ void LEIC::add_student(Student student) {
     up_students.insert({student.get_student_up(), student});
 }
 
+void LEIC::add_request_to_process(Request request) {
+    requests.push(request);
+}
+
+int LEIC::students_in_nUcs(int n){
+    int count = 0;
+    for (pair<string, Student> p: up_students) {
+        count += p.second.get_classes().size() >= n;
+    }
+    return count;
+}
 
 
 
