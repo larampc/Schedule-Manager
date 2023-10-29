@@ -72,5 +72,6 @@ public:
      * @return True if this Class is equal to the Class to compare.
      */
     bool operator == (const Class& c) const;
+    bool operator < (const Class& c) const;
 };
 #endif //PROJECTAED_CLASS_H

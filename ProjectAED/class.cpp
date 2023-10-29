@@ -35,3 +35,7 @@ void Class::remove_student(std::string student_up) {
 bool Class::operator== (const Class& c) const{
     return this->classCode == c.classCode && this->ucCode == c.ucCode;
 }
+
+bool Class::operator<(const Class &c) const {
+    return this->classCode < c.classCode || (this->classCode == c.classCode && this->ucCode < c.ucCode);
+}
