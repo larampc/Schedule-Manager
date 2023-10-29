@@ -299,7 +299,7 @@ void LEIC::save_to_files() {
     ofstream students_classesSaveFile("../students_classes_save.csv", ofstream::out | ofstream::trunc);
     ofstream accepted_requests("../accepted_requests.csv", ofstream::out | ofstream::trunc);
     students_classesSaveFile << "StudentCode,StudentName,UcCode,ClassCode" << endl;
-    accepted_requests << "Type,oldUC,newUC,oldClass,newClass" << endl;
+    accepted_requests << "StudentCode,Type,oldUcCode,newUcCode,oldClassCode,newClassCode" << endl;
     for (pair<string, Student> up_s: up_students) {
         for (Class *c: up_s.second.get_classes()) {
             students_classesSaveFile << up_s.first << ','
