@@ -53,8 +53,7 @@ LEIC::LEIC(std::string filenameclasses, std::string filenamestudents) {
 }
 
 Student* LEIC::get_student_from_up(std::string up) {
-    if(up_students.find(up) == up_students.end()) return nullptr;
-    return &up_students.at(up);
+    return (up_students.find(up) == up_students.end()) ? nullptr : &up_students.at(up);
 }
 
 std::set<std::string> LEIC::get_ucs() const {
@@ -188,10 +187,10 @@ bool LEIC::add_request(Request request, Student* student) {
         Class* newclass = get_class_from_classcode_and_uccode(request.get_new_class(), request.get_new_uc());
         if (newclass->get_students().size()<CAP
             && !student->has_uc(request.get_new_uc()) && compatible_schedules(*student, newclass)) {
-            add_student_to_class(student, newclass);
-            processed_requests.push(request);
-            cout << "Student is now in the class " << newclass->get_classCode() << " in the UC " << newclass->get_ucCode() << endl;
-            return true;
+                add_student_to_class(student, newclass);
+                processed_requests.push(request);
+                cout << "Student is now in the class " << newclass->get_classCode() << " in the UC " << newclass->get_ucCode() << endl;
+                return true;
         }
         return false;
     }
