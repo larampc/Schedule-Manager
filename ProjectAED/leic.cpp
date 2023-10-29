@@ -182,7 +182,7 @@ bool LEIC::uc_has_vacancy(std::string uccode) {
     return false;
 }
 
-bool LEIC::add_request(Request request, Student* student) {
+bool LEIC::request_add(Request request, Student* student) {
     if (request.get_uc_class()) {
         Class* newclass = get_class_from_classcode_and_uccode(request.get_new_class(), request.get_new_uc());
         if (newclass->get_students().size()<CAP
@@ -210,7 +210,7 @@ bool LEIC::add_request(Request request, Student* student) {
     return false;
 }
 
-bool LEIC::remove_request(Request request, Student *student) {
+bool LEIC::request_remove(Request request, Student *student) {
     Class* currentClass = get_class_from_classcode_and_uccode(student->get_class_from_uc(request.get_current_uc()), request.get_current_uc());
     string currentclass = currentClass->get_classCode();
     string currentUc = request.get_current_uc();
@@ -220,11 +220,11 @@ bool LEIC::remove_request(Request request, Student *student) {
     return true;
 }
 
-bool LEIC::switch_request(Request request, Student *student) {
+bool LEIC::request_switch(Request request, Student *student) {
     request.set_type("REMOVE");
-    remove_request(request, student);
+    request_remove(request, student);
     request.set_type("ADD");
-    if (add_request(request, student)) {
+    if (request_add(request, student)) {
         processed_requests.pop();
         processed_requests.pop();
         request.set_type("SWITCH");
@@ -241,13 +241,13 @@ bool LEIC::process_requests(Request request) {
     Student* student = get_student_from_up(request.get_student_up());
     switch (request.get_type()[0]) {
         case 'A': {
-            return add_request(request, student);
+            return request_add(request, student);
         }
         case 'R': {
-            return remove_request(request, student);
+            return request_remove(request, student);
         }
         case 'S': {
-            return switch_request(request, student);
+            return request_switch(request, student);
         }
     }
     return false;
@@ -308,6 +308,11 @@ void LEIC::save_to_files() {
     }
     students_classesSaveFile.close();
 }
+
+void LEIC::add_student(Student student) {
+    up_students.insert({student.get_student_up(), student});
+}
+
 
 
 

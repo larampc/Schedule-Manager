@@ -1,8 +1,14 @@
 #include "script.h"
 #include <limits>
+#include <cctype>
 using namespace std;
 
 void invalid(){ cout << "Invalid Input, please try again\n"; }
+
+bool is_number(string s) {
+    for (char c: s) if (!isdigit(c)) return false;
+    return true;
+}
 
 Script::Script(): data(LEIC("../classes.csv", "../students_classes.csv")) {}
 
@@ -10,9 +16,10 @@ void Script::run() {
     cout << "\n\n-----------------------------------\n\tSchedule Management System\n------------------------------------\n";
     cout << "Select option:\n"
          << "Get Information - press 1\n"
-         << "Make request - press 2\n"
-         << "Settings - press 3\n"
-         << "Quit Manager - press 4\n";
+         << "New registration - press 2\n"
+         << "Update registration - press 3\n"
+         << "Settings - press 4\n"
+         << "Quit Manager - press 5\n";
     string option; cin >> option;
     while(option != "1" && option != "2" && option != "3" && option != "4") {
         invalid();
@@ -23,11 +30,15 @@ void Script::run() {
             listings();
             break;
         }
-        case '2': {
+        case '3': {
             request();
             break;
         }
-        case '3': {
+        case '2': {
+            new_registration();
+            break;
+        }
+        case '4': {
             cout << "1- Change Class CAP\t2- Cancel\n";
             cin >> option;
             while(option != "1" && option != "2") {
@@ -36,22 +47,20 @@ void Script::run() {
             }
             if(option == "1"){
                cout << "New CAP: ";
-               int cap;
+               string cap;
                cin >> cap;
-               while (cin.fail()) {
+               while (!is_number(cap)) {
                    invalid();
-                   cin.clear();
-                   cin.ignore(numeric_limits<streamsize>::max(),'\n');
                    cin >> cap;
                }
                cout << cap;
-               data.set_cap(cap);
+               data.set_cap(stoi(cap));
                run();
             }
             else run();
             break;
         }
-        case '4': {
+        case '5': {
             exit(0);
         }
     }
@@ -153,6 +162,51 @@ void Script::request(){
     Request request = Request(type, (uc_or_class == "CLASS"), student_up, current_class, new_class, current_uc, new_uc);
     if (!data.process_requests(request)) {
         cout << "The request was rejected";
+    }
+    run();
+}
+
+void Script::new_registration() {
+    string new_up, name, number_ucs, new_uc, new_class;
+    cout << "New UP:";
+    cin >> new_up;
+    while (!is_number(new_up) || new_up.length() != 9 || data.get_student_from_up(new_up) != nullptr) {
+        invalid();
+        cin >> new_up;
+    }
+    cout << "Name of new student:";
+    cin >> name;
+    data.add_student(Student(new_up, name));
+    cout << "How many UC's would you like to register to?:";
+    cin >> number_ucs;
+    while (!is_number(number_ucs) || stoi(number_ucs) > 7 ) {
+        invalid();
+        cin >> number_ucs;
+    }
+    for (int i = 0; i < stoi(number_ucs); i++) {
+        cout << "UC:";
+        cin >> new_uc;
+        while(!data.get_ucs().count(new_uc) || data.get_student_from_up(new_up)->has_uc(new_uc)) {
+            invalid();
+            cin >> new_uc;
+        }
+        cout << "Do you want to join a specific class: [Y/N]?\n";
+        string answer;
+        cin >> answer;
+        while(answer != "Y" && answer != "N") {
+            invalid();
+            cin >> answer;
+        }
+        if (answer=="Y") {
+            cout << "CLASS:\n";
+            cin >> new_class;
+            while(!data.get_classcodes().count(new_class) || data.get_class_from_classcode_and_uccode(new_class, new_uc)== nullptr) {
+                invalid();
+                cin >> new_class;
+            }
+        }
+        Request request = Request("ADD", answer == "Y", new_up, "", new_class, "", new_uc);
+        data.process_requests(request);
     }
     run();
 }

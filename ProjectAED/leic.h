@@ -40,12 +40,13 @@ public:
   bool compatible_schedules(Student student, Class* newclass, Class* oldclass = nullptr);
   void numberstudents_class();
   void add_student_to_class(Student* student, Class* newclass);
+  void add_student(Student student);
   void remove_student_from_class(Student* student, Class* newclass);
   bool uc_has_vacancy(std::string uccode);
   bool process_requests(Request request);
-  bool add_request(Request request, Student* student);
-  bool remove_request(Request request, Student* student);
-  bool switch_request(Request request, Student* student);
+  bool request_add(Request request, Student* student);
+  bool request_remove(Request request, Student* student);
+  bool request_switch(Request request, Student* student);
   bool undo_request();
   void save_to_files();
 };
