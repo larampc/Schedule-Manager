@@ -213,6 +213,7 @@ public:
     void save_to_files();
     void add_request_to_process(Request request);
     int students_in_nUcs(int n);
+    void upload_requests();
 };
 
 #endif

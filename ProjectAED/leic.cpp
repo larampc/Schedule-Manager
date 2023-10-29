@@ -375,5 +375,23 @@ int LEIC::students_in_nUcs(int n){
     return count;
 }
 
+void LEIC::upload_requests() {
+    string line;
+    ifstream requestsFile("../requests.csv");
+    string StudentCode,Type,oldUcCode,newUcCode,oldClassCode,newClassCode;
+    while (getline(requestsFile, line)) {     // read all lines from the given file
+        istringstream iss(line);
+        getline(iss, StudentCode, ',');
+        getline(iss, Type, ',');
+        getline(iss, oldUcCode, ',');
+        getline(iss, newUcCode, ',');
+        getline(iss, oldClassCode, ',');
+        iss >> newClassCode;
+        requests.emplace(Type,!newClassCode.empty(),StudentCode,oldClassCode,newClassCode,oldUcCode,newUcCode);
+    }
+    process_requests();
+    requestsFile.close();
+}
+
 
 

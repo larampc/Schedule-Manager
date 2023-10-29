@@ -63,6 +63,10 @@ public:
     int Students_in_nUcs(int n);
 
     void quit();
+
+    void handle_requests();
+
+    void request_file();
 };
 
 
