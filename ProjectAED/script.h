@@ -59,6 +59,8 @@ public:
      * \brief Outputs the Student listing menu and handles the respective inputs.
      */
     void listStudents();
+
+    int Students_in_nUcs(int n);
 };
 
 

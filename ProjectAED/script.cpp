@@ -391,3 +391,10 @@ void Script::listStudents() {
     }
     run();
 }
+
+int Script::Students_in_nUcs(int n){
+    set<string> total_ucs = data.get_ucs();
+    map<string, set<string>> uc_to_students;
+    for(Class c: data.get_classes());
+
+}
