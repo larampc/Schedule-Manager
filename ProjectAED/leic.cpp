@@ -63,7 +63,7 @@ LEIC::LEIC(std::string filenameclasses, std::string filenamestudents, bool save_
             getline(iss, newUcCode, ',');
             getline(iss, oldClassCode, ',');
             iss >> newClassCode;
-            reverseOrderRequest.push(Request(type,!newClassCode.empty(),StudentCode,oldClassCode,newClassCode,oldUcCode,newUcCode));
+            reverseOrderRequest.push(Request(Type,!newClassCode.empty(),StudentCode,oldClassCode,newClassCode,oldUcCode,newUcCode));
         }
         while(!reverseOrderRequest.empty()){
             processed_requests.push(reverseOrderRequest.top());
