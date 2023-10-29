@@ -187,7 +187,7 @@ void Script::request(){
                     invalid();
                     cin >> new_uc;
                 }
-                cout << "Do you want to join a specific class: [Y/N]?\n";
+                cout << "Do you want to join a specific class? [Y/N]\n";
                 string answer;
                 cin >> answer;
                 while(answer != "Y" && answer != "N") {
@@ -244,7 +244,7 @@ void Script::new_registration() {
             invalid();
             cin >> new_uc;
         }
-        cout << "Do you want to join a specific class: [Y/N]?\n";
+        cout << "Do you want to join a specific class? [Y/N]\n";
         string answer;
         cin >> answer;
         while(answer != "Y" && answer != "N") {

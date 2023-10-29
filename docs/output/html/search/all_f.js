@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['the_20main_20page_0',['This is the main page',['../index.html',1,'']]],
-  ['this_20is_20the_20main_20page_1',['This is the main page',['../index.html',1,'']]],
-  ['this_20project_20do_2',['What can this project do?',['../index.html#utility_sec',1,'']]],
-  ['time_3',['time',['../class_time.html',1,'Time'],['../class_time.html#a15f171401599a9a058e89e6cf3244f2b',1,'Time::Time(std::string time)'],['../class_time.html#a6a5659e8c5ba951a1a2711be2184eba6',1,'Time::Time(float time)']]]
+  ['save_5fto_5ffiles_0',['save_to_files',['../class_l_e_i_c.html#a14416642527a2f02929b50b0735cb5e8',1,'LEIC']]],
+  ['script_1',['script',['../class_script.html',1,'Script'],['../class_script.html#abfe4bfbb5bfc35131f16531818354349',1,'Script::Script()']]],
+  ['set_5fcap_2',['set_cap',['../class_l_e_i_c.html#a5109feb2b28aa7c33c2ec151b51cc635',1,'LEIC']]],
+  ['set_5ftype_3',['set_type',['../class_request.html#a48bee5c53e5d88620e247f15bd22b86f',1,'Request']]],
+  ['student_4',['student',['../class_student.html',1,'Student'],['../class_student.html#a20ea4b5d4a87c05ba2b4d95ffd475776',1,'Student::Student()']]]
 ];

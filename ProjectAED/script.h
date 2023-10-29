@@ -59,9 +59,9 @@ public:
      * \brief Outputs the Student listing menu and handles the respective inputs.
      */
     void listStudents();
-
-    int Students_in_nUcs(int n);
-
+    /**
+     * \brief Quits the program and saves all the data to files.
+     */
     void quit();
 
     void handle_requests();
