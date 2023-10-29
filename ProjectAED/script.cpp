@@ -21,7 +21,7 @@ void Script::run() {
          << "Settings - press 4\n"
          << "Quit Manager - press 5\n";
     string option; cin >> option;
-    while(option != "1" && option != "2" && option != "3" && option != "4") {
+    while(option != "1" && option != "2" && option != "3" && option != "4" && option != "5") {
         invalid();
         cin >> option;
     }
