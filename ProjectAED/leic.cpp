@@ -91,6 +91,7 @@ void LEIC::listStudentsByUP() {
         cout << p.first << " | " << p.second.get_name() << '\n';
     }
 }
+
 void LEIC::listStudentsByName(){
     cout << "UPNUMBER\tNAME\n------------------------------------\n";
     map<string, string> students_up;
@@ -152,10 +153,8 @@ bool LEIC::class_balance_valid(Class newClass) {
 }
 
 Class* LEIC::get_class_from_classcode_and_uccode(std::string classcode, std::string uccode) {
-    for (Class& c: classes) {
-        if (c.get_classCode() == classcode && c.get_ucCode() == uccode) return &c;
-    }
-    return nullptr;
+    auto first_itr = lower_bound(classes.begin(),classes.end(),Class(classcode,uccode));
+    return first_itr != classes.end() ? &(*first_itr) : nullptr;
 }
 
 bool LEIC::compatible_schedules(Student student, Class* newclass, Class* oldclass) {
@@ -282,12 +281,11 @@ void LEIC::process_requests() {
 
 }
 
-vector<Class*> LEIC::get_classes_from_uccode(string uccode) {
-    vector<Class*> classes_uccode;
-    for (Class& c: classes) {
-        if (c.get_ucCode() == uccode) classes_uccode.push_back(&c);
-    }
-    return classes_uccode;
+vector<Class*> LEIC::get_classes_from_uccode(string ucCode) {
+    vector<Class*> classes_ucCode;
+    auto first_itr = lower_bound(classes.begin(),classes.end(),Class("",ucCode));
+    while(first_itr->get_ucCode() == ucCode ) classes_ucCode.push_back(&(*(first_itr++)));
+    return classes_ucCode;
 }
 
 bool LEIC::undo_request() {
@@ -373,6 +371,24 @@ int LEIC::students_in_nUcs(int n){
         count += p.second.get_classes().size() >= n;
     }
     return count;
+}
+
+void LEIC::upload_requests() {
+    string line;
+    ifstream requestsFile("../requests.csv");
+    string StudentCode,Type,oldUcCode,newUcCode,oldClassCode,newClassCode;
+    while (getline(requestsFile, line)) {     // read all lines from the given file
+        istringstream iss(line);
+        getline(iss, StudentCode, ',');
+        getline(iss, Type, ',');
+        getline(iss, oldUcCode, ',');
+        getline(iss, newUcCode, ',');
+        getline(iss, oldClassCode, ',');
+        iss >> newClassCode;
+        requests.emplace(Type,!newClassCode.empty(),StudentCode,oldClassCode,newClassCode,oldUcCode,newUcCode);
+    }
+    process_requests();
+    requestsFile.close();
 }
 
 

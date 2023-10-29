@@ -63,6 +63,10 @@ public:
      * \brief Quits the program and saves all the data to files.
      */
     void quit();
+
+    void handle_requests();
+
+    void request_file();
 };
 
 

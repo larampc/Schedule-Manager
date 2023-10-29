@@ -21,13 +21,11 @@ void Script::run() {
     cout << "\n\n-----------------------------------\n\tSchedule Management System\n------------------------------------\n";
     cout << "Select option:\n"
          << "Get Information - press 1\n"
-         << "New registration - press 2\n"
-         << "Update registration - press 3\n"
-         << "Undo Previous Operation - press 4\n"
-         << "Settings - press 5\n"
-         << "Quit Manager - press 6\n";
+         << "Make requests - press 2\n"
+         << "Settings - press 3\n"
+         << "Quit Manager - press 4\n";
     string option; cin >> option;
-    while(option != "1" && option != "2" && option != "3" && option != "4" && option != "5" && option != "6") {
+    while(option != "1" && option != "2" && option != "3" && option != "4") {
         invalid();
         cin >> option;
     }
@@ -37,16 +35,11 @@ void Script::run() {
             break;
         }
         case '2': {
-            new_registration();
-            break;
-        }
-        case '3': {
-            request();
+            handle_requests();
             break;
         }
         case '4': {
-            if(!data.undo_request()) cout << "No request to undo\n";
-            break;
+
         }
         case '5': {
             cout << "1- Change Class CAP (current is " << data.get_cap() << ")\t2- Cancel\n";
@@ -80,6 +73,41 @@ void Script::run() {
         cin >> option;
     }
     option == "Y" ? run() : quit();
+}
+
+void Script::handle_requests() {
+    cout << "Select option:\n"
+         << "New registration - press 1\n"
+         << "Update registration - press 2\n"
+         << "Upload file with changes - press 3\n"
+         << "Undo Previous Operation - press 4\n"
+         << "Cancel - press 5\n";
+    string option; cin >> option;
+    while(option != "1" && option != "2" && option != "3" && option != "4" && option != "5") {
+        invalid();
+        cin >> option;
+    }
+    switch (option[0]) {
+        case '1': {
+            new_registration();
+            break;
+        }
+        case '2': {
+            request();
+            break;
+        }
+        case '3': {
+            request_file();
+            break;
+        }
+        case '4': {
+            if(!data.undo_request()) cout << "No request to undo\n";
+            break;
+        }
+        case '5': {
+            run();
+        }
+    }
 }
 
 void Script::request(){
@@ -235,6 +263,19 @@ void Script::new_registration() {
     }
     data.process_requests();
     run();
+}
+
+void Script::request_file() {
+    cout << "Save the file to this directory named requests.csv with the following structure:\n"
+         << "StudentCode, Type, oldUcCode, newUcCode, oldClassCode, newClassCode\n"
+         << "Do you want to process the requests? [Y/N]\n";
+    string answer;
+    cin >> answer;
+    while(answer != "Y" && answer != "N") {
+        invalid();
+        cin >> answer;
+    }
+    if (answer == "Y") data.upload_requests();
 }
 
 void Script::listings(){
@@ -423,5 +464,6 @@ void Script::listStudents() {
         case '4': listings();
     }
 }
+
 
 
