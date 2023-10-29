@@ -39,7 +39,7 @@ include CMakeFiles/rules.ninja
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = /home/up202208689/AEDProject/AEDProject-main1/cmake-build-debug/
+cmake_ninja_workdir = /home/francisco/CLionProjects/ScheduleManagement/cmake-build-debug/
 # =============================================================================
 # Object build statements for EXECUTABLE target AEDProject
 
@@ -49,44 +49,50 @@ cmake_ninja_workdir = /home/up202208689/AEDProject/AEDProject-main1/cmake-build-
 
 build cmake_object_order_depends_target_AEDProject: phony || CMakeFiles/AEDProject.dir
 
-build CMakeFiles/AEDProject.dir/main.cpp.o: CXX_COMPILER__AEDProject_unscanned_Debug /home/up202208689/AEDProject/AEDProject-main1/main.cpp || cmake_object_order_depends_target_AEDProject
+build CMakeFiles/AEDProject.dir/main.cpp.o: CXX_COMPILER__AEDProject_unscanned_Debug /home/francisco/CLionProjects/ScheduleManagement/main.cpp || cmake_object_order_depends_target_AEDProject
   DEP_FILE = CMakeFiles/AEDProject.dir/main.cpp.o.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/AEDProject.dir
   OBJECT_FILE_DIR = CMakeFiles/AEDProject.dir
 
-build CMakeFiles/AEDProject.dir/ProjectAED/time.cpp.o: CXX_COMPILER__AEDProject_unscanned_Debug /home/up202208689/AEDProject/AEDProject-main1/ProjectAED/time.cpp || cmake_object_order_depends_target_AEDProject
+build CMakeFiles/AEDProject.dir/ProjectAED/time.cpp.o: CXX_COMPILER__AEDProject_unscanned_Debug /home/francisco/CLionProjects/ScheduleManagement/ProjectAED/time.cpp || cmake_object_order_depends_target_AEDProject
   DEP_FILE = CMakeFiles/AEDProject.dir/ProjectAED/time.cpp.o.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/AEDProject.dir
   OBJECT_FILE_DIR = CMakeFiles/AEDProject.dir/ProjectAED
 
-build CMakeFiles/AEDProject.dir/ProjectAED/lesson.cpp.o: CXX_COMPILER__AEDProject_unscanned_Debug /home/up202208689/AEDProject/AEDProject-main1/ProjectAED/lesson.cpp || cmake_object_order_depends_target_AEDProject
+build CMakeFiles/AEDProject.dir/ProjectAED/lesson.cpp.o: CXX_COMPILER__AEDProject_unscanned_Debug /home/francisco/CLionProjects/ScheduleManagement/ProjectAED/lesson.cpp || cmake_object_order_depends_target_AEDProject
   DEP_FILE = CMakeFiles/AEDProject.dir/ProjectAED/lesson.cpp.o.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/AEDProject.dir
   OBJECT_FILE_DIR = CMakeFiles/AEDProject.dir/ProjectAED
 
-build CMakeFiles/AEDProject.dir/ProjectAED/class.cpp.o: CXX_COMPILER__AEDProject_unscanned_Debug /home/up202208689/AEDProject/AEDProject-main1/ProjectAED/class.cpp || cmake_object_order_depends_target_AEDProject
+build CMakeFiles/AEDProject.dir/ProjectAED/class.cpp.o: CXX_COMPILER__AEDProject_unscanned_Debug /home/francisco/CLionProjects/ScheduleManagement/ProjectAED/class.cpp || cmake_object_order_depends_target_AEDProject
   DEP_FILE = CMakeFiles/AEDProject.dir/ProjectAED/class.cpp.o.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/AEDProject.dir
   OBJECT_FILE_DIR = CMakeFiles/AEDProject.dir/ProjectAED
 
-build CMakeFiles/AEDProject.dir/ProjectAED/student.cpp.o: CXX_COMPILER__AEDProject_unscanned_Debug /home/up202208689/AEDProject/AEDProject-main1/ProjectAED/student.cpp || cmake_object_order_depends_target_AEDProject
+build CMakeFiles/AEDProject.dir/ProjectAED/student.cpp.o: CXX_COMPILER__AEDProject_unscanned_Debug /home/francisco/CLionProjects/ScheduleManagement/ProjectAED/student.cpp || cmake_object_order_depends_target_AEDProject
   DEP_FILE = CMakeFiles/AEDProject.dir/ProjectAED/student.cpp.o.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/AEDProject.dir
   OBJECT_FILE_DIR = CMakeFiles/AEDProject.dir/ProjectAED
 
-build CMakeFiles/AEDProject.dir/ProjectAED/leic.cpp.o: CXX_COMPILER__AEDProject_unscanned_Debug /home/up202208689/AEDProject/AEDProject-main1/ProjectAED/leic.cpp || cmake_object_order_depends_target_AEDProject
+build CMakeFiles/AEDProject.dir/ProjectAED/leic.cpp.o: CXX_COMPILER__AEDProject_unscanned_Debug /home/francisco/CLionProjects/ScheduleManagement/ProjectAED/leic.cpp || cmake_object_order_depends_target_AEDProject
   DEP_FILE = CMakeFiles/AEDProject.dir/ProjectAED/leic.cpp.o.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/AEDProject.dir
   OBJECT_FILE_DIR = CMakeFiles/AEDProject.dir/ProjectAED
 
-build CMakeFiles/AEDProject.dir/ProjectAED/script.cpp.o: CXX_COMPILER__AEDProject_unscanned_Debug /home/up202208689/AEDProject/AEDProject-main1/ProjectAED/script.cpp || cmake_object_order_depends_target_AEDProject
+build CMakeFiles/AEDProject.dir/ProjectAED/script.cpp.o: CXX_COMPILER__AEDProject_unscanned_Debug /home/francisco/CLionProjects/ScheduleManagement/ProjectAED/script.cpp || cmake_object_order_depends_target_AEDProject
   DEP_FILE = CMakeFiles/AEDProject.dir/ProjectAED/script.cpp.o.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/AEDProject.dir
+  OBJECT_FILE_DIR = CMakeFiles/AEDProject.dir/ProjectAED
+
+build CMakeFiles/AEDProject.dir/ProjectAED/request.cpp.o: CXX_COMPILER__AEDProject_unscanned_Debug /home/francisco/CLionProjects/ScheduleManagement/ProjectAED/request.cpp || cmake_object_order_depends_target_AEDProject
+  DEP_FILE = CMakeFiles/AEDProject.dir/ProjectAED/request.cpp.o.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/AEDProject.dir
   OBJECT_FILE_DIR = CMakeFiles/AEDProject.dir/ProjectAED
@@ -99,7 +105,7 @@ build CMakeFiles/AEDProject.dir/ProjectAED/script.cpp.o: CXX_COMPILER__AEDProjec
 #############################################
 # Link the executable AEDProject
 
-build AEDProject: CXX_EXECUTABLE_LINKER__AEDProject_Debug CMakeFiles/AEDProject.dir/main.cpp.o CMakeFiles/AEDProject.dir/ProjectAED/time.cpp.o CMakeFiles/AEDProject.dir/ProjectAED/lesson.cpp.o CMakeFiles/AEDProject.dir/ProjectAED/class.cpp.o CMakeFiles/AEDProject.dir/ProjectAED/student.cpp.o CMakeFiles/AEDProject.dir/ProjectAED/leic.cpp.o CMakeFiles/AEDProject.dir/ProjectAED/script.cpp.o
+build AEDProject: CXX_EXECUTABLE_LINKER__AEDProject_Debug CMakeFiles/AEDProject.dir/main.cpp.o CMakeFiles/AEDProject.dir/ProjectAED/time.cpp.o CMakeFiles/AEDProject.dir/ProjectAED/lesson.cpp.o CMakeFiles/AEDProject.dir/ProjectAED/class.cpp.o CMakeFiles/AEDProject.dir/ProjectAED/student.cpp.o CMakeFiles/AEDProject.dir/ProjectAED/leic.cpp.o CMakeFiles/AEDProject.dir/ProjectAED/script.cpp.o CMakeFiles/AEDProject.dir/ProjectAED/request.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/AEDProject.dir
   POST_BUILD = :
@@ -112,7 +118,7 @@ build AEDProject: CXX_EXECUTABLE_LINKER__AEDProject_Debug CMakeFiles/AEDProject.
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/up202208689/AEDProject/AEDProject-main1/cmake-build-debug && /opt/clion-2023.2/bin/cmake/linux/x64/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  COMMAND = cd /home/francisco/CLionProjects/ScheduleManagement/cmake-build-debug && /snap/clion/250/bin/cmake/linux/x64/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -123,7 +129,7 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/up202208689/AEDProject/AEDProject-main1/cmake-build-debug && /opt/clion-2023.2/bin/cmake/linux/x64/bin/cmake --regenerate-during-build -S/home/up202208689/AEDProject/AEDProject-main1 -B/home/up202208689/AEDProject/AEDProject-main1/cmake-build-debug
+  COMMAND = cd /home/francisco/CLionProjects/ScheduleManagement/cmake-build-debug && /snap/clion/250/bin/cmake/linux/x64/bin/cmake --regenerate-during-build -S/home/francisco/CLionProjects/ScheduleManagement -B/home/francisco/CLionProjects/ScheduleManagement/cmake-build-debug
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -139,7 +145,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 
 #############################################
-# Folder: /home/up202208689/AEDProject/AEDProject-main1/cmake-build-debug
+# Folder: /home/francisco/CLionProjects/ScheduleManagement/cmake-build-debug
 
 build all: phony AEDProject
 
@@ -150,14 +156,14 @@ build all: phony AEDProject
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | /home/up202208689/AEDProject/AEDProject-main1/CMakeLists.txt /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeCInformation.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeCXXInformation.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeCommonLanguageInclude.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeGenericSystem.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeInitializeConfigs.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeLanguageInformation.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeSystemSpecificInformation.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeSystemSpecificInitialize.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/CMakeCommonCompilerMacros.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/GNU-C.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/GNU-CXX.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/GNU.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/FindDoxygen.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/FindPackageHandleStandardArgs.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/FindPackageMessage.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux-GNU-C.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux-GNU-CXX.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux-GNU.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.26.4/CMakeCCompiler.cmake CMakeFiles/3.26.4/CMakeCXXCompiler.cmake CMakeFiles/3.26.4/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | /home/francisco/CLionProjects/ScheduleManagement/CMakeLists.txt /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeCInformation.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeCXXInformation.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeCommonLanguageInclude.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeGenericSystem.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeInitializeConfigs.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeLanguageInformation.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeSystemSpecificInformation.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeSystemSpecificInitialize.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/CMakeCommonCompilerMacros.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/GNU-C.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/GNU-CXX.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/GNU.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/FindDoxygen.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/FindPackageHandleStandardArgs.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/FindPackageMessage.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux-GNU-C.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux-GNU-CXX.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux-GNU.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.26.4/CMakeCCompiler.cmake CMakeFiles/3.26.4/CMakeCXXCompiler.cmake CMakeFiles/3.26.4/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build /home/up202208689/AEDProject/AEDProject-main1/CMakeLists.txt /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeCInformation.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeCXXInformation.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeCommonLanguageInclude.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeGenericSystem.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeInitializeConfigs.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeLanguageInformation.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeSystemSpecificInformation.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeSystemSpecificInitialize.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/CMakeCommonCompilerMacros.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/GNU-C.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/GNU-CXX.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/GNU.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/FindDoxygen.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/FindPackageHandleStandardArgs.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/FindPackageMessage.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux-GNU-C.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux-GNU-CXX.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux-GNU.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux.cmake /opt/clion-2023.2/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.26.4/CMakeCCompiler.cmake CMakeFiles/3.26.4/CMakeCXXCompiler.cmake CMakeFiles/3.26.4/CMakeSystem.cmake: phony
+build /home/francisco/CLionProjects/ScheduleManagement/CMakeLists.txt /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeCInformation.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeCXXInformation.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeCommonLanguageInclude.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeGenericSystem.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeInitializeConfigs.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeLanguageInformation.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeSystemSpecificInformation.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/CMakeSystemSpecificInitialize.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/CMakeCommonCompilerMacros.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/GNU-C.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/GNU-CXX.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/Compiler/GNU.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/FindDoxygen.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/FindPackageHandleStandardArgs.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/FindPackageMessage.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux-GNU-C.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux-GNU-CXX.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux-GNU.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/Linux.cmake /snap/clion/250/bin/cmake/linux/x64/share/cmake-3.26/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.26.4/CMakeCCompiler.cmake CMakeFiles/3.26.4/CMakeCXXCompiler.cmake CMakeFiles/3.26.4/CMakeSystem.cmake: phony
 
 
 #############################################
