@@ -207,7 +207,7 @@ bool LEIC::request_add(Request request) {
     Student* student = get_student_from_up(request.get_student_up());
     if (request.get_uc_class()) {
         Class* newclass = get_class_from_classcode_and_uccode(request.get_new_class(), request.get_new_uc());
-        if (newclass->get_students().size()<CAP
+        if (newclass->get_students().size() < CAP
             && !student->has_uc(request.get_new_uc()) && compatible_schedules(*student, newclass)) {
                 add_student_to_class(student, newclass);
                 processed_requests.push(request);
@@ -264,16 +264,18 @@ void LEIC::process_requests() {
     while (!requests.empty()) {
         Request request = requests.front();
         requests.pop();
-        Student* student = get_student_from_up(request.get_student_up());
         switch (request.get_type()[0]) {
             case 'A': {
                 request_add(request);
+                break;
             }
             case 'R': {
                 request_remove(request);
+                break;
             }
             case 'S': {
                 request_switch(request);
+                break;
             }
         }
     }
