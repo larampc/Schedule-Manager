@@ -176,7 +176,7 @@ void Script::new_registration() {
     }
     cout << "Name of new student:";
     cin >> name;
-    data.add_student(Student(new_up, name));
+    data.add_student(Student(name, new_up));
     cout << "How many UC's would you like to register to?:";
     cin >> number_ucs;
     while (!is_number(number_ucs) || stoi(number_ucs) > 7 ) {
