@@ -168,7 +168,7 @@ void Script::request(){
 }
 
 void Script::new_registration() {
-    string new_up, name, number_ucs, new_uc, new_class;
+    string new_up, first_name, name, number_ucs, new_uc, new_class;
     cout << "New UP:";
     cin >> new_up;
     while (!is_number(new_up) || new_up.length() != 9 || data.get_student_from_up(new_up) != nullptr) {
@@ -176,7 +176,9 @@ void Script::new_registration() {
         cin >> new_up;
     }
     cout << "Name of new student:";
-    cin >> name;
+    cin >> first_name;
+    getline(cin, name);
+    name = first_name + name;
     data.add_student(Student(name, new_up));
     cout << "How many UC's would you like to register to?:";
     cin >> number_ucs;
