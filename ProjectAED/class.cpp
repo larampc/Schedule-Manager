@@ -37,5 +37,5 @@ bool Class::operator== (const Class& c) const{
 }
 
 bool Class::operator<(const Class &c) const {
-    return this->classCode < c.classCode || (this->classCode == c.classCode && this->ucCode < c.ucCode);
+    return this->ucCode < c.ucCode || (this->ucCode == c.ucCode && this->classCode < c.classCode);
 }
