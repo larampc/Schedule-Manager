@@ -40,7 +40,7 @@ public:
     /**
     * \brief Gets the Student with the given up.
     *
-    * @param up The up of the Student to get.
+    * @param studentCode The studentCode of the Student to get.
     * @return Reference to the Student with the given up.
     */
     Student* get_student_from_studentCode(std::string studentCode);
@@ -66,18 +66,18 @@ public:
     /**
      * \brief Gets the Class with the given Class code and UC code.
      *
-     * @param classcode The Class code of the Class to get.
-     * @param uccode The UC code of the Class to get.
+     * @param classCode The Class code of the Class to get.
+     * @param UcCode The UC code of the Class to get.
      * @return Reference to the Class with the given Class code and UC code.
      */
-    Class* get_class_from_classCode_and_UcCode(std::string classcode, std::string uccode);
+    Class* get_class_from_classCode_and_UcCode(std::string classCode, std::string UcCode);
     /**
      * \brief Gets all Class with the given UC code.
      *
-     * @param uccode The UC code of all Class to get.
+     * @param UcCode The UC code of all Class to get.
      * @return References of all Class with the given UC code.
      */
-    std::vector<Class*> get_classes_from_UcCode(std::string uccode);
+    std::vector<Class*> get_classes_from_UcCode(std::string UcCode);
     /**
     * \brief Gets the Cap, the max number of Student that can be in a Class.
     *
@@ -93,25 +93,25 @@ public:
     /**
      * \brief Checks using binary search if a Class with the given Class code and UC code exists.
      *
-     * @param ucCode The UC code of the Class to check.
+     * @param UcCode The UC code of the Class to check.
      * @param classCode The Class code of the Class to check.
      * @return True if a Class with the given Class code and UC code exists.
      */
-    bool exists_class(std::string ucCode, std::string classCode);
+    bool exists_class(std::string UcCode, std::string classCode);
     /**
     * \brief Checks if a UC with the given UC code exists.
     *
-    * @param ucCode The UC code of the UC to check.
+    * @param UcCode The UC code of the UC to check.
     * @return True if a UC with the given UC code exists.
     */
-    bool exists_Uc(std::string ucCode);
+    bool exists_Uc(std::string UcCode);
     /**
      * \brief Checks if any Class with the given UC code has less Student than the Cap.
      *
-     * @param uccode The UC code of the UC to check.
+     * @param UcCode The UC code of the UC to check.
      * @return True if any Class with the given UC code has less Student than the Cap.
      */
-    bool Uc_has_vacancy(std::string uccode);
+    bool Uc_has_vacancy(std::string UcCode);
     /**
     * \brief Prints all of the Student enrolled in the course sorted by their up.
     */
@@ -167,12 +167,12 @@ public:
      *        excluding all of the old Class's Lesson if applicable.
      *
      * @param student The Student to check Schedule compatibility.
-     * @param newclass The Class to check Schedule compatibility.
-     * @param oldclass The Class to exclude from the Student's Schedule, if applicable.
+     * @param newClass The Class to check Schedule compatibility.
+     * @param oldClass The Class to exclude from the Student's Schedule, if applicable.
      * @return True if the Student schedule can accept all TP or PL Lesson of the given Class,
      *        excluding all of the old Class's Lesson if applicable.
      */
-    bool compatible_schedules(Student student, Class* newclass, Class* oldclass = nullptr);
+    bool compatible_schedules(Student student, Class* newClass, Class* oldClass = nullptr);
     /**
      * \brief Adds a new Student to the data.
      *
@@ -183,16 +183,16 @@ public:
      * \brief Adds the given Student to the given Class, updating the data accordingly.
      *
      * @param student The Student to enroll in the given Class.
-     * @param newclass The Class to enroll the given Student.
+     * @param newClass The Class to enroll the given Student.
      */
-    void add_student_to_class(Student* student, Class* newclass);
+    void add_student_to_class(Student* student, Class* newClass);
     /**
      * \brief Removes the given Student from the given Class, updating the data accordingly.
      *
      * @param student The Student to remove from the given Class.
-     * @param newclass The Class to remove the given Student.
+     * @param newClass The Class to remove the given Student.
      */
-    void remove_student_from_class(Student* student, Class* newclass);
+    void remove_student_from_class(Student* student, Class* newClass);
     /**
      * \brief Adds the given Request to the Request queue to be executed later.
      *
