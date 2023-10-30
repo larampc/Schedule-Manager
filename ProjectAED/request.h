@@ -80,6 +80,7 @@ public:
      */
     void set_type(std::string type);
     void set_new_class(std::string new_class);
+    void set_current_class(std::string current_class);
 };
 
 #endif //AEDPROJECT_REQUEST_H

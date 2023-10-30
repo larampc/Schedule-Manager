@@ -40,3 +40,6 @@ void Request::set_new_class(std::string new_class) {
     this->new_class = new_class;
 }
 
+void Request::set_current_class(std::string current_class) {
+    this->current_class = current_class;
+}

@@ -97,7 +97,7 @@ void Script::handle_requests() {
             break;
         }
         case '4': {
-            if(!data.undo_request()) cout << "No request to undo\n";
+            data.undo_request();
             break;
         }
         case '5': {
@@ -178,7 +178,7 @@ void Script::get_request(string student_up, string option) {
             if (uc_or_class == "CLASS") {
                 cout << "Enter UCcode (e.g. L.EIC001):\n";
                 cin >> current_uc;
-                while(data.get_student_from_up(student_up)->has_uc(current_uc)) {
+                while(!data.get_student_from_up(student_up)->has_uc(current_uc)) {
                     invalid();
                     cin >> current_uc;
                 }
@@ -193,7 +193,7 @@ void Script::get_request(string student_up, string option) {
             else {
                 cout << "Enter current UCcode (e.g. L.EIC001):\n";
                 cin >> current_uc;
-                while(data.get_student_from_up(student_up)->has_uc(current_uc)) {
+                while(!data.get_student_from_up(student_up)->has_uc(current_uc)) {
                     invalid();
                     cin >> current_uc;
                 }

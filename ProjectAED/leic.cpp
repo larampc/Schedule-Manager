@@ -44,10 +44,12 @@ LEIC::LEIC(std::string filenameclasses, std::string filenamestudents, bool save_
         if(it == up_students.end()){
             up_students.insert({up,s});
         }
-        Class c = Class(classcode,uccode);
-        auto it2 = find(classes.begin(), classes.end(), c);
-        up_students.at(up).add_class(&(*it2));
-        it2->add_student(up);
+        if (!uccode.empty()) {
+            Class c = Class(classcode,uccode);
+            auto it2 = find(classes.begin(), classes.end(), c);
+            up_students.at(up).add_class(&(*it2));
+            it2->add_student(up);
+        }
     }
     studentsFile.close();
     if(save_file){
@@ -63,7 +65,7 @@ LEIC::LEIC(std::string filenameclasses, std::string filenamestudents, bool save_
             getline(iss, newUcCode, ',');
             getline(iss, oldClassCode, ',');
             iss >> newClassCode;
-            reverseOrderRequest.emplace(Type,!newClassCode.empty(),StudentCode,oldClassCode,newClassCode,oldUcCode,newUcCode);
+            reverseOrderRequest.emplace(Type,true,StudentCode,oldClassCode,newClassCode,oldUcCode,newUcCode);
         }
         while(!reverseOrderRequest.empty()){
             processed_requests.push(reverseOrderRequest.top());
@@ -289,8 +291,8 @@ bool LEIC::request_add(Request& request) {
             for (Class* c: classes_uccode) {
                 if (compatible_schedules(*student, c)) {
                     add_student_to_class(student, c);
-                    processed_requests.push(request);
                     request.set_new_class(c->get_classCode());
+                    processed_requests.push(request);
                     return true;
                 }
             }
@@ -299,17 +301,18 @@ bool LEIC::request_add(Request& request) {
     return false;
 }
 
-bool LEIC::request_remove(Request request) {
+bool LEIC::request_remove(Request& request) {
     Student* student = get_student_from_up(request.get_student_up());
     Class* currentClass = student->get_class_from_uc(request.get_current_uc());
     string currentclass = currentClass->get_classCode();
     string currentUc = request.get_current_uc();
+    request.set_current_class(currentclass);
     remove_student_from_class(student, currentClass);
     processed_requests.push(request);
     return true;
 }
 
-bool LEIC::request_switch(Request request) {
+bool LEIC::request_switch(Request& request) {
     request.set_type("REMOVE");
     request_remove(request);
     request.set_type("ADD");
@@ -327,30 +330,43 @@ bool LEIC::request_switch(Request request) {
 }
 
 bool LEIC::undo_request() {
-    if(processed_requests.empty()) return false;
+    if(processed_requests.empty()) {
+        cout << "There are no requests to undo\n";
+        return false;
+    }
     Request thisrequest = processed_requests.top();
     processed_requests.pop();
     bool res = false;
     switch (thisrequest.get_type()[0]) {
         case 'A': {
-            Request newrequest = Request("REMOVE", false, thisrequest.get_student_up(), "", "", thisrequest.get_new_uc(), "");
+            Request newrequest = Request("REMOVE", true, thisrequest.get_student_up(), "", "", thisrequest.get_new_uc(), "");
             res = request_remove(newrequest);
-            if (res) processed_requests.pop();
+            if (res) {
+                cout << "Student " << newrequest.get_student_up() << " was removed from class " << newrequest.get_current_class() << " in the UC " << newrequest.get_current_uc() << endl;
+                processed_requests.pop();
+            }
             return res;
         }
         case 'R': {
-            Request newrequest = Request("ADD", false, thisrequest.get_student_up(), "", "",  "", thisrequest.get_new_uc());
+            Request newrequest = Request("ADD", true, thisrequest.get_student_up(), "", thisrequest.get_current_class(),  "", thisrequest.get_current_uc());
             res = request_add(newrequest);
-            if (res) processed_requests.pop();
+            if (res) {
+                cout << "Student " << newrequest.get_student_up() << " is now in the class " << newrequest.get_new_class() << " in the UC " << newrequest.get_new_uc() << endl;
+                processed_requests.pop();
+            }
             return res;
         }
         case 'S': {
-            Request newrequest = Request("SWITCH", thisrequest.get_uc_class(), thisrequest.get_student_up(), thisrequest.get_new_class(), thisrequest.get_current_class(),  thisrequest.get_new_uc(), thisrequest.get_current_uc());
+            Request newrequest = Request("SWITCH", true, thisrequest.get_student_up(), thisrequest.get_new_class(), thisrequest.get_current_class(),  thisrequest.get_new_uc(), thisrequest.get_current_uc());
             res = request_switch(newrequest);
-            if (res) processed_requests.pop();
+            if (res) {
+                cout << "Student " << newrequest.get_student_up() << " was removed from class " << newrequest.get_current_class() << " in the UC " << newrequest.get_current_uc() << " and is now in the class " << newrequest.get_new_class() << " in the UC " << newrequest.get_new_uc() << endl;
+                processed_requests.pop();
+            }
             return res;
         }
         case 'N': {
+            cout << "Student with the student code " << thisrequest.get_student_up() << " was removed.";
             up_students.erase(thisrequest.get_student_up());
             return true;
         }
@@ -392,6 +408,10 @@ void LEIC::save_to_files() {
     students_classesSaveFile << "StudentCode,StudentName,UcCode,ClassCode" << endl;
     accepted_requests << "StudentCode,Type,oldUcCode,newUcCode,oldClassCode,newClassCode" << endl;
     for (pair<string, Student> up_s: up_students) {
+        if (up_s.second.get_classes().empty()) {
+            students_classesSaveFile << up_s.first << ','
+                                     << up_s.second.get_name() << ',' << ',' << endl;
+        }
         for (Class *c: up_s.second.get_classes()) {
             students_classesSaveFile << up_s.first << ','
                                      << up_s.second.get_name() << ','

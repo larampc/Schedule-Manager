@@ -222,14 +222,14 @@ public:
      * @param request The Request to run.
      * @return True if the given Request is valid and ran with no errors.
      */
-    bool request_remove(Request request);
+    bool request_remove(Request& request);
     /**
      * \brief Runs the given Request of type SWITCH about the given Student and returns True if it is valid and ran with no errors.
      *
      * @param request The Request to run.
      * @return True if the given Request is valid and ran with no errors.
      */
-    bool request_switch(Request request);
+    bool request_switch(Request& request);
     /**
      * \brief Undoes the last Request that was done successfully.
      *
