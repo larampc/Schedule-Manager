@@ -82,7 +82,7 @@ public:
 
     void occupations();
 
-    void list_year_occupations();
+    void list_year_occupations(std:: string year);
     void invalid();
 };
 

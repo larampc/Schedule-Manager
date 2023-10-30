@@ -366,7 +366,6 @@ void Script::listings(){
         }
         case '3': {
             occupations();
-            data.list_number_students_class();
             break;
         }
         case '4': {
@@ -401,7 +400,14 @@ void Script::occupations(){
     }
     switch (option[0]) {
         case '1': {
-            list_year_occupations();
+            cout << "1- 1st Year 2- 2nd Year 3- 3rd Year 4- Cancel\n";
+            string year;
+            cin >> year;
+            while(year != "1" && year != "2" && year != "3" && year != "4") {
+                invalid();
+                cin >> option;
+            }
+            list_year_occupations(year);
             break;
         }
         case '2': {
@@ -603,8 +609,44 @@ void Script::listStudents() {
     }
 }
 
-void Script::list_year_occupations() {
+void Script::list_year_occupations(string year) {
+    vector<Class> classes = data.get_classes();
+    vector<Class> yearClasses;
+    for(Class c: classes){
+        if (c.get_classCode()[0] == year[0]) yearClasses.push_back(c);
+    }
 
+    string option, order;
+    cout << "Sort by 1- UC 2- ClassCode 3- Occupation\n";
+    cin >> option;
+    while(option != "1" && option != "2" && option != "3"){
+        invalid();
+        cin >> option;
+    }
+    cout << "1- Ascending Order 2- Descending Order\n";
+    cin >> order;
+    while(order != "1" && order != "2"){
+        invalid();
+        cin >> order;
+    }
+    if(option == "3"){
+        (order == "1") ? sort(yearClasses.begin(),yearClasses.end(), [] (Class c1,Class c2) -> bool {return c1.get_students().size() < c2.get_students().size();})
+        : sort(yearClasses.rbegin(),yearClasses.rend(), [] (Class c1,Class c2) -> bool { return c1.get_students().size() < c2.get_students().size();});
+    }
+    else if (option == "2"){
+        (order == "1") ? sort(yearClasses.begin(),yearClasses.end(), [] (Class c1,Class c2) -> bool {return c1.get_classCode() < c2.get_classCode();})
+        : sort(yearClasses.rbegin(),yearClasses.rend(), [] (Class c1,Class c2) -> bool {return c1.get_classCode() < c2.get_classCode();});
+    }
+    if(option == "1" && order == "2") {
+        auto itr = yearClasses.end();
+        while(itr-- != yearClasses.begin()){
+            cout << itr->get_classCode() << " " << itr->get_ucCode() << " " << itr->get_students().size() << endl;
+        }
+        return;
+    }
+    for (Class c: yearClasses) {
+        cout << c.get_classCode() << " " << c.get_ucCode() << " " << c.get_students().size() << endl;
+    }
 }
 
 
