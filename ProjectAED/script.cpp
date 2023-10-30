@@ -106,7 +106,7 @@ void Script::handle_requests() {
 }
 
 void Script::request(){
-    string type, option, uc_or_class, student_up, current_class, new_class, current_uc, new_uc;
+    string option, student_up;
     cout << "Pick: 1- ADD 2- REMOVE 3- SWITCH 4- Cancel\n";
     cin >> option; while(option != "1" && option != "2" && option != "3" && option != "4") {invalid(); cin >> option; cout << '\n';}
     if(option == "4") {

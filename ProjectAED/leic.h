@@ -159,9 +159,9 @@ public:
      * \brief Checks if by inserting a Student into a Class, the Class Balance is valid.
      *
      * @param newClass The Class to insert a Student to check.
-     * @return True if by inserting a Student into a Class, the Class Balance is valid.
+     * @return Null pointer if by inserting a Student into a Class, the Class Balance is valid. Pointer to class suggestion if it's not.
      */
-    bool class_balance_valid(Class newClass);
+    Class* class_balance_valid(Class* newClass);
     /**
      * \brief Checks if a Student schedule can accept all TP or PL Lesson of the given Class,
      *        excluding all of the old Class's Lesson if applicable.
@@ -213,9 +213,9 @@ public:
      * \brief Runs the given Request of type ADD about the given Student and returns True if it is valid and ran with no errors.
      *
      * @param request The Request to run.
-     * @return True if the given Request is valid and ran with no errors.
+     * @return Empty string if the given Request is valid and ran with no errors, string with the error if not.
      */
-    bool request_add(Request& request);
+    std::string request_add(Request& request);
     /**
      * \brief Runs the given Request of type REMOVE about the given Student and returns True if it is valid and ran with no errors.
      *
@@ -227,9 +227,9 @@ public:
      * \brief Runs the given Request of type SWITCH about the given Student and returns True if it is valid and ran with no errors.
      *
      * @param request The Request to run.
-     * @return True if the given Request is valid and ran with no errors.
+     * @return Empty string if the given Request is valid and ran with no errors, string with error otherwise.
      */
-    bool request_switch(Request& request);
+    std::string request_switch(Request& request);
     /**
      * \brief Undoes the last Request that was done successfully.
      *
