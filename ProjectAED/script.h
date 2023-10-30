@@ -44,6 +44,13 @@ public:
      */
     void request();
     /**
+     * \brief Gets from input the information needed for a specific request.
+     *
+     * @param student_up UP from student who is requesting.
+     * @param option Type of request to get.
+     */
+    void get_request(std::string student_up, std::string option);
+    /**
      * \brief Outputs the listings menu and handles the respective inputs.
      */
     void listings();

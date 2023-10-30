@@ -120,12 +120,26 @@ void Script::request(){
         invalid();
         cin >> student_up;
     }
+    get_request(student_up, option);
+    cout << "Would you like to make another request? [Y/N]\n";
+    string answer;
+    cin >> answer;
+    while(answer != "Y" && answer != "N") {
+        invalid();
+        cin >> answer;
+    }
+    if (answer == "Y") request();
+    data.process_requests();
+}
+
+void Script::get_request(string student_up, string option) {
+    string type, uc_or_class, current_class, new_class, current_uc, new_uc;
     switch (option[0]) {
         case '1': {
             type = "ADD";
             cout << "Enter UCcode (e.g. L.EIC001):\n";
             cin >> new_uc;
-            while(!data.get_ucs().count(new_uc)) {
+            while(!data.exists_uc(new_uc) || data.get_student_from_up(student_up)->has_uc(new_uc)) {
                 invalid();
                 cin >> new_uc;
             }
@@ -137,6 +151,7 @@ void Script::request(){
                 cin >> answer;
             }
             if (answer=="Y") {
+                uc_or_class = "CLASS";
                 cout << "Enter Class (e.g. 1LEIC01):\n";
                 cin >> new_class;
                 while(!data.exists_class(new_uc,new_class)) {
@@ -163,7 +178,7 @@ void Script::request(){
             if (uc_or_class == "CLASS") {
                 cout << "Enter UCcode (e.g. L.EIC001):\n";
                 cin >> current_uc;
-                while(!data.exists_uc(current_uc) && data.get_student_from_up(student_up)->has_uc(current_uc)) {
+                while(data.get_student_from_up(student_up)->has_uc(current_uc)) {
                     invalid();
                     cin >> current_uc;
                 }
@@ -178,7 +193,7 @@ void Script::request(){
             else {
                 cout << "Enter current UCcode (e.g. L.EIC001):\n";
                 cin >> current_uc;
-                while(!data.exists_uc(current_uc) && data.get_student_from_up(student_up)->has_uc(current_uc)) {
+                while(data.get_student_from_up(student_up)->has_uc(current_uc)) {
                     invalid();
                     cin >> current_uc;
                 }
@@ -196,6 +211,7 @@ void Script::request(){
                     cin >> answer;
                 }
                 if (answer=="Y") {
+                    uc_or_class = "CLASS";
                     cout << "Enter ClassCode (e.g. 1LEIC01):\n";
                     cin >> new_class;
                     while(!data.exists_class(new_uc,new_class)) {
@@ -208,17 +224,7 @@ void Script::request(){
         }
     }
     data.add_request_to_process(Request(type, (uc_or_class == "CLASS"), student_up, current_class, new_class, current_uc, new_uc));
-    cout << "Would you like to make another request? [Y/N]\n";
-    string answer;
-    cin >> answer;
-    while(answer != "Y" && answer != "N") {
-        invalid();
-        cin >> answer;
-    }
-    if (answer == "Y") request();
-    data.process_requests();
 }
-
 
 void Script::new_registration() {
     string new_up, name, number_ucs, new_uc, new_class;
@@ -232,38 +238,26 @@ void Script::new_registration() {
     cin.ignore();
     getline(cin, name);
     data.add_student(Student(name, new_up));
-    cout << "How many UC's would you like to register to?:";
-    cin >> number_ucs;
-    while (!is_number(number_ucs) || stoi(number_ucs) > 7 ) {
+    data.add_processed_request(Request("NEW","", new_up));
+    cout << "Would you now like to add UC's to this student? [Y/N]\n";
+    string answer;
+    cin >> answer;
+    while(answer != "Y" && answer != "N") {
         invalid();
-        cin >> number_ucs;
-    }
-    for (int i = 0; i < stoi(number_ucs); i++) {
-        cout << "Enter UCcode (e.g. L.EIC001):";
-        cin >> new_uc;
-        while(!data.exists_uc(new_uc) || data.get_student_from_up(new_up)->has_uc(new_uc)) {
-            invalid();
-            cin >> new_uc;
-        }
-        cout << "Do you want to join a specific class? [Y/N]\n";
-        string answer;
         cin >> answer;
-        while(answer != "Y" && answer != "N") {
+    }
+    if (answer=="Y") {
+        cout << "How many UC's do you want to join?\n";
+        cin >> number_ucs;
+        while (!is_number(number_ucs) || stoi(number_ucs) > 7 ) {
             invalid();
-            cin >> answer;
+            cin >> number_ucs;
         }
-        if (answer=="Y") {
-            cout << "Enter ClassCode (e.g. 1LEIC01):\n";
-            cin >> new_class;
-            while(!data.exists_class(new_uc,new_class)) {
-                invalid();
-                cin >> new_class;
-            }
+        for (int i = 0; i < stoi(number_ucs); i++) {
+            get_request(new_up, "1");
         }
-        data.add_request_to_process(Request("ADD", answer == "Y", new_up, "", new_class, "", new_uc));
     }
     data.process_requests();
-    run();
 }
 
 void Script::request_file() {

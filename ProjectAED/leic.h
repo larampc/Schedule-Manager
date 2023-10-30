@@ -200,6 +200,12 @@ public:
      */
     void add_request_to_process(Request request);
     /**
+     * \brief Adds the given Request to the Request stack so it can be undone.
+     *
+     * @param request The Request to add to the stack.
+     */
+    void add_processed_request(Request request);
+    /**
      * \brief Uploads all the Request in the requests.csv file to the queue and runs them.
      */
     void upload_requests();
@@ -207,15 +213,13 @@ public:
      * \brief Runs the given Request of type ADD about the given Student and returns True if it is valid and ran with no errors.
      *
      * @param request The Request to run.
-     * @param student The Student related to the Request.
      * @return True if the given Request is valid and ran with no errors.
      */
-    bool request_add(Request request);
+    bool request_add(Request& request);
     /**
      * \brief Runs the given Request of type REMOVE about the given Student and returns True if it is valid and ran with no errors.
      *
      * @param request The Request to run.
-     * @param student The Student related to the Request.
      * @return True if the given Request is valid and ran with no errors.
      */
     bool request_remove(Request request);
@@ -223,7 +227,6 @@ public:
      * \brief Runs the given Request of type SWITCH about the given Student and returns True if it is valid and ran with no errors.
      *
      * @param request The Request to run.
-     * @param student The Student related to the Request.
      * @return True if the given Request is valid and ran with no errors.
      */
     bool request_switch(Request request);

@@ -249,6 +249,10 @@ void LEIC::add_request_to_process(Request request) {
     requests.push(request);
 }
 
+void LEIC::add_processed_request(Request request) {
+    processed_requests.push(request);
+}
+
 void LEIC::upload_requests() {
     string line;
     ifstream requestsFile("../requests.csv");
@@ -267,7 +271,7 @@ void LEIC::upload_requests() {
     process_requests();
 }
 
-bool LEIC::request_add(Request request) {
+bool LEIC::request_add(Request& request) {
     Student* student = get_student_from_up(request.get_student_up());
     if (request.get_uc_class()) {
         Class* newclass = get_class_from_classcode_and_uccode(request.get_new_class(), request.get_new_uc());
@@ -275,7 +279,6 @@ bool LEIC::request_add(Request request) {
             && !student->has_uc(request.get_new_uc()) && compatible_schedules(*student, newclass)) {
                 add_student_to_class(student, newclass);
                 processed_requests.push(request);
-                cout << "Student is now in the class " << newclass->get_classCode() << " in the UC " << newclass->get_ucCode() << endl;
                 return true;
         }
         return false;
@@ -287,7 +290,7 @@ bool LEIC::request_add(Request request) {
                 if (compatible_schedules(*student, c)) {
                     add_student_to_class(student, c);
                     processed_requests.push(request);
-                    cout << "Student is now in the class " << c->get_classCode() << " in the UC " << c->get_ucCode() << endl;
+                    request.set_new_class(c->get_classCode());
                     return true;
                 }
             }
@@ -302,7 +305,6 @@ bool LEIC::request_remove(Request request) {
     string currentclass = currentClass->get_classCode();
     string currentUc = request.get_current_uc();
     remove_student_from_class(student, currentClass);
-    cout << "Student was removed from class " << currentclass << " in the UC " << currentUc << endl;
     processed_requests.push(request);
     return true;
 }
@@ -348,6 +350,10 @@ bool LEIC::undo_request() {
             if (res) processed_requests.pop();
             return res;
         }
+        case 'N': {
+            up_students.erase(thisrequest.get_student_up());
+            return true;
+        }
     }
     return res;
 }
@@ -358,15 +364,21 @@ void LEIC::process_requests() {
         requests.pop();
         switch (request.get_type()[0]) {
             case 'A': {
-                request_add(request);
+                if (request_add(request)) {
+                    cout << "Student is now in the class " << request.get_new_class() << " in the UC " << request.get_new_uc() << endl;
+                }
+                else cout << "The request was denied.\n";
                 break;
             }
             case 'R': {
-                request_remove(request);
+                if (request_remove(request)) cout << "Student was removed from class " << request.get_current_class() << " in the UC " << request.get_current_uc() << endl;
+                else cout << "The request was denied.";
                 break;
             }
             case 'S': {
-                request_switch(request);
+                if (request_switch(request)) {
+                    cout << "Student was removed from class " << request.get_current_class() << " in the UC " << request.get_current_uc() << " and is now in the class" << request.get_new_class() << " in the UC " << request.get_new_uc() << endl;
+                }
                 break;
             }
         }

@@ -79,6 +79,7 @@ public:
      * @param type The type to set the Request, ADD, REMOVE or SWITCH.
      */
     void set_type(std::string type);
+    void set_new_class(std::string new_class);
 };
 
 #endif //AEDPROJECT_REQUEST_H

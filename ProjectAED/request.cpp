@@ -36,3 +36,7 @@ void Request::set_type(string type) {
     this->type = type;
 }
 
+void Request::set_new_class(std::string new_class) {
+    this->new_class = new_class;
+}
+
