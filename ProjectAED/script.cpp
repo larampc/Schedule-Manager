@@ -1,8 +1,9 @@
 #include "script.h"
 #include <cctype>
+#include "color_print.h"
 using namespace std;
 
-void invalid(){ cout << "Invalid Input, please try again\n"; }
+void Script::invalid(){ Color_Print(color_mode, "red", "Invalid Input, please try again", true); }
 
 bool is_number(string s) {
     return all_of(s.begin(),s.end(),  [] (char c){return isdigit(c);});
@@ -16,12 +17,20 @@ void Script::quit(){
 }
 
 void Script::run() {
-    cout << "\n\n-----------------------------------\n\tSchedule Management System\n------------------------------------\n";
-    cout << "Select option:\n"
-         << "Get Information - press 1\n"
-         << "Make requests - press 2\n"
-         << "Settings - press 3\n"
-         << "Quit Manager - press 4\n";
+    cout << "\n\n";
+    Color_Print(color_mode, "blue", "-----------------------------------", true);
+    Color_Print(color_mode, "blue", "\tSchedule Management System", true);
+    Color_Print(color_mode, "blue", "-----------------------------------", true);
+    Color_Print(color_mode, "green", "Select option:", true);
+    Color_Print(color_mode, "green", "Get Information");
+    Color_Print(color_mode, "cyan", " - press 1", true);
+    Color_Print(color_mode, "green", "Make requests");
+    Color_Print(color_mode, "cyan", " - press 2", true);
+    Color_Print(color_mode, "green", "Settings");
+    Color_Print(color_mode, "cyan", " - press 3", true);
+    Color_Print(color_mode, "red", "Quit Manager");
+    Color_Print(color_mode, "cyan", " - press 4", true);
+
     string option; cin >> option;
     while(option != "1" && option != "2" && option != "3" && option != "4") {
         invalid();
@@ -37,21 +46,34 @@ void Script::run() {
             break;
         }
         case '3': {
-            cout << "1- Change Class CAP (current is " << data.get_cap() << ")\t2- Cancel\n";
+            Color_Print(color_mode, "cyan", "1- ");
+            Color_Print(color_mode, "green", "Change Class CAP (current is " + to_string(data.get_cap()) + ")\t");
+            Color_Print(color_mode, "cyan", "2- ");
+            if (color_mode) Color_Print(color_mode, "yellow", "Disable");
+            else Color_Print(color_mode, "yellow", "Enable");
+            Color_Print(color_mode, "green", " Color Mode\t");
+            Color_Print(color_mode, "cyan", "3- ");
+            Color_Print(color_mode, "red", "Cancel\n");
+
             cin >> option;
-            while(option != "1" && option != "2") {
+            while(option != "1" && option != "2" && option != "3") {
                 invalid();
                 cin >> option;
             }
             if(option == "1"){
-               cout << "New CAP:";
-               string cap;
-               cin >> cap;
-               while (!is_number(cap) || stoi(cap) > 50) {
+                Color_Print(color_mode, "cyan", "New CAP: ");
+                string cap;
+                cin >> cap;
+                while (!is_number(cap) || stoi(cap) > 50) {
                    invalid();
                    cin >> cap;
-               }
-               data.set_cap(stoi(cap));
+                }
+                data.set_cap(stoi(cap));
+            }
+            else if(option == "2"){
+                color_mode = !color_mode;
+                if (color_mode) Color_Print(color_mode, "cyan", "Color mode enabled", true);
+                else Color_Print(color_mode, "cyan", "Color mode disabled", true);
             }
             else run();
             break;
@@ -61,7 +83,8 @@ void Script::run() {
             break;
         }
     }
-    cout << "Make another operation? [Y/N]\n";
+    Color_Print(color_mode, "green", "Make another operation? ");
+    Color_Print(color_mode, "cyan", "[Y/N]", true);
     cin >> option;
     while(option != "Y" && option != "N") {
         invalid();
@@ -71,12 +94,18 @@ void Script::run() {
 }
 
 void Script::handle_requests() {
-    cout << "Select option:\n"
-         << "New registration - press 1\n"
-         << "Update registration - press 2\n"
-         << "Upload file with changes - press 3\n"
-         << "Undo Previous Operation - press 4\n"
-         << "Cancel - press 5\n";
+    Color_Print(color_mode, "green", "Select option:", true);
+    Color_Print(color_mode, "green", "New registration");
+    Color_Print(color_mode, "cyan", " - press 1", true);
+    Color_Print(color_mode, "green", "Update registration");
+    Color_Print(color_mode, "cyan", " - press 2", true);
+    Color_Print(color_mode, "green", "Upload file with changes");
+    Color_Print(color_mode, "cyan", " - press 3", true);
+    Color_Print(color_mode, "green", "Undo Previous Operation");
+    Color_Print(color_mode, "cyan", " - press 4", true);
+    Color_Print(color_mode, "red", "Cancel");
+    Color_Print(color_mode, "cyan", " - press 5", true);
+
     string option; cin >> option;
     while(option != "1" && option != "2" && option != "3" && option != "4" && option != "5") {
         invalid();
@@ -107,20 +136,32 @@ void Script::handle_requests() {
 
 void Script::request(){
     string type, option, uc_or_class, student_up, current_class, new_class, current_uc, new_uc;
-    cout << "Pick: 1- ADD 2- REMOVE 3- SWITCH 4- Cancel\n";
+    Color_Print(color_mode, "green", "Pick: ");
+    Color_Print(color_mode, "cyan", "1- ");
+    Color_Print(color_mode, "green", "ADD ");
+    Color_Print(color_mode, "cyan", "2- ");
+    Color_Print(color_mode, "green", "REMOVE ");
+    Color_Print(color_mode, "cyan", "3- ");
+    Color_Print(color_mode, "green", "SWITCH ");
+    Color_Print(color_mode, "cyan", "4- ");
+    Color_Print(color_mode, "red", "Cancel", true);
+
     cin >> option; while(option != "1" && option != "2" && option != "3" && option != "4") {invalid(); cin >> option; cout << '\n';}
     if(option == "4") {
         handle_requests();
         return;
     }
-    cout << "Enter StudentCode (e.g. 202020047):\n";
+    Color_Print(color_mode, "cyan", "Enter StudentCode ");
+    Color_Print(color_mode, "yellow", "(e.g. 202020047)");
+    Color_Print(color_mode, "cyan", ":", true);
     cin >> student_up;
     while(data.get_student_from_studentCode(student_up) == nullptr){
         invalid();
         cin >> student_up;
     }
     get_request(student_up, option);
-    cout << "Would you like to make another request? [Y/N]\n";
+    Color_Print(color_mode, "green", "Would you like to make another request? ");
+    Color_Print(color_mode, "cyan", "[Y/N]", true);
     string answer;
     cin >> answer;
     while(answer != "Y" && answer != "N") {
@@ -136,13 +177,16 @@ void Script::get_request(string studentCode, string option) {
     switch (option[0]) {
         case '1': {
             type = "ADD";
-            cout << "Enter UCcode (e.g. L.EIC001):\n";
+            Color_Print(color_mode, "cyan", "Enter UCcode ");
+            Color_Print(color_mode, "yellow", "(e.g. L.EIC001)");
+            Color_Print(color_mode, "cyan", ":", true);
             cin >> new_uc;
             while(!data.exists_Uc(new_uc) || data.get_student_from_studentCode(studentCode)->has_uc(new_uc)) {
                 invalid();
                 cin >> new_uc;
             }
-            cout << "Do you want to join a specific class? [Y/N]\n";
+            Color_Print(color_mode, "green", "Do you want to join a specific class? ");
+            Color_Print(color_mode, "cyan", "[Y/N]", true);
             string answer;
             cin >> answer;
             while(answer != "Y" && answer != "N") {
@@ -151,7 +195,9 @@ void Script::get_request(string studentCode, string option) {
             }
             if (answer=="Y") {
                 uc_or_class = "CLASS";
-                cout << "Enter Class (e.g. 1LEIC01):\n";
+                Color_Print(color_mode, "cyan", "Enter Class ");
+                Color_Print(color_mode, "yellow", "(e.g. 1LEIC01)");
+                Color_Print(color_mode, "cyan", ":", true);
                 cin >> new_class;
                 while(!data.exists_class(new_uc,new_class)) {
                     invalid();
@@ -162,7 +208,9 @@ void Script::get_request(string studentCode, string option) {
         }
         case '2': {
             type = "REMOVE";
-            cout << "Enter UCcode (e.g. L.EIC001):\n";
+            Color_Print(color_mode, "cyan", "Enter UCcode ");
+            Color_Print(color_mode, "yellow", "(e.g. L.EIC001)");
+            Color_Print(color_mode, "cyan", ":", true);
             cin >> current_uc;
             while(!data.exists_Uc(current_uc) || !data.get_student_from_studentCode(studentCode)->has_uc(current_uc)) {
                 invalid();
@@ -172,17 +220,22 @@ void Script::get_request(string studentCode, string option) {
         }
         case '3': {
             type = "SWITCH";
-            cout << "Pick: UC / CLASS\n";
+            Color_Print(color_mode, "green", "Pick: ");
+            Color_Print(color_mode, "cyan", "UC / CLASS", true);
             cin >> uc_or_class; while(uc_or_class != "UC" && uc_or_class != "CLASS") {invalid(); cin >> uc_or_class;}
             if (uc_or_class == "CLASS") {
-                cout << "Enter UCcode (e.g. L.EIC001):\n";
+                Color_Print(color_mode, "cyan", "Enter UCcode ");
+                Color_Print(color_mode, "yellow", "(e.g. L.EIC001)");
+                Color_Print(color_mode, "cyan", ":", true);
                 cin >> current_uc;
                 while(!data.get_student_from_studentCode(studentCode)->has_uc(current_uc)) {
                     invalid();
                     cin >> current_uc;
                 }
                 new_uc = current_uc;
-                cout << "Enter new ClassCode (e.g. 1LEIC01):\n";
+                Color_Print(color_mode, "cyan", "Enter new ClassCode ");
+                Color_Print(color_mode, "yellow", "(e.g. 1LEIC01)");
+                Color_Print(color_mode, "cyan", ":", true);
                 cin >> new_class;
                 while(!data.exists_class(current_uc,new_class)) {
                     invalid();
@@ -190,19 +243,24 @@ void Script::get_request(string studentCode, string option) {
                 }
             }
             else {
-                cout << "Enter current UCcode (e.g. L.EIC001):\n";
+                Color_Print(color_mode, "cyan", "Enter UCcode ");
+                Color_Print(color_mode, "yellow", "(e.g. L.EIC001)");
+                Color_Print(color_mode, "cyan", ":", true);
                 cin >> current_uc;
                 while(!data.get_student_from_studentCode(studentCode)->has_uc(current_uc)) {
                     invalid();
                     cin >> current_uc;
                 }
-                cout << "Enter new UCcode (e.g. L.EIC001):\n";
+                Color_Print(color_mode, "cyan", "Enter new UCcode ");
+                Color_Print(color_mode, "yellow", "(e.g. L.EIC001)");
+                Color_Print(color_mode, "cyan", ":", true);
                 cin >> new_uc;
                 while(!data.exists_Uc(new_uc)) {
                     invalid();
                     cin >> new_uc;
                 }
-                cout << "Do you want to join a specific class? [Y/N]\n";
+                Color_Print(color_mode, "green", "Do you want to join a specific class? ");
+                Color_Print(color_mode, "cyan", "[Y/N]", true);
                 string answer;
                 cin >> answer;
                 while(answer != "Y" && answer != "N") {
@@ -211,7 +269,9 @@ void Script::get_request(string studentCode, string option) {
                 }
                 if (answer=="Y") {
                     uc_or_class = "CLASS";
-                    cout << "Enter ClassCode (e.g. 1LEIC01):\n";
+                    Color_Print(color_mode, "cyan", "Enter ClassCode ");
+                    Color_Print(color_mode, "yellow", "(e.g. 1LEIC01)");
+                    Color_Print(color_mode, "cyan", ":", true);
                     cin >> new_class;
                     while(!data.exists_class(new_uc,new_class)) {
                         invalid();
@@ -227,18 +287,21 @@ void Script::get_request(string studentCode, string option) {
 
 void Script::new_registration() {
     string new_up, name, number_ucs, new_uc, new_class;
-    cout << "New StudentCode (e.g. 202020047):";
+    Color_Print(color_mode, "cyan", "New StudentCode ");
+    Color_Print(color_mode, "yellow", "(e.g. 202020047)");
+    Color_Print(color_mode, "cyan", ":", true);
     cin >> new_up;
     while (!is_number(new_up) || new_up.length() != 9 || data.get_student_from_studentCode(new_up) != nullptr) {
         invalid();
         cin >> new_up;
     }
-    cout << "Name of new student:";
+    Color_Print(color_mode, "cyan", "Name of new student: ");
     cin.ignore();
     getline(cin, name);
     data.add_student(Student(name, new_up));
     data.add_processed_request(Request("NEW","", new_up));
-    cout << "Would you now like to add UC's to this student? [Y/N]\n";
+    Color_Print(color_mode, "green", "Would you now like to add UC's to this student? ");
+    Color_Print(color_mode, "cyan", "[Y/N]", true);
     string answer;
     cin >> answer;
     while(answer != "Y" && answer != "N") {
@@ -246,7 +309,7 @@ void Script::new_registration() {
         cin >> answer;
     }
     if (answer=="Y") {
-        cout << "How many UC's do you want to join?\n";
+        Color_Print(color_mode, "cyan", "How many UC's do you want to join?", true);
         cin >> number_ucs;
         while (!is_number(number_ucs) || stoi(number_ucs) > 7 ) {
             invalid();
@@ -260,9 +323,12 @@ void Script::new_registration() {
 }
 
 void Script::request_file() {
-    cout << "Save the file to this directory named requests.csv with the following structure:\n"
-         << "StudentCode, Type, oldUcCode, newUcCode, oldClassCode, newClassCode\n"
-         << "Do you want to process the requests? [Y/N]\n";
+    Color_Print(color_mode, "green", "Save the file to this directory named ");
+    Color_Print(color_mode, "cyan", "requests.csv ");
+    Color_Print(color_mode, "green", "with the following structure:", true);
+    Color_Print(color_mode, "green", "StudentCode, Type, oldUcCode, newUcCode, oldClassCode, newClassCode", true);
+    Color_Print(color_mode, "green", "Do you want to process the requests? ");
+    Color_Print(color_mode, "cyan", "[Y/N]", true);
     string answer;
     cin >> answer;
     while(answer != "Y" && answer != "N") {
@@ -273,8 +339,17 @@ void Script::request_file() {
 }
 
 void Script::listings(){
-    cout << "What would you like to check?\n"
-    << "1- Schedules 2- Student Lists 3- Occupations 4- Students with at least n UC's 5- Cancel\n";
+    Color_Print(color_mode, "green", "What would you like to check?", true);
+    Color_Print(color_mode, "cyan", "1- ");
+    Color_Print(color_mode, "green", "Schedules ");
+    Color_Print(color_mode, "cyan", "2- ");
+    Color_Print(color_mode, "green", "Student Lists ");
+    Color_Print(color_mode, "cyan", "3- ");
+    Color_Print(color_mode, "green", "Occupations ");
+    Color_Print(color_mode, "cyan", "4- ");
+    Color_Print(color_mode, "green", "Students with at least n UC's ");
+    Color_Print(color_mode, "cyan", "5- ");
+    Color_Print(color_mode, "red", "Cancel", true);
     string option; cin >> option;
     while(option != "1" && option != "2" && option != "3" && option != "4" && option != "5") {
         invalid();
@@ -295,14 +370,14 @@ void Script::listings(){
             break;
         }
         case '4': {
-            cout << "N:";
+            Color_Print(color_mode, "cyan", "N: ");
             string n;
             cin >> n;
             while (!is_number(n) || stoi(n) > 7) {
                 invalid();
                 cin >> n;
             }
-            cout << data.students_in_n_Ucs(stoi(n)) << endl;
+            Color_Print(color_mode, "blue", to_string(data.students_in_n_Ucs(stoi(n))), true);
             break;
         }
         case '5': run();
@@ -310,8 +385,15 @@ void Script::listings(){
 }
 
 void Script::occupations(){
-    cout << "What would you like to check?\n"
-         << "1- Year 2- UC 3- Class 4- Cancel\n";
+    Color_Print(color_mode, "green", "What would you like to check?", true);
+    Color_Print(color_mode, "cyan", "1- ");
+    Color_Print(color_mode, "green", "Year ");
+    Color_Print(color_mode, "cyan", "2- ");
+    Color_Print(color_mode, "green", "UC ");
+    Color_Print(color_mode, "cyan", "3- ");
+    Color_Print(color_mode, "green", "Class ");
+    Color_Print(color_mode, "cyan", "4- ");
+    Color_Print(color_mode, "red", "Cancel", true);
     string option; cin >> option;
     while(option != "1" && option != "2" && option != "3" && option != "4" && option != "5") {
         invalid();
@@ -332,7 +414,15 @@ void Script::occupations(){
 }
 
 void Script::listSchedules(){
-    cout << "Consult schedule of: 1- Student 2- Class 3- UC 4-Cancel\n";
+    Color_Print(color_mode, "green", "Consult schedule of: ");
+    Color_Print(color_mode, "cyan", "1- ");
+    Color_Print(color_mode, "green", "Student ");
+    Color_Print(color_mode, "cyan", "2- ");
+    Color_Print(color_mode, "green", "Class ");
+    Color_Print(color_mode, "cyan", "3- ");
+    Color_Print(color_mode, "green", "UC ");
+    Color_Print(color_mode, "cyan", "4- ");
+    Color_Print(color_mode, "red", "Cancel", true);
     string option;
     cin >> option;
     while(option != "1" && option != "2" && option != "3" && option != "4") {
@@ -341,7 +431,9 @@ void Script::listSchedules(){
     }
     switch(option[0]){
         case '1': {
-            cout << "Insert StudentCode (e.g. 202020047): ";
+            Color_Print(color_mode, "cyan", "Insert StudentCode ");
+            Color_Print(color_mode, "yellow", "(e.g. 202020047)");
+            Color_Print(color_mode, "cyan", ": ");
             string up;
             cin >> up;
             while(data.get_student_from_studentCode(up) == nullptr){
@@ -352,7 +444,9 @@ void Script::listSchedules(){
             break;
         }
         case '2': {
-            cout << "Enter ClassCode (e.g. 1LEIC01): ";
+            Color_Print(color_mode, "cyan", "Enter ClassCode ");
+            Color_Print(color_mode, "yellow", "(e.g. 1LEIC01)");
+            Color_Print(color_mode, "cyan", ": ");
             string class_;
             cin >> class_;
             while(!data.get_classCodes().count(class_)) {    //mudar para exists classcode???????
@@ -373,18 +467,20 @@ void Script::listSchedules(){
             for(Lesson lesson: classLessons) {
                 if (currentDay.empty()) {
                     currentDay = lesson.get_weekday();
-                    cout << lesson.get_weekday() << endl;
+                    Color_Print(color_mode, "blue", lesson.get_weekday(), true);
                 }
                 if (lesson.get_weekday() != currentDay) {
                     currentDay = lesson.get_weekday();
-                    cout << lesson.get_weekday() << endl;
+                    Color_Print(color_mode, "blue", lesson.get_weekday(), true);
                 }
                 lesson.print_lesson();
             }
             break;
         }
         case '3': {
-            cout << "Enter UCcode (e.g. L.EIC001): ";
+            Color_Print(color_mode, "cyan", "Enter UCcode ");
+            Color_Print(color_mode, "yellow", "(e.g. L.EIC001)");
+            Color_Print(color_mode, "cyan", ": ");
             string uc;
             cin >> uc;
             while(!data.get_UcCodes().count(uc)) {
@@ -401,11 +497,11 @@ void Script::listSchedules(){
             for(Lesson lesson: total_lessons) {
                 if (currentDay.empty()) {
                     currentDay = lesson.get_weekday();
-                    cout << lesson.get_weekday() << endl;
+                    Color_Print(color_mode, "blue", lesson.get_weekday(), true);
                 }
                 if (lesson.get_weekday() != currentDay) {
                     currentDay = lesson.get_weekday();
-                    cout << lesson.get_weekday() << endl;
+                    Color_Print(color_mode, "blue", lesson.get_weekday(), true);
                 }
                 lesson.print_lesson();
             }
@@ -418,7 +514,15 @@ void Script::listSchedules(){
 }
 
 void Script::listStudents() {
-    cout << "Consult list of students of: 1- Course 2- UC 3- Class 4- Cancel\n";
+    Color_Print(color_mode, "green", "Consult list of students of: ");
+    Color_Print(color_mode, "cyan", "1- ");
+    Color_Print(color_mode, "green", "Course ");
+    Color_Print(color_mode, "cyan", "2- ");
+    Color_Print(color_mode, "green", "UC ");
+    Color_Print(color_mode, "cyan", "3- ");
+    Color_Print(color_mode, "green", "Class ");
+    Color_Print(color_mode, "cyan", "4- ");
+    Color_Print(color_mode, "red", "Cancel", true);
     string option;
     cin >> option;
     while(option != "1" && option != "2" && option != "3" && option != "4") {
@@ -427,9 +531,13 @@ void Script::listStudents() {
     }
     switch(option[0]){
         case '1': {
-            cout << "Sort student by? 1- StudentCode 2- Student Name\n";
+            Color_Print(color_mode, "green", "Sort student by? ");
+            Color_Print(color_mode, "cyan", "1- ");
+            Color_Print(color_mode, "green", "StudentCode ");
+            Color_Print(color_mode, "cyan", "2- ");
+            Color_Print(color_mode, "green", "Student Name", true);
             cin >> option;
-            while(option != "1" && option != "2") {
+            while(option != "1" && option != "2" && option != "3") {
                 invalid();
                 cin >> option;
             }
@@ -438,13 +546,19 @@ void Script::listStudents() {
             break;
         }
         case '2': {
-            cout << "Enter UCcode (e.g. L.EIC001): ";
+            Color_Print(color_mode, "cyan", "Enter UCcode ");
+            Color_Print(color_mode, "yellow", "(e.g. L.EIC001)");
+            Color_Print(color_mode, "cyan", ": ");
             string UC; cin >> UC;
             while(!data.exists_Uc(UC)) {
                 invalid();
                 cin >> UC;
             }
-            cout << "Sort student by? 1- StudentCode 2- Student Name\n";
+            Color_Print(color_mode, "green", "Sort student by? ");
+            Color_Print(color_mode, "cyan", "1- ");
+            Color_Print(color_mode, "green", "StudentCode ");
+            Color_Print(color_mode, "cyan", "2- ");
+            Color_Print(color_mode, "green", "Student Name", true);
             cin >> option;
             while(option != "1" && option != "2") {
                 invalid();
@@ -455,19 +569,27 @@ void Script::listStudents() {
             break;
         }
         case '3': {
-            cout << "Enter UC of Class to check (e.g. L.EIC001):";
+            Color_Print(color_mode, "cyan", "Enter UC of Class to check ");
+            Color_Print(color_mode, "yellow", "(e.g. L.EIC001)");
+            Color_Print(color_mode, "cyan", ": ");
             string UC; cin >> UC;
             while(!data.exists_Uc(UC)) {
                 invalid();
                 cin >> UC;
             }
-            cout << "Enter Class to check (e.g. 1LEIC01):";
+            Color_Print(color_mode, "cyan", "Enter Class to check ");
+            Color_Print(color_mode, "yellow", "(e.g. 1LEIC01)");
+            Color_Print(color_mode, "cyan", ": ");
             string class_; cin >> class_;
             while(!data.exists_class(class_,UC)) {
                 invalid();
                 cin >> class_;
             }
-            cout << "Sort student by? 1- StudentCode 2- Student Name\n";
+            Color_Print(color_mode, "green", "Sort student by? ");
+            Color_Print(color_mode, "cyan", "1- ");
+            Color_Print(color_mode, "green", "StudentCode ");
+            Color_Print(color_mode, "cyan", "2- ");
+            Color_Print(color_mode, "green", "Student Name", true);
             cin >> option;
             while(option != "1" && option != "2") {
                 invalid();

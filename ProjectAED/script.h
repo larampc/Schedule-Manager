@@ -30,6 +30,7 @@
 class Script {
 private:
     LEIC data;
+    bool color_mode = false;
 public:
     /**
      * \brief Creates a new Script.
@@ -82,6 +83,7 @@ public:
     void occupations();
 
     void list_year_occupations();
+    void invalid();
 };
 
 
