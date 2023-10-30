@@ -65,16 +65,16 @@ public:
      */
     bool overlap(Lesson oldlesson) const;
     /**
+     * \brief Prints the Lesson.
+     */
+    void print_lesson() const;
+    /**
      * \brief Less than operator for Lesson comparison.
      *
      * @param l Lesson to compare.
      * @return True if this Lesson is before in time of the Lesson to compare.
      */
     bool operator<(const Lesson &l) const;
-    /**
-     * \brief Prints the Lesson.
-     */
-    void print_lesson() const;
 };
 
 

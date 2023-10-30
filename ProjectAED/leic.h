@@ -77,35 +77,35 @@ public:
     /**
     * \brief Prints all of the Student enrolled in the course sorted by their up.
     */
-    void listStudentsByUP();
+    void list_students_by_up();
     /**
     * \brief Prints all of the Student enrolled in the course sorted by their name.
     */
-    void listStudentsByName();
+    void list_students_by_name();
     /**
      * \brief Prints all of the Student enrolled in the given UC sorted by their up.
      *
      * @param uc The UC code of the UC to print all Student.
      */
-    void listUCStudentsByUP(std::string uc);
+    void list_uc_students_by_up(std::string uc);
     /**
      * \brief Prints all of the Student enrolled in the given UC sorted by their name.
      *
      * @param uc The UC code of the UC to print all Student.
      */
-    void listUCStudentsByName(std::string uc);
+    void list_uc_students_by_name(std::string uc);
     /**
      * \brief Prints all of the Student enrolled in the given Class sorted by their up.
      *
      * @param class_ The Class to print all Student.
      */
-    void list_class_students_by_UP(Class* class_) const;
+    void list_class_students_by_up(Class* class_) const;
     /**
      * \brief Prints all of the Student enrolled in the given Class sorted by their name.
      *
      * @param class_ The Class to print all Student.
      */
-    void list_class_students_by_Name(Class* class_) const;
+    void list_class_students_by_name(Class* class_) const;
     /**
      * \brief Gets the Class with the given Class code and UC code.
      *
@@ -142,7 +142,7 @@ public:
     /**
      * \brief Prints all Class and their respective number of Student enrolled.
      */
-    void numberstudents_class();
+    void list_number_students_class();
     /**
      * \brief Adds the given Student to the given Class, updating the data accordingly.
      *
@@ -220,24 +220,22 @@ public:
      * @param n The number of UCs to check.
      * @return The number of Student with at least the given number of UCs.
      */
-    int students_in_nUcs(int n);
+    int students_in_n_ucs(int n);
     /**
      * \brief Uploads all the Request in the requests.csv file to the queue and runs them.
      */
     void upload_requests();
     /**
-     * \brief Checks using binary search if a Class with the given Class code and UC code exists.
+     * \brief Checks if a given class exists.
      *
-     * @param ucCode The UC code of the Class to check.
-     * @param classCode The Class code of the Class to check.
-     * @return True if a Class with the given Class code and UC code exists.
+     * @param ucCode The code of the UC.
+     * @param classCode The code of  the class.
      */
     bool exists_class(std::string ucCode, std::string classCode);
     /**
-     * \brief Checks if a UC with the given UC code exists.
+     * \brief Checks if a given UC exists.
      *
-     * @param ucCode The UC code of the UC to check.
-     * @return True if a UC with the given UC code exists.
+     * @param ucCode The code of the UC.
      */
     bool exists_uc(std::string ucCode);
 };

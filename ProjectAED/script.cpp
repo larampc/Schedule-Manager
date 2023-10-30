@@ -297,7 +297,7 @@ void Script::listings(){
             break;
         }
         case '3': {
-            data.numberstudents_class();
+            data.list_number_students_class();
             break;
         }
         case '4': {
@@ -308,7 +308,7 @@ void Script::listings(){
                 invalid();
                 cin >> n;
             }
-            cout << data.students_in_nUcs(stoi(n)) << endl;
+            cout << data.students_in_n_ucs(stoi(n)) << endl;
             break;
         }
         case '5': run();
@@ -423,8 +423,8 @@ void Script::listStudents() {
                 invalid();
                 cin >> option;
             }
-            if(option == "1") data.listStudentsByUP();
-            else data.listStudentsByName();
+            if(option == "1") data.list_students_by_up();
+            else data.list_students_by_name();
             break;
         }
         case '2': {
@@ -440,8 +440,8 @@ void Script::listStudents() {
                 invalid();
                 cin >> option;
             }
-            if(option == "1") data.listUCStudentsByUP(UC);
-            else data.listUCStudentsByName(UC);
+            if(option == "1") data.list_uc_students_by_up(UC);
+            else data.list_uc_students_by_name(UC);
             break;
         }
         case '3': {
@@ -463,8 +463,8 @@ void Script::listStudents() {
                 invalid();
                 cin >> option;
             }
-            if(option == "1") data.list_class_students_by_UP(data.get_class_from_classcode_and_uccode(class_,UC));
-            else data.list_class_students_by_Name(data.get_class_from_classcode_and_uccode(class_,UC));
+            if(option == "1") data.list_class_students_by_up(data.get_class_from_classcode_and_uccode(class_, UC));
+            else data.list_class_students_by_name(data.get_class_from_classcode_and_uccode(class_, UC));
             break;
         }
         case '4': listings();

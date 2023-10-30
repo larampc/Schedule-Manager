@@ -77,22 +77,67 @@ Student* LEIC::get_student_from_up(std::string up) {
     return (up_students.find(up) == up_students.end()) ? nullptr : &up_students.at(up);
 }
 
-std::set<std::string> LEIC::get_ucs() const {
-    return ucs;
-}
-
 vector<Class> LEIC::get_classes() const {
     return classes;
 }
 
-void LEIC::listStudentsByUP() {
+std::set<std::string> LEIC::get_ucs() const {
+    return ucs;
+}
+
+std::set<std::string> LEIC::get_classcodes() const {
+    set<string> classcodes;
+    for(Class c: classes) classcodes.insert(c.get_classCode());
+    return classcodes;
+}
+
+Class* LEIC::get_class_from_classcode_and_uccode(std::string classcode, std::string uccode) {
+    if(!exists_class(uccode,classcode)) return nullptr;
+    auto first_itr = lower_bound(classes.begin(),classes.end(),Class(classcode,uccode));
+    return first_itr != classes.end() ? &(*first_itr) : nullptr;
+}
+
+vector<Class*> LEIC::get_classes_from_uccode(string ucCode) {
+    vector<Class*> classes_ucCode;
+    if(!exists_uc(ucCode)) return classes_ucCode;
+    auto first_itr = lower_bound(classes.begin(),classes.end(),Class("",ucCode));
+    while(first_itr->get_ucCode() == ucCode) classes_ucCode.push_back(&(*(first_itr++)));
+    return classes_ucCode;
+}
+
+int LEIC::get_cap() {
+    return CAP;
+}
+
+void LEIC::set_cap(int cap) {
+    CAP = cap;
+}
+
+bool LEIC::exists_class(string ucCode, string classCode){
+    return binary_search(classes.begin(),classes.end(),Class(classCode,ucCode));
+}
+
+bool LEIC::exists_uc(std::string ucCode) {
+    return ucs.count(ucCode);
+}
+
+bool LEIC::uc_has_vacancy(std::string uccode) {
+    for (Class& c: classes) {
+        if (c.get_ucCode() == uccode){
+            if (c.get_students().size() < CAP) return true;
+        }
+    }
+    return false;
+}
+
+void LEIC::list_students_by_up() {
     cout << "UPNUMBER\tNAME\n------------------------------------\n";
     for(pair<string, Student> p : up_students){
         cout << p.first << " | " << p.second.get_name() << '\n';
     }
 }
 
-void LEIC::listStudentsByName(){
+void LEIC::list_students_by_name(){
     cout << "UPNUMBER\tNAME\n------------------------------------\n";
     map<string, string> students_up;
     for(pair<string, Student> p : up_students){
@@ -103,7 +148,7 @@ void LEIC::listStudentsByName(){
     }
 }
 
-void LEIC::listUCStudentsByUP(string uc) {
+void LEIC::list_uc_students_by_up(string uc) {
     cout << "Students of UC " << uc << endl;
     cout << "UPNUMBER\tNAME\n------------------------------------\n";
     for(Class c : classes){
@@ -114,7 +159,7 @@ void LEIC::listUCStudentsByUP(string uc) {
     }
 }
 
-void LEIC::listUCStudentsByName(std::string uc) {
+void LEIC::list_uc_students_by_name(std::string uc) {
     cout << "Students of UC " << uc << endl;
     cout << "UPNUMBER\tNAME\n------------------------------------\n";
     map<string, string> UCstudents_up;
@@ -126,18 +171,33 @@ void LEIC::listUCStudentsByName(std::string uc) {
     for (pair<string, string> p: UCstudents_up) cout << p.second << '\t' << p.first << '\n';
 }
 
-void LEIC::list_class_students_by_UP(Class* class_) const {
+void LEIC::list_class_students_by_up(Class* class_) const {
     cout << "Students of Class " << class_->get_classCode() << " of UC " << class_->get_ucCode() << endl;
     cout << "UPNUMBER\tNAME\n------------------------------------\n";
     for(string up : class_->get_students()) cout << up << " | " << up_students.at(up).get_name() << endl;
 }
 
-void LEIC::list_class_students_by_Name(Class *class_) const {
+void LEIC::list_class_students_by_name(Class *class_) const {
     cout << "Students of Class " << class_->get_classCode() << " of UC " << class_->get_ucCode() << endl;
     cout << "UPNUMBER\tNAME\n------------------------------------\n";
     map<string, string> UCstudents_up;
     for (string up: class_->get_students()) UCstudents_up[up_students.at(up).get_name()] = up;
     for (pair<string, string> p: UCstudents_up) cout << p.second << '\t' << p.first << '\n';
+}
+
+void LEIC::list_number_students_class() {
+    for (Class c: classes) {
+        int currentSize = c.get_students().size();
+        cout << c.get_classCode() << " " << c.get_ucCode() << " " << currentSize << endl;
+    }
+}
+
+int LEIC::students_in_n_ucs(int n){
+    int count = 0;
+    for (pair<string, Student> p: up_students) {
+        count += p.second.get_classes().size() >= n;
+    }
+    return count;
 }
 
 bool LEIC::class_balance_valid(Class newClass) {
@@ -150,12 +210,6 @@ bool LEIC::class_balance_valid(Class newClass) {
         }
     }
     return max-min <= 4;
-}
-
-Class* LEIC::get_class_from_classcode_and_uccode(std::string classcode, std::string uccode) {
-    if(!exists_class(uccode,classcode)) return nullptr;
-    auto first_itr = lower_bound(classes.begin(),classes.end(),Class(classcode,uccode));
-    return first_itr != classes.end() ? &(*first_itr) : nullptr;
 }
 
 bool LEIC::compatible_schedules(Student student, Class* newclass, Class* oldclass) {
@@ -177,11 +231,8 @@ bool LEIC::compatible_schedules(Student student, Class* newclass, Class* oldclas
     return true;
 }
 
-void LEIC::numberstudents_class() {
-    for (Class c: classes) {
-        int currentSize = c.get_students().size();
-        cout << c.get_classCode() << " " << c.get_ucCode() << " " << currentSize << endl;
-    }
+void LEIC::add_student(Student student) {
+    up_students.insert({student.get_student_up(), student});
 }
 
 void LEIC::add_student_to_class(Student* student, Class *newclass) {
@@ -194,13 +245,26 @@ void LEIC::remove_student_from_class(Student* student, Class *newclass) {
     student->remove_class_from_uc(newclass->get_ucCode());
 }
 
-bool LEIC::uc_has_vacancy(std::string uccode) {
-    for (Class& c: classes) {
-        if (c.get_ucCode() == uccode){
-            if (c.get_students().size() < CAP) return true;
-        }
+void LEIC::add_request_to_process(Request request) {
+    requests.push(request);
+}
+
+void LEIC::upload_requests() {
+    string line;
+    ifstream requestsFile("../requests.csv");
+    string StudentCode,Type,oldUcCode,newUcCode,oldClassCode,newClassCode;
+    while (getline(requestsFile, line)) {     // read all lines from the given file
+        istringstream iss(line);
+        getline(iss, StudentCode, ',');
+        getline(iss, Type, ',');
+        getline(iss, oldUcCode, ',');
+        getline(iss, newUcCode, ',');
+        getline(iss, oldClassCode, ',');
+        iss >> newClassCode;
+        requests.emplace(Type,!newClassCode.empty(),StudentCode,oldClassCode,newClassCode,oldUcCode,newUcCode);
     }
-    return false;
+    requestsFile.close();
+    process_requests();
 }
 
 bool LEIC::request_add(Request request) {
@@ -260,40 +324,6 @@ bool LEIC::request_switch(Request request) {
     return false;
 }
 
-void LEIC::process_requests() {
-    while (!requests.empty()) {
-        Request request = requests.front();
-        requests.pop();
-        switch (request.get_type()[0]) {
-            case 'A': {
-                request_add(request);
-                break;
-            }
-            case 'R': {
-                request_remove(request);
-                break;
-            }
-            case 'S': {
-                request_switch(request);
-                break;
-            }
-        }
-    }
-
-}
-
-bool LEIC::exists_class(string ucCode, string classCode){
-    return binary_search(classes.begin(),classes.end(),Class(classCode,ucCode));
-}
-
-vector<Class*> LEIC::get_classes_from_uccode(string ucCode) {
-    vector<Class*> classes_ucCode;
-    if(!exists_uc(ucCode)) return classes_ucCode;
-    auto first_itr = lower_bound(classes.begin(),classes.end(),Class("",ucCode));
-    while(first_itr->get_ucCode() == ucCode) classes_ucCode.push_back(&(*(first_itr++)));
-    return classes_ucCode;
-}
-
 bool LEIC::undo_request() {
     if(processed_requests.empty()) return false;
     Request thisrequest = processed_requests.top();
@@ -322,18 +352,26 @@ bool LEIC::undo_request() {
     return res;
 }
 
-std::set<std::string> LEIC::get_classcodes() const {
-    set<string> classcodes;
-    for(Class c: classes) classcodes.insert(c.get_classCode());
-    return classcodes;
-}
+void LEIC::process_requests() {
+    while (!requests.empty()) {
+        Request request = requests.front();
+        requests.pop();
+        switch (request.get_type()[0]) {
+            case 'A': {
+                request_add(request);
+                break;
+            }
+            case 'R': {
+                request_remove(request);
+                break;
+            }
+            case 'S': {
+                request_switch(request);
+                break;
+            }
+        }
+    }
 
-void LEIC::set_cap(int cap) {
-    CAP = cap;
-}
-
-int LEIC::get_cap() {
-    return CAP;
 }
 
 void LEIC::save_to_files() {
@@ -362,44 +400,3 @@ void LEIC::save_to_files() {
     students_classesSaveFile.close();
     accepted_requests.close();
 }
-
-void LEIC::add_student(Student student) {
-    up_students.insert({student.get_student_up(), student});
-}
-
-void LEIC::add_request_to_process(Request request) {
-    requests.push(request);
-}
-
-int LEIC::students_in_nUcs(int n){
-    int count = 0;
-    for (pair<string, Student> p: up_students) {
-        count += p.second.get_classes().size() >= n;
-    }
-    return count;
-}
-
-void LEIC::upload_requests() {
-    string line;
-    ifstream requestsFile("../requests.csv");
-    string StudentCode,Type,oldUcCode,newUcCode,oldClassCode,newClassCode;
-    while (getline(requestsFile, line)) {     // read all lines from the given file
-        istringstream iss(line);
-        getline(iss, StudentCode, ',');
-        getline(iss, Type, ',');
-        getline(iss, oldUcCode, ',');
-        getline(iss, newUcCode, ',');
-        getline(iss, oldClassCode, ',');
-        iss >> newClassCode;
-        requests.emplace(Type,!newClassCode.empty(),StudentCode,oldClassCode,newClassCode,oldUcCode,newUcCode);
-    }
-    requestsFile.close();
-    process_requests();
-}
-
-bool LEIC::exists_uc(std::string ucCode) {
-    return ucs.count(ucCode);
-}
-
-
-

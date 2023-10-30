@@ -44,10 +44,25 @@ public:
      */
     std::list<Class*> get_classes();
     /**
+     * \brief Gets the enrolled class code of the given UC.
+     *
+     * @param uccode The UC of the class.
+     * @return The class code of the given UC.
+     */
+    Class* get_class_from_uc(std::string uccode);
+    /**
+     * \brief Checks if the student is enrolled in the given UC.
+     *
+     * @param uccode The code of the UC to check.
+     * @return True if the student is enrolled in the given UC.
+     */
+    bool has_uc(std::string uccode);
+    /**
      * \brief Adds a new enrolled class.
      *
      * @param c The new enrolled class to add.
      */
+
     void add_class(Class* c);
     /**
      * \brief Removes an enrolled class based on the UC.
@@ -59,20 +74,6 @@ public:
      * \brief Prints the student's schedule.
      */
     void print_schedule();
-    /**
-     * \brief Checks if the student is enrolled in the given UC.
-     *
-     * @param uccode The code of the UC to check.
-     * @return True if the student is enrolled in the given UC.
-     */
-    bool has_uc(std::string uccode);
-    /**
-     * \brief Gets the enrolled class code of the given UC.
-     *
-     * @param uccode The UC of the class.
-     * @return The class code of the given UC.
-     */
-    Class* get_class_from_uc(std::string uccode);
 };
 
 #endif //PROJECTAED_STUDENT_H

@@ -31,6 +31,14 @@ bool Lesson::overlap(Lesson oldlesson) const {
                                                   min(endTime.get_timefloat(), oldlesson.endTime.get_timefloat()));
 }
 
+void Lesson::print_lesson() const {
+    cout << setw(2) << setfill('0') << startTime.get_hour() << ":"
+         << setw(2) << setfill('0') << startTime.get_minute()
+         << " - " << setw(2) << setfill('0') << endTime.get_hour() << ":"
+         << setw(2) << setfill('0') << endTime.get_minute()
+         << "\t" << setw(2) << setfill(' ') << type << " " << Class << endl;
+}
+
 bool Lesson::operator<(const Lesson &l) const{
     map<string, int> weekday_to_int = {{"Monday", 1},
                                        {"Tuesday", 2},
@@ -38,12 +46,4 @@ bool Lesson::operator<(const Lesson &l) const{
                                        {"Thursday", 4},
                                        {"Friday", 5}};
     return (weekday_to_int[this->weekday] < weekday_to_int[l.weekday]) || (weekday_to_int[this->weekday] <= weekday_to_int[l.weekday] && this->startTime < l.startTime);
-}
-
-void Lesson::print_lesson() const {
-    cout << setw(2) << setfill('0') << startTime.get_hour() << ":"
-         << setw(2) << setfill('0') << startTime.get_minute()
-         << " - " << setw(2) << setfill('0') << endTime.get_hour() << ":"
-         << setw(2) << setfill('0') << endTime.get_minute()
-         << "\t" << setw(2) << setfill(' ') << type << " " << Class << endl;
 }
