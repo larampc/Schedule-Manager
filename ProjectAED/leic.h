@@ -36,7 +36,7 @@ public:
      * @param filenamestudents The file name and location for the Students file.
      * @param save_file Whether to read the modified files or the original files, True or False.
      */
-    LEIC(std::string filenameclasses, std::string filenamestudents, bool save_file); //ler ficheiros e guardar info
+    LEIC(std::string filenameclasses, std::string filenamestudents, bool save_file);
     /**
     * \brief Gets the Student with the given up.
     *
@@ -225,6 +225,10 @@ public:
      * \brief Uploads all the Request in the requests.csv file to the queue and runs them.
      */
     void upload_requests();
+
+    bool exists_class(std::string ucCode, std::string classCode);
+
+    bool exists_uc(std::string ucCode);
 };
 
 #endif
