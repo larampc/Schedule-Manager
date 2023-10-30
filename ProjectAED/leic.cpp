@@ -348,7 +348,7 @@ bool LEIC::undo_request() {
             return valid;
         }
         case 'R': {
-            Request newrequest = Request("ADD", false, thisrequest.get_studentCode(), "", "",  "", thisrequest.get_new_UcCode());
+            Request newrequest = Request("ADD", true, thisrequest.get_studentCode(), "", thisrequest.get_current_classCode(),  "", thisrequest.get_current_UcCode());
             valid = request_add(newrequest);
             if (valid) {
                 cout << "Student " << newrequest.get_studentCode() << " is now in the class " << newrequest.get_new_classCode() << " in the UC " << newrequest.get_new_UcCode() << endl;
