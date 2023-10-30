@@ -339,15 +339,9 @@ void Script::listSchedules(){
             }
 
             vector<Class> classCodeClasses;
-
-            auto first_itr = lower_bound(data.get_classes().begin(),data.get_classes().end(),Class("",class_));
+            vector <Class> classes = data.get_classes();
+            auto first_itr = lower_bound(classes.begin(),classes.end(),Class("",class_));
             while(first_itr->get_classCode() == class_) classCodeClasses.push_back(*(first_itr++));
-//
-//            for(Class c : data.get_classes()){
-//                if(c.get_classCode() == class_){
-//                    classCodeClasses.push_back(c);
-//                }
-//            }
             set<Lesson> classLessons;
             for(Class c : classCodeClasses){
                 set<Lesson> lessons = c.get_lessons();
