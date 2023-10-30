@@ -226,17 +226,19 @@ public:
      */
     void upload_requests();
     /**
-     * \brief Checks if a given class exists.
+     * \brief Checks using binary search if a Class with the given Class code and UC code exists.
      *
-     * @param ucCode The code of the UC.
-     * @param classCode The code of  the class.
+     * @param ucCode The UC code of the Class to check.
+     * @param classCode The Class code of the Class to check.
+     * @return True if a Class with the given Class code and UC code exists.
      */
     bool exists_class(std::string ucCode, std::string classCode);
     /**
-     * \brief Checks if a given UC exists.
-     *
-     * @param ucCode The code of the UC.
-     */
+    * \brief Checks if a UC with the given UC code exists.
+    *
+    * @param ucCode The UC code of the UC to check.
+    * @return True if a UC with the given UC code exists.
+    */
     bool exists_uc(std::string ucCode);
 };
 
