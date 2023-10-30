@@ -225,9 +225,20 @@ public:
      * \brief Uploads all the Request in the requests.csv file to the queue and runs them.
      */
     void upload_requests();
-
+    /**
+     * \brief Checks using binary search if a Class with the given Class code and UC code exists.
+     *
+     * @param ucCode The UC code of the Class to check.
+     * @param classCode The Class code of the Class to check.
+     * @return True if a Class with the given Class code and UC code exists.
+     */
     bool exists_class(std::string ucCode, std::string classCode);
-
+    /**
+     * \brief Checks if a UC with the given UC code exists.
+     *
+     * @param ucCode The UC code of the UC to check.
+     * @return True if a UC with the given UC code exists.
+     */
     bool exists_uc(std::string ucCode);
 };
 
