@@ -71,6 +71,7 @@ LEIC::LEIC(std::string filenameclasses, std::string filenamestudents, bool save_
         }
         requestsFile.close();
     }
+    auto v = get_class_from_classcode_and_uccode()
 }
 
 Student* LEIC::get_student_from_up(std::string up) {
@@ -153,6 +154,7 @@ bool LEIC::class_balance_valid(Class newClass) {
 }
 
 Class* LEIC::get_class_from_classcode_and_uccode(std::string classcode, std::string uccode) {
+    if(!exists_class(uccode,classcode)) return nullptr;
     auto first_itr = lower_bound(classes.begin(),classes.end(),Class(classcode,uccode));
     return first_itr != classes.end() ? &(*first_itr) : nullptr;
 }
@@ -281,10 +283,15 @@ void LEIC::process_requests() {
 
 }
 
+bool LEIC::exists_class(string ucCode, string classCode){
+    return binary_search(classes.begin(),classes.end(),Class(classCode,ucCode));
+}
+
 vector<Class*> LEIC::get_classes_from_uccode(string ucCode) {
     vector<Class*> classes_ucCode;
+    if(!exists_uc(ucCode)) return classes_ucCode;
     auto first_itr = lower_bound(classes.begin(),classes.end(),Class("",ucCode));
-    while(first_itr->get_ucCode() == ucCode ) classes_ucCode.push_back(&(*(first_itr++)));
+    while(first_itr->get_ucCode() == ucCode) classes_ucCode.push_back(&(*(first_itr++)));
     return classes_ucCode;
 }
 
@@ -389,6 +396,10 @@ void LEIC::upload_requests() {
     }
     requestsFile.close();
     process_requests();
+}
+
+bool LEIC::exists_uc(std::string ucCode) {
+    return ucs.count(ucCode);
 }
 
 

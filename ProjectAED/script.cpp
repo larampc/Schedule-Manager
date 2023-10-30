@@ -140,7 +140,7 @@ void Script::request(){
             if (answer=="Y") {
                 cout << "CLASS:\n";
                 cin >> new_class;
-                while(!data.get_classcodes().count(new_class)) {
+                while(!data.exists_class(new_uc,new_class)) {
                     invalid();
                     cin >> new_class;
                 }
@@ -151,7 +151,7 @@ void Script::request(){
             type = "REMOVE";
             cout << "UC:\n";
             cin >> current_uc;
-            while(!data.get_ucs().count(current_uc) || !data.get_student_from_up(student_up)->has_uc(current_uc)) {
+            while(!data.exists_uc(current_uc) || !data.get_student_from_up(student_up)->has_uc(current_uc)) {
                 invalid();
                 cin >> current_uc;
             }
@@ -164,14 +164,14 @@ void Script::request(){
             if (uc_or_class == "CLASS") {
                 cout << "UC:\n";
                 cin >> current_uc;
-                while(!data.get_ucs().count(current_uc) && data.get_student_from_up(student_up)->has_uc(current_uc)) {
+                while(!data.exists_uc(current_uc) && data.get_student_from_up(student_up)->has_uc(current_uc)) {
                     invalid();
                     cin >> current_uc;
                 }
                 new_uc = current_uc;
                 cout << "NEW CLASS:\n";
                 cin >> new_class;
-                while(!data.get_classcodes().count(new_class)) {
+                while(!data.exists_class(current_uc,new_class)) {
                     invalid();
                     cin >> new_class;
                 }
@@ -179,13 +179,13 @@ void Script::request(){
             else {
                 cout << "CURRENT UC:\n";
                 cin >> current_uc;
-                while(!data.get_ucs().count(current_uc) && data.get_student_from_up(student_up)->has_uc(current_uc)) {
+                while(!data.exists_uc(current_uc) && data.get_student_from_up(student_up)->has_uc(current_uc)) {
                     invalid();
                     cin >> current_uc;
                 }
                 cout << "NEW UC:\n";
                 cin >> new_uc;
-                while(!data.get_ucs().count(new_uc)) {
+                while(!data.exists_uc(new_uc)) {
                     invalid();
                     cin >> new_uc;
                 }
@@ -199,7 +199,7 @@ void Script::request(){
                 if (answer=="Y") {
                     cout << "CLASS:\n";
                     cin >> new_class;
-                    while(!data.get_classcodes().count(new_class)) {
+                    while(!data.exists_class(new_uc,new_class)) {
                         invalid();
                         cin >> new_class;
                     }
@@ -242,7 +242,7 @@ void Script::new_registration() {
     for (int i = 0; i < stoi(number_ucs); i++) {
         cout << "UC:";
         cin >> new_uc;
-        while(!data.get_ucs().count(new_uc) || data.get_student_from_up(new_up)->has_uc(new_uc)) {
+        while(!data.exists_uc(new_uc) || data.get_student_from_up(new_up)->has_uc(new_uc)) {
             invalid();
             cin >> new_uc;
         }
@@ -256,7 +256,7 @@ void Script::new_registration() {
         if (answer=="Y") {
             cout << "CLASS:\n";
             cin >> new_class;
-            while(!data.get_classcodes().count(new_class) || data.get_class_from_classcode_and_uccode(new_class, new_uc)== nullptr) {
+            while(!data.exists_class(new_uc,new_class)) {
                 invalid();
                 cin >> new_class;
             }
@@ -340,16 +340,21 @@ void Script::listSchedules(){
             cout << "Enter Class: ";
             string class_;
             cin >> class_;
-            while(!data.get_classcodes().count(class_)) {
+            while(!data.get_classcodes().count(class_)) {    //mudar para exists classcode???????
                 invalid();
                 cin >> class_;
             }
+
             vector<Class> classCodeClasses;
-            for(Class c : data.get_classes()){
-                if(c.get_classCode() == class_){
-                    classCodeClasses.push_back(c);
-                }
-            }
+
+            auto first_itr = lower_bound(data.get_classes().begin(),data.get_classes().end(),Class("",class_));
+            while(first_itr->get_classCode() == class_) classCodeClasses.push_back(*(first_itr++));
+//
+//            for(Class c : data.get_classes()){
+//                if(c.get_classCode() == class_){
+//                    classCodeClasses.push_back(c);
+//                }
+//            }
             set<Lesson> classLessons;
             for(Class c : classCodeClasses){
                 set<Lesson> lessons = c.get_lessons();
@@ -426,7 +431,7 @@ void Script::listStudents() {
         case '2': {
             cout << "Enter UC to check: ";
             string UC; cin >> UC;
-            while(!data.get_ucs().count(UC)) {
+            while(!data.exists_uc(UC)) {
                 invalid();
                 cin >> UC;
             }
@@ -443,13 +448,13 @@ void Script::listStudents() {
         case '3': {
             cout << "Enter UC of Class to check:";
             string UC; cin >> UC;
-            while(!data.get_ucs().count(UC)) {
+            while(!data.exists_uc(UC)) {
                 invalid();
                 cin >> UC;
             }
             cout << "Enter Class to check:";
             string class_; cin >> class_;
-            while(data.get_class_from_classcode_and_uccode(class_,UC) == nullptr) {
+            while(!data.exists_class(class_,UC)) {
                 invalid();
                 cin >> class_;
             }
