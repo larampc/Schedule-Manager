@@ -124,15 +124,20 @@ void Script::request(){
     switch (option[0]) {
         case '1': {
             type = "ADD";
-            cout << "Pick: UC / CLASS\n";
-            cin >> uc_or_class; while(uc_or_class != "UC" && uc_or_class != "CLASS") {invalid(); cin >> uc_or_class;}
             cout << "UC:\n";
             cin >> new_uc;
             while(!data.get_ucs().count(new_uc)) {
                 invalid();
                 cin >> new_uc;
             }
-            if (uc_or_class == "CLASS") {
+            cout << "Do you want to join a specific class? [Y/N]\n";
+            string answer;
+            cin >> answer;
+            while(answer != "Y" && answer != "N") {
+                invalid();
+                cin >> answer;
+            }
+            if (answer=="Y") {
                 cout << "CLASS:\n";
                 cin >> new_class;
                 while(!data.get_classcodes().count(new_class)) {
@@ -154,50 +159,31 @@ void Script::request(){
         }
         case '3': {
             type = "SWITCH";
-            cout << "Pick: UC / CLASS\n";
-            cin >> uc_or_class; while(uc_or_class != "UC" && uc_or_class != "CLASS") {invalid(); cin >> uc_or_class;}
-            if (uc_or_class == "CLASS") {
-                cout << "UC:\n";
+            cout << "CURRENT UC:\n";
+            cin >> current_uc;
+            while(!data.get_ucs().count(current_uc) && data.get_student_from_up(student_up)->has_uc(current_uc)) {
+                invalid();
                 cin >> current_uc;
-                while(!data.get_ucs().count(current_uc) && data.get_student_from_up(student_up)->has_uc(current_uc)) {
-                    invalid();
-                    cin >> current_uc;
-                }
-                new_uc = current_uc;
-                cout << "NEW CLASS:\n";
+            }
+            cout << "NEW UC:\n";
+            cin >> new_uc;
+            while(!data.get_ucs().count(new_uc)) {
+                invalid();
+                cin >> new_uc;
+            }
+            cout << "Do you want to join a specific class? [Y/N]\n";
+            string answer;
+            cin >> answer;
+            while(answer != "Y" && answer != "N") {
+                invalid();
+                cin >> answer;
+            }
+            if (answer=="Y") {
+                cout << "CLASS:\n";
                 cin >> new_class;
                 while(!data.get_classcodes().count(new_class)) {
                     invalid();
                     cin >> new_class;
-                }
-            }
-            else {
-                cout << "CURRENT UC:\n";
-                cin >> current_uc;
-                while(!data.get_ucs().count(current_uc) && data.get_student_from_up(student_up)->has_uc(current_uc)) {
-                    invalid();
-                    cin >> current_uc;
-                }
-                cout << "NEW UC:\n";
-                cin >> new_uc;
-                while(!data.get_ucs().count(new_uc)) {
-                    invalid();
-                    cin >> new_uc;
-                }
-                cout << "Do you want to join a specific class? [Y/N]\n";
-                string answer;
-                cin >> answer;
-                while(answer != "Y" && answer != "N") {
-                    invalid();
-                    cin >> answer;
-                }
-                if (answer=="Y") {
-                    cout << "CLASS:\n";
-                    cin >> new_class;
-                    while(!data.get_classcodes().count(new_class)) {
-                        invalid();
-                        cin >> new_class;
-                    }
                 }
             }
             break;
