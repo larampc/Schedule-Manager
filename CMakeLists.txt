@@ -40,4 +40,6 @@ add_executable(AEDProject main.cpp
         ProjectAED/script.h
         ProjectAED/request.cpp
         ProjectAED/request.h
+        ProjectAED/color_print.cpp
+        ProjectAED/color_print.h
 )
