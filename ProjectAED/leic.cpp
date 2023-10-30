@@ -233,7 +233,7 @@ bool LEIC::request_add(Request request) {
 
 bool LEIC::request_remove(Request request) {
     Student* student = get_student_from_up(request.get_student_up());
-    Class* currentClass = get_class_from_classcode_and_uccode(student->get_class_from_uc(request.get_current_uc()), request.get_current_uc());
+    Class* currentClass = student->get_class_from_uc(request.get_current_uc());
     string currentclass = currentClass->get_classCode();
     string currentUc = request.get_current_uc();
     remove_student_from_class(student, currentClass);

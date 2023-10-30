@@ -72,7 +72,7 @@ public:
      * @param uccode The UC of the class.
      * @return The class code of the given UC.
      */
-    std::string get_class_from_uc(std::string uccode);
+    Class* get_class_from_uc(std::string uccode);
 };
 
 #endif //PROJECTAED_STUDENT_H

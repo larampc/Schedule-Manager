@@ -17,16 +17,23 @@ list<Class*> Student::get_classes() {
   return classes;  
 }
 
+Class* Student::get_class_from_uc(std::string uccode) {
+    for (Class* c: classes) {
+        if (c->get_ucCode() == uccode) return c;
+    }
+    return nullptr;
+}
+
+bool Student::has_uc(std::string uccode) {
+    return get_class_from_uc(uccode) != nullptr;
+}
+
 void Student::add_class(Class* c) {
   classes.push_back(c);
 }
 
 void Student::remove_class_from_uc(string uccode) {
-    Class* to_remove = nullptr;
-    for(Class* c: classes) {
-        if (c->get_ucCode()==uccode) to_remove = c;
-    }
-    classes.remove(to_remove);
+    classes.remove(get_class_from_uc(uccode));
 }
 
 void Student::print_schedule() {
@@ -54,18 +61,4 @@ void Student::print_schedule() {
     }
 }
 
-bool Student::has_uc(std::string uccode) {
-    for (Class *c: classes) {
-        if (c->get_ucCode() == uccode){
-            return true;
-        }
-    }
-    return false;
-}
 
-std::string Student::get_class_from_uc(std::string uccode) {
-    for (Class* c: classes) {
-        if (c->get_ucCode() == uccode) return c->get_classCode();
-    }
-    return "Not Found";
-}
