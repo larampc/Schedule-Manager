@@ -6,8 +6,9 @@ using namespace std;
 void invalid(){ cout << "Invalid Input, please try again\n"; }
 
 bool is_number(string s) {
-    for (char c: s) if (!isdigit(c)) return false;
-    return true;
+    //for (char c: s) if (!isdigit(c)) return false;
+    return all_of(s.begin(),s.end(),  [] (char c){return isdigit(c);});
+   // return true;
 }
 
 Script::Script(bool save_file) : data(LEIC("../classes.csv", save_file ? "../students_classes_save.csv" : "../students_classes.csv" , save_file)){}

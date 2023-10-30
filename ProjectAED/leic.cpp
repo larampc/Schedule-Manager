@@ -71,7 +71,6 @@ LEIC::LEIC(std::string filenameclasses, std::string filenamestudents, bool save_
         }
         requestsFile.close();
     }
-    auto v = get_class_from_classcode_and_uccode()
 }
 
 Student* LEIC::get_student_from_up(std::string up) {
