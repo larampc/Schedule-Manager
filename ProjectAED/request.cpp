@@ -1,8 +1,8 @@
 #include "request.h"
 using namespace std;
 
-Request::Request(std::string type, bool uc_class, std::string student_up, std::string current_class, std::string new_class,
-                 std::string current_uc, std::string new_uc): type(type), uc_class(uc_class), student_up(student_up), current_class(current_class), new_class(new_class), current_uc(current_uc), new_uc(new_uc) {}
+Request::Request(std::string type, bool uc_class, std::string student_up, std::string current_classCode, std::string new_classCode,
+                 std::string current_UcCode, std::string new_uc): type(type), uc_class(uc_class), studentCode(studentCode), current_classCode(current_classCode), new_classCode(new_classCode), current_UcCode(current_UcCode), new_UcCode(new_uc) {}
 
 std::string Request::get_type() {
     return type;
@@ -12,24 +12,24 @@ bool Request::get_uc_class() {
     return uc_class;
 }
 
-std::string Request::get_student_up() {
-    return student_up;
+std::string Request::get_studentCode() {
+    return studentCode;
 }
 
-std::string Request::get_current_class() {
-    return current_class;
+std::string Request::get_current_classCode() {
+    return current_classCode;
 }
 
-std::string Request::get_new_class() {
-    return new_class;
+std::string Request::get_new_classCode() {
+    return new_classCode;
 }
 
-std::string Request::get_current_uc() {
-    return current_uc;
+std::string Request::get_current_UcCode() {
+    return current_UcCode;
 }
 
-std::string Request::get_new_uc() {
-    return new_uc;
+std::string Request::get_new_UcCode() {
+    return new_UcCode;
 }
 
 void Request::set_type(string type) {
@@ -37,9 +37,9 @@ void Request::set_type(string type) {
 }
 
 void Request::set_new_class(std::string new_class) {
-    this->new_class = new_class;
+    this->new_classCode = new_class;
 }
 
 void Request::set_current_class(std::string current_class) {
-    this->current_class = current_class;
+    this->current_classCode = current_class;
 }

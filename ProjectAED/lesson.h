@@ -20,19 +20,19 @@ public:
     /**
      * \brief Creates a new Lesson.
      *
-     * @param thisclass Parent Class code.
+     * @param classCode Parent Class code.
      * @param weekday Weekday of the Lesson.
-     * @param starttime Start time of the Lesson.
-     * @param endtime End time of the Lesson.
+     * @param startTime Start time of the Lesson.
+     * @param endTime End time of the Lesson.
      * @param type Type of the lesson, (T, TP or PL).
      */
-    Lesson(std::string thisclass, std::string weekday, Time starttime, Time endtime, std::string type);
+    Lesson(std::string classCode, std::string weekday, Time startTime, Time endTime, std::string type);
     /**
      * \brief Gets the parent Class of the Lesson.
      *
      * @return The parent Class of the Lesson.
      */
-    std::string get_thisclass();
+    std::string get_classCode();
     /**
      * \brief Gets the weekday of the Lesson.
      *
@@ -50,20 +50,20 @@ public:
      *
      * @return The start time of the Lesson.
      */
-    Time get_starttime() const;
+    Time get_start_time() const;
     /**
      * \brief Gets the end time of the Lesson.
      *
      * @return The end time of the Lesson.
      */
-    Time get_endtime() const;
+    Time get_end_time() const;
     /**
      * \brief Checks if a Lesson overlaps in time.
      *
-     * @param oldlesson The Lesson to check.
+     * @param l The Lesson to check.
      * @return True if the Lesson overlaps in time.
      */
-    bool overlap(Lesson oldlesson) const;
+    bool overlap(Lesson l) const;
     /**
      * \brief Prints the Lesson.
      */

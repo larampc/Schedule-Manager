@@ -13,16 +13,16 @@ class Class {
 private:
     std::string classCode;
     std::string ucCode; 
-    std::set<Lesson> lessons; //unir sets de lessons para formar horário
+    std::set<Lesson> lessons;
     std::set<std::string> students_up;
 public:
     /**
      * \brief Creates a new Class.
      *
-     * @param classcode The Class's class code.
-     * @param uccode The Class's UC code.
+     * @param classCode The Class's class code.
+     * @param ucCode The Class's UC code.
      */
-    Class(std::string classcode, std::string uccode);
+    Class(std::string classCode, std::string ucCode);
     /**
      * \brief Gets the class code of the Class.
      *
@@ -56,15 +56,15 @@ public:
     /**
      * \brief Adds a new Student to the Class.
      *
-     * @param student_up The new Student to add.
+     * @param studentCode The new Student to add.
      */
-    void add_student(std::string student_up);
+    void add_student(std::string studentCode);
     /**
      * \brief Removes a Student from the Class.
      *
-     * @param student_up The Student to be removed.
+     * @param studentCode The Student to be removed.
      */
-    void remove_student(std::string student_up);
+    void remove_student(std::string studentCode);
     /**
      * \brief Equal operator for Class comparison.
      *

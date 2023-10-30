@@ -16,14 +16,14 @@
  * \class LEIC
  * \brief This is a class for the course LEIC.
  *
- * This class keeps track of all of LEIC's Classe, UC's, all Student and respective changes.
+ * This class keeps track of all of LEIC's Classes, UC's, Students and respective changes.
  */
 class LEIC {
 private:
   std::vector<Class> classes;
   std::set<std::string> ucs;
   std::map<std::string, Student> up_students;
-  std::queue<Request> requests; //pedidos para serem tratados class request?
+  std::queue<Request> requests; //pedidos para serem tratados
   std::stack<Request> processed_requests; //últimos pedidos
   int CAP = 30;
 public:
@@ -43,7 +43,7 @@ public:
     * @param up The up of the Student to get.
     * @return Reference to the Student with the given up.
     */
-    Student* get_student_from_up(std::string up);
+    Student* get_student_from_studentCode(std::string studentCode);
     /**
     * \brief Gets all existing Class in LEIC.
     *
@@ -56,13 +56,13 @@ public:
     * @return The UC codes of all existing UC.
     */
 
-    std::set<std::string> get_ucs() const;
+    std::set<std::string> get_UcCodes() const;
     /**
     * \brief Gets the Class codes of all existing Class.
     *
     * @return The Class codes of all existing Class.
     */
-    std::set<std::string> get_classcodes() const;
+    std::set<std::string> get_classCodes() const;
     /**
      * \brief Gets the Class with the given Class code and UC code.
      *
@@ -70,14 +70,14 @@ public:
      * @param uccode The UC code of the Class to get.
      * @return Reference to the Class with the given Class code and UC code.
      */
-    Class* get_class_from_classcode_and_uccode(std::string classcode, std::string uccode);
+    Class* get_class_from_classCode_and_UcCode(std::string classcode, std::string uccode);
     /**
      * \brief Gets all Class with the given UC code.
      *
      * @param uccode The UC code of all Class to get.
      * @return References of all Class with the given UC code.
      */
-    std::vector<Class*> get_classes_from_uccode(std::string uccode);
+    std::vector<Class*> get_classes_from_UcCode(std::string uccode);
     /**
     * \brief Gets the Cap, the max number of Student that can be in a Class.
     *
@@ -104,18 +104,18 @@ public:
     * @param ucCode The UC code of the UC to check.
     * @return True if a UC with the given UC code exists.
     */
-    bool exists_uc(std::string ucCode);
+    bool exists_Uc(std::string ucCode);
     /**
      * \brief Checks if any Class with the given UC code has less Student than the Cap.
      *
      * @param uccode The UC code of the UC to check.
      * @return True if any Class with the given UC code has less Student than the Cap.
      */
-    bool uc_has_vacancy(std::string uccode);
+    bool Uc_has_vacancy(std::string uccode);
     /**
     * \brief Prints all of the Student enrolled in the course sorted by their up.
     */
-    void list_students_by_up();
+    void list_students_by_studentCode();
     /**
     * \brief Prints all of the Student enrolled in the course sorted by their name.
     */
@@ -125,19 +125,19 @@ public:
      *
      * @param uc The UC code of the UC to print all Student.
      */
-    void list_uc_students_by_up(std::string uc);
+    void list_UC_students_by_studentCode(std::string UcCode);
     /**
      * \brief Prints all of the Student enrolled in the given UC sorted by their name.
      *
      * @param uc The UC code of the UC to print all Student.
      */
-    void list_uc_students_by_name(std::string uc);
+    void list_UC_students_by_name(std::string UcCode);
     /**
      * \brief Prints all of the Student enrolled in the given Class sorted by their up.
      *
      * @param class_ The Class to print all Student.
      */
-    void list_class_students_by_up(Class* class_) const;
+    void list_class_students_by_studentCode(Class* class_) const;
     /**
      * \brief Prints all of the Student enrolled in the given Class sorted by their name.
      *
@@ -154,7 +154,7 @@ public:
      * @param n The number of UCs to check.
      * @return The number of Student with at least the given number of UCs.
      */
-    int students_in_n_ucs(int n);
+    int students_in_n_Ucs(int n);
     /**
      * \brief Checks if by inserting a Student into a Class, the Class Balance is valid.
      *

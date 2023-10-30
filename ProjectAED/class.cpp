@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-Class::Class(std::string classcode, std::string uccode): classCode(classcode), ucCode(uccode), students_up(set<string>()), lessons(set<Lesson>()) {}
+Class::Class(std::string classCode, std::string ucCode): classCode(classCode), ucCode(ucCode), students_up(set<string>()), lessons(set<Lesson>()) {}
 
 string Class::get_classCode(){
     return classCode;
@@ -24,12 +24,12 @@ void Class::add_lesson(Lesson l){
     lessons.insert(l);
 }
 
-void Class::add_student(std::string student_up) {
-    students_up.insert(student_up);
+void Class::add_student(std::string studentCode) {
+    students_up.insert(studentCode);
 }
 
-void Class::remove_student(std::string student_up) {
-    students_up.erase(student_up);
+void Class::remove_student(std::string studentCode) {
+    students_up.erase(studentCode);
 }
 
 bool Class::operator== (const Class& c) const{

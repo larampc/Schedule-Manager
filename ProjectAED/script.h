@@ -78,6 +78,10 @@ public:
      * \brief Outputs the instructions to upload a request file and runs it if user chooses to.
      */
     void request_file();
+
+    void occupations();
+
+    void list_year_occupations();
 };
 
 

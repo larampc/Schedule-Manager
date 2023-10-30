@@ -9,7 +9,7 @@
  class Time {
 private:
     int hour, minute;
-    float timefloat;
+    float timeFloat;
 public:
      /**
       * \brief Creates a new Time from a string.
@@ -40,7 +40,7 @@ public:
      *
      * @return The Time in float format.
      */
-    float get_timefloat() const;
+    float get_time_in_float() const;
     /**
      * \brief Less than operator for Time comparison.
      *

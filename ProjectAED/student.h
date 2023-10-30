@@ -22,9 +22,9 @@ public:
      * \brief Creates a new student.
      *
      * @param name The student's name.
-     * @param studentup The student's up.
+     * @param studentCode The student's code.
      */
-    Student(std::string name, std::string studentup);
+    Student(std::string name, std::string studentCode);
     /**
      * \brief Gets student's name.
      *
@@ -32,11 +32,11 @@ public:
      */
     std::string get_name() const;
     /**
-     * \brief Gets student's up.
+     * \brief Gets student's code.
      *
-     * @return The student's up.
+     * @return The student's code.
      */
-    std::string get_student_up() const;
+    std::string get_studentCode() const;
     /**
      * \brief Gets student's enrolled classes.
      *
@@ -46,17 +46,17 @@ public:
     /**
      * \brief Gets the enrolled class code of the given UC.
      *
-     * @param uccode The UC of the class.
+     * @param ucCode The UC of the class.
      * @return The class code of the given UC.
      */
-    Class* get_class_from_uc(std::string uccode);
+    Class* get_class_from_uc(std::string ucCode);
     /**
      * \brief Checks if the student is enrolled in the given UC.
      *
-     * @param uccode The code of the UC to check.
+     * @param ucCode The code of the UC to check.
      * @return True if the student is enrolled in the given UC.
      */
-    bool has_uc(std::string uccode);
+    bool has_uc(std::string ucCode);
     /**
      * \brief Adds a new enrolled class.
      *
@@ -67,9 +67,9 @@ public:
     /**
      * \brief Removes an enrolled class based on the UC.
      *
-     * @param uccode The UC of the enrolled class to remove.
+     * @param ucCode The UC of the enrolled class to remove.
      */
-    void remove_class_from_uc(std::string uccode); //faz sentido ser pointers?
+    void remove_class_from_uc(std::string ucCode); //faz sentido ser pointers?
     /**
      * \brief Prints the student's schedule.
      */

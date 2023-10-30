@@ -75,33 +75,33 @@ LEIC::LEIC(std::string filenameclasses, std::string filenamestudents, bool save_
     }
 }
 
-Student* LEIC::get_student_from_up(std::string up) {
-    return (up_students.find(up) == up_students.end()) ? nullptr : &up_students.at(up);
+Student* LEIC::get_student_from_studentCode(std::string studentCode) {
+    return (up_students.find(studentCode) == up_students.end()) ? nullptr : &up_students.at(studentCode);
 }
 
 vector<Class> LEIC::get_classes() const {
     return classes;
 }
 
-std::set<std::string> LEIC::get_ucs() const {
+std::set<std::string> LEIC::get_UcCodes() const {
     return ucs;
 }
 
-std::set<std::string> LEIC::get_classcodes() const {
+std::set<std::string> LEIC::get_classCodes() const {
     set<string> classcodes;
     for(Class c: classes) classcodes.insert(c.get_classCode());
     return classcodes;
 }
 
-Class* LEIC::get_class_from_classcode_and_uccode(std::string classcode, std::string uccode) {
+Class* LEIC::get_class_from_classCode_and_UcCode(std::string classcode, std::string uccode) {
     if(!exists_class(uccode,classcode)) return nullptr;
     auto first_itr = lower_bound(classes.begin(),classes.end(),Class(classcode,uccode));
     return first_itr != classes.end() ? &(*first_itr) : nullptr;
 }
 
-vector<Class*> LEIC::get_classes_from_uccode(string ucCode) {
+vector<Class*> LEIC::get_classes_from_UcCode(std::string ucCode) {
     vector<Class*> classes_ucCode;
-    if(!exists_uc(ucCode)) return classes_ucCode;
+    if(!exists_Uc(ucCode)) return classes_ucCode;
     auto first_itr = lower_bound(classes.begin(),classes.end(),Class("",ucCode));
     while(first_itr->get_ucCode() == ucCode) classes_ucCode.push_back(&(*(first_itr++)));
     return classes_ucCode;
@@ -119,11 +119,11 @@ bool LEIC::exists_class(string ucCode, string classCode){
     return binary_search(classes.begin(),classes.end(),Class(classCode,ucCode));
 }
 
-bool LEIC::exists_uc(std::string ucCode) {
+bool LEIC::exists_Uc(std::string ucCode) {
     return ucs.count(ucCode);
 }
 
-bool LEIC::uc_has_vacancy(std::string uccode) {
+bool LEIC::Uc_has_vacancy(std::string uccode) {
     for (Class& c: classes) {
         if (c.get_ucCode() == uccode){
             if (c.get_students().size() < CAP) return true;
@@ -132,7 +132,7 @@ bool LEIC::uc_has_vacancy(std::string uccode) {
     return false;
 }
 
-void LEIC::list_students_by_up() {
+void LEIC::list_students_by_studentCode() {
     cout << "UPNUMBER\tNAME\n------------------------------------\n";
     for(pair<string, Student> p : up_students){
         cout << p.first << " | " << p.second.get_name() << '\n';
@@ -150,18 +150,18 @@ void LEIC::list_students_by_name(){
     }
 }
 
-void LEIC::list_uc_students_by_up(string uc) {
-    cout << "Students of UC " << uc << endl;
+void LEIC::list_UC_students_by_studentCode(std::string UcCode) {
+    cout << "Students of UC " << UcCode << endl;
     cout << "UPNUMBER\tNAME\n------------------------------------\n";
     for(Class c : classes){
-        if(c.get_ucCode() == uc){
+        if(c.get_ucCode() == UcCode){
             for(string up : c.get_students())
                 cout << up << " | " << up_students.at(up).get_name() << endl;
         }
     }
 }
 
-void LEIC::list_uc_students_by_name(std::string uc) {
+void LEIC::list_UC_students_by_name(std::string uc) {
     cout << "Students of UC " << uc << endl;
     cout << "UPNUMBER\tNAME\n------------------------------------\n";
     map<string, string> UCstudents_up;
@@ -173,7 +173,7 @@ void LEIC::list_uc_students_by_name(std::string uc) {
     for (pair<string, string> p: UCstudents_up) cout << p.second << '\t' << p.first << '\n';
 }
 
-void LEIC::list_class_students_by_up(Class* class_) const {
+void LEIC::list_class_students_by_studentCode(Class *class_) const {
     cout << "Students of Class " << class_->get_classCode() << " of UC " << class_->get_ucCode() << endl;
     cout << "UPNUMBER\tNAME\n------------------------------------\n";
     for(string up : class_->get_students()) cout << up << " | " << up_students.at(up).get_name() << endl;
@@ -194,7 +194,7 @@ void LEIC::list_number_students_class() {
     }
 }
 
-int LEIC::students_in_n_ucs(int n){
+int LEIC::students_in_n_Ucs(int n){
     int count = 0;
     for (pair<string, Student> p: up_students) {
         count += p.second.get_classes().size() >= n;
@@ -234,16 +234,16 @@ bool LEIC::compatible_schedules(Student student, Class* newclass, Class* oldclas
 }
 
 void LEIC::add_student(Student student) {
-    up_students.insert({student.get_student_up(), student});
+    up_students.insert({student.get_studentCode(), student});
 }
 
 void LEIC::add_student_to_class(Student* student, Class *newclass) {
-    newclass->add_student(student->get_student_up());
+    newclass->add_student(student->get_studentCode());
     student->add_class(newclass);
 }
 
 void LEIC::remove_student_from_class(Student* student, Class *newclass) {
-    newclass->remove_student(student->get_student_up());
+    newclass->remove_student(student->get_studentCode());
     student->remove_class_from_uc(newclass->get_ucCode());
 }
 
@@ -274,11 +274,11 @@ void LEIC::upload_requests() {
 }
 
 bool LEIC::request_add(Request& request) {
-    Student* student = get_student_from_up(request.get_student_up());
+    Student* student = get_student_from_studentCode(request.get_studentCode());
     if (request.get_uc_class()) {
-        Class* newclass = get_class_from_classcode_and_uccode(request.get_new_class(), request.get_new_uc());
+        Class* newclass = get_class_from_classCode_and_UcCode(request.get_new_classCode(), request.get_new_UcCode());
         if (newclass->get_students().size() < CAP
-            && !student->has_uc(request.get_new_uc()) && compatible_schedules(*student, newclass)) {
+            && !student->has_uc(request.get_new_UcCode()) && compatible_schedules(*student, newclass)) {
                 add_student_to_class(student, newclass);
                 processed_requests.push(request);
                 return true;
@@ -286,8 +286,8 @@ bool LEIC::request_add(Request& request) {
         return false;
     }
     else {
-        if (uc_has_vacancy(request.get_new_uc()) && student->get_classes().size()<7) {
-            vector<Class*> classes_uccode = get_classes_from_uccode(request.get_new_uc());
+        if (Uc_has_vacancy(request.get_new_UcCode()) && student->get_classes().size()<7) {
+            vector<Class*> classes_uccode = get_classes_from_UcCode(request.get_new_UcCode());
             for (Class* c: classes_uccode) {
                 if (compatible_schedules(*student, c)) {
                     add_student_to_class(student, c);
@@ -302,14 +302,14 @@ bool LEIC::request_add(Request& request) {
 }
 
 bool LEIC::request_remove(Request& request) {
-    Student* student = get_student_from_up(request.get_student_up());
-    Class* currentClass = student->get_class_from_uc(request.get_current_uc());
+    Student* student = get_student_from_studentCode(request.get_studentCode());
+    Class* currentClass = student->get_class_from_uc(request.get_current_UcCode());
     string currentclass = currentClass->get_classCode();
-    string currentUc = request.get_current_uc();
+    string currentUc = request.get_current_UcCode();
     request.set_current_class(currentclass);
     remove_student_from_class(student, currentClass);
     processed_requests.push(request);
-    return true;
+    return true; // vamos ter que ver consoante class balance?
 }
 
 bool LEIC::request_switch(Request& request) {
@@ -336,42 +336,42 @@ bool LEIC::undo_request() {
     }
     Request thisrequest = processed_requests.top();
     processed_requests.pop();
-    bool res = false;
+    bool valid = false;
     switch (thisrequest.get_type()[0]) {
         case 'A': {
-            Request newrequest = Request("REMOVE", true, thisrequest.get_student_up(), "", "", thisrequest.get_new_uc(), "");
-            res = request_remove(newrequest);
-            if (res) {
-                cout << "Student " << newrequest.get_student_up() << " was removed from class " << newrequest.get_current_class() << " in the UC " << newrequest.get_current_uc() << endl;
+            Request newrequest = Request("REMOVE", true, thisrequest.get_studentCode(), "", "", thisrequest.get_new_UcCode(), "");
+            valid = request_remove(newrequest);
+            if (valid) {
+                cout << "Student " << newrequest.get_studentCode() << " was removed from class " << newrequest.get_current_classCode() << " in the UC " << newrequest.get_current_UcCode() << endl;
                 processed_requests.pop();
             }
-            return res;
+            return valid;
         }
         case 'R': {
-            Request newrequest = Request("ADD", true, thisrequest.get_student_up(), "", thisrequest.get_current_class(),  "", thisrequest.get_current_uc());
-            res = request_add(newrequest);
-            if (res) {
-                cout << "Student " << newrequest.get_student_up() << " is now in the class " << newrequest.get_new_class() << " in the UC " << newrequest.get_new_uc() << endl;
+            Request newrequest = Request("ADD", false, thisrequest.get_studentCode(), "", "",  "", thisrequest.get_new_UcCode());
+            valid = request_add(newrequest);
+            if (valid) {
+                cout << "Student " << newrequest.get_studentCode() << " is now in the class " << newrequest.get_new_classCode() << " in the UC " << newrequest.get_new_UcCode() << endl;
                 processed_requests.pop();
             }
-            return res;
+            return valid;
         }
         case 'S': {
-            Request newrequest = Request("SWITCH", true, thisrequest.get_student_up(), thisrequest.get_new_class(), thisrequest.get_current_class(),  thisrequest.get_new_uc(), thisrequest.get_current_uc());
-            res = request_switch(newrequest);
-            if (res) {
-                cout << "Student " << newrequest.get_student_up() << " was removed from class " << newrequest.get_current_class() << " in the UC " << newrequest.get_current_uc() << " and is now in the class " << newrequest.get_new_class() << " in the UC " << newrequest.get_new_uc() << endl;
+            Request newrequest = Request("SWITCH", true, thisrequest.get_studentCode(),thisrequest.get_new_classCode(), thisrequest.get_current_classCode(), thisrequest.get_new_UcCode(), thisrequest.get_current_UcCode());
+            valid = request_switch(newrequest);
+            if (valid) {
+                cout << "Student " << newrequest.get_studentCode() << " was removed from class " << newrequest.get_current_classCode() << " in the UC " << newrequest.get_current_UcCode() << " and is now in the class " << newrequest.get_new_classCode() << " in the UC " << newrequest.get_new_UcCode() << endl;
                 processed_requests.pop();
             }
-            return res;
+            return valid;
         }
         case 'N': {
-            cout << "Student with the student code " << thisrequest.get_student_up() << " was removed.";
-            up_students.erase(thisrequest.get_student_up());
+            cout << "Student with the student code " << thisrequest.get_studentCode() << " was removed.";
+            up_students.erase(thisrequest.get_studentCode());
             return true;
         }
     }
-    return res;
+    return valid;
 }
 
 void LEIC::process_requests() {
@@ -381,25 +381,24 @@ void LEIC::process_requests() {
         switch (request.get_type()[0]) {
             case 'A': {
                 if (request_add(request)) {
-                    cout << "Student is now in the class " << request.get_new_class() << " in the UC " << request.get_new_uc() << endl;
+                    cout << "Student is now in the class " << request.get_new_classCode() << " in the UC " << request.get_new_UcCode() << endl;
                 }
                 else cout << "The request was denied.\n";
                 break;
             }
             case 'R': {
-                if (request_remove(request)) cout << "Student was removed from class " << request.get_current_class() << " in the UC " << request.get_current_uc() << endl;
+                if (request_remove(request)) cout << "Student was removed from class " << request.get_current_classCode() << " in the UC " << request.get_current_UcCode() << endl;
                 else cout << "The request was denied.";
                 break;
             }
             case 'S': {
                 if (request_switch(request)) {
-                    cout << "Student was removed from class " << request.get_current_class() << " in the UC " << request.get_current_uc() << " and is now in the class" << request.get_new_class() << " in the UC " << request.get_new_uc() << endl;
+                    cout << "Student was removed from class " << request.get_current_classCode() << " in the UC " << request.get_current_UcCode() << " and is now in the class" << request.get_new_classCode() << " in the UC " << request.get_new_UcCode() << endl;
                 }
                 break;
             }
         }
     }
-
 }
 
 void LEIC::save_to_files() {
@@ -422,12 +421,12 @@ void LEIC::save_to_files() {
     while(!processed_requests.empty()){
         Request r = processed_requests.top();
         processed_requests.pop();
-        accepted_requests << r.get_student_up() << ','
+        accepted_requests << r.get_studentCode() << ','
                           << r.get_type() << ','
-                          << r.get_current_uc() << ','
-                          << r.get_new_uc() << ','
-                          << r.get_current_class() << ','
-                          << r.get_new_class() << endl;
+                          << r.get_current_UcCode() << ','
+                          << r.get_new_UcCode() << ','
+                          << r.get_current_classCode() << ','
+                          << r.get_new_classCode() << endl;
     }
     students_classesSaveFile.close();
     accepted_requests.close();

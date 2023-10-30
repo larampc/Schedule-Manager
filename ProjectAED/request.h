@@ -13,24 +13,24 @@ class Request {
 private:
     std::string type;
     bool uc_class; //true if it's class
-    std::string student_up;
-    std::string current_class;
-    std::string new_class;
-    std::string current_uc;
-    std::string new_uc;
+    std::string studentCode;
+    std::string current_classCode;
+    std::string new_classCode;
+    std::string current_UcCode;
+    std::string new_UcCode;
 public:
     /**
      * \brief Creates a new Request.
      *
      * @param type The type of Request.
      * @param uc_class True if the Request is related an UC, False if it is related to a Class.
-     * @param student_up The Student's up to execute the Request on.
-     * @param current_class The current Class code of the Student to execute the Request on, if applicable.
-     * @param new_class The new Class code for the Student to execute the Request on, if applicable.
-     * @param current_uc The current UC code of the Student to execute the Request on, if applicable.
-     * @param new_uc The new UC code for the Student to execute the Request on, if applicable.
+     * @param studentCode The Student's up to execute the Request on.
+     * @param current_classCode The current Class code of the Student to execute the Request on, if applicable.
+     * @param new_classCode The new Class code for the Student to execute the Request on, if applicable.
+     * @param current_UcCode The current UC code of the Student to execute the Request on, if applicable.
+     * @param new_UcCode The new UC code for the Student to execute the Request on, if applicable.
      */
-    Request(std::string type, bool uc_class, std::string student_up, std::string current_class = "", std::string new_class = "", std::string current_uc = "", std::string new_uc = "");
+    Request(std::string type, bool uc_class, std::string studentCode, std::string current_classCode = "", std::string new_classCode = "", std::string current_UcCode = "", std::string new_UcCode = "");
     /**
      * \brief Gets the type of the Request.
      *
@@ -48,31 +48,31 @@ public:
      *
      * @return The Student's up to execute the Request on.
      */
-    std::string get_student_up();
+    std::string get_studentCode();
     /**
      * \brief Gets the current Class code of the Student to execute the Request on, if applicable.
      *
      * @return The current Class code of the Student to execute the Request on, if applicable.
      */
-    std::string get_current_class();
+    std::string get_current_classCode();
     /**
      * \brief Gets the new Class code for the Student to execute the Request on, if applicable.
      *
      * @return The new Class code for the Student to execute the Request on, if applicable.
      */
-    std::string get_new_class();
+    std::string get_new_classCode();
     /**
      * \brief Gets the current UC code of the Student to execute the Request on, if applicable.
      *
      * @return The current UC code of the Student to execute the Request on, if applicable.
      */
-    std::string get_current_uc();
+    std::string get_current_UcCode();
     /**
      * \brief Gets the new UC code for the Student to execute the Request on, if applicable.
      *
      * @return The new UC code for the Student to execute the Request on, if applicable.
      */
-    std::string get_new_uc();
+    std::string get_new_UcCode();
     /**
      * \brief Sets the type of the Request.
      *

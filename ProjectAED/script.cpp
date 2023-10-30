@@ -1,5 +1,4 @@
 #include "script.h"
-#include <limits>
 #include <cctype>
 using namespace std;
 
@@ -116,7 +115,7 @@ void Script::request(){
     }
     cout << "Enter StudentCode (e.g. 202020047):\n";
     cin >> student_up;
-    while(data.get_student_from_up(student_up) == nullptr){
+    while(data.get_student_from_studentCode(student_up) == nullptr){
         invalid();
         cin >> student_up;
     }
@@ -139,7 +138,7 @@ void Script::get_request(string student_up, string option) {
             type = "ADD";
             cout << "Enter UCcode (e.g. L.EIC001):\n";
             cin >> new_uc;
-            while(!data.exists_uc(new_uc) || data.get_student_from_up(student_up)->has_uc(new_uc)) {
+            while(!data.exists_Uc(new_uc) || data.get_student_from_studentCode(student_up)->has_uc(new_uc)) {
                 invalid();
                 cin >> new_uc;
             }
@@ -165,7 +164,7 @@ void Script::get_request(string student_up, string option) {
             type = "REMOVE";
             cout << "Enter UCcode (e.g. L.EIC001):\n";
             cin >> current_uc;
-            while(!data.exists_uc(current_uc) || !data.get_student_from_up(student_up)->has_uc(current_uc)) {
+            while(!data.exists_Uc(current_uc) || !data.get_student_from_studentCode(student_up)->has_uc(current_uc)) {
                 invalid();
                 cin >> current_uc;
             }
@@ -178,7 +177,7 @@ void Script::get_request(string student_up, string option) {
             if (uc_or_class == "CLASS") {
                 cout << "Enter UCcode (e.g. L.EIC001):\n";
                 cin >> current_uc;
-                while(!data.get_student_from_up(student_up)->has_uc(current_uc)) {
+                while(!data.get_student_from_studentCode(student_up)->has_uc(current_uc)) {
                     invalid();
                     cin >> current_uc;
                 }
@@ -193,13 +192,13 @@ void Script::get_request(string student_up, string option) {
             else {
                 cout << "Enter current UCcode (e.g. L.EIC001):\n";
                 cin >> current_uc;
-                while(!data.get_student_from_up(student_up)->has_uc(current_uc)) {
+                while(!data.get_student_from_studentCode(student_up)->has_uc(current_uc)) {
                     invalid();
                     cin >> current_uc;
                 }
                 cout << "Enter new UCcode (e.g. L.EIC001):\n";
                 cin >> new_uc;
-                while(!data.exists_uc(new_uc)) {
+                while(!data.exists_Uc(new_uc)) {
                     invalid();
                     cin >> new_uc;
                 }
@@ -230,7 +229,7 @@ void Script::new_registration() {
     string new_up, name, number_ucs, new_uc, new_class;
     cout << "New StudentCode (e.g. 202020047):";
     cin >> new_up;
-    while (!is_number(new_up) || new_up.length() != 9 || data.get_student_from_up(new_up) != nullptr) {
+    while (!is_number(new_up) || new_up.length() != 9 || data.get_student_from_studentCode(new_up) != nullptr) {
         invalid();
         cin >> new_up;
     }
@@ -275,7 +274,7 @@ void Script::request_file() {
 
 void Script::listings(){
     cout << "What would you like to check?\n"
-    << "1- Schedules 2- Student Lists 3- Class Occupations 4- Students with at least n UC's 5- Cancel\n";
+    << "1- Schedules 2- Student Lists 3- Occupations 4- Students with at least n UC's 5- Cancel\n";
     string option; cin >> option;
     while(option != "1" && option != "2" && option != "3" && option != "4" && option != "5") {
         invalid();
@@ -291,6 +290,7 @@ void Script::listings(){
             break;
         }
         case '3': {
+            occupations();
             data.list_number_students_class();
             break;
         }
@@ -302,10 +302,32 @@ void Script::listings(){
                 invalid();
                 cin >> n;
             }
-            cout << data.students_in_n_ucs(stoi(n)) << endl;
+            cout << data.students_in_n_Ucs(stoi(n)) << endl;
             break;
         }
         case '5': run();
+    }
+}
+
+void Script::occupations(){
+    cout << "What would you like to check?\n"
+         << "1- Year 2- UC 3- Class 4- Cancel\n";
+    string option; cin >> option;
+    while(option != "1" && option != "2" && option != "3" && option != "4" && option != "5") {
+        invalid();
+        cin >> option;
+    }
+    switch (option[0]) {
+        case '1': {
+            list_year_occupations();
+            break;
+        }
+        case '2': {
+            break;
+        }
+        case '3': {
+            break;
+        }
     }
 }
 
@@ -322,18 +344,18 @@ void Script::listSchedules(){
             cout << "Insert StudentCode (e.g. 202020047): ";
             string up;
             cin >> up;
-            while(data.get_student_from_up(up) == nullptr){
+            while(data.get_student_from_studentCode(up) == nullptr){
                 invalid();
                 cin >> up;
             }
-            data.get_student_from_up(up)->print_schedule();
+            data.get_student_from_studentCode(up)->print_schedule();
             break;
         }
         case '2': {
             cout << "Enter ClassCode (e.g. 1LEIC01): ";
             string class_;
             cin >> class_;
-            while(!data.get_classcodes().count(class_)) {    //mudar para exists classcode???????
+            while(!data.get_classCodes().count(class_)) {    //mudar para exists classcode???????
                 invalid();
                 cin >> class_;
             }
@@ -365,11 +387,11 @@ void Script::listSchedules(){
             cout << "Enter UCcode (e.g. L.EIC001): ";
             string uc;
             cin >> uc;
-            while(!data.get_ucs().count(uc)) {
+            while(!data.get_UcCodes().count(uc)) {
                 invalid();
                 cin >> uc;
             }
-            vector<Class*> classesUc = data.get_classes_from_uccode(uc);
+            vector<Class*> classesUc = data.get_classes_from_UcCode(uc);
             multiset<Lesson> total_lessons;
             for(Class* c : classesUc) {
                 set<Lesson> lessons = c->get_lessons();
@@ -411,14 +433,14 @@ void Script::listStudents() {
                 invalid();
                 cin >> option;
             }
-            if(option == "1") data.list_students_by_up();
+            if(option == "1") data.list_students_by_studentCode();
             else data.list_students_by_name();
             break;
         }
         case '2': {
             cout << "Enter UCcode (e.g. L.EIC001): ";
             string UC; cin >> UC;
-            while(!data.exists_uc(UC)) {
+            while(!data.exists_Uc(UC)) {
                 invalid();
                 cin >> UC;
             }
@@ -428,14 +450,14 @@ void Script::listStudents() {
                 invalid();
                 cin >> option;
             }
-            if(option == "1") data.list_uc_students_by_up(UC);
-            else data.list_uc_students_by_name(UC);
+            if(option == "1") data.list_UC_students_by_studentCode(UC);
+            else data.list_UC_students_by_name(UC);
             break;
         }
         case '3': {
             cout << "Enter UC of Class to check (e.g. L.EIC001):";
             string UC; cin >> UC;
-            while(!data.exists_uc(UC)) {
+            while(!data.exists_Uc(UC)) {
                 invalid();
                 cin >> UC;
             }
@@ -451,12 +473,16 @@ void Script::listStudents() {
                 invalid();
                 cin >> option;
             }
-            if(option == "1") data.list_class_students_by_up(data.get_class_from_classcode_and_uccode(class_, UC));
-            else data.list_class_students_by_name(data.get_class_from_classcode_and_uccode(class_, UC));
+            if(option == "1") data.list_class_students_by_studentCode(data.get_class_from_classCode_and_UcCode(class_, UC));
+            else data.list_class_students_by_name(data.get_class_from_classCode_and_UcCode(class_, UC));
             break;
         }
         case '4': listings();
     }
+}
+
+void Script::list_year_occupations() {
+
 }
 
 
