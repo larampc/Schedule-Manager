@@ -42,7 +42,7 @@ public:
      *
      * @return True if the Request is related an UC, False if it is related to a Class.
      */
-    bool get_uc_class();
+    bool get_Uc_class();
     /**
      * \brief Gets the Student's up to execute the Request on.
      *
@@ -79,8 +79,8 @@ public:
      * @param type The type to set the Request, ADD, REMOVE or SWITCH.
      */
     void set_type(std::string type);
-    void set_new_class(std::string new_class);
-    void set_current_class(std::string current_class);
+    void set_new_class(std::string classCode);
+    void set_current_class(std::string classCode);
 };
 
 #endif //AEDPROJECT_REQUEST_H

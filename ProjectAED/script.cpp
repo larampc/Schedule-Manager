@@ -110,7 +110,7 @@ void Script::request(){
     cout << "Pick: 1- ADD 2- REMOVE 3- SWITCH 4- Cancel\n";
     cin >> option; while(option != "1" && option != "2" && option != "3" && option != "4") {invalid(); cin >> option; cout << '\n';}
     if(option == "4") {
-        run();
+        handle_requests();
         return;
     }
     cout << "Enter StudentCode (e.g. 202020047):\n";
@@ -131,14 +131,14 @@ void Script::request(){
     data.process_requests();
 }
 
-void Script::get_request(string student_up, string option) {
+void Script::get_request(string studentCode, string option) {
     string type, uc_or_class, current_class, new_class, current_uc, new_uc;
     switch (option[0]) {
         case '1': {
             type = "ADD";
             cout << "Enter UCcode (e.g. L.EIC001):\n";
             cin >> new_uc;
-            while(!data.exists_Uc(new_uc) || data.get_student_from_studentCode(student_up)->has_uc(new_uc)) {
+            while(!data.exists_Uc(new_uc) || data.get_student_from_studentCode(studentCode)->has_uc(new_uc)) {
                 invalid();
                 cin >> new_uc;
             }
@@ -164,7 +164,7 @@ void Script::get_request(string student_up, string option) {
             type = "REMOVE";
             cout << "Enter UCcode (e.g. L.EIC001):\n";
             cin >> current_uc;
-            while(!data.exists_Uc(current_uc) || !data.get_student_from_studentCode(student_up)->has_uc(current_uc)) {
+            while(!data.exists_Uc(current_uc) || !data.get_student_from_studentCode(studentCode)->has_uc(current_uc)) {
                 invalid();
                 cin >> current_uc;
             }
@@ -177,7 +177,7 @@ void Script::get_request(string student_up, string option) {
             if (uc_or_class == "CLASS") {
                 cout << "Enter UCcode (e.g. L.EIC001):\n";
                 cin >> current_uc;
-                while(!data.get_student_from_studentCode(student_up)->has_uc(current_uc)) {
+                while(!data.get_student_from_studentCode(studentCode)->has_uc(current_uc)) {
                     invalid();
                     cin >> current_uc;
                 }
@@ -192,7 +192,7 @@ void Script::get_request(string student_up, string option) {
             else {
                 cout << "Enter current UCcode (e.g. L.EIC001):\n";
                 cin >> current_uc;
-                while(!data.get_student_from_studentCode(student_up)->has_uc(current_uc)) {
+                while(!data.get_student_from_studentCode(studentCode)->has_uc(current_uc)) {
                     invalid();
                     cin >> current_uc;
                 }
@@ -222,7 +222,7 @@ void Script::get_request(string student_up, string option) {
             break;
         }
     }
-    data.add_request_to_process(Request(type, (uc_or_class == "CLASS"), student_up, current_class, new_class, current_uc, new_uc));
+    data.add_request_to_process(Request(type, (uc_or_class == "CLASS"), studentCode, current_class, new_class, current_uc, new_uc));
 }
 
 void Script::new_registration() {

@@ -8,7 +8,7 @@ std::string Request::get_type() {
     return type;
 }
 
-bool Request::get_uc_class() {
+bool Request::get_Uc_class() {
     return uc_class;
 }
 
@@ -36,10 +36,10 @@ void Request::set_type(string type) {
     this->type = type;
 }
 
-void Request::set_new_class(std::string new_class) {
-    this->new_classCode = new_class;
+void Request::set_new_class(std::string classCode) {
+    this->new_classCode = classCode;
 }
 
-void Request::set_current_class(std::string current_class) {
-    this->current_classCode = current_class;
+void Request::set_current_class(std::string classCode) {
+    this->current_classCode = classCode;
 }
