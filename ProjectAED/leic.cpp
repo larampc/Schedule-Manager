@@ -275,7 +275,7 @@ void LEIC::upload_requests() {
 
 bool LEIC::request_add(Request& request) {
     Student* student = get_student_from_studentCode(request.get_studentCode());
-    if (request.get_uc_class()) {
+    if (request.get_Uc_class()) {
         Class* newclass = get_class_from_classCode_and_UcCode(request.get_new_classCode(), request.get_new_UcCode());
         if (newclass->get_students().size() < CAP
             && !student->has_uc(request.get_new_UcCode()) && compatible_schedules(*student, newclass)) {
