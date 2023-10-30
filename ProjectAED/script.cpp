@@ -581,7 +581,7 @@ void Script::listStudents() {
             Color_Print(color_mode, "yellow", "(e.g. 1LEIC01)");
             Color_Print(color_mode, "cyan", ": ");
             string class_; cin >> class_;
-            while(!data.exists_class(class_,UC)) {
+            while(!data.exists_class(UC,class_)) {
                 invalid();
                 cin >> class_;
             }
