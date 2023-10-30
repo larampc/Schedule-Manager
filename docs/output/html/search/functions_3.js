@@ -1,4 +1,30 @@
 var searchData=
 [
-  ['has_5fuc_0',['has_uc',['../class_student.html#a7ebefd21aa352f5120c59f0e59565f60',1,'Student']]]
+  ['get_5fcap_0',['get_cap',['../class_l_e_i_c.html#a07eee72b0f73bfded732eb667b59d566',1,'LEIC']]],
+  ['get_5fclass_5ffrom_5fclasscode_5fand_5fuccode_1',['get_class_from_classcode_and_uccode',['../class_l_e_i_c.html#a60752d24c1b1a272eb65df9ac3310da2',1,'LEIC']]],
+  ['get_5fclass_5ffrom_5fuc_2',['get_class_from_uc',['../class_student.html#afc3480a881894bc93860d3f833f70cd3',1,'Student']]],
+  ['get_5fclasscode_3',['get_classCode',['../class_class.html#ab39fed5db34f17f61bca9e019ba00d35',1,'Class']]],
+  ['get_5fclasscodes_4',['get_classcodes',['../class_l_e_i_c.html#ae2642663da87e5c1fe65b37ca3426720',1,'LEIC']]],
+  ['get_5fclasses_5',['get_classes',['../class_l_e_i_c.html#a2188aa471f572f3e501ed22d44dae33b',1,'LEIC::get_classes()'],['../class_student.html#ae08197213701522561d5e6546037a3c8',1,'Student::get_classes()']]],
+  ['get_5fclasses_5ffrom_5fuccode_6',['get_classes_from_uccode',['../class_l_e_i_c.html#a74b6bdacea8eb1b470cc97ce677eeb4b',1,'LEIC']]],
+  ['get_5fcurrent_5fclass_7',['get_current_class',['../class_request.html#a7fe619a78110f187151e060501446c7c',1,'Request']]],
+  ['get_5fcurrent_5fuc_8',['get_current_uc',['../class_request.html#af171eade3218adf79836d18787035ec1',1,'Request']]],
+  ['get_5fendtime_9',['get_endtime',['../class_lesson.html#ab8096653fab302e4fa42de3e42e9dd5c',1,'Lesson']]],
+  ['get_5fhour_10',['get_hour',['../class_time.html#af4753f310f5b6f9e5d8513acd71d2bbb',1,'Time']]],
+  ['get_5flessons_11',['get_lessons',['../class_class.html#a1fb10cda5abbbd8118a90b9560b85c8c',1,'Class']]],
+  ['get_5fminute_12',['get_minute',['../class_time.html#ac6f02d4bc354703766a0b98327b9ab13',1,'Time']]],
+  ['get_5fname_13',['get_name',['../class_student.html#ae489956a740c6fb570344c7010aa6841',1,'Student']]],
+  ['get_5fnew_5fclass_14',['get_new_class',['../class_request.html#a8e9dbe028ece82637fc5a566862346d4',1,'Request']]],
+  ['get_5fnew_5fuc_15',['get_new_uc',['../class_request.html#ac374d309468bbae7e850f4015fdffc98',1,'Request']]],
+  ['get_5fstarttime_16',['get_starttime',['../class_lesson.html#afe4ad49245c46349179c127293ff96d6',1,'Lesson']]],
+  ['get_5fstudent_5ffrom_5fup_17',['get_student_from_up',['../class_l_e_i_c.html#ae92ba4874c0f2ba9be9f41a452ff97c6',1,'LEIC']]],
+  ['get_5fstudent_5fup_18',['get_student_up',['../class_request.html#a8db3f9c197e3e06099c8853b93a7a3fe',1,'Request::get_student_up()'],['../class_student.html#a5cfdbe4262f13a507bf2a70235f725d6',1,'Student::get_student_up()']]],
+  ['get_5fstudents_19',['get_students',['../class_class.html#a8d89c17a45d924ad220f434914826d6a',1,'Class']]],
+  ['get_5fthisclass_20',['get_thisclass',['../class_lesson.html#a9428086c12e8ac0f58c85bcef9da87b9',1,'Lesson']]],
+  ['get_5ftimefloat_21',['get_timefloat',['../class_time.html#a172d389e35e4bdd3480637eefe9bfe16',1,'Time']]],
+  ['get_5ftype_22',['get_type',['../class_lesson.html#a3b50cbd5c5f032c6d1b6f0e6d04b261f',1,'Lesson::get_type()'],['../class_request.html#aca3dffafbadeb73f3e11b77b13963d03',1,'Request::get_type()']]],
+  ['get_5fuc_5fclass_23',['get_uc_class',['../class_request.html#ab0eefd941bda12df8a9859e7f6ad52c7',1,'Request']]],
+  ['get_5fuccode_24',['get_ucCode',['../class_class.html#a0c3fe4514a98da514c492bdd4de5a502',1,'Class']]],
+  ['get_5fucs_25',['get_ucs',['../class_l_e_i_c.html#a697bc82e1ff02013d35d546c2f6dc628',1,'LEIC']]],
+  ['get_5fweekday_26',['get_weekday',['../class_lesson.html#a7e2996ef61ab3373746caa965f1c97c6',1,'Lesson']]]
 ];

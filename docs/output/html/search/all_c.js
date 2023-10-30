@@ -1,11 +1,6 @@
 var searchData=
 [
-  ['page_0',['This is the main page',['../index.html',1,'']]],
-  ['part_201_1',['Part 1',['../index.html#part1_subsec',1,'']]],
-  ['part_202_2',['Part 2',['../index.html#part2_subsec',1,'']]],
-  ['print_5flesson_3',['print_lesson',['../class_lesson.html#a9fc7aff09d61ca6f70e0b4820587a55c',1,'Lesson']]],
-  ['print_5fschedule_4',['print_schedule',['../class_student.html#a7c988425485d8b1063e43f31251b8f80',1,'Student']]],
-  ['process_5frequests_5',['process_requests',['../class_l_e_i_c.html#abff22c13b8cf0197447771c8e5787625',1,'LEIC']]],
-  ['project_20description_6',['Project description',['../index.html#description_sec',1,'']]],
-  ['project_20do_7',['What can this project do?',['../index.html#utility_sec',1,'']]]
+  ['operator_3c_0',['operator&lt;',['../class_class.html#ae4b8d1bd1e5ceb59bbbbe459d4ae665b',1,'Class::operator&lt;()'],['../class_lesson.html#ad1c385b46636a8c86d394b70f017bb39',1,'Lesson::operator&lt;()'],['../class_time.html#aa0e4f42167d5982446ed611090d1d866',1,'Time::operator&lt;()']]],
+  ['operator_3d_3d_1',['operator==',['../class_class.html#a493c660f130d7b1f1a34fd786e51838f',1,'Class']]],
+  ['overlap_2',['overlap',['../class_lesson.html#a0244a50c9b4cd163515ce41c6a400714',1,'Lesson']]]
 ];

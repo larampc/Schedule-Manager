@@ -40,7 +40,7 @@ public:
      */
     void run();
     /**
-     * \brief Outputs the request menu and handles the respective inputs.
+     * \brief Outputs the update registration menu and handles the respective inputs.
      */
     void request();
     /**
@@ -63,9 +63,13 @@ public:
      * \brief Quits the program and saves all the data to files.
      */
     void quit();
-
+    /**
+     * \brief Outputs the requests menu and handles the respective inputs.
+     */
     void handle_requests();
-
+    /**
+     * \brief Outputs the instructions to upload a request file and runs it if user chooses to.
+     */
     void request_file();
 };
 
