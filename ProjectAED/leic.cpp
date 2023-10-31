@@ -252,7 +252,7 @@ bool LEIC::compatible_schedules(Student student, Class* newclass, Class* oldclas
 //                }
 //            }
 //        }
-    }
+//    }
     for (Lesson newlesson: newclass->get_lessons()) {
         if (newlesson.get_type() == "PL" || newlesson.get_type() == "TP") {
             for (Class* c: student.get_classes()) {
