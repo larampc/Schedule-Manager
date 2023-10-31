@@ -125,7 +125,7 @@ void Script::handle_requests() {
             break;
         }
         case '4': {
-            data.undo_request();
+            data.undo_request(color_mode);
             break;
         }
         case '5': {
@@ -169,7 +169,7 @@ void Script::request(){
         cin >> answer;
     }
     if (answer == "Y") request();
-    data.process_requests();
+    data.process_requests(color_mode);
 }
 
 void Script::get_request(string studentCode, string option) {
@@ -319,7 +319,7 @@ void Script::new_registration() {
             get_request(new_up, "1");
         }
     }
-    data.process_requests();
+    data.process_requests(color_mode);
 }
 
 void Script::request_file() {
@@ -335,7 +335,7 @@ void Script::request_file() {
         invalid();
         cin >> answer;
     }
-    if (answer == "Y") data.upload_requests();
+    if (answer == "Y") data.upload_requests(color_mode);
 }
 
 void Script::listings(){
@@ -400,7 +400,15 @@ void Script::occupations(){
     }
     switch (option[0]) {
         case '1': {
-            cout << "1- 1st Year 2- 2nd Year 3- 3rd Year 4- Cancel\n";
+            Color_Print(color_mode, "green", "Pick: ");
+            Color_Print(color_mode, "cyan", "1- ");
+            Color_Print(color_mode, "green", "1st Year ");
+            Color_Print(color_mode, "cyan", "2- ");
+            Color_Print(color_mode, "green", "2nd Year ");
+            Color_Print(color_mode, "cyan", "3- ");
+            Color_Print(color_mode, "green", "3rd Year ");
+            Color_Print(color_mode, "cyan", "4- ");
+            Color_Print(color_mode, "red", "Cancel", true);
             string year;
             cin >> year;
             while(year != "1" && year != "2" && year != "3" && year != "4") {
@@ -446,7 +454,7 @@ void Script::listSchedules(){
                 invalid();
                 cin >> up;
             }
-            data.get_student_from_studentCode(up)->print_schedule();
+            data.get_student_from_studentCode(up)->print_schedule(color_mode);
             break;
         }
         case '2': {
@@ -479,7 +487,7 @@ void Script::listSchedules(){
                     currentDay = lesson.get_weekday();
                     Color_Print(color_mode, "blue", lesson.get_weekday(), true);
                 }
-                lesson.print_lesson();
+                lesson.print_lesson(color_mode);
             }
             break;
         }
@@ -509,7 +517,7 @@ void Script::listSchedules(){
                     currentDay = lesson.get_weekday();
                     Color_Print(color_mode, "blue", lesson.get_weekday(), true);
                 }
-                lesson.print_lesson();
+                lesson.print_lesson(color_mode);
             }
             break;
         }
@@ -547,8 +555,8 @@ void Script::listStudents() {
                 invalid();
                 cin >> option;
             }
-            if(option == "1") data.list_students_by_studentCode();
-            else data.list_students_by_name();
+            if(option == "1") data.list_students_by_studentCode(color_mode);
+            else data.list_students_by_name(color_mode);
             break;
         }
         case '2': {
@@ -570,8 +578,8 @@ void Script::listStudents() {
                 invalid();
                 cin >> option;
             }
-            if(option == "1") data.list_UC_students_by_studentCode(UC);
-            else data.list_UC_students_by_name(UC);
+            if(option == "1") data.list_UC_students_by_studentCode(UC, color_mode);
+            else data.list_UC_students_by_name(UC, color_mode);
             break;
         }
         case '3': {
@@ -601,8 +609,8 @@ void Script::listStudents() {
                 invalid();
                 cin >> option;
             }
-            if(option == "1") data.list_class_students_by_studentCode(data.get_class_from_classCode_and_UcCode(class_, UC));
-            else data.list_class_students_by_name(data.get_class_from_classCode_and_UcCode(class_, UC));
+            if(option == "1") data.list_class_students_by_studentCode(data.get_class_from_classCode_and_UcCode(class_, UC), color_mode);
+            else data.list_class_students_by_name(data.get_class_from_classCode_and_UcCode(class_, UC), color_mode);
             break;
         }
         case '4': listings();
@@ -617,13 +625,23 @@ void Script::list_year_occupations(string year) {
     }
 
     string option, order;
-    cout << "Sort by 1- UC 2- ClassCode 3- Occupation\n";
+    Color_Print(color_mode, "green", "Sort by? ");
+    Color_Print(color_mode, "cyan", "1- ");
+    Color_Print(color_mode, "green", "UC ");
+    Color_Print(color_mode, "cyan", "2- ");
+    Color_Print(color_mode, "green", "ClassCode ");
+    Color_Print(color_mode, "cyan", "3- ");
+    Color_Print(color_mode, "green", "Occupation", true);
     cin >> option;
     while(option != "1" && option != "2" && option != "3"){
         invalid();
         cin >> option;
     }
-    cout << "1- Ascending Order 2- Descending Order\n";
+    Color_Print(color_mode, "green", "Pick: ");
+    Color_Print(color_mode, "cyan", "1- ");
+    Color_Print(color_mode, "green", "Ascending Order ");
+    Color_Print(color_mode, "cyan", "2- ");
+    Color_Print(color_mode, "green", "Descending Order", true);
     cin >> order;
     while(order != "1" && order != "2"){
         invalid();
@@ -640,12 +658,12 @@ void Script::list_year_occupations(string year) {
     if(option == "1" && order == "2") {
         auto itr = yearClasses.end();
         while(itr-- != yearClasses.begin()){
-            cout << itr->get_classCode() << " " << itr->get_ucCode() << " " << itr->get_students().size() << endl;
+            Color_Print(color_mode, "blue", itr->get_classCode() + " " + itr->get_ucCode() + " " + to_string(itr->get_students().size()), true);
         }
         return;
     }
     for (Class c: yearClasses) {
-        cout << c.get_classCode() << " " << c.get_ucCode() << " " << c.get_students().size() << endl;
+        Color_Print(color_mode, "blue", c.get_classCode() + " " + c.get_ucCode() + " " + to_string(c.get_students().size()), true);
     }
 }
 

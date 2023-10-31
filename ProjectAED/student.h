@@ -73,7 +73,7 @@ public:
     /**
      * \brief Prints the student's schedule.
      */
-    void print_schedule();
+    void print_schedule(bool color_mode);
 };
 
 #endif //PROJECTAED_STUDENT_H
