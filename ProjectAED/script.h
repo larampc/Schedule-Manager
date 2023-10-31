@@ -86,6 +86,8 @@ public:
     void invalid();
 
     void list_Uc_occupations(std::string UcCode);
+
+    void list_class_occupations(std::string classCode);
 };
 
 

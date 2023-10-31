@@ -433,6 +433,19 @@ void Script::occupations(){
             break;
         }
         case '3': {
+            Color_Print(color_mode, "cyan", "Enter Class to check ");
+            Color_Print(color_mode, "yellow", "(e.g. 1LEIC01)");
+            Color_Print(color_mode, "cyan", ": ");
+            string classCode; cin >> classCode;
+            while(!data.get_classCodes().count(classCode)) {
+                invalid();
+                cin >> classCode;
+            }
+            list_class_occupations(classCode);
+            break;
+        }
+        case '4': {
+            listings();
             break;
         }
     }
@@ -723,7 +736,54 @@ void Script::list_Uc_occupations(std::string UcCode) {
         return;
     }
     for (Class c: UcClasses) {
-        Color_Print(color_mode, "blue", c.get_classCode() + " " + c.get_ucCode() + " " + to_string(c.get_students().size()), true);
+        Color_Print(color_mode, "blue", c.get_classCode() + " " + to_string(c.get_students().size()), true);
+    }
+}
+
+
+void Script::list_class_occupations(std::string classCode) {
+    string option, order;
+    Color_Print(color_mode, "green", "Sort by? ");
+    Color_Print(color_mode, "cyan", "1- ");
+    Color_Print(color_mode, "green", "UcCode ");
+    Color_Print(color_mode, "cyan", "2- ");
+    Color_Print(color_mode, "green", "Occupation",true);
+    cin >> option;
+    while(option != "1" && option != "2"){
+        invalid();
+        cin >> option;
+    }
+    Color_Print(color_mode, "green", "Sort by? ");
+    Color_Print(color_mode, "cyan", "1- ");
+    Color_Print(color_mode, "green", "Ascending Order ");
+    Color_Print(color_mode, "cyan", "2- ");
+    Color_Print(color_mode, "green", "Descending Order", true);
+    cin >> order;
+    while(order != "1" && order != "2"){
+        invalid();
+        cin >> order;
+    }
+
+    vector<Class> classes = data.get_classes();
+    vector<Class> classClasses;
+    for(Class c: classes){
+        if (c.get_classCode() == classCode) classClasses.push_back(c);
+    }
+    if(option == "2"){
+        (order == "1") ? sort(classClasses.begin(),classClasses.end(), [] (Class c1,Class c2) -> bool {return (c1.get_students().size() < c2.get_students().size())
+                                                                                                        || (c1.get_students().size() == c2.get_students().size() && c1.get_ucCode() < c2.get_ucCode())  ;})
+                       : sort(classClasses.rbegin(),classClasses.rend(), [] (Class c1,Class c2) -> bool { return (c1.get_students().size() < c2.get_students().size())
+                                                                                                           || (c1.get_students().size() == c2.get_students().size() && c1.get_ucCode() > c2.get_ucCode());});
+    }
+    else if (option == "1" && order == "2"){
+        auto itr = classClasses.end();
+        while(itr-- != classClasses.begin()){
+            Color_Print(color_mode, "blue", itr->get_ucCode() + " " + to_string(itr->get_students().size()), true);
+        }
+        return;
+    }
+    for (Class c: classClasses) {
+        Color_Print(color_mode, "blue", c.get_ucCode() + " " + to_string(c.get_students().size()), true);
     }
 }
 
