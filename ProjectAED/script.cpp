@@ -419,6 +419,7 @@ void Script::occupations(){
             break;
         }
         case '2': {
+            //list_Uc_occupations();
             break;
         }
         case '3': {
