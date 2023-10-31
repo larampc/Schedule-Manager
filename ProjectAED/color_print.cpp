@@ -56,7 +56,7 @@ Color_Print::Color_Print(bool use_colors, std::string color, std::string line, b
             else if (color == "red") col = "\033[0;31";
             else if (color == "pink") col = "\033[0;35";
             else if (color == "yellow") col = "\033[0;33";
-            else if (color == "white") col = "\033[0;37";
+            else if (color == "white") col = "\033[0";
 
             if (background_color == "none") back_col = "m";
             else if (background_color == "blue") back_col = ";44m";
