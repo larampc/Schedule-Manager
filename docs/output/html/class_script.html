@@ -97,6 +97,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> ()</td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>request</b> ()</td></tr>
 <tr class="memdesc:a9309ec209659e298c6a9dac1aa6de442"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outputs the update registration menu and handles the respective inputs. <br /></td></tr>
 <tr class="separator:a9309ec209659e298c6a9dac1aa6de442"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afba07dde0dde60de0416ec7af5ca0222" id="r_afba07dde0dde60de0416ec7af5ca0222"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_script.html#afba07dde0dde60de0416ec7af5ca0222">get_request</a> (std::string studentCode, std::string option)</td></tr>
+<tr class="memdesc:afba07dde0dde60de0416ec7af5ca0222"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets from input the information needed for a specific request.  <br /></td></tr>
+<tr class="separator:afba07dde0dde60de0416ec7af5ca0222"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9863bffc3b6a510ae8d06e41df0e3f24" id="r_a9863bffc3b6a510ae8d06e41df0e3f24"><td class="memItemLeft" align="right" valign="top"><a id="a9863bffc3b6a510ae8d06e41df0e3f24" name="a9863bffc3b6a510ae8d06e41df0e3f24"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>listings</b> ()</td></tr>
 <tr class="memdesc:a9863bffc3b6a510ae8d06e41df0e3f24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outputs the listings menu and handles the respective inputs. <br /></td></tr>
@@ -125,17 +128,67 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>handle_requests</b> (
 void&#160;</td><td class="memItemRight" valign="bottom"><b>request_file</b> ()</td></tr>
 <tr class="memdesc:aa283e4281051f847bbcf41b29e70dbd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outputs the instructions to upload a request file and runs it if user chooses to. <br /></td></tr>
 <tr class="separator:aa283e4281051f847bbcf41b29e70dbd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8dba93f1d554e8dc9203a49436813b82" id="r_a8dba93f1d554e8dc9203a49436813b82"><td class="memItemLeft" align="right" valign="top"><a id="a8dba93f1d554e8dc9203a49436813b82" name="a8dba93f1d554e8dc9203a49436813b82"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>occupations</b> ()</td></tr>
+<tr class="separator:a8dba93f1d554e8dc9203a49436813b82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aace0c817e609883f5562882ec29530b4" id="r_aace0c817e609883f5562882ec29530b4"><td class="memItemLeft" align="right" valign="top"><a id="aace0c817e609883f5562882ec29530b4" name="aace0c817e609883f5562882ec29530b4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>list_year_occupations</b> (std::string year)</td></tr>
+<tr class="separator:aace0c817e609883f5562882ec29530b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4c21ef83a757a9a51961d47bff070a5" id="r_af4c21ef83a757a9a51961d47bff070a5"><td class="memItemLeft" align="right" valign="top"><a id="af4c21ef83a757a9a51961d47bff070a5" name="af4c21ef83a757a9a51961d47bff070a5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>invalid</b> ()</td></tr>
+<tr class="separator:af4c21ef83a757a9a51961d47bff070a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:ab1af4868fdfc6a9486d689ccbd04f9e0" id="r_ab1af4868fdfc6a9486d689ccbd04f9e0"><td class="memItemLeft" align="right" valign="top"><a id="ab1af4868fdfc6a9486d689ccbd04f9e0" name="ab1af4868fdfc6a9486d689ccbd04f9e0"></a>
 <a class="el" href="class_l_e_i_c.html">LEIC</a>&#160;</td><td class="memItemRight" valign="bottom"><b>data</b></td></tr>
 <tr class="separator:ab1af4868fdfc6a9486d689ccbd04f9e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d20ab394a21b7fc9842f1799d74b377" id="r_a4d20ab394a21b7fc9842f1799d74b377"><td class="memItemLeft" align="right" valign="top"><a id="a4d20ab394a21b7fc9842f1799d74b377" name="a4d20ab394a21b7fc9842f1799d74b377"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>color_mode</b> = false</td></tr>
+<tr class="separator:a4d20ab394a21b7fc9842f1799d74b377"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class handles and runs the different commands. </p>
 <p>This class has the course <a class="el" href="class_l_e_i_c.html" title="This is a class for the course LEIC.">LEIC</a> and different functions to handle alterations to that data. It is also responsible for handling inputs and outputs. </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="afba07dde0dde60de0416ec7af5ca0222" name="afba07dde0dde60de0416ec7af5ca0222"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afba07dde0dde60de0416ec7af5ca0222">&#9670;&#160;</a></span>get_request()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Script::get_request </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>studentCode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>option</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets from input the information needed for a specific request. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">studentCode</td><td>studentCode from student who is requesting. </td></tr>
+    <tr><td class="paramname">option</td><td>Type of request to get. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>ProjectAED/<a class="el" href="script_8h_source.html">script.h</a></li>
 <li>ProjectAED/<b>script.cpp</b></li>
 </ul>
