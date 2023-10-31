@@ -487,7 +487,7 @@ void Script::listSchedules(){
                     currentDay = lesson.get_weekday();
                     Color_Print(color_mode, "blue", lesson.get_weekday(), true);
                 }
-                lesson.print_lesson();
+                lesson.print_lesson(color_mode);
             }
             break;
         }
@@ -517,7 +517,7 @@ void Script::listSchedules(){
                     currentDay = lesson.get_weekday();
                     Color_Print(color_mode, "blue", lesson.get_weekday(), true);
                 }
-                lesson.print_lesson();
+                lesson.print_lesson(color_mode);
             }
             break;
         }

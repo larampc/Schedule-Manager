@@ -67,7 +67,7 @@ public:
     /**
      * \brief Prints the Lesson.
      */
-    void print_lesson() const;
+    void print_lesson(bool color_mode) const;
     /**
      * \brief Less than operator for Lesson comparison.
      *
