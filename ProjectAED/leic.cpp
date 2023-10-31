@@ -29,7 +29,9 @@ LEIC::LEIC(std::string filenameclasses, std::string filenamestudents, bool save_
         }
     }
     classesFile.close();
+
     sort(classes.begin(),classes.end());
+
     ifstream studentsFile(filenamestudents);
     getline(studentsFile, line);
     string up, name;

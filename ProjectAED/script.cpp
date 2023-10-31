@@ -649,12 +649,16 @@ void Script::list_year_occupations(string year) {
         cin >> order;
     }
     if(option == "3"){
-        (order == "1") ? sort(yearClasses.begin(),yearClasses.end(), [] (Class c1,Class c2) -> bool {return c1.get_students().size() < c2.get_students().size();})
-        : sort(yearClasses.rbegin(),yearClasses.rend(), [] (Class c1,Class c2) -> bool { return c1.get_students().size() < c2.get_students().size();});
+        (order == "1") ? sort(yearClasses.begin(),yearClasses.end(), [] (Class c1,Class c2) -> bool {return (c1.get_students().size() < c2.get_students().size())
+                                    || (c1.get_students().size() == c2.get_students().size() && (c1.get_ucCode() < c2.get_ucCode()) || (c1.get_ucCode() == c2.get_ucCode() && c1.get_classCode() < c2.get_classCode()))  ;})
+        : sort(yearClasses.rbegin(),yearClasses.rend(), [] (Class c1,Class c2) -> bool { return (c1.get_students().size() < c2.get_students().size())
+                                    || (c1.get_students().size() == c2.get_students().size() && (c1.get_ucCode() > c2.get_ucCode()) || (c1.get_ucCode() == c2.get_ucCode() && c1.get_classCode() > c2.get_classCode()));});
     }
     else if (option == "2"){
-        (order == "1") ? sort(yearClasses.begin(),yearClasses.end(), [] (Class c1,Class c2) -> bool {return c1.get_classCode() < c2.get_classCode();})
-        : sort(yearClasses.rbegin(),yearClasses.rend(), [] (Class c1,Class c2) -> bool {return c1.get_classCode() < c2.get_classCode();});
+        (order == "1") ? sort(yearClasses.begin(),yearClasses.end(), [] (Class c1,Class c2) -> bool {return c1.get_classCode() < c2.get_classCode()
+                                                                                                                    || (c1.get_classCode() == c2.get_classCode() && c1.get_ucCode() < c2.get_ucCode()) ;})
+        : sort(yearClasses.rbegin(),yearClasses.rend(), [] (Class c1,Class c2) -> bool {return c1.get_classCode() < c2.get_classCode()
+                                                                                || (c1.get_classCode() == c2.get_classCode() && c1.get_ucCode() > c2.get_ucCode());});
     }
     if(option == "1" && order == "2") {
         auto itr = yearClasses.end();
