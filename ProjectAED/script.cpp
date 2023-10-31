@@ -456,7 +456,7 @@ void Script::listSchedules(){
         case '1': {
             Color_Print(color_mode, "cyan", "Insert StudentCode ");
             Color_Print(color_mode, "yellow", "(e.g. 202020047)");
-            Color_Print(color_mode, "cyan", ": ");
+            Color_Print(color_mode, "cyan", ":");
             string up;
             cin >> up;
             while(data.get_student_from_studentCode(up) == nullptr){
@@ -469,7 +469,7 @@ void Script::listSchedules(){
         case '2': {
             Color_Print(color_mode, "cyan", "Enter ClassCode ");
             Color_Print(color_mode, "yellow", "(e.g. 1LEIC01)");
-            Color_Print(color_mode, "cyan", ": ");
+            Color_Print(color_mode, "cyan", ":");
             string class_;
             cin >> class_;
             while(!data.get_classCodes().count(class_)) {    //mudar para exists classcode???????
@@ -477,14 +477,13 @@ void Script::listSchedules(){
                 cin >> class_;
             }
 
-            vector<Class> classCodeClasses;
             vector <Class> classes = data.get_classes();
-            auto first_itr = lower_bound(classes.begin(),classes.end(),Class("",class_));
-            while(first_itr->get_classCode() == class_) classCodeClasses.push_back(*(first_itr++));
             set<Lesson> classLessons;
-            for(Class c : classCodeClasses){
-                set<Lesson> lessons = c.get_lessons();
-                classLessons.insert(lessons.begin(),lessons.end());
+            for(Class c : classes){
+                if (c.get_classCode() == class_) {
+                    set<Lesson> lessons = c.get_lessons();
+                    classLessons.insert(lessons.begin(),lessons.end());
+                }
             }
             string currentDay;
             for(Lesson lesson: classLessons) {
