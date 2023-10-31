@@ -2,6 +2,10 @@
 #include "color_print.h"
 using namespace std;
 
+bool is_number2(string s) {
+    return all_of(s.begin(),s.end(),  [] (char c){return isdigit(c);});
+}
+
 LEIC::LEIC(std::string filenameclasses, std::string filenamestudents, bool save_file) {
     ifstream classesFile(filenameclasses);
     string line;
@@ -62,8 +66,8 @@ LEIC::LEIC(std::string filenameclasses, std::string filenamestudents, bool save_
         stack<Request> reverseOrderRequest;
         while (getline(requestsFile, line)) {     // read all lines from the given file
             istringstream iss(line);
-            getline(iss, StudentCode, ',');
             getline(iss, Type, ',');
+            getline(iss, StudentCode, ',');
             getline(iss, oldUcCode, ',');
             getline(iss, newUcCode, ',');
             getline(iss, oldClassCode, ',');
@@ -297,16 +301,64 @@ void LEIC::add_processed_request(Request request) {
 void LEIC::upload_requests(bool color_mode) {
     string line;
     ifstream requestsFile("../requests.csv");
-    string StudentCode,Type,oldUcCode,newUcCode,oldClassCode,newClassCode;
+    string StudentCode,Type,oldUcCode,newUcCode,newClassCode, studentName;
+    int countLines = 0;
+    int countNews = 0;
     while (getline(requestsFile, line)) {     // read all lines from the given file
         istringstream iss(line);
-        getline(iss, StudentCode, ',');
         getline(iss, Type, ',');
-        getline(iss, oldUcCode, ',');
-        getline(iss, newUcCode, ',');
-        getline(iss, oldClassCode, ',');
-        iss >> newClassCode;
-        requests.emplace(Type,!newClassCode.empty(),StudentCode,oldClassCode,newClassCode,oldUcCode,newUcCode);
+        bool add = Type == "ADD";
+        bool remove = Type == "REMOVE";
+        bool Switch = Type == "SWITCH";
+        if (Type == "NEW") {
+            getline(iss, StudentCode, ',');
+            if (!(is_number2(StudentCode) && StudentCode.size() == 9)) {
+                cout << "Invalid input in the given file. Line " << countLines << endl;
+                empty_pending_requests();
+                return;
+            }
+            getline(iss, studentName);
+            add_student(Student(studentName, StudentCode));
+            requests.emplace("NEW", false, StudentCode);
+            processed_requests.emplace("NEW", false, StudentCode);
+            countNews++;
+        }
+        else if (add || remove || Switch) {
+            getline(iss, StudentCode, ',');
+            if (get_student_from_studentCode(StudentCode) == nullptr) {
+                cout << "Invalid input in the given file. Line " << countLines << endl;
+                empty_pending_requests();
+                for (int j = 0; j < countNews; j++) undo_request(color_mode);
+                return;
+            }
+            getline(iss, oldUcCode, ',');
+            if ((add && !oldUcCode.empty())
+                || ((!add) && (!get_student_from_studentCode(StudentCode)->has_uc(oldUcCode) || oldUcCode.empty()))) {
+                cout << "Invalid input in the given file. Line " << countLines << endl;
+                empty_pending_requests();
+                for (int j = 0; j < countNews; j++) undo_request(color_mode);
+                return;
+            }
+            getline(iss, newUcCode, ',');
+            if ((!remove) && (!exists_Uc(newUcCode) || get_student_from_studentCode(StudentCode)->has_uc(newUcCode))
+                || (remove && !newUcCode.empty())) {
+                cout << "Invalid input in the given file. Line " << countLines << endl;
+                empty_pending_requests();
+                for (int j = 0; j < countNews; j++) undo_request(color_mode);
+                return;
+            }
+            iss >> newClassCode;
+            if (((!remove) && !exists_class(newUcCode,newClassCode))
+                || (remove && !newClassCode.empty())) {
+                cout << "Invalid input in the given file. Line " << countLines << endl;
+                empty_pending_requests();
+                for (int j = 0; j < countNews; j++) undo_request(color_mode);
+                return;
+            }
+            requests.emplace(Type,!newClassCode.empty(),StudentCode,"",newClassCode,oldUcCode,newUcCode);
+        }
+        else {cout << "Invalid input in the given file. Line " << countLines << endl; empty_pending_requests(); for (int j = 0; j < countNews; j++) undo_request(color_mode); return;}
+        countLines++;
     }
     requestsFile.close();
     process_requests(color_mode);
@@ -532,6 +584,10 @@ void LEIC::process_requests(bool color_mode) {
                 }
                 break;
             }
+            case 'N': {
+                cout << "Student with code " << request.get_studentCode() << " was added.\n";
+                break;
+            }
         }
     }
 }
@@ -540,7 +596,7 @@ void LEIC::save_to_files() {
     ofstream students_classesSaveFile("../students_classes_save.csv", ofstream::out | ofstream::trunc);
     ofstream accepted_requests("../accepted_requests.csv", ofstream::out | ofstream::trunc);
     students_classesSaveFile << "StudentCode,StudentName,UcCode,ClassCode" << endl;
-    accepted_requests << "StudentCode,Type,oldUcCode,newUcCode,oldClassCode,newClassCode" << endl;
+    accepted_requests << "Type,StudentCode,oldUcCode,newUcCode,oldClassCode,newClassCode" << endl;
     for (pair<string, Student> up_s: up_students) {
         if (up_s.second.get_classes().empty()) {
             students_classesSaveFile << up_s.first << ','
@@ -556,8 +612,8 @@ void LEIC::save_to_files() {
     while(!processed_requests.empty()){
         Request r = processed_requests.top();
         processed_requests.pop();
-        accepted_requests << r.get_studentCode() << ','
-                          << r.get_type() << ','
+        accepted_requests << r.get_type() << ','
+                          << r.get_studentCode() << ','
                           << r.get_current_UcCode() << ','
                           << r.get_new_UcCode() << ','
                           << r.get_current_classCode() << ','
@@ -565,4 +621,10 @@ void LEIC::save_to_files() {
     }
     students_classesSaveFile.close();
     accepted_requests.close();
+}
+
+void LEIC::empty_pending_requests() {
+    while (!requests.empty()) {
+        requests.pop();
+    }
 }

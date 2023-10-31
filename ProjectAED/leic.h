@@ -79,6 +79,11 @@ public:
      */
     std::vector<Class*> get_classes_from_UcCode(std::string UcCode);
     /**
+     * \brief Empties the queue of pending requests.
+     *
+     */
+    void empty_pending_requests();
+    /**
     * \brief Gets the Cap, the max number of Student that can be in a Class.
     *
     * @return The Cap.
