@@ -313,6 +313,10 @@ void LEIC::upload_requests(bool color_mode) {
 
 std::string LEIC::request_add(Request& request, bool color_mode) {
     Student* student = get_student_from_studentCode(request.get_studentCode());
+    if (student->has_uc(request.get_new_UcCode())) {
+        cout << "Invalid request. Student is already in the UC " << request.get_new_UcCode() << "." << endl;
+        return "Request Error";
+    }
     if (request.get_Uc_class()) {
         Class* newclass = get_class_from_classCode_and_UcCode(request.get_new_classCode(), request.get_new_UcCode());
         if (newclass->get_students().size() >= CAP){
@@ -378,6 +382,7 @@ std::string LEIC::request_add(Request& request, bool color_mode) {
 bool LEIC::request_remove(Request& request) {
     Student* student = get_student_from_studentCode(request.get_studentCode());
     Class* currentClass = student->get_class_from_uc(request.get_current_UcCode());
+    if (currentClass == nullptr) return false;
     string currentclass = currentClass->get_classCode();
     string currentUc = request.get_current_UcCode();
     request.set_current_class(currentclass);
@@ -388,7 +393,10 @@ bool LEIC::request_remove(Request& request) {
 
 std::string LEIC::request_switch(Request& request, bool color_mode) {
     request.set_type("REMOVE");
-    request_remove(request);
+    if (!request_remove(request)) {
+        cout << "Invalid request. Student is not in the UC " << request.get_current_UcCode() << endl;
+        return "Request Error";
+    }
     request.set_type("ADD");
     Class* newclass = get_class_from_classCode_and_UcCode(request.get_new_classCode(), request.get_current_UcCode());
     if (request.get_Uc_class() && (class_balance_valid(newclass) != nullptr)) {
@@ -412,8 +420,8 @@ std::string LEIC::request_switch(Request& request, bool color_mode) {
         return "";
     }
     else {
-        Request removerequest = Request("ADD", true, request.get_studentCode(), "", request.get_current_classCode(),  "", request.get_current_UcCode());
-        request_add(removerequest, color_mode);
+        add_student_to_class(get_student_from_studentCode(request.get_studentCode()),
+                             get_class_from_classCode_and_UcCode(request.get_current_classCode(), request.get_current_UcCode()));
     }
     return message;
 }
@@ -506,6 +514,7 @@ void LEIC::process_requests(bool color_mode) {
                     Color_Print(color_mode, "cyan", " in the UC ");
                     Color_Print(color_mode, "yellow", request.get_current_UcCode(), true);
                 }
+                else cout << "Student is not in the UC, it can't be removed.\n";
                 break;
             }
             case 'S': {
