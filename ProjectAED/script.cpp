@@ -494,7 +494,7 @@ void Script::listSchedules(){
                 cin >> uc;
             }
             vector<Class*> classesUc = data.get_classes_from_UcCode(uc);
-            multiset<Lesson> total_lessons;
+            set<Lesson> total_lessons;
             for(Class* c : classesUc) {
                 set<Lesson> lessons = c->get_lessons();
                 total_lessons.insert(lessons.begin(), lessons.end());

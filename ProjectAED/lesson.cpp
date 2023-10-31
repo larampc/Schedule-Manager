@@ -45,5 +45,7 @@ bool Lesson::operator<(const Lesson &l) const{
                                        {"Wednesday", 3},
                                        {"Thursday", 4},
                                        {"Friday", 5}};
-    return (weekday_to_int[this->weekday] < weekday_to_int[l.weekday]) || (weekday_to_int[this->weekday] <= weekday_to_int[l.weekday] && this->startTime < l.startTime);
+    return (weekday_to_int[this->weekday] < weekday_to_int[l.weekday])
+            || (weekday_to_int[this->weekday] == weekday_to_int[l.weekday] && this->startTime < l.startTime)
+            || (weekday_to_int[this->weekday] == weekday_to_int[l.weekday] && this->startTime == l.startTime && this->Class < l.Class);
 }

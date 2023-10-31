@@ -48,6 +48,7 @@ public:
      * @return True if this Time is before the Time to compare.
      */
     bool operator<(const Time &t) const;
+    bool operator==(const Time &t) const;
 };
 
 
