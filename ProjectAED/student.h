@@ -72,6 +72,8 @@ public:
     void remove_class_from_uc(std::string ucCode); //faz sentido ser pointers?
     /**
      * \brief Prints the student's schedule.
+     *
+     * @param color_mode True to print with colors, false otherwise.
      */
     void print_schedule(bool color_mode);
 };

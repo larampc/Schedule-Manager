@@ -66,6 +66,8 @@ public:
     bool overlap(Lesson l) const;
     /**
      * \brief Prints the Lesson.
+     *
+     * @param color_mode True to print with colors, false otherwise.
      */
     void print_lesson(bool color_mode) const;
     /**
