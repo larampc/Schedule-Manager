@@ -125,7 +125,7 @@ void Script::handle_requests() {
             break;
         }
         case '4': {
-            data.undo_request();
+            data.undo_request(color_mode);
             break;
         }
         case '5': {
@@ -169,7 +169,7 @@ void Script::request(){
         cin >> answer;
     }
     if (answer == "Y") request();
-    data.process_requests();
+    data.process_requests(color_mode);
 }
 
 void Script::get_request(string studentCode, string option) {
@@ -319,7 +319,7 @@ void Script::new_registration() {
             get_request(new_up, "1");
         }
     }
-    data.process_requests();
+    data.process_requests(color_mode);
 }
 
 void Script::request_file() {
@@ -335,7 +335,7 @@ void Script::request_file() {
         invalid();
         cin >> answer;
     }
-    if (answer == "Y") data.upload_requests();
+    if (answer == "Y") data.upload_requests(color_mode);
 }
 
 void Script::listings(){
@@ -555,8 +555,8 @@ void Script::listStudents() {
                 invalid();
                 cin >> option;
             }
-            if(option == "1") data.list_students_by_studentCode();
-            else data.list_students_by_name();
+            if(option == "1") data.list_students_by_studentCode(color_mode);
+            else data.list_students_by_name(color_mode);
             break;
         }
         case '2': {
@@ -578,8 +578,8 @@ void Script::listStudents() {
                 invalid();
                 cin >> option;
             }
-            if(option == "1") data.list_UC_students_by_studentCode(UC);
-            else data.list_UC_students_by_name(UC);
+            if(option == "1") data.list_UC_students_by_studentCode(UC, color_mode);
+            else data.list_UC_students_by_name(UC, color_mode);
             break;
         }
         case '3': {
@@ -609,8 +609,8 @@ void Script::listStudents() {
                 invalid();
                 cin >> option;
             }
-            if(option == "1") data.list_class_students_by_studentCode(data.get_class_from_classCode_and_UcCode(class_, UC));
-            else data.list_class_students_by_name(data.get_class_from_classCode_and_UcCode(class_, UC));
+            if(option == "1") data.list_class_students_by_studentCode(data.get_class_from_classCode_and_UcCode(class_, UC), color_mode);
+            else data.list_class_students_by_name(data.get_class_from_classCode_and_UcCode(class_, UC), color_mode);
             break;
         }
         case '4': listings();
