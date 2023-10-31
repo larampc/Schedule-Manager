@@ -141,30 +141,40 @@ bool LEIC::Uc_has_vacancy(std::string uccode) {
 }
 
 void LEIC::list_students_by_studentCode() {
-    Color_Print(color_mode, "blue", "UPNUMBER\tNAME", true);
-    Color_Print(color_mode, "blue", "------------------------------------", true);
+    Color_Print(color_mode, "blue", "UPNUMBER");
+    Color_Print(color_mode, "green", " | ");
+    Color_Print(color_mode, "white", "NAME", true);
+    Color_Print(color_mode, "green", "------------------------------------", true);
     for(pair<string, Student> p : up_students){
-        Color_Print(color_mode, "blue", p.first + " | " + p.second.get_name(), true);
+        Color_Print(color_mode, "blue", p.first);
+        Color_Print(color_mode, "green", " | ");
+        Color_Print(color_mode, "white", p.second.get_name(), true);
     }
 }
 
 void LEIC::list_students_by_name(){
-    Color_Print(color_mode, "blue", "UPNUMBER\tNAME", true);
-    Color_Print(color_mode, "blue", "------------------------------------", true);
+    Color_Print(color_mode, "white", "UPNUMBER");
+    Color_Print(color_mode, "green", " | ");
+    Color_Print(color_mode, "blue", "NAME", true);
+    Color_Print(color_mode, "green", "------------------------------------", true);
     map<string, string> students_up;
     for(pair<string, Student> p : up_students){
         students_up[p.second.get_name()] = p.first;
     }
     for(pair<string, string> p : students_up){
-        Color_Print(color_mode, "blue", p.second + '\t' + p.first, true);
+        Color_Print(color_mode, "white", p.second);
+        Color_Print(color_mode, "green", " | ");
+        Color_Print(color_mode, "blue", p.first, true);
     }
 }
 
 void LEIC::list_UC_students_by_studentCode(std::string UcCode) {
     Color_Print(color_mode, "blue", "Students of UC ");
     Color_Print(color_mode, "yellow", UcCode, true);
-    Color_Print(color_mode, "blue", "UPNUMBER\tNAME", true);
-    Color_Print(color_mode, "blue", "------------------------------------", true);
+    Color_Print(color_mode, "blue", "UPNUMBER");
+    Color_Print(color_mode, "green", " | ");
+    Color_Print(color_mode, "white", "NAME", true);
+    Color_Print(color_mode, "green", "------------------------------------", true);
     set<string> studentinUC;
     for(Class c : classes){
         if(c.get_ucCode() == UcCode){
@@ -172,22 +182,31 @@ void LEIC::list_UC_students_by_studentCode(std::string UcCode) {
             studentinUC.insert(studentUC.begin(), studentUC.end());
         }
     }
-    for(string code : studentinUC)
-        Color_Print(color_mode, "blue", code + " | " + up_students.at(code).get_name(), true);
+    for(string code : studentinUC){
+        Color_Print(color_mode, "blue", code);
+        Color_Print(color_mode, "green", " | ");
+        Color_Print(color_mode, "white", up_students.at(code).get_name(), true);
+    }
 }
 
 void LEIC::list_UC_students_by_name(std::string uc) {
     Color_Print(color_mode, "blue", "Students of UC ");
     Color_Print(color_mode, "yellow", uc, true);
-    Color_Print(color_mode, "blue", "UPNUMBER\tNAME", true);
-    Color_Print(color_mode, "blue", "------------------------------------", true);
+    Color_Print(color_mode, "white", "UPNUMBER");
+    Color_Print(color_mode, "green", " | ");
+    Color_Print(color_mode, "blue", "NAME", true);
+    Color_Print(color_mode, "green", "------------------------------------", true);
     map<string, string> UCstudents_up;
     for(Class c : classes){
         if(c.get_ucCode() == uc) {
             for (string up: c.get_students()) UCstudents_up[up_students.at(up).get_name()] = up;
         }
     }
-    for (pair<string, string> p: UCstudents_up) Color_Print(color_mode, "blue", p.second + '\t' + p.first, true);
+    for (pair<string, string> p: UCstudents_up){
+        Color_Print(color_mode, "white", p.second);
+        Color_Print(color_mode, "green", " | ");
+        Color_Print(color_mode, "blue", p.first, true);
+    }
 }
 
 void LEIC::list_class_students_by_studentCode(Class *class_) const {
@@ -195,9 +214,15 @@ void LEIC::list_class_students_by_studentCode(Class *class_) const {
     Color_Print(color_mode, "yellow", class_->get_classCode());
     Color_Print(color_mode, "blue", " of UC ");
     Color_Print(color_mode, "yellow", class_->get_ucCode(), true);
-    Color_Print(color_mode, "blue", "UPNUMBER\tNAME", true);
-    Color_Print(color_mode, "blue", "------------------------------------", true);
-    for(string up : class_->get_students()) Color_Print(color_mode, "blue", up + " | " + up_students.at(up).get_name(), true);
+    Color_Print(color_mode, "blue", "UPNUMBER");
+    Color_Print(color_mode, "green", " | ");
+    Color_Print(color_mode, "white", "NAME", true);
+    Color_Print(color_mode, "green", "------------------------------------", true);
+    for(string up : class_->get_students()){
+        Color_Print(color_mode, "blue", up);
+        Color_Print(color_mode, "green", " | ");
+        Color_Print(color_mode, "white", up_students.at(up).get_name(), true);
+    }
 }
 
 void LEIC::list_class_students_by_name(Class *class_) const {
@@ -205,11 +230,17 @@ void LEIC::list_class_students_by_name(Class *class_) const {
     Color_Print(color_mode, "yellow", class_->get_classCode());
     Color_Print(color_mode, "blue", " of UC ");
     Color_Print(color_mode, "yellow", class_->get_ucCode(), true);
-    Color_Print(color_mode, "blue", "UPNUMBER\tNAME", true);
-    Color_Print(color_mode, "blue", "------------------------------------", true);
+    Color_Print(color_mode, "white", "UPNUMBER");
+    Color_Print(color_mode, "green", " | ");
+    Color_Print(color_mode, "blue", "NAME", true);
+    Color_Print(color_mode, "green", "------------------------------------", true);
     map<string, string> UCstudents_up;
     for (string up: class_->get_students()) UCstudents_up[up_students.at(up).get_name()] = up;
-    for (pair<string, string> p: UCstudents_up) Color_Print(color_mode, "blue", p.second + '\t' + p.first, true);
+    for (pair<string, string> p: UCstudents_up){
+        Color_Print(color_mode, "white", p.second);
+        Color_Print(color_mode, "green", " | ");
+        Color_Print(color_mode, "blue", p.first, true);
+    }
 }
 
 void LEIC::list_number_students_class() {
@@ -224,7 +255,11 @@ int LEIC::students_in_n_Ucs(int n){
     for (pair<string, Student> p: up_students) {
         if(p.second.get_classes().size() >= n) {
             count++;
-            cout << p.first << " | " << p.second.get_name() << " - " << p.second.get_classes().size() << endl;
+            Color_Print(color_mode, "white", p.first);
+            Color_Print(color_mode, "green", " | ");
+            Color_Print(color_mode, "white", p.second.get_name());
+            Color_Print(color_mode, "green", " - ");
+            Color_Print(color_mode, "blue", to_string(p.second.get_classes().size()), true);
         }
     }
     return count;
@@ -399,9 +434,9 @@ std::string LEIC::request_add(Request& request) {
             Color_Print(color_mode, "yellow", request.get_new_UcCode());
             Color_Print(color_mode, "green", " affects class balance. Do you want to:", true);
             Color_Print(color_mode, "cyan", "1- ");
-            Color_Print(color_mode, "green", "Proceed with the operation \t");
+            Color_Print(color_mode, "white", "Proceed with the operation \t");
             Color_Print(color_mode, "cyan", "2- ");
-            Color_Print(color_mode, "green", "Change to class ");
+            Color_Print(color_mode, "white", "Change to class ");
             Color_Print(color_mode, "yellow", suggestion->get_classCode(), true);
             string option;
             cin >> option; while(option != "1" && option != "2") {Color_Print(color_mode, "red", "Invalid Input, please try again", true); cin >> option; cout << '\n';}
