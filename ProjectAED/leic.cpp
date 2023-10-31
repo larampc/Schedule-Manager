@@ -218,6 +218,7 @@ int LEIC::students_in_n_Ucs(int n){
     int count = 0;
     for (pair<string, Student> p: up_students) {
         count += p.second.get_classes().size() >= n;
+        cout << p.first << " | " << p.second.get_name() << " - " << p.second.get_classes().size() << endl;
     }
     return count;
 }

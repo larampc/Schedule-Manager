@@ -369,14 +369,16 @@ void Script::listings(){
             break;
         }
         case '4': {
-            Color_Print(color_mode, "cyan", "N: ");
+            Color_Print(color_mode, "cyan", "N:");
             string n;
             cin >> n;
             while (!is_number(n) || stoi(n) > 7) {
                 invalid();
                 cin >> n;
             }
-            Color_Print(color_mode, "blue", to_string(data.students_in_n_Ucs(stoi(n))), true);
+            string total =to_string(data.students_in_n_Ucs(stoi(n)));
+            cout << "Total students with " << n << " UC's: ";
+            Color_Print(color_mode, "blue", total, true);
             break;
         }
         case '5': run();
