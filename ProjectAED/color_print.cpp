@@ -5,11 +5,12 @@
 #include <windows.h>
 Color_Print::Color_Print(bool use_colors, std::string color, std::string line, bool newLine,
                          std::string background_color) {
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    int col = 0x0007;
-    int back_col = 0x0000;
     if (use_colors)
     {
+        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        int col = 0x0007;
+        int back_col = 0x0000;
+
         if (color == "gray") col = 0x0000;
         else if (color == "blue") col = 0x0009;
         else if (color == "green") col = 0x000A;
@@ -27,11 +28,12 @@ Color_Print::Color_Print(bool use_colors, std::string color, std::string line, b
         else if (background_color == "pink") back_col = 0x00D0;
         else if (background_color == "yellow") back_col = 0x00E0;
         else if (background_color == "white") back_col = 0x00F0;
-    }
 
-    SetConsoleTextAttribute(hConsole, col + back_col);
-    std::cout << line;
-    SetConsoleTextAttribute(hConsole, 0x0007);
+        SetConsoleTextAttribute(hConsole, col + back_col);
+        std::cout << line;
+        SetConsoleTextAttribute(hConsole, 0x0007);
+    }
+    else std::cout << line;
     if (newLine) {
         std::cout << std::endl;
     }
@@ -43,10 +45,10 @@ Color_Print::Color_Print(bool use_colors, std::string color, std::string line, b
 
 Color_Print::Color_Print(bool use_colors, std::string color, std::string line, bool newLine,
                          std::string background_color) {
-        std::string col = "\033[0";
-        std::string back_col = "m";
         if (use_colors)
         {
+            std::string col = "\033[0";
+            std::string back_col = "m";
             if (color == "gray") col = "\033[0;30";
             else if (color == "blue") col = "\033[0;34";
             else if (color == "green") col = "\033[0;32";
@@ -64,9 +66,10 @@ Color_Print::Color_Print(bool use_colors, std::string color, std::string line, b
             else if (background_color == "pink") back_col = ";45m";
             else if (background_color == "yellow") back_col = ";43m";
             else if (background_color == "white") back_col = ";47m";
-        }
 
-        std::cout << col + back_col  << line << "\033[0m";
+            std::cout << col + back_col  << line << "\033[0m";
+        }
+        else std::cout << line;
         if (newLine) {
             std::cout << std::endl;
         }
