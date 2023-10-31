@@ -48,6 +48,12 @@ public:
      * @return True if this Time is before the Time to compare.
      */
     bool operator<(const Time &t) const;
+    /**
+     * \brief Equal operator for Time comparison.
+     *
+     * @param t The Time to compare.
+     * @return True if this Time is equal to the Time to compare.
+     */
     bool operator==(const Time &t) const;
 };
 

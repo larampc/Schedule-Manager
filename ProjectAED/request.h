@@ -79,7 +79,17 @@ public:
      * @param type The type to set the Request, ADD, REMOVE or SWITCH.
      */
     void set_type(std::string type);
+    /**
+     * \brief Sets the new_classCode parameter of the Request.
+     *
+     * @param classCode The Class code to set the new_classCode parameter.
+     */
     void set_new_class(std::string classCode);
+    /**
+     * \brief Sets the current_classCode parameter of the Request.
+     *
+     * @param classCode The Class code to set the current_classCode parameter.
+     */
     void set_current_class(std::string classCode);
 };
 
