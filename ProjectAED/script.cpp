@@ -327,7 +327,8 @@ void Script::request_file() {
     Color_Print(color_mode, "white", "Save the file to this directory named ");
     Color_Print(color_mode, "cyan", "requests.csv ");
     Color_Print(color_mode, "white", "with the following structure:", true);
-    Color_Print(color_mode, "white", "Type,StudentCode,oldUcCode,newUcCode,newClassCode", true);
+    Color_Print(color_mode, "white", "Type,StudentCode,oldUcCode,newUcCode,newClassCode - if Type in {ADD,REMOVE,SWITCH}", true);
+    Color_Print(color_mode, "white", "OR Type,StudentCode,StudentName - if Type is NEW", true);
     Color_Print(color_mode, "blue", "Do you want to process the requests? ");
     Color_Print(color_mode, "cyan", "[Y/N]", true);
     string answer;

@@ -141,7 +141,7 @@ bool LEIC::Uc_has_vacancy(std::string uccode) {
 }
 
 void LEIC::list_students_by_studentCode() {
-    Color_Print(color_mode, "blue", "UPNUMBER");
+    Color_Print(color_mode, "blue", "StudentCode");
     Color_Print(color_mode, "green", " | ");
     Color_Print(color_mode, "white", "NAME", true);
     Color_Print(color_mode, "green", "------------------------------------", true);
@@ -153,7 +153,7 @@ void LEIC::list_students_by_studentCode() {
 }
 
 void LEIC::list_students_by_name(){
-    Color_Print(color_mode, "white", "UPNUMBER");
+    Color_Print(color_mode, "white", "StudentCode");
     Color_Print(color_mode, "green", " | ");
     Color_Print(color_mode, "blue", "NAME", true);
     Color_Print(color_mode, "green", "------------------------------------", true);
@@ -171,7 +171,7 @@ void LEIC::list_students_by_name(){
 void LEIC::list_UC_students_by_studentCode(std::string UcCode) {
     Color_Print(color_mode, "blue", "Students of UC ");
     Color_Print(color_mode, "yellow", UcCode, true);
-    Color_Print(color_mode, "blue", "UPNUMBER");
+    Color_Print(color_mode, "blue", "StudentCode");
     Color_Print(color_mode, "green", " | ");
     Color_Print(color_mode, "white", "NAME", true);
     Color_Print(color_mode, "green", "------------------------------------", true);
@@ -192,7 +192,7 @@ void LEIC::list_UC_students_by_studentCode(std::string UcCode) {
 void LEIC::list_UC_students_by_name(std::string uc) {
     Color_Print(color_mode, "blue", "Students of UC ");
     Color_Print(color_mode, "yellow", uc, true);
-    Color_Print(color_mode, "white", "UPNUMBER");
+    Color_Print(color_mode, "white", "StudentCode");
     Color_Print(color_mode, "green", " | ");
     Color_Print(color_mode, "blue", "NAME", true);
     Color_Print(color_mode, "green", "------------------------------------", true);
@@ -214,7 +214,7 @@ void LEIC::list_class_students_by_studentCode(Class *class_) const {
     Color_Print(color_mode, "yellow", class_->get_classCode());
     Color_Print(color_mode, "blue", " of UC ");
     Color_Print(color_mode, "yellow", class_->get_ucCode(), true);
-    Color_Print(color_mode, "blue", "UPNUMBER");
+    Color_Print(color_mode, "blue", "StudentCode");
     Color_Print(color_mode, "green", " | ");
     Color_Print(color_mode, "white", "NAME", true);
     Color_Print(color_mode, "green", "------------------------------------", true);
@@ -230,7 +230,7 @@ void LEIC::list_class_students_by_name(Class *class_) const {
     Color_Print(color_mode, "yellow", class_->get_classCode());
     Color_Print(color_mode, "blue", " of UC ");
     Color_Print(color_mode, "yellow", class_->get_ucCode(), true);
-    Color_Print(color_mode, "white", "UPNUMBER");
+    Color_Print(color_mode, "white", "StudentCode");
     Color_Print(color_mode, "green", " | ");
     Color_Print(color_mode, "blue", "NAME", true);
     Color_Print(color_mode, "green", "------------------------------------", true);
