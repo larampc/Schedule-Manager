@@ -4,6 +4,7 @@
 #include <iostream>
 using namespace std;
 #include "color_print.h"
+extern bool color_mode;
 
 Lesson::Lesson(string thisclass, string weekday, Time starttime, Time endtime, string type): Class(thisclass), weekday(weekday), startTime(starttime), endTime(endtime), type(type) {}
 
@@ -32,7 +33,7 @@ bool Lesson::overlap(Lesson l) const {
                                                   min(endTime.get_time_in_float(), l.endTime.get_time_in_float()));
 }
 
-void Lesson::print_lesson(bool color_mode) const {
+void Lesson::print_lesson() const {
     string out;
     stringstream outstream;
     outstream << setw(2) << setfill('0') << startTime.get_hour() << ":"

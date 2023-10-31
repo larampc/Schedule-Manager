@@ -118,50 +118,40 @@ public:
     bool Uc_has_vacancy(std::string UcCode);
     /**
     * \brief Prints all of the Student enrolled in the course sorted by their up.
-     *
-     * @param color_mode True to print with colors, false otherwise.
     */
-    void list_students_by_studentCode(bool color_mode);
+    void list_students_by_studentCode();
     /**
     * \brief Prints all of the Student enrolled in the course sorted by their name.
-     *
-     * @param color_mode True to print with colors, false otherwise.
     */
-    void list_students_by_name(bool color_mode);
+    void list_students_by_name();
     /**
      * \brief Prints all of the Student enrolled in the given UC sorted by their up.
      *
      * @param uc The UC code of the UC to print all Student.
-     * @param color_mode True to print with colors, false otherwise.
      */
-    void list_UC_students_by_studentCode(std::string UcCode, bool color_mode);
+    void list_UC_students_by_studentCode(std::string UcCode);
     /**
      * \brief Prints all of the Student enrolled in the given UC sorted by their name.
      *
      * @param uc The UC code of the UC to print all Student.
-     * @param color_mode True to print with colors, false otherwise.
      */
-    void list_UC_students_by_name(std::string UcCode, bool color_mode);
+    void list_UC_students_by_name(std::string UcCode);
     /**
      * \brief Prints all of the Student enrolled in the given Class sorted by their up.
      *
      * @param class_ The Class to print all Student.
-     * @param color_mode True to print with colors, false otherwise.
      */
-    void list_class_students_by_studentCode(Class* class_, bool color_mode) const;
+    void list_class_students_by_studentCode(Class* class_) const;
     /**
      * \brief Prints all of the Student enrolled in the given Class sorted by their name.
      *
      * @param class_ The Class to print all Student.
-     * @param color_mode True to print with colors, false otherwise.
      */
-    void list_class_students_by_name(Class* class_, bool color_mode) const;
+    void list_class_students_by_name(Class* class_) const;
     /**
      * \brief Prints all Class and their respective number of Student enrolled.
-     *
-     * @param color_mode True to print with colors, false otherwise.
      */
-    void list_number_students_class(bool color_mode);
+    void list_number_students_class();
     /**
      * \brief Gets the number of Student with at least the given number of UCs.
      *
@@ -221,18 +211,15 @@ public:
     void add_processed_request(Request request);
     /**
      * \brief Uploads all the Request in the requests.csv file to the queue and runs them.
-     *
-     * @param color_mode True to print with colors, false otherwise.
      */
-    void upload_requests(bool color_mode);
+    void upload_requests();
     /**
      * \brief Runs the given Request of type ADD about the given Student and returns True if it is valid and ran with no errors.
      *
      * @param request The Request to run.
-     * @param color_mode True to print with colors, false otherwise.
      * @return Empty string if the given Request is valid and ran with no errors, string with the error if not.
      */
-    std::string request_add(Request& request, bool color_mode);
+    std::string request_add(Request& request);
     /**
      * \brief Runs the given Request of type REMOVE about the given Student and returns True if it is valid and ran with no errors.
      *
@@ -244,23 +231,19 @@ public:
      * \brief Runs the given Request of type SWITCH about the given Student and returns True if it is valid and ran with no errors.
      *
      * @param request The Request to run.
-     * @param color_mode True to print with colors, false otherwise.
      * @return Empty string if the given Request is valid and ran with no errors, string with error otherwise.
      */
-    std::string request_switch(Request& request, bool color_mode);
+    std::string request_switch(Request& request);
     /**
      * \brief Undoes the last Request that was done successfully.
      *
-     * @param color_mode True to print with colors, false otherwise.
      * @return True if it undid with no errors.
      */
-    bool undo_request(bool color_mode);
+    bool undo_request();
     /**
      * \brief Executes all Request in the queue by checking the type running it.
-     *
-     * @param color_mode True to print with colors, false otherwise.
      */
-    void process_requests(bool color_mode);
+    void process_requests();
     /**
      * \brief Saves all modifications and all successful Requests to files.
      */

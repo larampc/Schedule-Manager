@@ -30,7 +30,6 @@
 class Script {
 private:
     LEIC data;
-    bool color_mode = false;
 public:
     /**
      * \brief Creates a new Script.

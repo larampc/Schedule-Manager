@@ -2,6 +2,7 @@
 #include <cctype>
 #include "color_print.h"
 using namespace std;
+extern bool color_mode;
 
 void Script::invalid(){ Color_Print(color_mode, "red", "Invalid Input, please try again", true); }
 
@@ -125,7 +126,7 @@ void Script::handle_requests() {
             break;
         }
         case '4': {
-            data.undo_request(color_mode);
+            data.undo_request();
             break;
         }
         case '5': {
@@ -169,7 +170,7 @@ void Script::request(){
         cin >> answer;
     }
     if (answer == "Y") request();
-    data.process_requests(color_mode);
+    data.process_requests();
 }
 
 void Script::get_request(string studentCode, string option) {
@@ -319,7 +320,7 @@ void Script::new_registration() {
             get_request(new_up, "1");
         }
     }
-    data.process_requests(color_mode);
+    data.process_requests();
 }
 
 void Script::request_file() {
@@ -335,7 +336,7 @@ void Script::request_file() {
         invalid();
         cin >> answer;
     }
-    if (answer == "Y") data.upload_requests(color_mode);
+    if (answer == "Y") data.upload_requests();
 }
 
 void Script::listings(){
@@ -478,7 +479,7 @@ void Script::listSchedules(){
                 invalid();
                 cin >> up;
             }
-            data.get_student_from_studentCode(up)->print_schedule(color_mode);
+            data.get_student_from_studentCode(up)->print_schedule();
             break;
         }
         case '2': {
@@ -510,7 +511,7 @@ void Script::listSchedules(){
                     currentDay = lesson.get_weekday();
                     Color_Print(color_mode, "blue", lesson.get_weekday(), true);
                 }
-                lesson.print_lesson(color_mode);
+                lesson.print_lesson();
             }
             break;
         }
@@ -540,7 +541,7 @@ void Script::listSchedules(){
                     currentDay = lesson.get_weekday();
                     Color_Print(color_mode, "blue", lesson.get_weekday(), true);
                 }
-                lesson.print_lesson(color_mode);
+                lesson.print_lesson();
             }
             break;
         }
@@ -578,8 +579,8 @@ void Script::listStudents() {
                 invalid();
                 cin >> option;
             }
-            if(option == "1") data.list_students_by_studentCode(color_mode);
-            else data.list_students_by_name(color_mode);
+            if(option == "1") data.list_students_by_studentCode();
+            else data.list_students_by_name();
             break;
         }
         case '2': {
@@ -601,8 +602,8 @@ void Script::listStudents() {
                 invalid();
                 cin >> option;
             }
-            if(option == "1") data.list_UC_students_by_studentCode(UC, color_mode);
-            else data.list_UC_students_by_name(UC, color_mode);
+            if(option == "1") data.list_UC_students_by_studentCode(UC);
+            else data.list_UC_students_by_name(UC);
             break;
         }
         case '3': {
@@ -632,8 +633,8 @@ void Script::listStudents() {
                 invalid();
                 cin >> option;
             }
-            if(option == "1") data.list_class_students_by_studentCode(data.get_class_from_classCode_and_UcCode(class_, UC), color_mode);
-            else data.list_class_students_by_name(data.get_class_from_classCode_and_UcCode(class_, UC), color_mode);
+            if(option == "1") data.list_class_students_by_studentCode(data.get_class_from_classCode_and_UcCode(class_, UC));
+            else data.list_class_students_by_name(data.get_class_from_classCode_and_UcCode(class_, UC));
             break;
         }
         case '4': listings();

@@ -1,5 +1,6 @@
 #include "ProjectAED/script.h"
 using namespace std;
+bool color_mode = false;
 
 int main() {
     cout << "1- Import original dataset 2- Use current dataset\n";

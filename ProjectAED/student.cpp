@@ -3,6 +3,7 @@
 #include <iomanip>
 #include "color_print.h"
 using namespace std;
+extern bool color_mode;
 
 Student::Student(string name, string studentCode): name(name), studentCode(studentCode), classes() {}
 
@@ -37,7 +38,7 @@ void Student::remove_class_from_uc(string ucCode) {
     classes.remove(get_class_from_uc(ucCode));
 }
 
-void Student::print_schedule(bool color_mode) {
+void Student::print_schedule() {
     Color_Print(color_mode, "blue", "Schedule of ");
     Color_Print(color_mode, "yellow", name, true);
     set<Lesson> allClasses;
