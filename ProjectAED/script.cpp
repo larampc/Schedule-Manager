@@ -682,19 +682,14 @@ void Script::list_year_occupations(string year) {
 }
 
 void Script::list_Uc_occupations(std::string UcCode) {
-
-
-
     string option, order;
     Color_Print(color_mode, "green", "Sort by? ");
     Color_Print(color_mode, "cyan", "1- ");
-    Color_Print(color_mode, "green", "UC ");
-    Color_Print(color_mode, "cyan", "2- ");
     Color_Print(color_mode, "green", "ClassCode ");
-    Color_Print(color_mode, "cyan", "3- ");
-    Color_Print(color_mode, "green", "Occupation", true);
+    Color_Print(color_mode, "cyan", "2- ");
+    Color_Print(color_mode, "green", "Occupation",true);
     cin >> option;
-    while(option != "1" && option != "2" && option != "3"){
+    while(option != "1" && option != "2"){
         invalid();
         cin >> option;
     }
@@ -709,7 +704,27 @@ void Script::list_Uc_occupations(std::string UcCode) {
         cin >> order;
     }
 
-
+    vector<Class> classes = data.get_classes();
+    vector<Class> UcClasses;
+    for(Class c: classes){
+        if (c.get_ucCode() == UcCode) UcClasses.push_back(c);
+    }
+    if(option == "2"){
+        (order == "1") ? sort(UcClasses.begin(),UcClasses.end(), [] (Class c1,Class c2) -> bool {return (c1.get_students().size() < c2.get_students().size())
+                                                                                                            || (c1.get_students().size() == c2.get_students().size() && c1.get_classCode() < c2.get_classCode())  ;})
+                       : sort(UcClasses.rbegin(),UcClasses.rend(), [] (Class c1,Class c2) -> bool { return (c1.get_students().size() < c2.get_students().size())
+                                                                                                               || (c1.get_students().size() == c2.get_students().size() && c1.get_classCode() > c2.get_classCode());});
+    }
+    else if (option == "1" && order == "2"){
+        auto itr = UcClasses.end();
+        while(itr-- != UcClasses.begin()){
+            Color_Print(color_mode, "blue", itr->get_classCode() + " " + itr->get_ucCode() + " " + to_string(itr->get_students().size()), true);
+        }
+        return;
+    }
+    for (Class c: UcClasses) {
+        Color_Print(color_mode, "blue", c.get_classCode() + " " + c.get_ucCode() + " " + to_string(c.get_students().size()), true);
+    }
 }
 
 
