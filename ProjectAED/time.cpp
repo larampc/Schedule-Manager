@@ -24,3 +24,7 @@ bool Time::operator<(const Time &t) const{
     return timeFloat < t.timeFloat;
 }
 
+bool Time::operator==(const Time &t) const{
+    return timeFloat == t.timeFloat;
+}
+
