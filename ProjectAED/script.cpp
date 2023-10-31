@@ -419,7 +419,15 @@ void Script::occupations(){
             break;
         }
         case '2': {
-            //list_Uc_occupations();
+            Color_Print(color_mode, "cyan", "Enter UCcode ");
+            Color_Print(color_mode, "yellow", "(e.g. L.EIC001)");
+            Color_Print(color_mode, "cyan", ": ");
+            string UC; cin >> UC;
+            while(!data.exists_Uc(UC)) {
+                invalid();
+                cin >> UC;
+            }
+            list_Uc_occupations(UC);
             break;
         }
         case '3': {
@@ -670,6 +678,37 @@ void Script::list_year_occupations(string year) {
     for (Class c: yearClasses) {
         Color_Print(color_mode, "blue", c.get_classCode() + " " + c.get_ucCode() + " " + to_string(c.get_students().size()), true);
     }
+}
+
+void Script::list_Uc_occupations(std::string UcCode) {
+
+
+
+    string option, order;
+    Color_Print(color_mode, "green", "Sort by? ");
+    Color_Print(color_mode, "cyan", "1- ");
+    Color_Print(color_mode, "green", "UC ");
+    Color_Print(color_mode, "cyan", "2- ");
+    Color_Print(color_mode, "green", "ClassCode ");
+    Color_Print(color_mode, "cyan", "3- ");
+    Color_Print(color_mode, "green", "Occupation", true);
+    cin >> option;
+    while(option != "1" && option != "2" && option != "3"){
+        invalid();
+        cin >> option;
+    }
+    Color_Print(color_mode, "green", "Pick: ");
+    Color_Print(color_mode, "cyan", "1- ");
+    Color_Print(color_mode, "green", "Ascending Order ");
+    Color_Print(color_mode, "cyan", "2- ");
+    Color_Print(color_mode, "green", "Descending Order", true);
+    cin >> order;
+    while(order != "1" && order != "2"){
+        invalid();
+        cin >> order;
+    }
+
+
 }
 
 

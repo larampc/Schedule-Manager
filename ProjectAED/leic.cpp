@@ -235,39 +235,39 @@ Class* LEIC::class_balance_valid(Class* newClass) {
 }
 
 bool LEIC::compatible_schedules(Student student, Class* newclass, Class* oldclass) {
+//    for (Lesson newlesson: newclass->get_lessons()) {
+//        if (newlesson.get_type() != "T") {
+//            for (Class* c: student.get_classes()) {
+//                if (c != oldclass) {
+//                    set<Lesson> currentLessons = c->get_lessons();
+//                    auto itr = lower_bound(currentLessons.begin(),currentLessons.end(),newlesson,
+//                                           [] (Lesson l1, Lesson l2) -> bool {return l1.get_weekday() < l2.get_weekday();});
+//
+//                    while(itr->get_weekday() == newlesson.get_weekday()){
+//                        if(itr->get_type() != "T") {
+//                            if (newlesson.overlap(*itr)) return false;
+//                        }
+//                        itr++;
+//                    }
+//                }
+//            }
+//        }
+    }
     for (Lesson newlesson: newclass->get_lessons()) {
-        if (newlesson.get_type() != "T") {
+        if (newlesson.get_type() == "PL" || newlesson.get_type() == "TP") {
             for (Class* c: student.get_classes()) {
-                if (c != oldclass) {
-                    set<Lesson> currentLessons = c->get_lessons();
-                    auto itr = lower_bound(currentLessons.begin(),currentLessons.end(),newlesson,
-                                           [] (Lesson l1, Lesson l2) -> bool {return l1.get_weekday() < l2.get_weekday();});
-
-                    while(itr->get_weekday() == newlesson.get_weekday()){
-                        if(itr->get_type() != "T") {
-                            if (newlesson.overlap(*itr)) return false;
-                        }
-                        itr++;
+                if (c == oldclass) {
+                    continue;
+                }
+                for (Lesson currentlesson: c->get_lessons()) {
+                    if (currentlesson.get_type() == "PL" || currentlesson.get_type() == "TP") {
+                        if (newlesson.overlap(currentlesson)) return false;
                     }
                 }
+
             }
         }
     }
-//    for (Lesson newlesson: newclass->get_lessons()) {
-//        if (newlesson.get_type() == "PL" || newlesson.get_type() == "TP") {
-//            for (Class* c: student.get_classes()) {
-//                if (c == oldclass) {
-//                    continue;
-//                }
-//                for (Lesson currentlesson: c->get_lessons()) {
-//                    if (currentlesson.get_type() == "PL" || currentlesson.get_type() == "TP") {
-//                        if (newlesson.overlap(currentlesson)) return false;
-//                    }
-//                }
-//
-//            }
-//        }
-//    }
     return true;
 }
 

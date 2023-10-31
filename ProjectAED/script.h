@@ -84,6 +84,8 @@ public:
 
     void list_year_occupations(std:: string year);
     void invalid();
+
+    void list_Uc_occupations(std::string UcCode);
 };
 
 
