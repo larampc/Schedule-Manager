@@ -400,7 +400,15 @@ void Script::occupations(){
     }
     switch (option[0]) {
         case '1': {
-            cout << "1- 1st Year 2- 2nd Year 3- 3rd Year 4- Cancel\n";
+            Color_Print(color_mode, "green", "Pick: ");
+            Color_Print(color_mode, "cyan", "1- ");
+            Color_Print(color_mode, "green", "1st Year ");
+            Color_Print(color_mode, "cyan", "2- ");
+            Color_Print(color_mode, "green", "2nd Year ");
+            Color_Print(color_mode, "cyan", "3- ");
+            Color_Print(color_mode, "green", "3rd Year ");
+            Color_Print(color_mode, "cyan", "4- ");
+            Color_Print(color_mode, "red", "Cancel", true);
             string year;
             cin >> year;
             while(year != "1" && year != "2" && year != "3" && year != "4") {
@@ -617,13 +625,23 @@ void Script::list_year_occupations(string year) {
     }
 
     string option, order;
-    cout << "Sort by 1- UC 2- ClassCode 3- Occupation\n";
+    Color_Print(color_mode, "green", "Sort by? ");
+    Color_Print(color_mode, "cyan", "1- ");
+    Color_Print(color_mode, "green", "UC ");
+    Color_Print(color_mode, "cyan", "2- ");
+    Color_Print(color_mode, "green", "ClassCode ");
+    Color_Print(color_mode, "cyan", "3- ");
+    Color_Print(color_mode, "green", "Occupation", true);
     cin >> option;
     while(option != "1" && option != "2" && option != "3"){
         invalid();
         cin >> option;
     }
-    cout << "1- Ascending Order 2- Descending Order\n";
+    Color_Print(color_mode, "green", "Pick: ");
+    Color_Print(color_mode, "cyan", "1- ");
+    Color_Print(color_mode, "green", "Ascending Order ");
+    Color_Print(color_mode, "cyan", "2- ");
+    Color_Print(color_mode, "green", "Descending Order", true);
     cin >> order;
     while(order != "1" && order != "2"){
         invalid();
@@ -640,12 +658,12 @@ void Script::list_year_occupations(string year) {
     if(option == "1" && order == "2") {
         auto itr = yearClasses.end();
         while(itr-- != yearClasses.begin()){
-            cout << itr->get_classCode() << " " << itr->get_ucCode() << " " << itr->get_students().size() << endl;
+            Color_Print(color_mode, "blue", itr->get_classCode() + " " + itr->get_ucCode() + " " + to_string(itr->get_students().size()), true);
         }
         return;
     }
     for (Class c: yearClasses) {
-        cout << c.get_classCode() << " " << c.get_ucCode() << " " << c.get_students().size() << endl;
+        Color_Print(color_mode, "blue", c.get_classCode() + " " + c.get_ucCode() + " " + to_string(c.get_students().size()), true);
     }
 }
 
