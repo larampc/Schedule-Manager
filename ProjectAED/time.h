@@ -45,7 +45,7 @@ public:
      * \brief Less than operator for Time comparison.
      *
      * @param t The Time to compare.
-     * @return True if this Time is before the Time to compare.
+     * @return True if this Time is less than the Time to compare.
      */
     bool operator<(const Time &t) const;
     /**

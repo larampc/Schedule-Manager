@@ -8,8 +8,8 @@
  * \class Student
  * \brief This is a class for representing students.
  *
- * This class keeps track of the student's up, name and the classes they are registered in.
- * There is also various methods to handle various student actions such as adding or removing a class.
+ * This class keeps track of the student's code, name and the classes they are registered in.
+ * There is also various methods to handle student actions such as adding or removing a class.
 */
 class Student{
 private:
@@ -17,7 +17,6 @@ private:
     std::string name;
     std::list<Class*> classes;
 public:
-    //ver coisas const
     /**
      * \brief Creates a new student.
      *
@@ -38,42 +37,41 @@ public:
      */
     std::string get_studentCode() const;
     /**
-     * \brief Gets student's enrolled classes.
+     * \brief Gets classes in which the student is enrolled.
      *
-     * @return The student's enrolled classes.
+     * @return A list of pointers to the classes in which a student is enrolled.
      */
-    std::list<Class*> get_classes();
+    std::list<Class*> get_classes() const;
     /**
-     * \brief Gets the enrolled class code of the given UC.
+     * \brief Gets the Class of the given UC in which the student is enrolled.
      *
-     * @param ucCode The UC of the class.
-     * @return The class code of the given UC.
+     * @param ucCode The UC code of the class.
+     * @return A pointer to the Class of the given UC.
      */
-    Class* get_class_from_uc(std::string ucCode);
+    Class* get_class_from_uc(std::string ucCode) const;
     /**
      * \brief Checks if the student is enrolled in the given UC.
      *
      * @param ucCode The code of the UC to check.
      * @return True if the student is enrolled in the given UC.
      */
-    bool has_uc(std::string ucCode);
+    bool has_uc(std::string ucCode) const;
     /**
-     * \brief Adds a new enrolled class.
+     * \brief Adds a new Class.
      *
-     * @param c The new enrolled class to add.
+     * @param c A pointer to the new Class to add.
      */
-
     void add_class(Class* c);
     /**
-     * \brief Removes an enrolled class based on the UC.
+     * \brief Removes a Class based on its UC code.
      *
-     * @param ucCode The UC of the enrolled class to remove.
+     * @param ucCode The UC code of the Class to remove.
      */
-    void remove_class_from_uc(std::string ucCode); //faz sentido ser pointers?
+    void remove_class_from_uc(std::string ucCode);
     /**
      * \brief Prints the student's schedule.
      */
-    void print_schedule();
+    void print_schedule() const;
 };
 
 #endif //PROJECTAED_STUDENT_H

@@ -15,18 +15,18 @@ string Student::get_studentCode() const {
   return studentCode;
 }
 
-list<Class*> Student::get_classes() {
+list<Class*> Student::get_classes() const {
   return classes;  
 }
 
-Class* Student::get_class_from_uc(string ucCode) {
+Class* Student::get_class_from_uc(string ucCode) const {
     for (Class* c: classes) {
         if (c->get_ucCode() == ucCode) return c;
     }
     return nullptr;
 }
 
-bool Student::has_uc(string ucCode) {
+bool Student::has_uc(string ucCode) const {
     return get_class_from_uc(ucCode) != nullptr;
 }
 
@@ -38,7 +38,7 @@ void Student::remove_class_from_uc(string ucCode) {
     classes.remove(get_class_from_uc(ucCode));
 }
 
-void Student::print_schedule() {
+void Student::print_schedule() const {
     Color_Print(color_mode, "blue", "Schedule of ");
     Color_Print(color_mode, "yellow", name, true);
     set<Lesson> allClasses;
