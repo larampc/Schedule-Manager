@@ -1,6 +1,7 @@
 #include "student.h"
 #include <iostream>
 #include <iomanip>
+#include "color_print.h"
 using namespace std;
 
 Student::Student(string name, string studentCode): name(name), student_up(studentCode), classes() {}
@@ -36,8 +37,9 @@ void Student::remove_class_from_uc(string ucCode) {
     classes.remove(get_class_from_uc(ucCode));
 }
 
-void Student::print_schedule() {
-    cout << "Schedule of " << name << endl;
+void Student::print_schedule(bool color_mode) {
+    Color_Print(color_mode, "blue", "Schedule of ");
+    Color_Print(color_mode, "yellow", name, true);
     set<Lesson> allClasses;
     for(Class* someClass: classes) {
         set<Lesson> thisLessons = someClass->get_lessons();
@@ -47,17 +49,21 @@ void Student::print_schedule() {
     for(Lesson lesson: allClasses) {
         if (current.empty()) {
             current = lesson.get_weekday();
-            cout << lesson.get_weekday() << endl;
+            Color_Print(color_mode, "blue", lesson.get_weekday(), true);
         }
         if (lesson.get_weekday() != current) {
             current = lesson.get_weekday();
-            cout << lesson.get_weekday() << endl;
+            Color_Print(color_mode, "blue", lesson.get_weekday(), true);
         }
-        cout << setw(2) << setfill('0') << lesson.get_start_time().get_hour() << ":" <<
-        setw(2) << setfill('0') << lesson.get_start_time().get_minute() <<
-        " - " << setw(2) << setfill('0') << lesson.get_end_time().get_hour() << ":" <<
-        setw(2) << setfill('0') << lesson.get_end_time().get_minute() <<
-        "\t" << setw(2) << setfill(' ') << lesson.get_type() << "  " << lesson.get_classCode() << endl;
+        string out;
+        stringstream outstream;
+        outstream << setw(2) << setfill('0') << lesson.get_start_time().get_hour() << ":" <<
+                  setw(2) << setfill('0') << lesson.get_start_time().get_minute() <<
+                  " - " << setw(2) << setfill('0') << lesson.get_end_time().get_hour() << ":" <<
+                  setw(2) << setfill('0') << lesson.get_end_time().get_minute() <<
+                  "\t" << setw(2) << setfill(' ') << lesson.get_type() << "  " << lesson.get_classCode();
+        getline(outstream, out);
+        Color_Print(color_mode, "blue", out, true);
     }
 }
 

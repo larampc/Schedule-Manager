@@ -454,7 +454,7 @@ void Script::listSchedules(){
                 invalid();
                 cin >> up;
             }
-            data.get_student_from_studentCode(up)->print_schedule();
+            data.get_student_from_studentCode(up)->print_schedule(color_mode);
             break;
         }
         case '2': {
