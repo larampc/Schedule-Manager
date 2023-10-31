@@ -158,12 +158,15 @@ void LEIC::list_UC_students_by_studentCode(std::string UcCode, bool color_mode) 
     Color_Print(color_mode, "yellow", UcCode, true);
     Color_Print(color_mode, "blue", "UPNUMBER\tNAME", true);
     Color_Print(color_mode, "blue", "------------------------------------", true);
+    set<string> studentinUC;
     for(Class c : classes){
         if(c.get_ucCode() == UcCode){
-            for(string up : c.get_students())
-                Color_Print(color_mode, "blue", up + " | " + up_students.at(up).get_name(), true);
+            set<string> studentUC = c.get_students();
+            studentinUC.insert(studentUC.begin(), studentUC.end());
         }
     }
+    for(string code : studentinUC)
+        Color_Print(color_mode, "blue", code + " | " + up_students.at(code).get_name(), true);
 }
 
 void LEIC::list_UC_students_by_name(std::string uc, bool color_mode) {

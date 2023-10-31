@@ -13,7 +13,7 @@
 */
 class Student{
 private:
-    std::string student_up;
+    std::string studentCode;
     std::string name;
     std::list<Class*> classes;
 public:

@@ -14,7 +14,7 @@ private:
     std::string classCode;
     std::string ucCode; 
     std::set<Lesson> lessons;
-    std::set<std::string> students_up;
+    std::set<std::string> studentsCode;
 public:
     /**
      * \brief Creates a new Class.

@@ -103,10 +103,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a271444f4b07167c333a507d06eb4f9fc" id="r_a271444f4b07167c333a507d06eb4f9fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class.html#a271444f4b07167c333a507d06eb4f9fc">add_lesson</a> (<a class="el" href="class_lesson.html">Lesson</a> l)</td></tr>
 <tr class="memdesc:a271444f4b07167c333a507d06eb4f9fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new <a class="el" href="class_lesson.html" title="This is a class for representing Lessons.">Lesson</a> to the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>.  <br /></td></tr>
 <tr class="separator:a271444f4b07167c333a507d06eb4f9fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f7dc46a01e229971c4ce97216ee6c92" id="r_a6f7dc46a01e229971c4ce97216ee6c92"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class.html#a6f7dc46a01e229971c4ce97216ee6c92">add_student</a> (std::string student_up)</td></tr>
+<tr class="memitem:a6f7dc46a01e229971c4ce97216ee6c92" id="r_a6f7dc46a01e229971c4ce97216ee6c92"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class.html#a6f7dc46a01e229971c4ce97216ee6c92">add_student</a> (std::string studentCode)</td></tr>
 <tr class="memdesc:a6f7dc46a01e229971c4ce97216ee6c92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>.  <br /></td></tr>
 <tr class="separator:a6f7dc46a01e229971c4ce97216ee6c92"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d43abcf75eb258f4c1ec3426241dff5" id="r_a3d43abcf75eb258f4c1ec3426241dff5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class.html#a3d43abcf75eb258f4c1ec3426241dff5">remove_student</a> (std::string student_up)</td></tr>
+<tr class="memitem:a3d43abcf75eb258f4c1ec3426241dff5" id="r_a3d43abcf75eb258f4c1ec3426241dff5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class.html#a3d43abcf75eb258f4c1ec3426241dff5">remove_student</a> (std::string studentCode)</td></tr>
 <tr class="memdesc:a3d43abcf75eb258f4c1ec3426241dff5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> from the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>.  <br /></td></tr>
 <tr class="separator:a3d43abcf75eb258f4c1ec3426241dff5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a493c660f130d7b1f1a34fd786e51838f" id="r_a493c660f130d7b1f1a34fd786e51838f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class.html#a493c660f130d7b1f1a34fd786e51838f">operator==</a> (const <a class="el" href="class_class.html">Class</a> &amp;c) const</td></tr>
@@ -128,7 +128,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>ucCode</b></td
 std::set&lt; <a class="el" href="class_lesson.html">Lesson</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>lessons</b></td></tr>
 <tr class="separator:ad7664dea9010c935cf417d6ea2ee7005"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a892f26b17808de25b9841df1259e149f" id="r_a892f26b17808de25b9841df1259e149f"><td class="memItemLeft" align="right" valign="top"><a id="a892f26b17808de25b9841df1259e149f" name="a892f26b17808de25b9841df1259e149f"></a>
-std::set&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>students_up</b></td></tr>
+std::set&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>studentsCode</b></td></tr>
 <tr class="separator:a892f26b17808de25b9841df1259e149f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -209,7 +209,7 @@ std::set&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"
           <td class="memname">void Class::add_student </td>
           <td>(</td>
           <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>student_up</em></td><td>)</td>
+          <td class="paramname"><em>studentCode</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -218,7 +218,7 @@ std::set&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"
 <p>Adds a new <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">student_up</td><td>The new <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to add. </td></tr>
+    <tr><td class="paramname">studentCode</td><td>The new <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to add. </td></tr>
   </table>
   </dd>
 </dl>
@@ -369,7 +369,7 @@ std::set&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"
           <td class="memname">void Class::remove_student </td>
           <td>(</td>
           <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>student_up</em></td><td>)</td>
+          <td class="paramname"><em>studentCode</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -378,7 +378,7 @@ std::set&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"
 <p>Removes a <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> from the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">student_up</td><td>The <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to be removed. </td></tr>
+    <tr><td class="paramname">studentCode</td><td>The <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to be removed. </td></tr>
   </table>
   </dd>
 </dl>

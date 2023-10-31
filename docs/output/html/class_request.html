@@ -85,7 +85,7 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac70a2698978cb47ca1efc07d2ea4dad7" id="r_ac70a2698978cb47ca1efc07d2ea4dad7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_request.html#ac70a2698978cb47ca1efc07d2ea4dad7">Request</a> (std::string type, bool uc_class, std::string student_up, std::string current_class=&quot;&quot;, std::string new_class=&quot;&quot;, std::string current_uc=&quot;&quot;, std::string new_uc=&quot;&quot;)</td></tr>
+<tr class="memitem:ac70a2698978cb47ca1efc07d2ea4dad7" id="r_ac70a2698978cb47ca1efc07d2ea4dad7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_request.html#ac70a2698978cb47ca1efc07d2ea4dad7">Request</a> (std::string type, bool uc_class, std::string studentCode, std::string current_class=&quot;&quot;, std::string new_class=&quot;&quot;, std::string current_uc=&quot;&quot;, std::string new_uc=&quot;&quot;)</td></tr>
 <tr class="memdesc:ac70a2698978cb47ca1efc07d2ea4dad7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a>.  <br /></td></tr>
 <tr class="separator:ac70a2698978cb47ca1efc07d2ea4dad7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca3dffafbadeb73f3e11b77b13963d03" id="r_aca3dffafbadeb73f3e11b77b13963d03"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_request.html#aca3dffafbadeb73f3e11b77b13963d03">get_type</a> ()</td></tr>
@@ -122,7 +122,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>type</b></td><
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>uc_class</b></td></tr>
 <tr class="separator:a4ee33d4c31fd483e22dfe9be1228d537"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab38888c53fb786cbdfe41d83e896d6df" id="r_ab38888c53fb786cbdfe41d83e896d6df"><td class="memItemLeft" align="right" valign="top"><a id="ab38888c53fb786cbdfe41d83e896d6df" name="ab38888c53fb786cbdfe41d83e896d6df"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>student_up</b></td></tr>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>studentCode</b></td></tr>
 <tr class="separator:ab38888c53fb786cbdfe41d83e896d6df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af370abc5af3a2e5dbbb88a115127f9c5" id="r_af370abc5af3a2e5dbbb88a115127f9c5"><td class="memItemLeft" align="right" valign="top"><a id="af370abc5af3a2e5dbbb88a115127f9c5" name="af370abc5af3a2e5dbbb88a115127f9c5"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>current_class</b></td></tr>
@@ -163,7 +163,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>new_uc</b></td
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>student_up</em>, </td>
+          <td class="paramname"><em>studentCode</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -202,7 +202,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>new_uc</b></td
   <table class="params">
     <tr><td class="paramname">type</td><td>The type of <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a>. </td></tr>
     <tr><td class="paramname">uc_class</td><td>True if the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> is related an UC, False if it is related to a <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>. </td></tr>
-    <tr><td class="paramname">student_up</td><td>The <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a>'s up to execute the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> on. </td></tr>
+    <tr><td class="paramname">studentCode</td><td>The <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a>'s up to execute the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> on. </td></tr>
     <tr><td class="paramname">current_class</td><td>The current <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> code of the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to execute the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> on, if applicable. </td></tr>
     <tr><td class="paramname">new_class</td><td>The new <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> code for the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to execute the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> on, if applicable. </td></tr>
     <tr><td class="paramname">current_uc</td><td>The current UC code of the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to execute the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> on, if applicable. </td></tr>

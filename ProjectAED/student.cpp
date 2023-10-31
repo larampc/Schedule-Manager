@@ -4,14 +4,14 @@
 #include "color_print.h"
 using namespace std;
 
-Student::Student(string name, string studentCode): name(name), student_up(studentCode), classes() {}
+Student::Student(string name, string studentCode): name(name), studentCode(studentCode), classes() {}
 
 string Student::get_name() const {
   return name;
 }
 
 string Student::get_studentCode() const {
-  return student_up;
+  return studentCode;
 }
 
 list<Class*> Student::get_classes() {
