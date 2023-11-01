@@ -357,7 +357,7 @@ void LEIC::upload_requests() {
         }
         else if (Type == "DELETE") {
             iss >> StudentCode;
-            if (get_student_from_studentCode(StudentCode) == nullptr) {
+            if (!is_number2(StudentCode) || StudentCode.length() != 9) {
                 cout << "Invalid input in the given file. Line " << countLines << endl;
                 empty_pending_requests();
                 return;
@@ -366,7 +366,7 @@ void LEIC::upload_requests() {
         }
         else if (add || remove || Switch) {
             getline(iss, StudentCode, ',');
-            if (get_student_from_studentCode(StudentCode) == nullptr) {
+            if (!is_number2(StudentCode) || StudentCode.length() != 9) {
                 cout << "Invalid input in the given file. Line " << countLines << endl;
                 empty_pending_requests();
                 return;
