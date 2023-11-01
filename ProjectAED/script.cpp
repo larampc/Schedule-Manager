@@ -441,7 +441,7 @@ void Script::occupations(){
     Color_Print(color_mode, "cyan", "4- ");
     Color_Print(color_mode, "red", "Cancel", true);
     string option; cin >> option;
-    while(option != "1" && option != "2" && option != "3" && option != "4" && option != "5") {
+    while(option != "1" && option != "2" && option != "3" && option != "4") {
         invalid();
         cin >> option;
     }
@@ -461,6 +461,10 @@ void Script::occupations(){
             while(year != "1" && year != "2" && year != "3" && year != "4") {
                 invalid();
                 cin >> option;
+            }
+            if(year == "4") {
+                occupations();
+                break;
             }
             list_year_occupations(year);
             break;
@@ -777,7 +781,7 @@ void Script::list_Uc_occupations(std::string UcCode) {
     else if (option == "1" && order == "2"){
         auto itr = UcClasses.end();
         while(itr-- != UcClasses.begin()){
-            Color_Print(color_mode, "blue", itr->get_ucCode() + " " + itr->get_classCode() + " " + to_string(itr->get_students().size()), true);
+            Color_Print(color_mode, "blue", itr->get_classCode() + " " + to_string(itr->get_students().size()), true);
         }
         return;
     }
