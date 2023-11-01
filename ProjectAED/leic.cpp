@@ -356,7 +356,7 @@ void LEIC::upload_requests() {
             requests.emplace(Type,StudentCode, studentName,"","","", "");
         }
         else if (Type == "DELETE") {
-            getline(iss, StudentCode, ',');
+            iss >> StudentCode;
             if (get_student_from_studentCode(StudentCode) == nullptr) {
                 cout << "Invalid input in the given file. Line " << countLines << endl;
                 empty_pending_requests();
