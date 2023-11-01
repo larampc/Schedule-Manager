@@ -364,7 +364,7 @@ void Script::handle_registration() {
             Color_Print(color_mode, "yellow", "(e.g. 202020047)");
             Color_Print(color_mode, "cyan", ":", true);
             cin >> studentCode;
-            while (!is_number(studentCode) || studentCode.length() != 9 || data.get_student_from_studentCode(studentCode) != nullptr) {
+            while (!is_number(studentCode) || studentCode.length() != 9 || data.get_student_from_studentCode(studentCode) == nullptr) {
                 invalid();
                 cin >> studentCode;
             }
