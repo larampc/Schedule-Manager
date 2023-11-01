@@ -307,7 +307,7 @@ void Script::get_request(string studentCode, string option) {
             break;
         }
     }
-    data.add_request_to_process(Request(type, studentCode, data.get_student_from_studentCode(studentCode)->get_name(), current_uc, current_class, new_uc, new_class));
+    data.add_request_to_process(Request(type, studentCode, "", current_uc, current_class, new_uc, new_class));
 }
 
 void Script::handle_registration() {
@@ -558,9 +558,8 @@ void Script::listSchedules(){
                 cin >> class_;
             }
 
-            vector <Class> classes = data.get_classes();
             set<Lesson> classLessons;
-            for(Class c : classes){
+            for(Class c : *data.get_classes()){
                 if (c.get_classCode() == class_) {
                     set<Lesson> lessons = c.get_lessons();
                     classLessons.insert(lessons.begin(),lessons.end());
@@ -708,9 +707,8 @@ void Script::listStudents() {
 }
 
 void Script::list_year_occupations(string year) {
-    vector<Class> classes = data.get_classes();
     vector<Class> yearClasses;
-    for(Class c: classes){
+    for(Class c: *data.get_classes()){
         if (c.get_classCode()[0] == year[0]) yearClasses.push_back(c);
     }
 
@@ -785,9 +783,8 @@ void Script::list_Uc_occupations(std::string UcCode) {
         cin >> order;
     }
 
-    vector<Class> classes = data.get_classes();
     vector<Class> UcClasses;
-    for(Class c: classes){
+    for(Class c: *data.get_classes()){
         if (c.get_ucCode() == UcCode) UcClasses.push_back(c);
     }
     if(option == "2"){
@@ -832,9 +829,8 @@ void Script::list_class_occupations(std::string classCode) {
         cin >> order;
     }
 
-    vector<Class> classes = data.get_classes();
     vector<Class> classClasses;
-    for(Class c: classes){
+    for(Class c: *data.get_classes()){
         if (c.get_classCode() == classCode) classClasses.push_back(c);
     }
     if(option == "2"){

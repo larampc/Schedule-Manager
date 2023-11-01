@@ -49,7 +49,7 @@ public:
     *
     * @return All existing Class in LEIC.
     */
-    std::vector<Class> get_classes() const;
+    const std::vector<Class>* get_classes() const;
     /**
     * \brief Gets the UC codes of all existing UC.
     *

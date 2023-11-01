@@ -88,8 +88,8 @@ Student* LEIC::get_student_from_studentCode(std::string studentCode) {
     return (up_students.find(studentCode) == up_students.end()) ? nullptr : &up_students.at(studentCode);
 }
 
-vector<Class> LEIC::get_classes() const {
-    return classes;
+const vector<Class>* LEIC::get_classes() const {
+    return &classes;
 }
 
 std::set<std::string> LEIC::get_UcCodes() const {
