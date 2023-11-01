@@ -482,19 +482,6 @@ bool LEIC::request_remove(Request& request) {
     string currentUc = request.get_current_UcCode();
     request.set_current_class(currentclass);
     remove_student_from_class(student, currentClass);
-    if (student->get_classes().size() == 0) {
-        cout << "Student " << request.get_studentCode() << " no longer has classes, do you want to delete it? [Y/N] \n";
-        string answer;
-        cin >> answer;
-        while(answer != "Y" && answer != "N") {
-            Color_Print(color_mode, "red", "Invalid Input, please try again", true);
-            cin >> answer;
-        }
-        if (answer == "Y") {
-            Request request = Request("DELETE", request.get_studentCode(), request.get_studentName());
-            request_delete(request);
-        }
-    }
     processed_requests.push(request);
     return true;
 }
@@ -506,7 +493,12 @@ bool LEIC::request_new(Request &request) {
 }
 
 bool LEIC::request_delete(Request& request) {
-    for (Class* c: get_student_from_studentCode(request.get_studentCode())->get_classes()) {
+    Student* student = get_student_from_studentCode(request.get_studentCode());
+    if (student == nullptr) {
+        cout << "The student " << request.get_studentCode() << " doesn't exist.\n";
+        return false;
+    }
+    for (Class* c: student->get_classes()) {
         c->remove_student(request.get_studentCode());
     }
     up_students.erase(request.get_studentCode());
@@ -603,7 +595,7 @@ void LEIC::undo_request() {
         }
         case 'N': {
             thisrequest.set_type("DELETE");
-            request_remove(thisrequest);
+            request_delete(thisrequest);
             processed_requests.pop();
             Color_Print(color_mode, "cyan", "Student with the student code ");
             Color_Print(color_mode, "yellow", thisrequest.get_studentCode());
@@ -612,7 +604,7 @@ void LEIC::undo_request() {
         }
         case 'D': {
             thisrequest.set_type("NEW");
-            request_remove(thisrequest);
+            request_new(thisrequest);
             processed_requests.pop();
             Color_Print(color_mode, "cyan", "Student with the student code ");
             Color_Print(color_mode, "yellow", thisrequest.get_studentCode());
@@ -648,6 +640,19 @@ void LEIC::process_requests() {
                     Color_Print(color_mode, "yellow", request.get_current_UcCode(), true);
                 }
                 else cout << "Student is not in the UC, it can't be removed.\n";
+                if (get_student_from_studentCode(request.get_studentCode())->get_classes().empty()) {
+                    cout << "Student " << request.get_studentCode() << " no longer has classes, do you want to delete him? [Y/N] \n";
+                    string answer;
+                    cin >> answer;
+                    while(answer != "Y" && answer != "N") {
+                        Color_Print(color_mode, "red", "Invalid Input, please try again", true);
+                        cin >> answer;
+                    }
+                    if (answer == "Y") {
+                        Request thisrequest = Request("DELETE", request.get_studentCode(), request.get_studentName());
+                        request_delete(thisrequest);
+                    }
+                }
                 break;
             }
             case 'S': {
@@ -671,8 +676,8 @@ void LEIC::process_requests() {
                 break;
             }
             case 'D': {
-                request_delete(request);
-                cout << "Student with code " << request.get_studentCode() << " was removed.\n";
+                if (request_delete(request))
+                    cout << "Student with code " << request.get_studentCode() << " was removed.\n";
                 break;
             }
         }
