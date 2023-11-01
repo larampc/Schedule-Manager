@@ -472,6 +472,10 @@ bool LEIC::request_add(Request& request) {
 
 bool LEIC::request_remove(Request& request) {
     Student* student = get_student_from_studentCode(request.get_studentCode());
+    if (student == nullptr) {
+        cout << "Invalid request. This student doesn't exist.";
+        return false;
+    }
     Class* currentClass = student->get_class_from_uc(request.get_current_UcCode());
     if (currentClass == nullptr) return false;
     string currentclass = currentClass->get_classCode();
