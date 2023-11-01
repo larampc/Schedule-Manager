@@ -83,6 +83,12 @@ public:
      */
     void empty_pending_requests();
     /**
+    * \brief Gets the student code of the last pending request that was made.
+    *
+    * @return The student code or empty string if there are no pending requests.
+    */
+    std::string studentCode_last_request();
+    /**
     * \brief Gets the Cap, the max number of Student that can be in a Class.
     *
     * @return The Cap.

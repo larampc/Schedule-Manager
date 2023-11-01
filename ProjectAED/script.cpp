@@ -136,7 +136,7 @@ void Script::handle_requests() {
 }
 
 void Script::request(){
-    string type, option, uc_or_class, student_up, current_class, new_class, current_uc, new_uc;
+    string type, option, uc_or_class, studentCode, current_class, new_class, current_uc, new_uc;
     Color_Print(color_mode, "blue", "Pick: ");
     Color_Print(color_mode, "cyan", "1- ");
     Color_Print(color_mode, "white", "ADD ");
@@ -152,15 +152,38 @@ void Script::request(){
         handle_requests();
         return;
     }
-    Color_Print(color_mode, "blue", "Enter StudentCode ");
-    Color_Print(color_mode, "yellow", "(e.g. 202020047)");
-    Color_Print(color_mode, "blue", ":", true);
-    cin >> student_up;
-    while(data.get_student_from_studentCode(student_up) == nullptr){
-        invalid();
-        cin >> student_up;
+    if (!data.studentCode_last_request().empty()) {
+        Color_Print(color_mode, "blue", "Is the request for the same student? ");
+        Color_Print(color_mode, "blue", "[Y/N]", true);
+        string answer;
+        cin >> answer;
+        while(answer != "Y" && answer != "N") {
+            invalid();
+            cin >> answer;
+        }
+        if (answer == "Y") studentCode = data.studentCode_last_request();
+        else {
+            Color_Print(color_mode, "blue", "Enter StudentCode ");
+            Color_Print(color_mode, "yellow", "(e.g. 202020047)");
+            Color_Print(color_mode, "blue", ":", true);
+            cin >> studentCode;
+            while(data.get_student_from_studentCode(studentCode) == nullptr){
+                invalid();
+                cin >> studentCode;
+            }
+        }
     }
-    get_request(student_up, option);
+    else {
+        Color_Print(color_mode, "blue", "Enter StudentCode ");
+        Color_Print(color_mode, "yellow", "(e.g. 202020047)");
+        Color_Print(color_mode, "blue", ":", true);
+        cin >> studentCode;
+        while(data.get_student_from_studentCode(studentCode) == nullptr){
+            invalid();
+            cin >> studentCode;
+        }
+    }
+    get_request(studentCode, option);
     Color_Print(color_mode, "blue", "Would you like to make another request? ");
     Color_Print(color_mode, "cyan", "[Y/N]", true);
     string answer;

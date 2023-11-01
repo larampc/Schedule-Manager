@@ -666,3 +666,8 @@ void LEIC::empty_pending_requests() {
         requests.pop();
     }
 }
+
+string LEIC::studentCode_last_request() {
+    if (requests.empty()) return "";
+    else return requests.back().get_studentCode();
+}
