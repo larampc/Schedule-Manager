@@ -379,7 +379,7 @@ void LEIC::upload_requests() {
                 return;
             }
             getline(iss, newUcCode, ',');
-            if ((!remove) && (!exists_Uc(newUcCode) || get_student_from_studentCode(StudentCode)->has_uc(newUcCode))
+            if ((!remove) && (!exists_Uc(newUcCode))
                 || (remove && !newUcCode.empty())) {
                 cout << "Invalid input in the given file. Line " << countLines << endl;
                 empty_pending_requests();
@@ -392,7 +392,7 @@ void LEIC::upload_requests() {
                 empty_pending_requests();
                 return;
             }
-            requests.emplace(Type,StudentCode, get_student_from_studentCode(StudentCode)->get_name(),oldUcCode,"",newUcCode, newClassCode);
+            requests.emplace(Type,StudentCode, "",oldUcCode,"",newUcCode, newClassCode);
         }
         else {cout << "Invalid input in the given file. Line " << countLines << endl; empty_pending_requests(); return;}
         countLines++;
@@ -487,9 +487,13 @@ bool LEIC::request_remove(Request& request) {
 }
 
 bool LEIC::request_new(Request &request) {
-    up_students.insert({request.get_studentCode(), Student(request.get_studentName(), request.get_studentCode())});
-    processed_requests.push(request);
-    return true;
+    if (get_student_from_studentCode(request.get_studentCode()) == nullptr) {
+        up_students.insert({request.get_studentCode(), Student(request.get_studentName(), request.get_studentCode())});
+        processed_requests.push(request);
+        return true;
+    }
+    cout << "Student " << request.get_studentCode() << " already exists.\n";
+    return false;
 }
 
 bool LEIC::request_delete(Request& request) {
@@ -688,7 +692,7 @@ void LEIC::save_to_files() {
     ofstream students_classesSaveFile("../students_classes_save.csv", ofstream::out | ofstream::trunc);
     ofstream accepted_requests("../accepted_requests.csv", ofstream::out | ofstream::trunc);
     students_classesSaveFile << "StudentCode,StudentName,UcCode,ClassCode" << endl;
-    accepted_requests << "Type,StudentCode,oldUcCode,newUcCode,oldClassCode,newClassCode" << endl;
+    accepted_requests << "Type,StudentCode,StudentName,oldUcCode,newUcCode,oldClassCode,newClassCode" << endl;
     for (pair<string, Student> up_s: up_students) {
         if (up_s.second.get_classes().empty()) {
             students_classesSaveFile << up_s.first << ','

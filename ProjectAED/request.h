@@ -30,7 +30,7 @@ public:
      * @param current_UcCode The current UC code of the Student to execute the Request on, if applicable.
      * @param new_UcCode The new UC code for the Student to execute the Request on, if applicable.
      */
-    Request(std::string type, std::string studentCode, std::string studentName, std::string current_UcCode = "", std::string current_classCode = "", std::string new_UcCode = "", std::string new_classCode = "");
+    Request(std::string type, std::string studentCode, std::string studentName = "", std::string current_UcCode = "", std::string current_classCode = "", std::string new_UcCode = "", std::string new_classCode = "");
     /**
      * \brief Gets the type of the Request.
      *
