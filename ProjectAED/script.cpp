@@ -149,6 +149,7 @@ void Script::update_registration(){
 
     cin >> option; while(option != "1" && option != "2" && option != "3" && option != "4") {invalid(); cin >> option; cout << '\n';}
     if(option == "4") {
+        data.process_requests();
         handle_requests();
         return;
     }
@@ -178,7 +179,7 @@ void Script::update_registration(){
         Color_Print(color_mode, "yellow", "(e.g. 202020047)");
         Color_Print(color_mode, "blue", ":", true);
         cin >> studentCode;
-        while(data.get_student_from_studentCode(studentCode) == nullptr){
+        while(!is_number(studentCode) || studentCode.length() != 9 ){
             invalid();
             cin >> studentCode;
         }
@@ -319,10 +320,6 @@ void Script::handle_registration() {
     Color_Print(color_mode, "cyan", "3- ");
     Color_Print(color_mode, "red", "Cancel", true);
     cin >> option; while(option != "1" && option != "2" && option != "3") {invalid(); cin >> option; cout << '\n';}
-    if(option == "4") {
-        handle_requests();
-        return;
-    }
     switch (option[0]) {
         case '1': {
             type = "NEW";
@@ -338,7 +335,7 @@ void Script::handle_registration() {
             Color_Print(color_mode, "cyan", "Name of new student: ");
             cin.ignore();
             getline(cin, name);
-            data.add_request_to_process(Request("NEW", new_studentCode, name));
+            data.add_request_to_process(Request(type, new_studentCode, name));
             Color_Print(color_mode, "blue", "Would you now like to add UC's to this student? ");
             Color_Print(color_mode, "cyan", "[Y/N]", true);
             string answer;
@@ -350,7 +347,7 @@ void Script::handle_registration() {
             if (answer=="Y") {
                 Color_Print(color_mode, "cyan", "How many UC's do you want to join?", true);
                 cin >> number_ucs;
-                while (!is_number(number_ucs) || stoi(number_ucs) > 7 ) {
+                while (!is_number(number_ucs) || stoi(number_ucs) > 7) {
                     invalid();
                     cin >> number_ucs;
                 }
@@ -358,18 +355,38 @@ void Script::handle_registration() {
                     get_request(new_studentCode, "1");
                 }
             }
+            break;
+        }
+        case '2': {
+            type = "DELETE";
+            string studentCode;
+            Color_Print(color_mode, "cyan", "Student code of student to remove");
+            Color_Print(color_mode, "yellow", "(e.g. 202020047)");
+            Color_Print(color_mode, "cyan", ":", true);
+            cin >> studentCode;
+            while (!is_number(studentCode) || studentCode.length() != 9 || data.get_student_from_studentCode(studentCode) != nullptr) {
+                invalid();
+                cin >> studentCode;
+            }
+            data.add_request_to_process(Request(type, studentCode, data.get_student_from_studentCode(studentCode)->get_name()));
+            break;
+        }
+        case '3': {
             data.process_requests();
+            handle_requests();
+            return;
         }
     }
-
+    data.process_requests();
 }
 
 void Script::request_file() {
-    Color_Print(color_mode, "white", "Save the file to this directory named ");
+    Color_Print(color_mode, "white", "Save the file to this directory with the name ");
     Color_Print(color_mode, "cyan", "requests.csv ");
     Color_Print(color_mode, "white", "with the following structure:", true);
-    Color_Print(color_mode, "white", "Type,StudentCode,oldUcCode,newUcCode,newClassCode - if Type in {ADD,REMOVE,SWITCH}", true);
+    Color_Print(color_mode, "white", "Type,StudentCode,oldUcCode,newUcCode,newClassCode - if Type in {ADD,REMOVE,SWITCH} leave fields empty if not applicable", true);
     Color_Print(color_mode, "white", "OR Type,StudentCode,StudentName - if Type is NEW", true);
+    Color_Print(color_mode, "white", "OR Type,StudentCode - if Type is DELETE", true);
     Color_Print(color_mode, "blue", "Do you want to process the requests? ");
     Color_Print(color_mode, "cyan", "[Y/N]", true);
     string answer;

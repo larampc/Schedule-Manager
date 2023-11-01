@@ -217,9 +217,9 @@ public:
      * \brief Runs the given Request of type ADD about the given Student and returns True if it is valid and ran with no errors.
      *
      * @param request The Request to run.
-     * @return Empty string if the given Request is valid and ran with no errors, string with the error if not.
+     * @return True if the given Request is valid and ran with no errors.
      */
-    std::string request_add(Request& request);
+    bool request_add(Request& request);
     /**
      * \brief Runs the given Request of type REMOVE about the given Student and returns True if it is valid and ran with no errors.
      *
@@ -245,15 +245,14 @@ public:
      * \brief Runs the given Request of type SWITCH about the given Student and returns True if it is valid and ran with no errors.
      *
      * @param request The Request to run.
-     * @return Empty string if the given Request is valid and ran with no errors, string with error otherwise.
+     * @return True if the given Request is valid and ran with no errors.
      */
-    std::string request_switch(Request& request);
+    bool request_switch(Request& request);
     /**
      * \brief Undoes the last Request that was done successfully.
      *
-     * @return True if it undid with no errors.
      */
-    bool undo_request();
+    void undo_request();
     /**
      * \brief Executes all Request in the queue by checking the type running it.
      */
