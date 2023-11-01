@@ -184,12 +184,6 @@ public:
      */
     bool compatible_schedules(Student student, Class* newClass, Class* oldClass = nullptr);
     /**
-     * \brief Adds a new Student to the data.
-     *
-     * @param student The Student to add.
-     */
-    void add_student(Student student);
-    /**
      * \brief Adds the given Student to the given Class, updating the data accordingly.
      *
      * @param student The Student to enroll in the given Class.
@@ -233,6 +227,20 @@ public:
      * @return True if the given Request is valid and ran with no errors.
      */
     bool request_remove(Request& request);
+    /**
+     * \brief Runs the given Request of type NEW creating a new Student and returns True if it is valid and ran with no errors.
+     *
+     * @param request The Request to run.
+     * @return True if the given Request is valid and ran with no errors.
+     */
+    bool request_new(Request& request);
+    /**
+     * \brief Runs the given Request of type DELETE removing a Student and returns True if it is valid and ran with no errors.
+     *
+     * @param request The Request to run.
+     * @return True if the given Request is valid and ran with no errors.
+     */
+    bool request_delete(Request& request);
     /**
      * \brief Runs the given Request of type SWITCH about the given Student and returns True if it is valid and ran with no errors.
      *

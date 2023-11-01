@@ -1,34 +1,34 @@
 #include "request.h"
 using namespace std;
 
-Request::Request(std::string type, bool uc_class, std::string studentCode, std::string current_classCode, std::string new_classCode,
-                 std::string current_UcCode, std::string new_uc): type(type), uc_class(uc_class), studentCode(studentCode), current_classCode(current_classCode), new_classCode(new_classCode), current_UcCode(current_UcCode), new_UcCode(new_uc) {}
+Request::Request(string type, string studentCode, string studentName, string current_UcCode, string current_classCode, string new_uc, string new_classCode
+                  ): type(type), studentCode(studentCode), studentName(studentName), current_classCode(current_classCode), new_classCode(new_classCode), current_UcCode(current_UcCode), new_UcCode(new_uc) {}
 
-std::string Request::get_type() {
+string Request::get_type() {
     return type;
 }
 
-bool Request::get_Uc_class() {
-    return uc_class;
-}
-
-std::string Request::get_studentCode() {
+string Request::get_studentCode() {
     return studentCode;
 }
 
-std::string Request::get_current_classCode() {
+string Request::get_studentName() {
+    return studentName;
+}
+
+string Request::get_current_classCode() {
     return current_classCode;
 }
 
-std::string Request::get_new_classCode() {
+string Request::get_new_classCode() {
     return new_classCode;
 }
 
-std::string Request::get_current_UcCode() {
+string Request::get_current_UcCode() {
     return current_UcCode;
 }
 
-std::string Request::get_new_UcCode() {
+string Request::get_new_UcCode() {
     return new_UcCode;
 }
 

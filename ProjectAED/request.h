@@ -7,17 +7,17 @@
  * \class Request
  * \brief This is a class for representing requests.
  *
- * This class keeps track of the type of request, the student's up to execute the request on and the needed parameters to execute that Request if applicable.
+ * This class keeps track of the type of request, the student's up to execute the update_registration on and the needed parameters to execute that Request if applicable.
  */
 class Request {
 private:
     std::string type;
-    bool uc_class; //true if it's class
     std::string studentCode;
-    std::string current_classCode;
-    std::string new_classCode;
+    std::string studentName;
     std::string current_UcCode;
+    std::string current_classCode;
     std::string new_UcCode;
+    std::string new_classCode;
 public:
     /**
      * \brief Creates a new Request.
@@ -30,7 +30,7 @@ public:
      * @param current_UcCode The current UC code of the Student to execute the Request on, if applicable.
      * @param new_UcCode The new UC code for the Student to execute the Request on, if applicable.
      */
-    Request(std::string type, bool uc_class, std::string studentCode, std::string current_classCode = "", std::string new_classCode = "", std::string current_UcCode = "", std::string new_UcCode = "");
+    Request(std::string type, std::string studentCode, std::string studentName, std::string current_UcCode = "", std::string current_classCode = "", std::string new_UcCode = "", std::string new_classCode = "");
     /**
      * \brief Gets the type of the Request.
      *
@@ -38,11 +38,11 @@ public:
      */
     std::string get_type();
     /**
-     * \brief Gets if the Request is related to an UC ou a Class.
+     * \brief Gets the name of the student the update_registration is related to.
      *
-     * @return True if the Request is related an UC, False if it is related to a Class.
+     * @return The student's name.
      */
-    bool get_Uc_class();
+    std::string get_studentName();
     /**
      * \brief Gets the Student's up to execute the Request on.
      *

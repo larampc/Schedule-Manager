@@ -44,7 +44,7 @@ public:
     /**
      * \brief Outputs the update registration menu and handles the respective inputs.
      */
-    void request();
+    void update_registration();
     /**
      * \brief Gets from input the information needed for a specific request.
      *
@@ -59,7 +59,7 @@ public:
     /**
      * \brief Handles the creation of a new Student and inserts it into the data.
      */
-    void new_registration();
+    void handle_registration();
     /**
      * \brief Outputs the schedule listing menu and handles the respective inputs.
      */

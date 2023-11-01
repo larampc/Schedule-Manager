@@ -96,7 +96,7 @@ void Script::run() {
 
 void Script::handle_requests() {
     Color_Print(color_mode, "blue", "Select option:", true);
-    Color_Print(color_mode, "white", "New registration");
+    Color_Print(color_mode, "white", "Add or remove registration");
     Color_Print(color_mode, "cyan", " - press 1", true);
     Color_Print(color_mode, "white", "Update registration");
     Color_Print(color_mode, "cyan", " - press 2", true);
@@ -114,11 +114,11 @@ void Script::handle_requests() {
     }
     switch (option[0]) {
         case '1': {
-            new_registration();
+            handle_registration();
             break;
         }
         case '2': {
-            request();
+            update_registration();
             break;
         }
         case '3': {
@@ -135,7 +135,7 @@ void Script::handle_requests() {
     }
 }
 
-void Script::request(){
+void Script::update_registration(){
     string type, option, uc_or_class, studentCode, current_class, new_class, current_uc, new_uc;
     Color_Print(color_mode, "blue", "Pick: ");
     Color_Print(color_mode, "cyan", "1- ");
@@ -192,7 +192,7 @@ void Script::request(){
         invalid();
         cin >> answer;
     }
-    if (answer == "Y") request();
+    if (answer == "Y") update_registration();
     data.process_requests();
 }
 
@@ -202,10 +202,10 @@ void Script::get_request(string studentCode, string option) {
         case '1': {
             type = "ADD";
             Color_Print(color_mode, "blue", "Enter UCcode ");
-            Color_Print(color_mode, "yellow", "(e.g. L.EIC001)");
+            Color_Print(color_mode, "green", "(e.g. L.EIC001)");
             Color_Print(color_mode, "blue", ":", true);
             cin >> new_uc;
-            while(!data.exists_Uc(new_uc) || data.get_student_from_studentCode(studentCode)->has_uc(new_uc)) {
+            while(!data.exists_Uc(new_uc)) {
                 invalid();
                 cin >> new_uc;
             }
@@ -236,7 +236,7 @@ void Script::get_request(string studentCode, string option) {
             Color_Print(color_mode, "yellow", "(e.g. L.EIC001)");
             Color_Print(color_mode, "blue", ":", true);
             cin >> current_uc;
-            while(!data.exists_Uc(current_uc) || !data.get_student_from_studentCode(studentCode)->has_uc(current_uc)) {
+            while(!data.exists_Uc(current_uc)) {
                 invalid();
                 cin >> current_uc;
             }
@@ -252,7 +252,7 @@ void Script::get_request(string studentCode, string option) {
                 Color_Print(color_mode, "yellow", "(e.g. L.EIC001)");
                 Color_Print(color_mode, "blue", ":", true);
                 cin >> current_uc;
-                while(!data.get_student_from_studentCode(studentCode)->has_uc(current_uc)) {
+                while(!data.exists_Uc(current_uc)) {
                     invalid();
                     cin >> current_uc;
                 }
@@ -271,7 +271,7 @@ void Script::get_request(string studentCode, string option) {
                 Color_Print(color_mode, "yellow", "(e.g. L.EIC001)");
                 Color_Print(color_mode, "blue", ":", true);
                 cin >> current_uc;
-                while(!data.get_student_from_studentCode(studentCode)->has_uc(current_uc)) {
+                while(!data.exists_Uc(current_uc)) {
                     invalid();
                     cin >> current_uc;
                 }
@@ -306,44 +306,62 @@ void Script::get_request(string studentCode, string option) {
             break;
         }
     }
-    data.add_request_to_process(Request(type, (uc_or_class == "CLASS"), studentCode, current_class, new_class, current_uc, new_uc));
+    data.add_request_to_process(Request(type, studentCode, data.get_student_from_studentCode(studentCode)->get_name(), current_uc, current_class, new_uc, new_class));
 }
 
-void Script::new_registration() {
-    string new_up, name, number_ucs, new_uc, new_class;
-    Color_Print(color_mode, "cyan", "New StudentCode ");
-    Color_Print(color_mode, "yellow", "(e.g. 202020047)");
-    Color_Print(color_mode, "cyan", ":", true);
-    cin >> new_up;
-    while (!is_number(new_up) || new_up.length() != 9 || data.get_student_from_studentCode(new_up) != nullptr) {
-        invalid();
-        cin >> new_up;
+void Script::handle_registration() {
+    string option, type;
+    Color_Print(color_mode, "blue", "Pick: ");
+    Color_Print(color_mode, "cyan", "1- ");
+    Color_Print(color_mode, "white", "Add a new student");
+    Color_Print(color_mode, "cyan", "2- ");
+    Color_Print(color_mode, "white", "Remove a student ");
+    Color_Print(color_mode, "cyan", "3- ");
+    Color_Print(color_mode, "red", "Cancel", true);
+    cin >> option; while(option != "1" && option != "2" && option != "3") {invalid(); cin >> option; cout << '\n';}
+    if(option == "4") {
+        handle_requests();
+        return;
     }
-    Color_Print(color_mode, "cyan", "Name of new student: ");
-    cin.ignore();
-    getline(cin, name);
-    data.add_student(Student(name, new_up));
-    data.add_processed_request(Request("NEW","", new_up));
-    Color_Print(color_mode, "blue", "Would you now like to add UC's to this student? ");
-    Color_Print(color_mode, "cyan", "[Y/N]", true);
-    string answer;
-    cin >> answer;
-    while(answer != "Y" && answer != "N") {
-        invalid();
-        cin >> answer;
-    }
-    if (answer=="Y") {
-        Color_Print(color_mode, "cyan", "How many UC's do you want to join?", true);
-        cin >> number_ucs;
-        while (!is_number(number_ucs) || stoi(number_ucs) > 7 ) {
-            invalid();
-            cin >> number_ucs;
+    switch (option[0]) {
+        case '1': {
+            type = "NEW";
+            string new_studentCode, name, number_ucs, new_uc, new_class;
+            Color_Print(color_mode, "cyan", "New StudentCode ");
+            Color_Print(color_mode, "yellow", "(e.g. 202020047)");
+            Color_Print(color_mode, "cyan", ":", true);
+            cin >> new_studentCode;
+            while (!is_number(new_studentCode) || new_studentCode.length() != 9 || data.get_student_from_studentCode(new_studentCode) != nullptr) {
+                invalid();
+                cin >> new_studentCode;
+            }
+            Color_Print(color_mode, "cyan", "Name of new student: ");
+            cin.ignore();
+            getline(cin, name);
+            data.add_request_to_process(Request("NEW", new_studentCode, name));
+            Color_Print(color_mode, "blue", "Would you now like to add UC's to this student? ");
+            Color_Print(color_mode, "cyan", "[Y/N]", true);
+            string answer;
+            cin >> answer;
+            while(answer != "Y" && answer != "N") {
+                invalid();
+                cin >> answer;
+            }
+            if (answer=="Y") {
+                Color_Print(color_mode, "cyan", "How many UC's do you want to join?", true);
+                cin >> number_ucs;
+                while (!is_number(number_ucs) || stoi(number_ucs) > 7 ) {
+                    invalid();
+                    cin >> number_ucs;
+                }
+                for (int i = 0; i < stoi(number_ucs); i++) {
+                    get_request(new_studentCode, "1");
+                }
+            }
+            data.process_requests();
         }
-        for (int i = 0; i < stoi(number_ucs); i++) {
-            get_request(new_up, "1");
-        }
     }
-    data.process_requests();
+
 }
 
 void Script::request_file() {
