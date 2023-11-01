@@ -724,13 +724,13 @@ void Script::list_year_occupations(string year) {
         (order == "1") ? sort(yearClasses.begin(),yearClasses.end(), [] (Class c1,Class c2) -> bool {return (c1.get_students().size() < c2.get_students().size())
                                     || (c1.get_students().size() == c2.get_students().size() && ((c1.get_ucCode() < c2.get_ucCode()) || (c1.get_ucCode() == c2.get_ucCode() && c1.get_classCode() < c2.get_classCode())))  ;})
         : sort(yearClasses.rbegin(),yearClasses.rend(), [] (Class c1,Class c2) -> bool { return (c1.get_students().size() < c2.get_students().size())
-                                    || (c1.get_students().size() == c2.get_students().size() && ((c1.get_ucCode() > c2.get_ucCode()) || (c1.get_ucCode() == c2.get_ucCode() && c1.get_classCode() > c2.get_classCode())));});
+                                    || (c1.get_students().size() == c2.get_students().size() && ((c1.get_ucCode() < c2.get_ucCode()) || (c1.get_ucCode() == c2.get_ucCode() && c1.get_classCode() < c2.get_classCode())));});
     }
     else if (option == "2"){
         (order == "1") ? sort(yearClasses.begin(),yearClasses.end(), [] (Class c1,Class c2) -> bool {return c1.get_classCode() < c2.get_classCode()
                                                                                             || (c1.get_classCode() == c2.get_classCode() && c1.get_ucCode() < c2.get_ucCode()) ;})
         : sort(yearClasses.rbegin(),yearClasses.rend(), [] (Class c1,Class c2) -> bool {return c1.get_classCode() < c2.get_classCode()
-                                                                                || (c1.get_classCode() == c2.get_classCode() && c1.get_ucCode() > c2.get_ucCode());});
+                                                                                || (c1.get_classCode() == c2.get_classCode() && c1.get_ucCode() < c2.get_ucCode());});
     }
     if(option == "1" && order == "2") {
         auto itr = yearClasses.end();
@@ -776,7 +776,7 @@ void Script::list_Uc_occupations(std::string UcCode) {
         (order == "1") ? sort(UcClasses.begin(),UcClasses.end(), [] (Class c1,Class c2) -> bool {return (c1.get_students().size() < c2.get_students().size())
                                                                                                             || (c1.get_students().size() == c2.get_students().size() && c1.get_classCode() < c2.get_classCode())  ;})
                        : sort(UcClasses.rbegin(),UcClasses.rend(), [] (Class c1,Class c2) -> bool { return (c1.get_students().size() < c2.get_students().size())
-                                                                                                               || (c1.get_students().size() == c2.get_students().size() && c1.get_classCode() > c2.get_classCode());});
+                                                                                                               || (c1.get_students().size() == c2.get_students().size() && c1.get_classCode() < c2.get_classCode());});
     }
     else if (option == "1" && order == "2"){
         auto itr = UcClasses.end();
@@ -823,7 +823,7 @@ void Script::list_class_occupations(std::string classCode) {
         (order == "1") ? sort(classClasses.begin(),classClasses.end(), [] (Class c1,Class c2) -> bool {return (c1.get_students().size() < c2.get_students().size())
                                                                                                         || (c1.get_students().size() == c2.get_students().size() && c1.get_ucCode() < c2.get_ucCode())  ;})
                        : sort(classClasses.rbegin(),classClasses.rend(), [] (Class c1,Class c2) -> bool { return (c1.get_students().size() < c2.get_students().size())
-                                                                                                           || (c1.get_students().size() == c2.get_students().size() && c1.get_ucCode() > c2.get_ucCode());});
+                                                                                                           || (c1.get_students().size() == c2.get_students().size() && c1.get_ucCode() < c2.get_ucCode());});
     }
     else if (option == "1" && order == "2"){
         auto itr = classClasses.end();
