@@ -313,7 +313,7 @@ void Script::handle_registration() {
     string option, type;
     Color_Print(color_mode, "blue", "Pick: ");
     Color_Print(color_mode, "cyan", "1- ");
-    Color_Print(color_mode, "white", "Add a new student");
+    Color_Print(color_mode, "white", "Add a new student ");
     Color_Print(color_mode, "cyan", "2- ");
     Color_Print(color_mode, "white", "Remove a student ");
     Color_Print(color_mode, "cyan", "3- ");
@@ -671,6 +671,7 @@ void Script::listStudents() {
                 invalid();
                 cin >> class_;
             }
+            cout << endl;
             Color_Print(color_mode, "blue", "Sort student by? ");
             Color_Print(color_mode, "cyan", "1- ");
             Color_Print(color_mode, "white", "StudentCode ");
