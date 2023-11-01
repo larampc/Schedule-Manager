@@ -347,7 +347,7 @@ void LEIC::upload_requests() {
         bool Switch = Type == "SWITCH";
         if (Type == "NEW") {
             getline(iss, StudentCode, ',');
-            if (!(is_number2(StudentCode) && StudentCode.size() == 9)) {
+            if (!(is_number2(StudentCode) && StudentCode.length() == 9)) {
                 cout << "Invalid input in the given file. Line " << countLines << endl;
                 empty_pending_requests();
                 return;
@@ -362,7 +362,8 @@ void LEIC::upload_requests() {
                 empty_pending_requests();
                 return;
             }
-            requests.emplace(Type,StudentCode, get_student_from_studentCode(StudentCode)->get_name(),"","","", "");
+            getline(iss,studentName);
+            requests.emplace(Type,StudentCode, "","","","", "");
         }
         else if (add || remove || Switch) {
             getline(iss, StudentCode, ',');
@@ -498,6 +499,7 @@ bool LEIC::request_new(Request &request) {
 
 bool LEIC::request_delete(Request& request) {
     Student* student = get_student_from_studentCode(request.get_studentCode());
+    request.set_name(student->get_name());
     if (student == nullptr) {
         cout << "The student " << request.get_studentCode() << " doesn't exist.\n";
         return false;
@@ -675,8 +677,8 @@ void LEIC::process_requests() {
                 break;
             }
             case 'N': {
-                request_new(request);
-                cout << "Student with code " << request.get_studentCode() << " was added.\n";
+                if(request_new(request))
+                    cout << "Student with code " << request.get_studentCode() << " was added.\n";
                 break;
             }
             case 'D': {

@@ -43,3 +43,7 @@ void Request::set_new_class(std::string classCode) {
 void Request::set_current_class(std::string classCode) {
     this->current_classCode = classCode;
 }
+
+void Request::set_name(std::string name) {
+    this->studentName = name;
+}

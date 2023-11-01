@@ -80,6 +80,12 @@ public:
      */
     void set_type(std::string type);
     /**
+     * \brief Sets the name of the student of the Request.
+     *
+     * @param type The type to set the Request, ADD, REMOVE or SWITCH.
+     */
+    void set_name(std::string name);
+    /**
      * \brief Sets the new_classCode parameter of the Request.
      *
      * @param classCode The Class code to set the new_classCode parameter.
