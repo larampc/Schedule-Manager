@@ -339,10 +339,10 @@ void LEIC::add_processed_request(Request request) {
 void LEIC::upload_requests() {
     string line;
     ifstream requestsFile("../requests.csv");
-    string StudentCode,Type,oldUcCode,newUcCode,newClassCode, studentName;
-    int countLines = 0;
+    int countLines = 1;
     int countNews = 0;
     while (getline(requestsFile, line)) {     // read all lines from the given file
+        string StudentCode,Type,oldUcCode,newUcCode,newClassCode, studentName;
         istringstream iss(line);
         getline(iss, Type, ',');
         bool add = Type == "ADD";
@@ -357,7 +357,7 @@ void LEIC::upload_requests() {
             }
             getline(iss, studentName);
             add_student(Student(studentName, StudentCode));
-            requests.emplace("NEW", false, StudentCode);
+            requests.emplace("NEW", true, StudentCode);
             processed_requests.emplace("NEW", false, StudentCode);
             countNews++;
         }
@@ -573,9 +573,11 @@ bool LEIC::undo_request() {
             return valid;
         }
         case 'N': {
-            Color_Print(color_mode, "cyan", "Student with the student code ");
-            Color_Print(color_mode, "yellow", thisrequest.get_studentCode());
-            Color_Print(color_mode, "cyan", " was removed.", true);
+            if (thisrequest.get_Uc_class()) {
+                Color_Print(color_mode, "cyan", "Student with the student code ");
+                Color_Print(color_mode, "yellow", thisrequest.get_studentCode());
+                Color_Print(color_mode, "cyan", " was removed.", true);
+            }
             up_students.erase(thisrequest.get_studentCode());
             return true;
         }
@@ -591,7 +593,9 @@ void LEIC::process_requests() {
             case 'A': {
                 string message = request_add(request);
                 if (message == "") {
-                    Color_Print(color_mode, "cyan", "Student is now in the class ");
+                    Color_Print(color_mode, "cyan", "Student ");
+                    Color_Print(color_mode, "yellow", request.get_studentCode());
+                    Color_Print(color_mode, "cyan", " is now in the class ");
                     Color_Print(color_mode, "yellow", request.get_new_classCode());
                     Color_Print(color_mode, "cyan", " in the UC ");
                     Color_Print(color_mode, "yellow", request.get_new_UcCode(), true);
@@ -600,7 +604,9 @@ void LEIC::process_requests() {
             }
             case 'R': {
                 if (request_remove(request)){
-                    Color_Print(color_mode, "cyan", "Student was removed from class ");
+                    Color_Print(color_mode, "cyan", "Student ");
+                    Color_Print(color_mode, "yellow", request.get_studentCode());
+                    Color_Print(color_mode, "cyan", " was removed from the class ");
                     Color_Print(color_mode, "yellow", request.get_current_classCode());
                     Color_Print(color_mode, "cyan", " in the UC ");
                     Color_Print(color_mode, "yellow", request.get_current_UcCode(), true);
@@ -611,7 +617,9 @@ void LEIC::process_requests() {
             case 'S': {
                 string message = request_switch(request);
                 if (message == "") {
-                    Color_Print(color_mode, "cyan", "Student was removed from class ");
+                    Color_Print(color_mode, "cyan", "Student ");
+                    Color_Print(color_mode, "yellow", request.get_studentCode());
+                    Color_Print(color_mode, "cyan", " was removed from the class ");
                     Color_Print(color_mode, "yellow", request.get_current_classCode());
                     Color_Print(color_mode, "cyan", " in the UC ");
                     Color_Print(color_mode, "yellow", request.get_current_UcCode());
