@@ -171,7 +171,8 @@ public:
      * @param newClass The Class to insert a Student to check.
      * @return Null pointer if by inserting a Student into a Class, the Class Balance is valid. Pointer to class suggestion if it's not.
      */
-    Class* class_balance_valid(Class* newClass);
+    std::set<Class*> class_balance_valid(Student* student, Class* newClass);
+    Class* best_class_balance(Student* student, std::string uc);
     /**
      * \brief Checks if a Student schedule can accept all TP or PL Lesson of the given Class,
      *        excluding all of the old Class's Lesson if applicable.
@@ -182,7 +183,7 @@ public:
      * @return True if the Student schedule can accept all TP or PL Lesson of the given Class,
      *        excluding all of the old Class's Lesson if applicable.
      */
-    bool compatible_schedules(Student student, Class* newClass, Class* oldClass = nullptr);
+    bool compatible_schedules(Student* student, Class* newClass, Class* oldClass = nullptr);
     /**
      * \brief Adds the given Student to the given Class, updating the data accordingly.
      *
@@ -190,13 +191,6 @@ public:
      * @param newClass The Class to enroll the given Student.
      */
     void add_student_to_class(Student* student, Class* newClass);
-    /**
-     * \brief Removes the given Student from the given Class, updating the data accordingly.
-     *
-     * @param student The Student to remove from the given Class.
-     * @param newClass The Class to remove the given Student.
-     */
-    void remove_student_from_class(Student* student, Class* newClass);
     /**
      * \brief Adds the given Request to the Request queue to be executed later.
      *
@@ -261,6 +255,8 @@ public:
      * \brief Saves all modifications and all successful Requests to files.
      */
     void save_to_files();
+
+    bool improves_balance(Class *currentClass, Class *newClass);
 };
 
 #endif

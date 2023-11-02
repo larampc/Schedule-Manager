@@ -741,12 +741,20 @@ void Script::list_year_occupations(string year) {
                                     || (c1.get_students().size() == c2.get_students().size() && ((c1.get_ucCode() < c2.get_ucCode()) || (c1.get_ucCode() == c2.get_ucCode() && c1.get_classCode() < c2.get_classCode())))  ;})
         : sort(yearClasses.rbegin(),yearClasses.rend(), [] (Class c1,Class c2) -> bool { return (c1.get_students().size() < c2.get_students().size())
                                     || (c1.get_students().size() == c2.get_students().size() && ((c1.get_ucCode() < c2.get_ucCode()) || (c1.get_ucCode() == c2.get_ucCode() && c1.get_classCode() < c2.get_classCode())));});
+        for (Class c: yearClasses) {
+            Color_Print(color_mode, "blue", c.get_ucCode() + " " + c.get_classCode() + " " + to_string(c.get_students().size()), true);
+        }
+        return;
     }
     else if (option == "2"){
         (order == "1") ? sort(yearClasses.begin(),yearClasses.end(), [] (Class c1,Class c2) -> bool {return c1.get_classCode() < c2.get_classCode()
                                                                                             || (c1.get_classCode() == c2.get_classCode() && c1.get_ucCode() < c2.get_ucCode()) ;})
         : sort(yearClasses.rbegin(),yearClasses.rend(), [] (Class c1,Class c2) -> bool {return c1.get_classCode() < c2.get_classCode()
                                                                                 || (c1.get_classCode() == c2.get_classCode() && c1.get_ucCode() < c2.get_ucCode());});
+        for (Class c: yearClasses) {
+            Color_Print(color_mode, "blue", c.get_ucCode() + " " + c.get_classCode() + " " + to_string(c.get_students().size()), true);
+        }
+        return;
     }
     if(option == "1" && order == "2") {
         auto itr = yearClasses.end();
@@ -792,6 +800,10 @@ void Script::list_Uc_occupations(std::string UcCode) {
                                                                                                             || (c1.get_students().size() == c2.get_students().size() && c1.get_classCode() < c2.get_classCode())  ;})
                        : sort(UcClasses.rbegin(),UcClasses.rend(), [] (Class c1,Class c2) -> bool { return (c1.get_students().size() < c2.get_students().size())
                                                                                                                || (c1.get_students().size() == c2.get_students().size() && c1.get_classCode() < c2.get_classCode());});
+        for (Class c: UcClasses) {
+            Color_Print(color_mode, "blue", c.get_classCode() + " " + to_string(c.get_students().size()), true);
+        }
+        return;
     }
     else if (option == "1" && order == "2"){
         auto itr = UcClasses.end();
@@ -838,6 +850,10 @@ void Script::list_class_occupations(std::string classCode) {
                                                                                                         || (c1.get_students().size() == c2.get_students().size() && c1.get_ucCode() < c2.get_ucCode())  ;})
                        : sort(classClasses.rbegin(),classClasses.rend(), [] (Class c1,Class c2) -> bool { return (c1.get_students().size() < c2.get_students().size())
                                                                                                            || (c1.get_students().size() == c2.get_students().size() && c1.get_ucCode() < c2.get_ucCode());});
+        for (Class c: classClasses) {
+            Color_Print(color_mode, "blue", c.get_classCode() + " " + to_string(c.get_students().size()), true);
+        }
+        return;
     }
     else if (option == "1" && order == "2"){
         auto itr = classClasses.end();
