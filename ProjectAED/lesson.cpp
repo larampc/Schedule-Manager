@@ -42,7 +42,7 @@ void Lesson::print_lesson() const {
               << setw(2) << setfill('0') << endTime.get_minute()
               << "\t" << setw(2) << setfill(' ') << type << " " << Class;
     getline(outstream, out);
-    Color_Print(color_mode, "blue", out, true);
+    Color_Print(color_mode, "white", out, true);
 }
 
 bool Lesson::operator<(const Lesson &l) const{

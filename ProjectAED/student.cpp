@@ -64,7 +64,7 @@ void Student::print_schedule() const {
                   setw(2) << setfill('0') << lesson.get_end_time().get_minute() <<
                   "\t" << setw(2) << setfill(' ') << lesson.get_type() << "  " << lesson.get_classCode();
         getline(outstream, out);
-        Color_Print(color_mode, "blue", out, true);
+        Color_Print(color_mode, "white", out, true);
     }
 }
 
