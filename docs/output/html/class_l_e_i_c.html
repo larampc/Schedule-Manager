@@ -91,9 +91,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad20a17e77f772697f2966a2dc4e84890" id="r_ad20a17e77f772697f2966a2dc4e84890"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_student.html">Student</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#ad20a17e77f772697f2966a2dc4e84890">get_student_from_studentCode</a> (std::string studentCode)</td></tr>
 <tr class="memdesc:ad20a17e77f772697f2966a2dc4e84890"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> with the given up.  <br /></td></tr>
 <tr class="separator:ad20a17e77f772697f2966a2dc4e84890"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2188aa471f572f3e501ed22d44dae33b" id="r_a2188aa471f572f3e501ed22d44dae33b"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_class.html">Class</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a2188aa471f572f3e501ed22d44dae33b">get_classes</a> () const</td></tr>
-<tr class="memdesc:a2188aa471f572f3e501ed22d44dae33b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all existing <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> in <a class="el" href="class_l_e_i_c.html" title="This is a class for the course LEIC.">LEIC</a>.  <br /></td></tr>
-<tr class="separator:a2188aa471f572f3e501ed22d44dae33b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7414556831901e7bccc97e60fc8e7dc" id="r_ad7414556831901e7bccc97e60fc8e7dc"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="class_class.html">Class</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#ad7414556831901e7bccc97e60fc8e7dc">get_classes</a> () const</td></tr>
+<tr class="memdesc:ad7414556831901e7bccc97e60fc8e7dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all existing <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> in <a class="el" href="class_l_e_i_c.html" title="This is a class for the course LEIC.">LEIC</a>.  <br /></td></tr>
+<tr class="separator:ad7414556831901e7bccc97e60fc8e7dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a481934200e6d538987a5beb4679d6661" id="r_a481934200e6d538987a5beb4679d6661"><td class="memItemLeft" align="right" valign="top">std::set&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a481934200e6d538987a5beb4679d6661">get_UcCodes</a> () const</td></tr>
 <tr class="memdesc:a481934200e6d538987a5beb4679d6661"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the UC codes of all existing UC.  <br /></td></tr>
 <tr class="separator:a481934200e6d538987a5beb4679d6661"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -106,6 +106,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aef302dcfd2b9df84093d8903368ae9ab" id="r_aef302dcfd2b9df84093d8903368ae9ab"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_class.html">Class</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#aef302dcfd2b9df84093d8903368ae9ab">get_classes_from_UcCode</a> (std::string UcCode)</td></tr>
 <tr class="memdesc:aef302dcfd2b9df84093d8903368ae9ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> with the given UC code.  <br /></td></tr>
 <tr class="separator:aef302dcfd2b9df84093d8903368ae9ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab902b09fb2be3a8faa78064e44d8b56e" id="r_ab902b09fb2be3a8faa78064e44d8b56e"><td class="memItemLeft" align="right" valign="top"><a id="ab902b09fb2be3a8faa78064e44d8b56e" name="ab902b09fb2be3a8faa78064e44d8b56e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>empty_pending_requests</b> ()</td></tr>
+<tr class="memdesc:ab902b09fb2be3a8faa78064e44d8b56e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empties the queue of all pending <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a>. <br /></td></tr>
+<tr class="separator:ab902b09fb2be3a8faa78064e44d8b56e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2234321ab8a3ab3e93ef13a92408519d" id="r_a2234321ab8a3ab3e93ef13a92408519d"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a2234321ab8a3ab3e93ef13a92408519d">studentCode_last_request</a> ()</td></tr>
+<tr class="memdesc:a2234321ab8a3ab3e93ef13a92408519d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the student code of the last pending <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> that was made.  <br /></td></tr>
+<tr class="separator:a2234321ab8a3ab3e93ef13a92408519d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07eee72b0f73bfded732eb667b59d566" id="r_a07eee72b0f73bfded732eb667b59d566"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a07eee72b0f73bfded732eb667b59d566">get_cap</a> ()</td></tr>
 <tr class="memdesc:a07eee72b0f73bfded732eb667b59d566"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Cap, the max number of <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> that can be in a <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>.  <br /></td></tr>
 <tr class="separator:a07eee72b0f73bfded732eb667b59d566"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -121,73 +128,85 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5a03dcd18c4066822f1839c9a9f65055" id="r_a5a03dcd18c4066822f1839c9a9f65055"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a5a03dcd18c4066822f1839c9a9f65055">Uc_has_vacancy</a> (std::string UcCode)</td></tr>
 <tr class="memdesc:a5a03dcd18c4066822f1839c9a9f65055"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if any <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> with the given UC code has less <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> than the Cap.  <br /></td></tr>
 <tr class="separator:a5a03dcd18c4066822f1839c9a9f65055"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2760e857ee830e151e821d3d8d0f9d43" id="r_a2760e857ee830e151e821d3d8d0f9d43"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a2760e857ee830e151e821d3d8d0f9d43">list_students_by_studentCode</a> (bool color_mode)</td></tr>
-<tr class="memdesc:a2760e857ee830e151e821d3d8d0f9d43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints all of the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> enrolled in the course sorted by their up.  <br /></td></tr>
-<tr class="separator:a2760e857ee830e151e821d3d8d0f9d43"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab55501f258e775f533b57fbd7a1793df" id="r_ab55501f258e775f533b57fbd7a1793df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#ab55501f258e775f533b57fbd7a1793df">list_students_by_name</a> (bool color_mode)</td></tr>
-<tr class="memdesc:ab55501f258e775f533b57fbd7a1793df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints all of the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> enrolled in the course sorted by their name.  <br /></td></tr>
-<tr class="separator:ab55501f258e775f533b57fbd7a1793df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acbb413e98e238330d4132be7b86c7526" id="r_acbb413e98e238330d4132be7b86c7526"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#acbb413e98e238330d4132be7b86c7526">list_UC_students_by_studentCode</a> (std::string UcCode, bool color_mode)</td></tr>
-<tr class="memdesc:acbb413e98e238330d4132be7b86c7526"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints all of the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> enrolled in the given UC sorted by their up.  <br /></td></tr>
-<tr class="separator:acbb413e98e238330d4132be7b86c7526"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a602bf8b5f696840e9a5ffdcbbbf3c075" id="r_a602bf8b5f696840e9a5ffdcbbbf3c075"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a602bf8b5f696840e9a5ffdcbbbf3c075">list_UC_students_by_name</a> (std::string UcCode, bool color_mode)</td></tr>
-<tr class="memdesc:a602bf8b5f696840e9a5ffdcbbbf3c075"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints all of the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> enrolled in the given UC sorted by their name.  <br /></td></tr>
-<tr class="separator:a602bf8b5f696840e9a5ffdcbbbf3c075"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a638e9926ea5c2667c04c070f5497af6f" id="r_a638e9926ea5c2667c04c070f5497af6f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a638e9926ea5c2667c04c070f5497af6f">list_class_students_by_studentCode</a> (<a class="el" href="class_class.html">Class</a> *class_, bool color_mode) const</td></tr>
-<tr class="memdesc:a638e9926ea5c2667c04c070f5497af6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints all of the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> enrolled in the given <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> sorted by their up.  <br /></td></tr>
-<tr class="separator:a638e9926ea5c2667c04c070f5497af6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed73122d3d7c81c49d7ef09bd91a110b" id="r_aed73122d3d7c81c49d7ef09bd91a110b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#aed73122d3d7c81c49d7ef09bd91a110b">list_class_students_by_name</a> (<a class="el" href="class_class.html">Class</a> *class_, bool color_mode) const</td></tr>
-<tr class="memdesc:aed73122d3d7c81c49d7ef09bd91a110b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints all of the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> enrolled in the given <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> sorted by their name.  <br /></td></tr>
-<tr class="separator:aed73122d3d7c81c49d7ef09bd91a110b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0a5efd7c507ea093c4572cf707e3c84" id="r_ae0a5efd7c507ea093c4572cf707e3c84"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#ae0a5efd7c507ea093c4572cf707e3c84">list_number_students_class</a> (bool color_mode)</td></tr>
-<tr class="memdesc:ae0a5efd7c507ea093c4572cf707e3c84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints all <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> and their respective number of <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> enrolled.  <br /></td></tr>
-<tr class="separator:ae0a5efd7c507ea093c4572cf707e3c84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e5d984faf335ab686b8c1f3040877ac" id="r_a4e5d984faf335ab686b8c1f3040877ac"><td class="memItemLeft" align="right" valign="top"><a id="a4e5d984faf335ab686b8c1f3040877ac" name="a4e5d984faf335ab686b8c1f3040877ac"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>list_students_by_studentCode</b> ()</td></tr>
+<tr class="memdesc:a4e5d984faf335ab686b8c1f3040877ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints all of the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> enrolled in the course sorted by their up. <br /></td></tr>
+<tr class="separator:a4e5d984faf335ab686b8c1f3040877ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e3879ada0a41e007025f31e0de59383" id="r_a8e3879ada0a41e007025f31e0de59383"><td class="memItemLeft" align="right" valign="top"><a id="a8e3879ada0a41e007025f31e0de59383" name="a8e3879ada0a41e007025f31e0de59383"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>list_students_by_name</b> ()</td></tr>
+<tr class="memdesc:a8e3879ada0a41e007025f31e0de59383"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints all of the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> enrolled in the course sorted by their name. <br /></td></tr>
+<tr class="separator:a8e3879ada0a41e007025f31e0de59383"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b8857a5f5d065bd924cd46db501752c" id="r_a2b8857a5f5d065bd924cd46db501752c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a2b8857a5f5d065bd924cd46db501752c">list_UC_students_by_studentCode</a> (std::string UcCode)</td></tr>
+<tr class="memdesc:a2b8857a5f5d065bd924cd46db501752c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints all of the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> enrolled in the given UC sorted by their up.  <br /></td></tr>
+<tr class="separator:a2b8857a5f5d065bd924cd46db501752c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67c717c178e50a4f08d2475da74f8849" id="r_a67c717c178e50a4f08d2475da74f8849"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a67c717c178e50a4f08d2475da74f8849">list_UC_students_by_name</a> (std::string UcCode)</td></tr>
+<tr class="memdesc:a67c717c178e50a4f08d2475da74f8849"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints all of the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> enrolled in the given UC sorted by their name.  <br /></td></tr>
+<tr class="separator:a67c717c178e50a4f08d2475da74f8849"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1e0c3be26216d4accc8fedaf5f5c658" id="r_ab1e0c3be26216d4accc8fedaf5f5c658"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#ab1e0c3be26216d4accc8fedaf5f5c658">list_class_students_by_studentCode</a> (<a class="el" href="class_class.html">Class</a> *class_) const</td></tr>
+<tr class="memdesc:ab1e0c3be26216d4accc8fedaf5f5c658"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints all of the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> enrolled in the given <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> sorted by their up.  <br /></td></tr>
+<tr class="separator:ab1e0c3be26216d4accc8fedaf5f5c658"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48bbb2fac5d7e52825341046e409a1cc" id="r_a48bbb2fac5d7e52825341046e409a1cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a48bbb2fac5d7e52825341046e409a1cc">list_class_students_by_name</a> (<a class="el" href="class_class.html">Class</a> *class_) const</td></tr>
+<tr class="memdesc:a48bbb2fac5d7e52825341046e409a1cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints all of the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> enrolled in the given <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> sorted by their name.  <br /></td></tr>
+<tr class="separator:a48bbb2fac5d7e52825341046e409a1cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0d062d70410ad4b5de1539daff3fe1b" id="r_ad0d062d70410ad4b5de1539daff3fe1b"><td class="memItemLeft" align="right" valign="top"><a id="ad0d062d70410ad4b5de1539daff3fe1b" name="ad0d062d70410ad4b5de1539daff3fe1b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>list_number_students_class</b> ()</td></tr>
+<tr class="memdesc:ad0d062d70410ad4b5de1539daff3fe1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints all <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> and their respective number of <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> enrolled. <br /></td></tr>
+<tr class="separator:ad0d062d70410ad4b5de1539daff3fe1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a44fb81b853038c3a4be985c6326cdf74" id="r_a44fb81b853038c3a4be985c6326cdf74"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a44fb81b853038c3a4be985c6326cdf74">students_in_n_Ucs</a> (int n)</td></tr>
 <tr class="memdesc:a44fb81b853038c3a4be985c6326cdf74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> with at least the given number of UCs.  <br /></td></tr>
 <tr class="separator:a44fb81b853038c3a4be985c6326cdf74"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a93a5132116dd56f7898e8c50990688" id="r_a8a93a5132116dd56f7898e8c50990688"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_class.html">Class</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a8a93a5132116dd56f7898e8c50990688">class_balance_valid</a> (<a class="el" href="class_class.html">Class</a> *newClass)</td></tr>
-<tr class="memdesc:a8a93a5132116dd56f7898e8c50990688"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if by inserting a <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> into a <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>, the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> Balance is valid.  <br /></td></tr>
-<tr class="separator:a8a93a5132116dd56f7898e8c50990688"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4cbf80a2576fcf5a3c5345340524d2b8" id="r_a4cbf80a2576fcf5a3c5345340524d2b8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a4cbf80a2576fcf5a3c5345340524d2b8">compatible_schedules</a> (<a class="el" href="class_student.html">Student</a> student, <a class="el" href="class_class.html">Class</a> *newClass, <a class="el" href="class_class.html">Class</a> *oldClass=nullptr)</td></tr>
-<tr class="memdesc:a4cbf80a2576fcf5a3c5345340524d2b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> schedule can accept all TP or PL <a class="el" href="class_lesson.html" title="This is a class for representing Lessons.">Lesson</a> of the given <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>, excluding all of the old <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>'s <a class="el" href="class_lesson.html" title="This is a class for representing Lessons.">Lesson</a> if applicable.  <br /></td></tr>
-<tr class="separator:a4cbf80a2576fcf5a3c5345340524d2b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2027542fc3ccbacb00f856fee471380b" id="r_a2027542fc3ccbacb00f856fee471380b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a2027542fc3ccbacb00f856fee471380b">add_student</a> (<a class="el" href="class_student.html">Student</a> student)</td></tr>
-<tr class="memdesc:a2027542fc3ccbacb00f856fee471380b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to the data.  <br /></td></tr>
-<tr class="separator:a2027542fc3ccbacb00f856fee471380b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f690cef6e52d775bbc36e58a7d31763" id="r_a5f690cef6e52d775bbc36e58a7d31763"><td class="memItemLeft" align="right" valign="top">std::set&lt; <a class="el" href="class_class.html">Class</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a5f690cef6e52d775bbc36e58a7d31763">class_balance_valid</a> (<a class="el" href="class_student.html">Student</a> *student, <a class="el" href="class_class.html">Class</a> *newClass)</td></tr>
+<tr class="memdesc:a5f690cef6e52d775bbc36e58a7d31763"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if by inserting a <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> into a <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>, the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> Balance and schedule are valid.  <br /></td></tr>
+<tr class="separator:a5f690cef6e52d775bbc36e58a7d31763"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4d029ee52f5420908ad0df6cbd54aec" id="r_ab4d029ee52f5420908ad0df6cbd54aec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_class.html">Class</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#ab4d029ee52f5420908ad0df6cbd54aec">best_class_balance</a> (<a class="el" href="class_student.html">Student</a> *student, std::string uc)</td></tr>
+<tr class="memdesc:ab4d029ee52f5420908ad0df6cbd54aec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> in the given UC that affects the best to the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> balance and is compatible with the given <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a>'s schedule.  <br /></td></tr>
+<tr class="separator:ab4d029ee52f5420908ad0df6cbd54aec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87bc52500d169cf9d3e0ba085d494576" id="r_a87bc52500d169cf9d3e0ba085d494576"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a87bc52500d169cf9d3e0ba085d494576">compatible_schedules</a> (<a class="el" href="class_student.html">Student</a> *student, <a class="el" href="class_class.html">Class</a> *newClass, <a class="el" href="class_class.html">Class</a> *oldClass=nullptr)</td></tr>
+<tr class="memdesc:a87bc52500d169cf9d3e0ba085d494576"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> schedule can accept all TP or PL <a class="el" href="class_lesson.html" title="This is a class for representing Lessons.">Lesson</a> of the given <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>, excluding all of the old <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>'s <a class="el" href="class_lesson.html" title="This is a class for representing Lessons.">Lesson</a> if applicable.  <br /></td></tr>
+<tr class="separator:a87bc52500d169cf9d3e0ba085d494576"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e0fcb2b2b58ad8827ba24496688cd02" id="r_a4e0fcb2b2b58ad8827ba24496688cd02"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a4e0fcb2b2b58ad8827ba24496688cd02">add_student_to_class</a> (<a class="el" href="class_student.html">Student</a> *student, <a class="el" href="class_class.html">Class</a> *newClass)</td></tr>
 <tr class="memdesc:a4e0fcb2b2b58ad8827ba24496688cd02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the given <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to the given <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>, updating the data accordingly.  <br /></td></tr>
 <tr class="separator:a4e0fcb2b2b58ad8827ba24496688cd02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1dab6367f8310b5a6b75772134f575b" id="r_af1dab6367f8310b5a6b75772134f575b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#af1dab6367f8310b5a6b75772134f575b">remove_student_from_class</a> (<a class="el" href="class_student.html">Student</a> *student, <a class="el" href="class_class.html">Class</a> *newClass)</td></tr>
-<tr class="memdesc:af1dab6367f8310b5a6b75772134f575b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the given <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> from the given <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>, updating the data accordingly.  <br /></td></tr>
-<tr class="separator:af1dab6367f8310b5a6b75772134f575b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e86a37a3951469f194b667ff8f87e9a" id="r_a8e86a37a3951469f194b667ff8f87e9a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a8e86a37a3951469f194b667ff8f87e9a">add_request_to_process</a> (<a class="el" href="class_request.html">Request</a> update_registration)</td></tr>
+<tr class="memitem:a8e86a37a3951469f194b667ff8f87e9a" id="r_a8e86a37a3951469f194b667ff8f87e9a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a8e86a37a3951469f194b667ff8f87e9a">add_request_to_process</a> (<a class="el" href="class_request.html">Request</a> request)</td></tr>
 <tr class="memdesc:a8e86a37a3951469f194b667ff8f87e9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the given <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> to the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> queue to be executed later.  <br /></td></tr>
 <tr class="separator:a8e86a37a3951469f194b667ff8f87e9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3eff5d375c3b3738ca14ab6a4ee05379" id="r_a3eff5d375c3b3738ca14ab6a4ee05379"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a3eff5d375c3b3738ca14ab6a4ee05379">add_processed_request</a> (<a class="el" href="class_request.html">Request</a> update_registration)</td></tr>
+<tr class="memitem:a3eff5d375c3b3738ca14ab6a4ee05379" id="r_a3eff5d375c3b3738ca14ab6a4ee05379"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a3eff5d375c3b3738ca14ab6a4ee05379">add_processed_request</a> (<a class="el" href="class_request.html">Request</a> request)</td></tr>
 <tr class="memdesc:a3eff5d375c3b3738ca14ab6a4ee05379"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the given <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> to the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> stack so it can be undone.  <br /></td></tr>
 <tr class="separator:a3eff5d375c3b3738ca14ab6a4ee05379"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d38717562cf97b2976516ea4c813dbf" id="r_a2d38717562cf97b2976516ea4c813dbf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a2d38717562cf97b2976516ea4c813dbf">upload_requests</a> (bool color_mode)</td></tr>
-<tr class="memdesc:a2d38717562cf97b2976516ea4c813dbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uploads all the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> in the requests.csv file to the queue and runs them.  <br /></td></tr>
-<tr class="separator:a2d38717562cf97b2976516ea4c813dbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac1093002c19620310cf8fde30e7e68a" id="r_aac1093002c19620310cf8fde30e7e68a"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#aac1093002c19620310cf8fde30e7e68a">request_add</a> (<a class="el" href="class_request.html">Request</a> &amp;update_registration, bool color_mode)</td></tr>
-<tr class="memdesc:aac1093002c19620310cf8fde30e7e68a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the given <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> of type ADD about the given <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> and returns True if it is valid and ran with no errors.  <br /></td></tr>
-<tr class="separator:aac1093002c19620310cf8fde30e7e68a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac635093a63bb281703a425e573a7e3a6" id="r_ac635093a63bb281703a425e573a7e3a6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#ac635093a63bb281703a425e573a7e3a6">request_remove</a> (<a class="el" href="class_request.html">Request</a> &amp;update_registration)</td></tr>
+<tr class="memitem:a084c6a212ebe811ea94e486e7e6748d6" id="r_a084c6a212ebe811ea94e486e7e6748d6"><td class="memItemLeft" align="right" valign="top"><a id="a084c6a212ebe811ea94e486e7e6748d6" name="a084c6a212ebe811ea94e486e7e6748d6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>upload_requests</b> ()</td></tr>
+<tr class="memdesc:a084c6a212ebe811ea94e486e7e6748d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uploads all the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> in the requests.csv file to the queue and runs them. <br /></td></tr>
+<tr class="separator:a084c6a212ebe811ea94e486e7e6748d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0274b32015b032dd9301218dee30b6fd" id="r_a0274b32015b032dd9301218dee30b6fd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a0274b32015b032dd9301218dee30b6fd">request_add</a> (<a class="el" href="class_request.html">Request</a> &amp;request)</td></tr>
+<tr class="memdesc:a0274b32015b032dd9301218dee30b6fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the given <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> of type ADD about the given <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> and returns True if it is valid and ran with no errors.  <br /></td></tr>
+<tr class="separator:a0274b32015b032dd9301218dee30b6fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac635093a63bb281703a425e573a7e3a6" id="r_ac635093a63bb281703a425e573a7e3a6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#ac635093a63bb281703a425e573a7e3a6">request_remove</a> (<a class="el" href="class_request.html">Request</a> &amp;request)</td></tr>
 <tr class="memdesc:ac635093a63bb281703a425e573a7e3a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the given <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> of type REMOVE about the given <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> and returns True if it is valid and ran with no errors.  <br /></td></tr>
 <tr class="separator:ac635093a63bb281703a425e573a7e3a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a584af062e416ac7c6ec8d6572bf9fc7f" id="r_a584af062e416ac7c6ec8d6572bf9fc7f"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a584af062e416ac7c6ec8d6572bf9fc7f">request_switch</a> (<a class="el" href="class_request.html">Request</a> &amp;update_registration, bool color_mode)</td></tr>
-<tr class="memdesc:a584af062e416ac7c6ec8d6572bf9fc7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the given <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> of type SWITCH about the given <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> and returns True if it is valid and ran with no errors.  <br /></td></tr>
-<tr class="separator:a584af062e416ac7c6ec8d6572bf9fc7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acbc8c03673710feb402bf1ef9808af33" id="r_acbc8c03673710feb402bf1ef9808af33"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#acbc8c03673710feb402bf1ef9808af33">undo_request</a> (bool color_mode)</td></tr>
-<tr class="memdesc:acbc8c03673710feb402bf1ef9808af33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Undoes the last <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> that was done successfully.  <br /></td></tr>
-<tr class="separator:acbc8c03673710feb402bf1ef9808af33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49d6d5c559d021dc171cc94c748f3f90" id="r_a49d6d5c559d021dc171cc94c748f3f90"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a49d6d5c559d021dc171cc94c748f3f90">process_requests</a> (bool color_mode)</td></tr>
-<tr class="memdesc:a49d6d5c559d021dc171cc94c748f3f90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes all <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> in the queue by checking the type running it.  <br /></td></tr>
-<tr class="separator:a49d6d5c559d021dc171cc94c748f3f90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc75ace142821f69ce40253b69a66132" id="r_adc75ace142821f69ce40253b69a66132"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#adc75ace142821f69ce40253b69a66132">request_new</a> (<a class="el" href="class_request.html">Request</a> &amp;request)</td></tr>
+<tr class="memdesc:adc75ace142821f69ce40253b69a66132"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the given <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> of type NEW creating a new <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> and returns True if it is valid and ran with no errors.  <br /></td></tr>
+<tr class="separator:adc75ace142821f69ce40253b69a66132"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac096fd94e2e307ee2ba149d1698dcc7b" id="r_ac096fd94e2e307ee2ba149d1698dcc7b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#ac096fd94e2e307ee2ba149d1698dcc7b">request_delete</a> (<a class="el" href="class_request.html">Request</a> &amp;request)</td></tr>
+<tr class="memdesc:ac096fd94e2e307ee2ba149d1698dcc7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the given <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> of type DELETE removing a <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> and returns True if it is valid and ran with no errors.  <br /></td></tr>
+<tr class="separator:ac096fd94e2e307ee2ba149d1698dcc7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a521f5232f2fd46ceb29a23587446e955" id="r_a521f5232f2fd46ceb29a23587446e955"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a521f5232f2fd46ceb29a23587446e955">request_switch</a> (<a class="el" href="class_request.html">Request</a> &amp;request)</td></tr>
+<tr class="memdesc:a521f5232f2fd46ceb29a23587446e955"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the given <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> of type SWITCH about the given <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> and returns True if it is valid and ran with no errors.  <br /></td></tr>
+<tr class="separator:a521f5232f2fd46ceb29a23587446e955"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a725190f8a76d9a00ba5eb7383b02722e" id="r_a725190f8a76d9a00ba5eb7383b02722e"><td class="memItemLeft" align="right" valign="top"><a id="a725190f8a76d9a00ba5eb7383b02722e" name="a725190f8a76d9a00ba5eb7383b02722e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>undo_request</b> ()</td></tr>
+<tr class="memdesc:a725190f8a76d9a00ba5eb7383b02722e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Undoes the last <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> that was done successfully. <br /></td></tr>
+<tr class="separator:a725190f8a76d9a00ba5eb7383b02722e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abff22c13b8cf0197447771c8e5787625" id="r_abff22c13b8cf0197447771c8e5787625"><td class="memItemLeft" align="right" valign="top"><a id="abff22c13b8cf0197447771c8e5787625" name="abff22c13b8cf0197447771c8e5787625"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>process_requests</b> ()</td></tr>
+<tr class="memdesc:abff22c13b8cf0197447771c8e5787625"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes all <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> in the queue by checking the type running it. <br /></td></tr>
+<tr class="separator:abff22c13b8cf0197447771c8e5787625"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14416642527a2f02929b50b0735cb5e8" id="r_a14416642527a2f02929b50b0735cb5e8"><td class="memItemLeft" align="right" valign="top"><a id="a14416642527a2f02929b50b0735cb5e8" name="a14416642527a2f02929b50b0735cb5e8"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>save_to_files</b> ()</td></tr>
 <tr class="memdesc:a14416642527a2f02929b50b0735cb5e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves all modifications and all successful Requests to files. <br /></td></tr>
 <tr class="separator:a14416642527a2f02929b50b0735cb5e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e745b7328a48ef245fa08152f8bf982" id="r_a8e745b7328a48ef245fa08152f8bf982"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a8e745b7328a48ef245fa08152f8bf982">improves_balance</a> (<a class="el" href="class_class.html">Class</a> *currentClass, <a class="el" href="class_class.html">Class</a> *newClass)</td></tr>
+<tr class="memdesc:a8e745b7328a48ef245fa08152f8bf982"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if by moving from the current <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> to the new <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> balance improves.  <br /></td></tr>
+<tr class="separator:a8e745b7328a48ef245fa08152f8bf982"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -270,7 +289,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>CAP</b> = 30</td></tr>
           <td class="memname">void LEIC::add_processed_request </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_request.html">Request</a>&#160;</td>
-          <td class="paramname"><em>update_registration</em></td><td>)</td>
+          <td class="paramname"><em>request</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -279,7 +298,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>CAP</b> = 30</td></tr>
 <p>Adds the given <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> to the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> stack so it can be undone. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">update_registration</td><td>The <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> to add to the stack. </td></tr>
+    <tr><td class="paramname">request</td><td>The <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> to add to the stack. </td></tr>
   </table>
   </dd>
 </dl>
@@ -296,7 +315,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>CAP</b> = 30</td></tr>
           <td class="memname">void LEIC::add_request_to_process </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_request.html">Request</a>&#160;</td>
-          <td class="paramname"><em>update_registration</em></td><td>)</td>
+          <td class="paramname"><em>request</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -305,33 +324,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>CAP</b> = 30</td></tr>
 <p>Adds the given <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> to the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> queue to be executed later. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">update_registration</td><td>The <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> to add to the queue. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a2027542fc3ccbacb00f856fee471380b" name="a2027542fc3ccbacb00f856fee471380b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2027542fc3ccbacb00f856fee471380b">&#9670;&#160;</a></span>add_student()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void LEIC::add_student </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_student.html">Student</a>&#160;</td>
-          <td class="paramname"><em>student</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Adds a new <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to the data. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">student</td><td>The <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to add. </td></tr>
+    <tr><td class="paramname">request</td><td>The <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> to add to the queue. </td></tr>
   </table>
   </dd>
 </dl>
@@ -375,35 +368,84 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>CAP</b> = 30</td></tr>
 
 </div>
 </div>
-<a id="a8a93a5132116dd56f7898e8c50990688" name="a8a93a5132116dd56f7898e8c50990688"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8a93a5132116dd56f7898e8c50990688">&#9670;&#160;</a></span>class_balance_valid()</h2>
+<a id="ab4d029ee52f5420908ad0df6cbd54aec" name="ab4d029ee52f5420908ad0df6cbd54aec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4d029ee52f5420908ad0df6cbd54aec">&#9670;&#160;</a></span>best_class_balance()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_class.html">Class</a> * LEIC::class_balance_valid </td>
+          <td class="memname"><a class="el" href="class_class.html">Class</a> * LEIC::best_class_balance </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_class.html">Class</a> *&#160;</td>
-          <td class="paramname"><em>newClass</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="class_student.html">Student</a> *&#160;</td>
+          <td class="paramname"><em>student</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>uc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Checks if by inserting a <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> into a <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>, the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> Balance is valid. </p>
+<p>Gets the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> in the given UC that affects the best to the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> balance and is compatible with the given <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a>'s schedule. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">student</td><td>The <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> that must have a compatible schedule with the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>. </td></tr>
+    <tr><td class="paramname">uc</td><td>The UC code of the UC to get the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> from. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> in the given UC that affects the best to the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> balance and is compatible with the given <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a>'s schedule. </dd></dl>
+
+</div>
+</div>
+<a id="a5f690cef6e52d775bbc36e58a7d31763" name="a5f690cef6e52d775bbc36e58a7d31763"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f690cef6e52d775bbc36e58a7d31763">&#9670;&#160;</a></span>class_balance_valid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">set&lt; <a class="el" href="class_class.html">Class</a> * &gt; LEIC::class_balance_valid </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_student.html">Student</a> *&#160;</td>
+          <td class="paramname"><em>student</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_class.html">Class</a> *&#160;</td>
+          <td class="paramname"><em>newClass</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if by inserting a <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> into a <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>, the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> Balance and schedule are valid. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">student</td><td>The <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to insert into the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> to check. </td></tr>
     <tr><td class="paramname">newClass</td><td>The <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> to insert a <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to check. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Null pointer if by inserting a <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> into a <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>, the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> Balance is valid. Pointer to class suggestion if it's not. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>References of all <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> with the same UC of the given <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> that by inserting the given <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> Balance and schedule are valid, or empty if by inserting a <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> into the given <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>, the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> Balance and schedule are valid. </dd></dl>
 
 </div>
 </div>
-<a id="a4cbf80a2576fcf5a3c5345340524d2b8" name="a4cbf80a2576fcf5a3c5345340524d2b8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4cbf80a2576fcf5a3c5345340524d2b8">&#9670;&#160;</a></span>compatible_schedules()</h2>
+<a id="a87bc52500d169cf9d3e0ba085d494576" name="a87bc52500d169cf9d3e0ba085d494576"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87bc52500d169cf9d3e0ba085d494576">&#9670;&#160;</a></span>compatible_schedules()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -411,7 +453,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>CAP</b> = 30</td></tr>
         <tr>
           <td class="memname">bool LEIC::compatible_schedules </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_student.html">Student</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="class_student.html">Student</a> *&#160;</td>
           <td class="paramname"><em>student</em>, </td>
         </tr>
         <tr>
@@ -590,14 +632,14 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>CAP</b> = 30</td></tr>
 
 </div>
 </div>
-<a id="a2188aa471f572f3e501ed22d44dae33b" name="a2188aa471f572f3e501ed22d44dae33b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2188aa471f572f3e501ed22d44dae33b">&#9670;&#160;</a></span>get_classes()</h2>
+<a id="ad7414556831901e7bccc97e60fc8e7dc" name="ad7414556831901e7bccc97e60fc8e7dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7414556831901e7bccc97e60fc8e7dc">&#9670;&#160;</a></span>get_classes()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">vector&lt; <a class="el" href="class_class.html">Class</a> &gt; LEIC::get_classes </td>
+          <td class="memname">const vector&lt; <a class="el" href="class_class.html">Class</a> &gt; * LEIC::get_classes </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -684,269 +726,17 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>CAP</b> = 30</td></tr>
 
 </div>
 </div>
-<a id="aed73122d3d7c81c49d7ef09bd91a110b" name="aed73122d3d7c81c49d7ef09bd91a110b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aed73122d3d7c81c49d7ef09bd91a110b">&#9670;&#160;</a></span>list_class_students_by_name()</h2>
+<a id="a8e745b7328a48ef245fa08152f8bf982" name="a8e745b7328a48ef245fa08152f8bf982"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e745b7328a48ef245fa08152f8bf982">&#9670;&#160;</a></span>improves_balance()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void LEIC::list_class_students_by_name </td>
+          <td class="memname">bool LEIC::improves_balance </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_class.html">Class</a> *&#160;</td>
-          <td class="paramname"><em>class_</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>color_mode</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Prints all of the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> enrolled in the given <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> sorted by their name. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">class_</td><td>The <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> to print all <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a>. </td></tr>
-    <tr><td class="paramname">color_mode</td><td>True to print with colors, false otherwise. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a638e9926ea5c2667c04c070f5497af6f" name="a638e9926ea5c2667c04c070f5497af6f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a638e9926ea5c2667c04c070f5497af6f">&#9670;&#160;</a></span>list_class_students_by_studentCode()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void LEIC::list_class_students_by_studentCode </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_class.html">Class</a> *&#160;</td>
-          <td class="paramname"><em>class_</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>color_mode</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Prints all of the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> enrolled in the given <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> sorted by their up. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">class_</td><td>The <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> to print all <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a>. </td></tr>
-    <tr><td class="paramname">color_mode</td><td>True to print with colors, false otherwise. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="ae0a5efd7c507ea093c4572cf707e3c84" name="ae0a5efd7c507ea093c4572cf707e3c84"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae0a5efd7c507ea093c4572cf707e3c84">&#9670;&#160;</a></span>list_number_students_class()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void LEIC::list_number_students_class </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>color_mode</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Prints all <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> and their respective number of <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> enrolled. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">color_mode</td><td>True to print with colors, false otherwise. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="ab55501f258e775f533b57fbd7a1793df" name="ab55501f258e775f533b57fbd7a1793df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab55501f258e775f533b57fbd7a1793df">&#9670;&#160;</a></span>list_students_by_name()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void LEIC::list_students_by_name </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>color_mode</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Prints all of the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> enrolled in the course sorted by their name. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">color_mode</td><td>True to print with colors, false otherwise. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a2760e857ee830e151e821d3d8d0f9d43" name="a2760e857ee830e151e821d3d8d0f9d43"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2760e857ee830e151e821d3d8d0f9d43">&#9670;&#160;</a></span>list_students_by_studentCode()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void LEIC::list_students_by_studentCode </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>color_mode</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Prints all of the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> enrolled in the course sorted by their up. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">color_mode</td><td>True to print with colors, false otherwise. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a602bf8b5f696840e9a5ffdcbbbf3c075" name="a602bf8b5f696840e9a5ffdcbbbf3c075"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a602bf8b5f696840e9a5ffdcbbbf3c075">&#9670;&#160;</a></span>list_UC_students_by_name()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void LEIC::list_UC_students_by_name </td>
-          <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>UcCode</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>color_mode</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Prints all of the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> enrolled in the given UC sorted by their name. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">uc</td><td>The UC code of the UC to print all <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a>. </td></tr>
-    <tr><td class="paramname">color_mode</td><td>True to print with colors, false otherwise. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="acbb413e98e238330d4132be7b86c7526" name="acbb413e98e238330d4132be7b86c7526"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acbb413e98e238330d4132be7b86c7526">&#9670;&#160;</a></span>list_UC_students_by_studentCode()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void LEIC::list_UC_students_by_studentCode </td>
-          <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>UcCode</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>color_mode</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Prints all of the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> enrolled in the given UC sorted by their up. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">uc</td><td>The UC code of the UC to print all <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a>. </td></tr>
-    <tr><td class="paramname">color_mode</td><td>True to print with colors, false otherwise. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a49d6d5c559d021dc171cc94c748f3f90" name="a49d6d5c559d021dc171cc94c748f3f90"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a49d6d5c559d021dc171cc94c748f3f90">&#9670;&#160;</a></span>process_requests()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void LEIC::process_requests </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>color_mode</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Executes all <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> in the queue by checking the type running it. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">color_mode</td><td>True to print with colors, false otherwise. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="af1dab6367f8310b5a6b75772134f575b" name="af1dab6367f8310b5a6b75772134f575b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af1dab6367f8310b5a6b75772134f575b">&#9670;&#160;</a></span>remove_student_from_class()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void LEIC::remove_student_from_class </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_student.html">Student</a> *&#160;</td>
-          <td class="paramname"><em>student</em>, </td>
+          <td class="paramname"><em>currentClass</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -962,39 +752,134 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>CAP</b> = 30</td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Removes the given <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> from the given <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>, updating the data accordingly. </p>
+<p>Checks if by moving from the current <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> to the new <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> balance improves. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">student</td><td>The <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to remove from the given <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>. </td></tr>
-    <tr><td class="paramname">newClass</td><td>The <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> to remove the given <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a>. </td></tr>
+    <tr><td class="paramname">currentClass</td><td>The current <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> to check. </td></tr>
+    <tr><td class="paramname">newClass</td><td>The new <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> to check. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if by moving from the current <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> to the new <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> balance improves, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a48bbb2fac5d7e52825341046e409a1cc" name="a48bbb2fac5d7e52825341046e409a1cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48bbb2fac5d7e52825341046e409a1cc">&#9670;&#160;</a></span>list_class_students_by_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LEIC::list_class_students_by_name </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_class.html">Class</a> *&#160;</td>
+          <td class="paramname"><em>class_</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints all of the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> enrolled in the given <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> sorted by their name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">class_</td><td>The <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> to print all <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a>. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="aac1093002c19620310cf8fde30e7e68a" name="aac1093002c19620310cf8fde30e7e68a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aac1093002c19620310cf8fde30e7e68a">&#9670;&#160;</a></span>request_add()</h2>
+<a id="ab1e0c3be26216d4accc8fedaf5f5c658" name="ab1e0c3be26216d4accc8fedaf5f5c658"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1e0c3be26216d4accc8fedaf5f5c658">&#9670;&#160;</a></span>list_class_students_by_studentCode()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::string LEIC::request_add </td>
+          <td class="memname">void LEIC::list_class_students_by_studentCode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_class.html">Class</a> *&#160;</td>
+          <td class="paramname"><em>class_</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints all of the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> enrolled in the given <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> sorted by their up. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">class_</td><td>The <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> to print all <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a67c717c178e50a4f08d2475da74f8849" name="a67c717c178e50a4f08d2475da74f8849"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67c717c178e50a4f08d2475da74f8849">&#9670;&#160;</a></span>list_UC_students_by_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LEIC::list_UC_students_by_name </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>UcCode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints all of the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> enrolled in the given UC sorted by their name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">uc</td><td>The UC code of the UC to print all <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2b8857a5f5d065bd924cd46db501752c" name="a2b8857a5f5d065bd924cd46db501752c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b8857a5f5d065bd924cd46db501752c">&#9670;&#160;</a></span>list_UC_students_by_studentCode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LEIC::list_UC_students_by_studentCode </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>UcCode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints all of the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> enrolled in the given UC sorted by their up. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">uc</td><td>The UC code of the UC to print all <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0274b32015b032dd9301218dee30b6fd" name="a0274b32015b032dd9301218dee30b6fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0274b32015b032dd9301218dee30b6fd">&#9670;&#160;</a></span>request_add()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool LEIC::request_add </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_request.html">Request</a> &amp;&#160;</td>
-          <td class="paramname"><em>update_registration</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>request</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>color_mode</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1002,12 +887,65 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>CAP</b> = 30</td></tr>
 <p>Runs the given <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> of type ADD about the given <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> and returns True if it is valid and ran with no errors. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">update_registration</td><td>The <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> to run. </td></tr>
-    <tr><td class="paramname">color_mode</td><td>True to print with colors, false otherwise. </td></tr>
+    <tr><td class="paramname">request</td><td>The <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> to run. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Empty string if the given <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> is valid and ran with no errors, string with the error if not. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the given <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> is valid and ran with no errors. </dd></dl>
+
+</div>
+</div>
+<a id="ac096fd94e2e307ee2ba149d1698dcc7b" name="ac096fd94e2e307ee2ba149d1698dcc7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac096fd94e2e307ee2ba149d1698dcc7b">&#9670;&#160;</a></span>request_delete()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool LEIC::request_delete </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_request.html">Request</a> &amp;&#160;</td>
+          <td class="paramname"><em>request</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Runs the given <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> of type DELETE removing a <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> and returns True if it is valid and ran with no errors. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>The <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> to run. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the given <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> is valid and ran with no errors. </dd></dl>
+
+</div>
+</div>
+<a id="adc75ace142821f69ce40253b69a66132" name="adc75ace142821f69ce40253b69a66132"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc75ace142821f69ce40253b69a66132">&#9670;&#160;</a></span>request_new()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool LEIC::request_new </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_request.html">Request</a> &amp;&#160;</td>
+          <td class="paramname"><em>request</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Runs the given <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> of type NEW creating a new <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> and returns True if it is valid and ran with no errors. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>The <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> to run. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the given <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> is valid and ran with no errors. </dd></dl>
 
 </div>
 </div>
@@ -1021,7 +959,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>CAP</b> = 30</td></tr>
           <td class="memname">bool LEIC::request_remove </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_request.html">Request</a> &amp;&#160;</td>
-          <td class="paramname"><em>update_registration</em></td><td>)</td>
+          <td class="paramname"><em>request</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -1030,7 +968,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>CAP</b> = 30</td></tr>
 <p>Runs the given <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> of type REMOVE about the given <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> and returns True if it is valid and ran with no errors. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">update_registration</td><td>The <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> to run. </td></tr>
+    <tr><td class="paramname">request</td><td>The <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> to run. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1038,28 +976,18 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>CAP</b> = 30</td></tr>
 
 </div>
 </div>
-<a id="a584af062e416ac7c6ec8d6572bf9fc7f" name="a584af062e416ac7c6ec8d6572bf9fc7f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a584af062e416ac7c6ec8d6572bf9fc7f">&#9670;&#160;</a></span>request_switch()</h2>
+<a id="a521f5232f2fd46ceb29a23587446e955" name="a521f5232f2fd46ceb29a23587446e955"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a521f5232f2fd46ceb29a23587446e955">&#9670;&#160;</a></span>request_switch()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::string LEIC::request_switch </td>
+          <td class="memname">bool LEIC::request_switch </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_request.html">Request</a> &amp;&#160;</td>
-          <td class="paramname"><em>update_registration</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>request</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>color_mode</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1067,12 +995,11 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>CAP</b> = 30</td></tr>
 <p>Runs the given <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> of type SWITCH about the given <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> and returns True if it is valid and ran with no errors. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">update_registration</td><td>The <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> to run. </td></tr>
-    <tr><td class="paramname">color_mode</td><td>True to print with colors, false otherwise. </td></tr>
+    <tr><td class="paramname">request</td><td>The <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> to run. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Empty string if the given <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> is valid and ran with no errors, string with error otherwise. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the given <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> is valid and ran with no errors. </dd></dl>
 
 </div>
 </div>
@@ -1099,6 +1026,26 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>CAP</b> = 30</td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a2234321ab8a3ab3e93ef13a92408519d" name="a2234321ab8a3ab3e93ef13a92408519d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2234321ab8a3ab3e93ef13a92408519d">&#9670;&#160;</a></span>studentCode_last_request()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string LEIC::studentCode_last_request </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the student code of the last pending <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> that was made. </p>
+<dl class="section return"><dt>Returns</dt><dd>The student code or empty string if there are no pending <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a>. </dd></dl>
 
 </div>
 </div>
@@ -1153,59 +1100,6 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>CAP</b> = 30</td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if any <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> with the given UC code has less <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> than the Cap. </dd></dl>
-
-</div>
-</div>
-<a id="acbc8c03673710feb402bf1ef9808af33" name="acbc8c03673710feb402bf1ef9808af33"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acbc8c03673710feb402bf1ef9808af33">&#9670;&#160;</a></span>undo_request()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool LEIC::undo_request </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>color_mode</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Undoes the last <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> that was done successfully. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">color_mode</td><td>True to print with colors, false otherwise. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if it undid with no errors. </dd></dl>
-
-</div>
-</div>
-<a id="a2d38717562cf97b2976516ea4c813dbf" name="a2d38717562cf97b2976516ea4c813dbf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2d38717562cf97b2976516ea4c813dbf">&#9670;&#160;</a></span>upload_requests()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void LEIC::upload_requests </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>color_mode</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Uploads all the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> in the requests.csv file to the queue and runs them. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">color_mode</td><td>True to print with colors, false otherwise. </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>

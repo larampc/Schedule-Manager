@@ -81,37 +81,40 @@ $(function() {
 <p>This is a class for representing requests.  
  <a href="class_request.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="request_8h_source.html">update_registration.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="request_8h_source.html">request.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6a4e5c05aa66714aa275551fc27ce307" id="r_a6a4e5c05aa66714aa275551fc27ce307"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_request.html#a6a4e5c05aa66714aa275551fc27ce307">Request</a> (std::string type, bool uc_class, std::string studentCode, std::string current_classCode=&quot;&quot;, std::string new_classCode=&quot;&quot;, std::string current_UcCode=&quot;&quot;, std::string new_UcCode=&quot;&quot;)</td></tr>
-<tr class="memdesc:a6a4e5c05aa66714aa275551fc27ce307"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a>.  <br /></td></tr>
-<tr class="separator:a6a4e5c05aa66714aa275551fc27ce307"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca3dffafbadeb73f3e11b77b13963d03" id="r_aca3dffafbadeb73f3e11b77b13963d03"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_request.html#aca3dffafbadeb73f3e11b77b13963d03">get_type</a> ()</td></tr>
-<tr class="memdesc:aca3dffafbadeb73f3e11b77b13963d03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the type of the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a>.  <br /></td></tr>
-<tr class="separator:aca3dffafbadeb73f3e11b77b13963d03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68064db8ac3dadb32988edfa53be0c48" id="r_a68064db8ac3dadb32988edfa53be0c48"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_request.html#a68064db8ac3dadb32988edfa53be0c48">get_Uc_class</a> ()</td></tr>
-<tr class="memdesc:a68064db8ac3dadb32988edfa53be0c48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets if the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> is related to an UC ou a <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>.  <br /></td></tr>
-<tr class="separator:a68064db8ac3dadb32988edfa53be0c48"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace532103c0a48a71bce98e9cc0459c65" id="r_ace532103c0a48a71bce98e9cc0459c65"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_request.html#ace532103c0a48a71bce98e9cc0459c65">get_studentCode</a> ()</td></tr>
-<tr class="memdesc:ace532103c0a48a71bce98e9cc0459c65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a>'s up to execute the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> on.  <br /></td></tr>
-<tr class="separator:ace532103c0a48a71bce98e9cc0459c65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f02471ae3fe51680e4cd2d73ff1ca54" id="r_a0f02471ae3fe51680e4cd2d73ff1ca54"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_request.html#a0f02471ae3fe51680e4cd2d73ff1ca54">get_current_classCode</a> ()</td></tr>
-<tr class="memdesc:a0f02471ae3fe51680e4cd2d73ff1ca54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> code of the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to execute the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> on, if applicable.  <br /></td></tr>
-<tr class="separator:a0f02471ae3fe51680e4cd2d73ff1ca54"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69cd37837c96a6860f8833b21e4f4aa8" id="r_a69cd37837c96a6860f8833b21e4f4aa8"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_request.html#a69cd37837c96a6860f8833b21e4f4aa8">get_new_classCode</a> ()</td></tr>
-<tr class="memdesc:a69cd37837c96a6860f8833b21e4f4aa8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the new <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> code for the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to execute the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> on, if applicable.  <br /></td></tr>
-<tr class="separator:a69cd37837c96a6860f8833b21e4f4aa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a020d3d4c3df9551ee283399dcaeb304b" id="r_a020d3d4c3df9551ee283399dcaeb304b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_request.html#a020d3d4c3df9551ee283399dcaeb304b">get_current_UcCode</a> ()</td></tr>
-<tr class="memdesc:a020d3d4c3df9551ee283399dcaeb304b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current UC code of the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to execute the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> on, if applicable.  <br /></td></tr>
-<tr class="separator:a020d3d4c3df9551ee283399dcaeb304b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac68530c9e1ffc3d9e466b73a832d4722" id="r_ac68530c9e1ffc3d9e466b73a832d4722"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_request.html#ac68530c9e1ffc3d9e466b73a832d4722">get_new_UcCode</a> ()</td></tr>
-<tr class="memdesc:ac68530c9e1ffc3d9e466b73a832d4722"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the new UC code for the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to execute the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> on, if applicable.  <br /></td></tr>
-<tr class="separator:ac68530c9e1ffc3d9e466b73a832d4722"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a581037ac0536bd363baad922879161" id="r_a8a581037ac0536bd363baad922879161"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_request.html#a8a581037ac0536bd363baad922879161">Request</a> (std::string type, std::string studentCode, std::string studentName=&quot;&quot;, std::string current_UcCode=&quot;&quot;, std::string current_classCode=&quot;&quot;, std::string new_UcCode=&quot;&quot;, std::string new_classCode=&quot;&quot;)</td></tr>
+<tr class="memdesc:a8a581037ac0536bd363baad922879161"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a>.  <br /></td></tr>
+<tr class="separator:a8a581037ac0536bd363baad922879161"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25044db5c5d86fbc2f515a439f311f60" id="r_a25044db5c5d86fbc2f515a439f311f60"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_request.html#a25044db5c5d86fbc2f515a439f311f60">get_type</a> ()</td></tr>
+<tr class="memdesc:a25044db5c5d86fbc2f515a439f311f60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the type of the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a>.  <br /></td></tr>
+<tr class="separator:a25044db5c5d86fbc2f515a439f311f60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9a8e414f093dd7fe42fa325433e91a9" id="r_af9a8e414f093dd7fe42fa325433e91a9"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_request.html#af9a8e414f093dd7fe42fa325433e91a9">get_studentName</a> ()</td></tr>
+<tr class="memdesc:af9a8e414f093dd7fe42fa325433e91a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name of the student the update_registration is related to.  <br /></td></tr>
+<tr class="separator:af9a8e414f093dd7fe42fa325433e91a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad915fbfd9d85f3076fc20560b7a77d39" id="r_ad915fbfd9d85f3076fc20560b7a77d39"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_request.html#ad915fbfd9d85f3076fc20560b7a77d39">get_studentCode</a> ()</td></tr>
+<tr class="memdesc:ad915fbfd9d85f3076fc20560b7a77d39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a>'s up to execute the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> on.  <br /></td></tr>
+<tr class="separator:ad915fbfd9d85f3076fc20560b7a77d39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3b7ebe245f84e4fba756d76247d0423" id="r_af3b7ebe245f84e4fba756d76247d0423"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_request.html#af3b7ebe245f84e4fba756d76247d0423">get_current_classCode</a> ()</td></tr>
+<tr class="memdesc:af3b7ebe245f84e4fba756d76247d0423"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> code of the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to execute the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> on, if applicable.  <br /></td></tr>
+<tr class="separator:af3b7ebe245f84e4fba756d76247d0423"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9e91a303a5662e8a57c56232a5e9a55" id="r_aa9e91a303a5662e8a57c56232a5e9a55"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_request.html#aa9e91a303a5662e8a57c56232a5e9a55">get_new_classCode</a> ()</td></tr>
+<tr class="memdesc:aa9e91a303a5662e8a57c56232a5e9a55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the new <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> code for the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to execute the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> on, if applicable.  <br /></td></tr>
+<tr class="separator:aa9e91a303a5662e8a57c56232a5e9a55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed60dfbe27ade4abe4a0a36343123663" id="r_aed60dfbe27ade4abe4a0a36343123663"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_request.html#aed60dfbe27ade4abe4a0a36343123663">get_current_UcCode</a> ()</td></tr>
+<tr class="memdesc:aed60dfbe27ade4abe4a0a36343123663"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current UC code of the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to execute the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> on, if applicable.  <br /></td></tr>
+<tr class="separator:aed60dfbe27ade4abe4a0a36343123663"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a4c2f4843709b936ae7f2fb5abed55b" id="r_a2a4c2f4843709b936ae7f2fb5abed55b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_request.html#a2a4c2f4843709b936ae7f2fb5abed55b">get_new_UcCode</a> ()</td></tr>
+<tr class="memdesc:a2a4c2f4843709b936ae7f2fb5abed55b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the new UC code for the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to execute the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> on, if applicable.  <br /></td></tr>
+<tr class="separator:a2a4c2f4843709b936ae7f2fb5abed55b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48bee5c53e5d88620e247f15bd22b86f" id="r_a48bee5c53e5d88620e247f15bd22b86f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_request.html#a48bee5c53e5d88620e247f15bd22b86f">set_type</a> (std::string type)</td></tr>
 <tr class="memdesc:a48bee5c53e5d88620e247f15bd22b86f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the type of the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a>.  <br /></td></tr>
 <tr class="separator:a48bee5c53e5d88620e247f15bd22b86f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ec66e36a6133d19c5e4cbfab86f532a" id="r_a2ec66e36a6133d19c5e4cbfab86f532a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_request.html#a2ec66e36a6133d19c5e4cbfab86f532a">set_name</a> (std::string name)</td></tr>
+<tr class="memdesc:a2ec66e36a6133d19c5e4cbfab86f532a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the name of the student in the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a>.  <br /></td></tr>
+<tr class="separator:a2ec66e36a6133d19c5e4cbfab86f532a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2bc684d017e1a1dfd4f618de503f5e7f" id="r_a2bc684d017e1a1dfd4f618de503f5e7f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_request.html#a2bc684d017e1a1dfd4f618de503f5e7f">set_new_class</a> (std::string classCode)</td></tr>
 <tr class="memdesc:a2bc684d017e1a1dfd4f618de503f5e7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the new_classCode parameter of the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a>.  <br /></td></tr>
 <tr class="separator:a2bc684d017e1a1dfd4f618de503f5e7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -124,31 +127,31 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:adbd910edb2ea03c3fb15490885755c30" id="r_adbd910edb2ea03c3fb15490885755c30"><td class="memItemLeft" align="right" valign="top"><a id="adbd910edb2ea03c3fb15490885755c30" name="adbd910edb2ea03c3fb15490885755c30"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>type</b></td></tr>
 <tr class="separator:adbd910edb2ea03c3fb15490885755c30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ee33d4c31fd483e22dfe9be1228d537" id="r_a4ee33d4c31fd483e22dfe9be1228d537"><td class="memItemLeft" align="right" valign="top"><a id="a4ee33d4c31fd483e22dfe9be1228d537" name="a4ee33d4c31fd483e22dfe9be1228d537"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>uc_class</b></td></tr>
-<tr class="separator:a4ee33d4c31fd483e22dfe9be1228d537"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a586f33f4ba7c8a937fa57f5de11c8031" id="r_a586f33f4ba7c8a937fa57f5de11c8031"><td class="memItemLeft" align="right" valign="top"><a id="a586f33f4ba7c8a937fa57f5de11c8031" name="a586f33f4ba7c8a937fa57f5de11c8031"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>studentCode</b></td></tr>
 <tr class="separator:a586f33f4ba7c8a937fa57f5de11c8031"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afbac8cb38f7218af6c04e458c74edcb1" id="r_afbac8cb38f7218af6c04e458c74edcb1"><td class="memItemLeft" align="right" valign="top"><a id="afbac8cb38f7218af6c04e458c74edcb1" name="afbac8cb38f7218af6c04e458c74edcb1"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>current_classCode</b></td></tr>
-<tr class="separator:afbac8cb38f7218af6c04e458c74edcb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd3899e7bc7966db05d02bc9db5a08a9" id="r_acd3899e7bc7966db05d02bc9db5a08a9"><td class="memItemLeft" align="right" valign="top"><a id="acd3899e7bc7966db05d02bc9db5a08a9" name="acd3899e7bc7966db05d02bc9db5a08a9"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>new_classCode</b></td></tr>
-<tr class="separator:acd3899e7bc7966db05d02bc9db5a08a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82b290071329ffcbb0936f10b2181a38" id="r_a82b290071329ffcbb0936f10b2181a38"><td class="memItemLeft" align="right" valign="top"><a id="a82b290071329ffcbb0936f10b2181a38" name="a82b290071329ffcbb0936f10b2181a38"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>studentName</b></td></tr>
+<tr class="separator:a82b290071329ffcbb0936f10b2181a38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af0bc6de8aa4e381f233643aece34de25" id="r_af0bc6de8aa4e381f233643aece34de25"><td class="memItemLeft" align="right" valign="top"><a id="af0bc6de8aa4e381f233643aece34de25" name="af0bc6de8aa4e381f233643aece34de25"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>current_UcCode</b></td></tr>
 <tr class="separator:af0bc6de8aa4e381f233643aece34de25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbac8cb38f7218af6c04e458c74edcb1" id="r_afbac8cb38f7218af6c04e458c74edcb1"><td class="memItemLeft" align="right" valign="top"><a id="afbac8cb38f7218af6c04e458c74edcb1" name="afbac8cb38f7218af6c04e458c74edcb1"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>current_classCode</b></td></tr>
+<tr class="separator:afbac8cb38f7218af6c04e458c74edcb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51b1a434a408a4345b49859a2645adda" id="r_a51b1a434a408a4345b49859a2645adda"><td class="memItemLeft" align="right" valign="top"><a id="a51b1a434a408a4345b49859a2645adda" name="a51b1a434a408a4345b49859a2645adda"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>new_UcCode</b></td></tr>
 <tr class="separator:a51b1a434a408a4345b49859a2645adda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd3899e7bc7966db05d02bc9db5a08a9" id="r_acd3899e7bc7966db05d02bc9db5a08a9"><td class="memItemLeft" align="right" valign="top"><a id="acd3899e7bc7966db05d02bc9db5a08a9" name="acd3899e7bc7966db05d02bc9db5a08a9"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>new_classCode</b></td></tr>
+<tr class="separator:acd3899e7bc7966db05d02bc9db5a08a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is a class for representing requests. </p>
-<p>This class keeps track of the type of update_registration, the student's up to execute the update_registration on and the needed parameters to execute that <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> if applicable. </p>
+<p>This class keeps track of the type of request, the student's up to execute the update_registration on and the needed parameters to execute that <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> if applicable. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a6a4e5c05aa66714aa275551fc27ce307" name="a6a4e5c05aa66714aa275551fc27ce307"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6a4e5c05aa66714aa275551fc27ce307">&#9670;&#160;</a></span>Request()</h2>
+<a id="a8a581037ac0536bd363baad922879161" name="a8a581037ac0536bd363baad922879161"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a581037ac0536bd363baad922879161">&#9670;&#160;</a></span>Request()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -162,12 +165,6 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>new_UcCode</b>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>uc_class</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">std::string&#160;</td>
           <td class="paramname"><em>studentCode</em>, </td>
         </tr>
@@ -175,13 +172,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>new_UcCode</b>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>current_classCode</em> = <code>&quot;&quot;</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>new_classCode</em> = <code>&quot;&quot;</code>, </td>
+          <td class="paramname"><em>studentName</em> = <code>&quot;&quot;</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -193,7 +184,19 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>new_UcCode</b>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>new_UcCode</em> = <code>&quot;&quot;</code>&#160;</td>
+          <td class="paramname"><em>current_classCode</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>new_UcCode</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>new_classCode</em> = <code>&quot;&quot;</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -207,12 +210,12 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>new_UcCode</b>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">type</td><td>The type of <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a>. </td></tr>
-    <tr><td class="paramname">uc_class</td><td>True if the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> is related an UC, False if it is related to a <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>. </td></tr>
     <tr><td class="paramname">studentCode</td><td>The <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a>'s up to execute the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> on. </td></tr>
-    <tr><td class="paramname">current_classCode</td><td>The current <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> code of the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to execute the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> on, if applicable. </td></tr>
-    <tr><td class="paramname">new_classCode</td><td>The new <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> code for the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to execute the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> on, if applicable. </td></tr>
+    <tr><td class="paramname">studentName</td><td>The <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a>'s name to execute the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> on, if applicable. </td></tr>
     <tr><td class="paramname">current_UcCode</td><td>The current UC code of the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to execute the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> on, if applicable. </td></tr>
+    <tr><td class="paramname">current_classCode</td><td>The current <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> code of the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to execute the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> on, if applicable. </td></tr>
     <tr><td class="paramname">new_UcCode</td><td>The new UC code for the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to execute the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> on, if applicable. </td></tr>
+    <tr><td class="paramname">new_classCode</td><td>The new <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> code for the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to execute the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> on, if applicable. </td></tr>
   </table>
   </dd>
 </dl>
@@ -220,14 +223,14 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>new_UcCode</b>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a0f02471ae3fe51680e4cd2d73ff1ca54" name="a0f02471ae3fe51680e4cd2d73ff1ca54"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0f02471ae3fe51680e4cd2d73ff1ca54">&#9670;&#160;</a></span>get_current_classCode()</h2>
+<a id="af3b7ebe245f84e4fba756d76247d0423" name="af3b7ebe245f84e4fba756d76247d0423"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3b7ebe245f84e4fba756d76247d0423">&#9670;&#160;</a></span>get_current_classCode()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::string Request::get_current_classCode </td>
+          <td class="memname">string Request::get_current_classCode </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -240,14 +243,14 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>new_UcCode</b>
 
 </div>
 </div>
-<a id="a020d3d4c3df9551ee283399dcaeb304b" name="a020d3d4c3df9551ee283399dcaeb304b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a020d3d4c3df9551ee283399dcaeb304b">&#9670;&#160;</a></span>get_current_UcCode()</h2>
+<a id="aed60dfbe27ade4abe4a0a36343123663" name="aed60dfbe27ade4abe4a0a36343123663"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed60dfbe27ade4abe4a0a36343123663">&#9670;&#160;</a></span>get_current_UcCode()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::string Request::get_current_UcCode </td>
+          <td class="memname">string Request::get_current_UcCode </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -260,14 +263,14 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>new_UcCode</b>
 
 </div>
 </div>
-<a id="a69cd37837c96a6860f8833b21e4f4aa8" name="a69cd37837c96a6860f8833b21e4f4aa8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a69cd37837c96a6860f8833b21e4f4aa8">&#9670;&#160;</a></span>get_new_classCode()</h2>
+<a id="aa9e91a303a5662e8a57c56232a5e9a55" name="aa9e91a303a5662e8a57c56232a5e9a55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9e91a303a5662e8a57c56232a5e9a55">&#9670;&#160;</a></span>get_new_classCode()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::string Request::get_new_classCode </td>
+          <td class="memname">string Request::get_new_classCode </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -280,14 +283,14 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>new_UcCode</b>
 
 </div>
 </div>
-<a id="ac68530c9e1ffc3d9e466b73a832d4722" name="ac68530c9e1ffc3d9e466b73a832d4722"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac68530c9e1ffc3d9e466b73a832d4722">&#9670;&#160;</a></span>get_new_UcCode()</h2>
+<a id="a2a4c2f4843709b936ae7f2fb5abed55b" name="a2a4c2f4843709b936ae7f2fb5abed55b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a4c2f4843709b936ae7f2fb5abed55b">&#9670;&#160;</a></span>get_new_UcCode()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::string Request::get_new_UcCode </td>
+          <td class="memname">string Request::get_new_UcCode </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -300,14 +303,14 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>new_UcCode</b>
 
 </div>
 </div>
-<a id="ace532103c0a48a71bce98e9cc0459c65" name="ace532103c0a48a71bce98e9cc0459c65"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ace532103c0a48a71bce98e9cc0459c65">&#9670;&#160;</a></span>get_studentCode()</h2>
+<a id="ad915fbfd9d85f3076fc20560b7a77d39" name="ad915fbfd9d85f3076fc20560b7a77d39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad915fbfd9d85f3076fc20560b7a77d39">&#9670;&#160;</a></span>get_studentCode()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::string Request::get_studentCode </td>
+          <td class="memname">string Request::get_studentCode </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -320,14 +323,34 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>new_UcCode</b>
 
 </div>
 </div>
-<a id="aca3dffafbadeb73f3e11b77b13963d03" name="aca3dffafbadeb73f3e11b77b13963d03"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aca3dffafbadeb73f3e11b77b13963d03">&#9670;&#160;</a></span>get_type()</h2>
+<a id="af9a8e414f093dd7fe42fa325433e91a9" name="af9a8e414f093dd7fe42fa325433e91a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9a8e414f093dd7fe42fa325433e91a9">&#9670;&#160;</a></span>get_studentName()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::string Request::get_type </td>
+          <td class="memname">string Request::get_studentName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the name of the student the update_registration is related to. </p>
+<dl class="section return"><dt>Returns</dt><dd>The student's name. </dd></dl>
+
+</div>
+</div>
+<a id="a25044db5c5d86fbc2f515a439f311f60" name="a25044db5c5d86fbc2f515a439f311f60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25044db5c5d86fbc2f515a439f311f60">&#9670;&#160;</a></span>get_type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Request::get_type </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -336,27 +359,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>new_UcCode</b>
 </div><div class="memdoc">
 
 <p>Gets the type of the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a>. </p>
-<dl class="section return"><dt>Returns</dt><dd>The type of the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a>, ADD, REMOVE or SWITCH. </dd></dl>
-
-</div>
-</div>
-<a id="a68064db8ac3dadb32988edfa53be0c48" name="a68064db8ac3dadb32988edfa53be0c48"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a68064db8ac3dadb32988edfa53be0c48">&#9670;&#160;</a></span>get_Uc_class()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Request::get_Uc_class </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Gets if the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> is related to an UC ou a <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>. </p>
-<dl class="section return"><dt>Returns</dt><dd>True if the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> is related an UC, False if it is related to a <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The type of the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a>, ADD, REMOVE, SWITCH, NEW or DELETE. </dd></dl>
 
 </div>
 </div>
@@ -380,6 +383,32 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>new_UcCode</b>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">classCode</td><td>The <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> code to set the current_classCode parameter. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2ec66e36a6133d19c5e4cbfab86f532a" name="a2ec66e36a6133d19c5e4cbfab86f532a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ec66e36a6133d19c5e4cbfab86f532a">&#9670;&#160;</a></span>set_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Request::set_name </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the name of the student in the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name of the student to set in the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -431,7 +460,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>new_UcCode</b>
 <p>Sets the type of the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">type</td><td>The type to set the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a>, ADD, REMOVE or SWITCH. </td></tr>
+    <tr><td class="paramname">type</td><td>The type to set the <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a>, ADD, REMOVE, SWITCH, NEW or DELETE. </td></tr>
   </table>
   </dd>
 </dl>
@@ -439,8 +468,8 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>new_UcCode</b>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>ProjectAED/<a class="el" href="request_8h_source.html">update_registration.h</a></li>
-<li>ProjectAED/<b>update_registration.cpp</b></li>
+<li>ProjectAED/<a class="el" href="request_8h_source.html">request.h</a></li>
+<li>ProjectAED/<b>request.cpp</b></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

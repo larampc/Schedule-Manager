@@ -78,14 +78,13 @@ public:
      */
     std::vector<Class*> get_classes_from_UcCode(std::string UcCode);
     /**
-     * \brief Empties the queue of pending requests.
-     *
+     * \brief Empties the queue of all pending Request.
      */
     void empty_pending_requests();
     /**
-    * \brief Gets the student code of the last pending request that was made.
+    * \brief Gets the student code of the last pending Request that was made.
     *
-    * @return The student code or empty string if there are no pending requests.
+    * @return The student code or empty string if there are no pending Request.
     */
     std::string studentCode_last_request();
     /**
@@ -166,12 +165,20 @@ public:
      */
     int students_in_n_Ucs(int n);
     /**
-     * \brief Checks if by inserting a Student into a Class, the Class Balance is valid.
+     * \brief Checks if by inserting a Student into a Class, the Class Balance and schedule are valid.
      *
+     * @param student The Student to insert into the Class to check.
      * @param newClass The Class to insert a Student to check.
-     * @return Null pointer if by inserting a Student into a Class, the Class Balance is valid. Pointer to class suggestion if it's not.
+     * @return References of all Class with the same UC of the given Class that by inserting the given Student the Class Balance and schedule are valid, or empty if by inserting a Student into the given Class, the Class Balance and schedule are valid.
      */
     std::set<Class*> class_balance_valid(Student* student, Class* newClass);
+    /**
+     * \brief Gets the Class in the given UC that affects the best to the Class balance and is compatible with the given Student's schedule.
+     *
+     * @param student The Student that must have a compatible schedule with the Class.
+     * @param uc The UC code of the UC to get the Class from.
+     * @return The Class in the given UC that affects the best to the Class balance and is compatible with the given Student's schedule.
+     */
     Class* best_class_balance(Student* student, std::string uc);
     /**
      * \brief Checks if a Student schedule can accept all TP or PL Lesson of the given Class,
@@ -244,7 +251,6 @@ public:
     bool request_switch(Request& request);
     /**
      * \brief Undoes the last Request that was done successfully.
-     *
      */
     void undo_request();
     /**
@@ -255,7 +261,13 @@ public:
      * \brief Saves all modifications and all successful Requests to files.
      */
     void save_to_files();
-
+    /**
+     * \brief Checks if by moving from the current Class to the new Class the Class balance improves.
+     *
+     * @param currentClass The current Class to check.
+     * @param newClass The new Class to check.
+     * @return True if by moving from the current Class to the new Class the Class balance improves, false otherwise.
+     */
     bool improves_balance(Class *currentClass, Class *newClass);
 };
 

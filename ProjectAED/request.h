@@ -23,18 +23,18 @@ public:
      * \brief Creates a new Request.
      *
      * @param type The type of Request.
-     * @param uc_class True if the Request is related an UC, False if it is related to a Class.
      * @param studentCode The Student's up to execute the Request on.
-     * @param current_classCode The current Class code of the Student to execute the Request on, if applicable.
-     * @param new_classCode The new Class code for the Student to execute the Request on, if applicable.
+     * @param studentName The Student's name to execute the Request on, if applicable.
      * @param current_UcCode The current UC code of the Student to execute the Request on, if applicable.
+     * @param current_classCode The current Class code of the Student to execute the Request on, if applicable.
      * @param new_UcCode The new UC code for the Student to execute the Request on, if applicable.
+     * @param new_classCode The new Class code for the Student to execute the Request on, if applicable.
      */
     Request(std::string type, std::string studentCode, std::string studentName = "", std::string current_UcCode = "", std::string current_classCode = "", std::string new_UcCode = "", std::string new_classCode = "");
     /**
      * \brief Gets the type of the Request.
      *
-     * @return The type of the Request, ADD, REMOVE or SWITCH.
+     * @return The type of the Request, ADD, REMOVE, SWITCH, NEW or DELETE.
      */
     std::string get_type();
     /**
@@ -76,13 +76,13 @@ public:
     /**
      * \brief Sets the type of the Request.
      *
-     * @param type The type to set the Request, ADD, REMOVE or SWITCH.
+     * @param type The type to set the Request, ADD, REMOVE, SWITCH, NEW or DELETE.
      */
     void set_type(std::string type);
     /**
-     * \brief Sets the name of the student of the Request.
+     * \brief Sets the name of the student in the Request.
      *
-     * @param type The type to set the Request, ADD, REMOVE or SWITCH.
+     * @param name The name of the student to set in the Request.
      */
     void set_name(std::string name);
     /**
