@@ -744,7 +744,6 @@ void LEIC::process_requests() {
                     Color_Print(color_mode, "cyan", " in UC ");
                     Color_Print(color_mode, "yellow", request.get_current_UcCode(), true);
                 }
-                else cout << "Student is not in UC, it can't be removed.\n";
                 if (get_student_from_studentCode(request.get_studentCode())->get_classes().empty()) {
                     cout << "Student " << request.get_studentCode() << " no longer has classes, do you want to delete him? [Y/N] \n";
                     string answer;
