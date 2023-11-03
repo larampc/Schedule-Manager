@@ -7,7 +7,7 @@
  * \class Class
  * \brief This is a class for representing Classes.
  *
- * This class keeps track of the class code, UC code, all Lesson of the Class and all Student enrolled in it.
+ * This class keeps track of the class code, UC code, all Lessons of the Class and all Students enrolled in it.
  */
 class Class {
 private:
@@ -66,7 +66,7 @@ public:
      */
     void remove_student(std::string studentCode);
     /**
-     * \brief Equal operator for Class comparison.
+     * \brief Equality operator for Class comparison.
      *
      * @param c Class to compare.
      * @return True if this Class is equal to the Class to compare.
@@ -76,7 +76,7 @@ public:
      * \brief Less than operator for Class comparison.
      *
      * @param c Class to compare.
-     * @return True if this Class Class code is less than the Class code of the Class to compare, and if equal if this Class UC code is less than the UC code of the Class to compare.
+     * @return True if this Class's code is less than the Class code of the Class to compare, or, if equal, if this Class's UC code is less than the one of the Class to compare.
      */
     bool operator < (const Class& c) const;
 };
