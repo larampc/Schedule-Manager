@@ -284,13 +284,6 @@ void LEIC::list_class_students_by_name(Class *class_) const {
     }
 }
 
-void LEIC::list_number_students_class() {
-    for (Class c: classes) {
-        int currentSize = c.get_students().size();
-        Color_Print(color_mode, "blue", c.get_classCode() + " " + c.get_ucCode() + " " + to_string(currentSize), true);
-    }
-}
-
 int LEIC::students_in_n_Ucs(int n){
     Color_Print(color_mode, "blue", "Students with ");
     Color_Print(color_mode, "yellow", to_string(n));
@@ -390,10 +383,6 @@ void LEIC::add_request_to_process(Request request) {
     requests.push(request);
 }
 
-void LEIC::add_processed_request(Request request) {
-    processed_requests.push(request);
-}
-
 void LEIC::upload_requests() {
     string line;
     ifstream requestsFile("../requests.csv");
@@ -481,7 +470,7 @@ bool LEIC::request_add(Request& request) {
         Color_Print(color_mode, "red", " doesn't exist.", true);
         return false;
     }
-    if (student->get_classes().size() > 7) {
+    if (student->get_classes().size() >= 7) {
         Color_Print(color_mode, "red", "The student ");
         Color_Print(color_mode, "yellow", request.get_studentCode());
         Color_Print(color_mode, "red", " already has 7 UC's.", true);

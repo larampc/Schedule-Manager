@@ -154,10 +154,6 @@ public:
      */
     void list_class_students_by_name(Class* class_) const;
     /**
-     * \brief Prints all Class and their respective number of Student enrolled.
-     */
-    void list_number_students_class();
-    /**
      * \brief Gets the number of Student with at least the given number of UCs.
      *
      * @param n The number of UCs to check.
@@ -204,12 +200,6 @@ public:
      * @param request The Request to add to the queue.
      */
     void add_request_to_process(Request request);
-    /**
-     * \brief Adds the given Request to the Request stack so it can be undone.
-     *
-     * @param request The Request to add to the stack.
-     */
-    void add_processed_request(Request request);
     /**
      * \brief Uploads all the Request in the requests.csv file to the queue and runs them.
      */
