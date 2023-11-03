@@ -84,7 +84,7 @@ void Script::run() {
             break;
         }
     }
-    Color_Print(color_mode, "blue", "Make another operation? ");
+    Color_Print(color_mode, "blue", "\nMake another operation? ");
     Color_Print(color_mode, "cyan", "[Y/N]", true);
     cin >> option;
     while(option != "Y" && option != "N") {
@@ -748,47 +748,46 @@ void Script::list_year_occupations(string year) {
         invalid();
         cin >> order;
     }
-
     if(option == "3"){
-        Color_Print(color_mode, "blue", "Occupations of year ");
-        Color_Print(color_mode, "yellow", year, true);
-        Color_Print(color_mode, "white", "UC code   \t");
-        Color_Print(color_mode, "green", "| ");
-        Color_Print(color_mode, "white", "Class code\t");
-        Color_Print(color_mode, "green", "| ");
-        Color_Print(color_mode, "blue", "Occupation", true);
-        Color_Print(color_mode, "green", "-------------------------------------------------", true);
         (order == "1") ? sort(yearClasses.begin(),yearClasses.end(), [] (Class c1,Class c2) -> bool {return (c1.get_students().size() < c2.get_students().size())
                                     || (c1.get_students().size() == c2.get_students().size() && ((c1.get_ucCode() < c2.get_ucCode()) || (c1.get_ucCode() == c2.get_ucCode() && c1.get_classCode() < c2.get_classCode())))  ;})
         : sort(yearClasses.rbegin(),yearClasses.rend(), [] (Class c1,Class c2) -> bool { return (c1.get_students().size() < c2.get_students().size())
                                     || (c1.get_students().size() == c2.get_students().size() && ((c1.get_ucCode() < c2.get_ucCode()) || (c1.get_ucCode() == c2.get_ucCode() && c1.get_classCode() < c2.get_classCode())));});
+        Color_Print(color_mode, "blue", "Occupations of year ");
+        Color_Print(color_mode, "yellow", year, true);
+        Color_Print(color_mode, "white", "UC code   \t");
+        Color_Print(color_mode, "green", "| ");
+        Color_Print(color_mode, "white", "Class code ");
+        Color_Print(color_mode, "green", "| ");
+        Color_Print(color_mode, "blue", "Occupation", true);
+        Color_Print(color_mode, "green", "-----------------------------------------", true);
         for (Class c: yearClasses) {
-            Color_Print(color_mode, "white", c.get_ucCode() + "    \t");
+            Color_Print(color_mode, "white", c.get_ucCode() + "\t");
             Color_Print(color_mode, "green", "| ");
             Color_Print(color_mode, "white", c.get_classCode() + "\t");
-            Color_Print(color_mode, "green", "| ");
+            Color_Print(color_mode, "green", " | ");
             Color_Print(color_mode, "blue", to_string(c.get_students().size()), true);
         }
         return;
     }
     else if (option == "2"){
-        Color_Print(color_mode, "blue", "Occupations of year ");
-        Color_Print(color_mode, "yellow", year, true);
-        Color_Print(color_mode, "white", "UC code   \t");
-        Color_Print(color_mode, "green", "| ");
-        Color_Print(color_mode, "blue", "Class code\t");
-        Color_Print(color_mode, "green", "| ");
-        Color_Print(color_mode, "white", "Occupation", true);
-        Color_Print(color_mode, "green", "-------------------------------------------------", true);
         (order == "1") ? sort(yearClasses.begin(),yearClasses.end(), [] (Class c1,Class c2) -> bool {return c1.get_classCode() < c2.get_classCode()
                                                                                             || (c1.get_classCode() == c2.get_classCode() && c1.get_ucCode() < c2.get_ucCode()) ;})
         : sort(yearClasses.rbegin(),yearClasses.rend(), [] (Class c1,Class c2) -> bool {return c1.get_classCode() < c2.get_classCode()
                                                                                 || (c1.get_classCode() == c2.get_classCode() && c1.get_ucCode() < c2.get_ucCode());});
+        Color_Print(color_mode, "blue", "Occupations of year ");
+        Color_Print(color_mode, "yellow", year, true);
+        Color_Print(color_mode, "white", "UC code   \t");
+        Color_Print(color_mode, "green", "| ");
+        Color_Print(color_mode, "blue", "Class code ");
+        Color_Print(color_mode, "green", "| ");
+        Color_Print(color_mode, "white", "Occupation", true);
+        Color_Print(color_mode, "green", "-----------------------------------------", true);
         for (Class c: yearClasses) {
-            Color_Print(color_mode, "white", c.get_ucCode() + "    \t");
+            Color_Print(color_mode, "white", c.get_ucCode() + "\t");
             Color_Print(color_mode, "green", "| ");
             Color_Print(color_mode, "blue", c.get_classCode() + "\t");
-            Color_Print(color_mode, "green", "| ");
+            Color_Print(color_mode, "green", " | ");
             Color_Print(color_mode, "white", to_string(c.get_students().size()), true);
         }
         return;
@@ -797,26 +796,26 @@ void Script::list_year_occupations(string year) {
     Color_Print(color_mode, "yellow", year, true);
     Color_Print(color_mode, "blue", "UC code   \t");
     Color_Print(color_mode, "green", "| ");
-    Color_Print(color_mode, "white", "Class code\t");
+    Color_Print(color_mode, "white", "Class code ");
     Color_Print(color_mode, "green", "| ");
     Color_Print(color_mode, "white", "Occupation", true);
-    Color_Print(color_mode, "green", "-------------------------------------------------", true);
+    Color_Print(color_mode, "green", "-----------------------------------------", true);
     if(option == "1" && order == "2") {
         auto itr = yearClasses.end();
         while(itr-- != yearClasses.begin()){
-            Color_Print(color_mode, "blue", itr->get_ucCode() + "    \t");
+            Color_Print(color_mode, "blue", itr->get_ucCode() + "\t");
             Color_Print(color_mode, "green", "| ");
             Color_Print(color_mode, "white", itr->get_classCode() + "\t");
-            Color_Print(color_mode, "green", "| ");
+            Color_Print(color_mode, "green", " | ");
             Color_Print(color_mode, "white", to_string(itr->get_students().size()), true);
         }
         return;
     }
     for (Class c: yearClasses) {
-        Color_Print(color_mode, "blue", c.get_ucCode() + "    \t");
+        Color_Print(color_mode, "blue", c.get_ucCode() + "\t");
         Color_Print(color_mode, "green", "| ");
         Color_Print(color_mode, "white", c.get_classCode() + "\t");
-        Color_Print(color_mode, "green", "| ");
+        Color_Print(color_mode, "green", " | ");
         Color_Print(color_mode, "white", to_string(c.get_students().size()), true);
     }
 }
@@ -854,7 +853,7 @@ void Script::list_Uc_occupations(std::string UcCode) {
         Color_Print(color_mode, "white", "Class code\t");
         Color_Print(color_mode, "green", "| ");
         Color_Print(color_mode, "blue", "Occupation", true);
-        Color_Print(color_mode, "green", "---------------------------------", true);
+        Color_Print(color_mode, "green", "-------------------------", true);
         (order == "1") ? sort(UcClasses.begin(),UcClasses.end(), [] (Class c1,Class c2) -> bool {return (c1.get_students().size() < c2.get_students().size())
                                                                                                             || (c1.get_students().size() == c2.get_students().size() && c1.get_classCode() < c2.get_classCode())  ;})
                        : sort(UcClasses.rbegin(),UcClasses.rend(), [] (Class c1,Class c2) -> bool { return (c1.get_students().size() < c2.get_students().size())
@@ -871,7 +870,7 @@ void Script::list_Uc_occupations(std::string UcCode) {
     Color_Print(color_mode, "blue", "Class code\t");
     Color_Print(color_mode, "green", "| ");
     Color_Print(color_mode, "white", "Occupation", true);
-    Color_Print(color_mode, "green", "---------------------------------", true);
+    Color_Print(color_mode, "green", "-------------------------", true);
     if (option == "1" && order == "2"){
         auto itr = UcClasses.end();
         while(itr-- != UcClasses.begin()){

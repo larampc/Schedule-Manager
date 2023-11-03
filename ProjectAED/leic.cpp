@@ -183,7 +183,7 @@ void LEIC::list_students_by_studentCode() {
     Color_Print(color_mode, "blue", "StudentCode");
     Color_Print(color_mode, "green", "\t| ");
     Color_Print(color_mode, "white", "NAME", true);
-    Color_Print(color_mode, "green", "------------------------------------", true);
+    Color_Print(color_mode, "green", "-----------------------", true);
     for(pair<string, Student> p : up_students){
         Color_Print(color_mode, "blue", p.first);
         Color_Print(color_mode, "green", "\t| ");
@@ -197,7 +197,7 @@ void LEIC::list_students_by_name(){
     Color_Print(color_mode, "white", "StudentCode");
     Color_Print(color_mode, "green", "\t| ");
     Color_Print(color_mode, "blue", "NAME", true);
-    Color_Print(color_mode, "green", "------------------------------------", true);
+    Color_Print(color_mode, "green", "-----------------------", true);
     map<string, string> students_up;
     for(pair<string, Student> p : up_students){
         students_up[p.second.get_name()] = p.first;
@@ -215,7 +215,7 @@ void LEIC::list_UC_students_by_studentCode(std::string UcCode) {
     Color_Print(color_mode, "blue", "StudentCode");
     Color_Print(color_mode, "green", "\t| ");
     Color_Print(color_mode, "white", "NAME", true);
-    Color_Print(color_mode, "green", "------------------------------------", true);
+    Color_Print(color_mode, "green", "-----------------------", true);
     set<string> studentinUC;
     for(Class c : classes){
         if(c.get_ucCode() == UcCode){
@@ -236,7 +236,7 @@ void LEIC::list_UC_students_by_name(std::string uc) {
     Color_Print(color_mode, "white", "StudentCode");
     Color_Print(color_mode, "green", "\t| ");
     Color_Print(color_mode, "blue", "NAME", true);
-    Color_Print(color_mode, "green", "------------------------------------", true);
+    Color_Print(color_mode, "green", "-----------------------", true);
     map<string, string> UCstudents_up;
     for(Class c : classes){
         if(c.get_ucCode() == uc) {
@@ -258,7 +258,7 @@ void LEIC::list_class_students_by_studentCode(Class *class_) const {
     Color_Print(color_mode, "blue", "StudentCode");
     Color_Print(color_mode, "green", "\t| ");
     Color_Print(color_mode, "white", "NAME", true);
-    Color_Print(color_mode, "green", "------------------------------------", true);
+    Color_Print(color_mode, "green", "-----------------------", true);
     for(string up : class_->get_students()){
         Color_Print(color_mode, "blue", up);
         Color_Print(color_mode, "green", "\t| ");
@@ -274,7 +274,7 @@ void LEIC::list_class_students_by_name(Class *class_) const {
     Color_Print(color_mode, "white", "StudentCode");
     Color_Print(color_mode, "green", "\t| ");
     Color_Print(color_mode, "blue", "NAME", true);
-    Color_Print(color_mode, "green", "------------------------------------", true);
+    Color_Print(color_mode, "green", "-----------------------", true);
     map<string, string> UCstudents_up;
     for (string up: class_->get_students()) UCstudents_up[up_students.at(up).get_name()] = up;
     for (pair<string, string> p: UCstudents_up){
@@ -294,21 +294,21 @@ void LEIC::list_number_students_class() {
 int LEIC::students_in_n_Ucs(int n){
     Color_Print(color_mode, "blue", "Students with ");
     Color_Print(color_mode, "yellow", to_string(n));
-    Color_Print(color_mode, "white", " UC's", true);
-    Color_Print(color_mode, "blue", "Occupation");
-    Color_Print(color_mode, "green", " - - - - ");
-    Color_Print(color_mode, "white", "UP        \t");
+    Color_Print(color_mode, "white", " UC's:", true);
+    Color_Print(color_mode, "blue", "UC's");
+    Color_Print(color_mode, "green", " - ");
+    Color_Print(color_mode, "white", "StudentCode ");
     Color_Print(color_mode, "green", "| ");
     Color_Print(color_mode, "white", "Name", true);
-    Color_Print(color_mode, "green", "-------------------------------------------------", true);
+    Color_Print(color_mode, "green", "------------------------------------", true);
     int count = 0;
     for (pair<string, Student> p: up_students) {
         if(p.second.get_classes().size() >= n) {
             count++;
             Color_Print(color_mode, "blue", " " + to_string(p.second.get_classes().size()));
-            Color_Print(color_mode, "green", " - - - - - - - - ");
+            Color_Print(color_mode, "green", "   -  ");
             Color_Print(color_mode, "white", p.first);
-            Color_Print(color_mode, "green", "\t| ");
+            Color_Print(color_mode, "green", "  |  ");
             Color_Print(color_mode, "white", p.second.get_name(), true);
         }
     }

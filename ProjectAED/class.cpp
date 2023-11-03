@@ -1,5 +1,4 @@
 #include "class.h"
-#include <iostream>
 using namespace std;
 
 Class::Class(std::string classCode, std::string ucCode): classCode(classCode), ucCode(ucCode), studentsCode(set<string>()), lessons(set<Lesson>()) {}
