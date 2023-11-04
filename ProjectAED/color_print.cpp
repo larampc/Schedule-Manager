@@ -1,7 +1,7 @@
 #include "color_print.h"
 #include <iostream>
-#ifdef _WIN32
 extern bool color_mode;
+#ifdef _WIN32
 
 #include <windows.h>
 Color_Print::Color_Print(std::string color, std::string line, bool newLine,
