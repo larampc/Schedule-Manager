@@ -834,6 +834,10 @@ void LEIC::process_next_request() {
 }
 
 void LEIC::process_requests() {
+    if(requests.empty()) {
+        Color_Print(color_mode, "cyan", "There are no requests to process", true);
+        return;
+    }
     while (!requests.empty()) {
         process_next_request();
     }

@@ -221,7 +221,10 @@ void Script::update_registration(){
         invalid();
         cin >> answer;
     }
-    if (answer == "Y") update_registration();
+    if (answer == "Y") {
+        update_registration();
+        return;
+    }
 
     Color_Print(color_mode, "blue", "Would you like to process all requests now? ");
     Color_Print(color_mode, "cyan", "[Y/N]", true);
