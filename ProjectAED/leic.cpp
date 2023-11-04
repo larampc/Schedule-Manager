@@ -1106,7 +1106,7 @@ void LEIC::list_class_occupations_by_UC(std::string classCode, bool order) {
 
 void LEIC::check_pending_requests(){
     if(requests.empty()) {
-        Color_Print(color_mode, "cyan", "There are no requests to undo", true);
+        Color_Print(color_mode, "cyan", "There are no pending requests", true);
         return;
     }
     for (size_t i = 0; i < requests.size(); i++)

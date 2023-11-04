@@ -115,11 +115,13 @@ void Script::handle_requests() {
     Color_Print(color_mode, "cyan", " - press 5", true);
     Color_Print(color_mode, "white", "Process pending requests");
     Color_Print(color_mode, "cyan", " - press 6", true);
-    Color_Print(color_mode, "red", "Cancel");
+    Color_Print(color_mode, "white", "Erase pending requests");
     Color_Print(color_mode, "cyan", " - press 7", true);
+    Color_Print(color_mode, "red", "Cancel");
+    Color_Print(color_mode, "cyan", " - press 8", true);
 
     string option; cin >> option;
-    while(option != "1" && option != "2" && option != "3" && option != "4" && option != "5" && option != "6" && option != "7") {
+    while(option != "1" && option != "2" && option != "3" && option != "4" && option != "5" && option != "6" && option != "7" && option != "8") {
         invalid();
         cin >> option;
     }
@@ -155,7 +157,12 @@ void Script::handle_requests() {
             (answer == "1") ? data.process_next_request() : data.process_requests();
             break;
         }
-        case '7': {
+        case '7':{
+            data.empty_pending_requests();
+            Color_Print(color_mode, "blue", "Emptied all pending requests",true);
+            break;
+        }
+        case '8': {
             run();
         }
     }
