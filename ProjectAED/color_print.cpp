@@ -1,11 +1,12 @@
 #include "color_print.h"
 #include <iostream>
 #ifdef _WIN32
+extern bool color_mode;
 
 #include <windows.h>
-Color_Print::Color_Print(bool use_colors, std::string color, std::string line, bool newLine,
+Color_Print::Color_Print(std::string color, std::string line, bool newLine,
                          std::string background_color) {
-    if (use_colors)
+    if (color_mode)
     {
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         int col = 0x0007;
@@ -43,9 +44,9 @@ Color_Print::Color_Print(bool use_colors, std::string color, std::string line, b
 
 #else
 
-Color_Print::Color_Print(bool use_colors, std::string color, std::string line, bool newLine,
+Color_Print::Color_Print(std::string color, std::string line, bool newLine,
                          std::string background_color) {
-        if (use_colors)
+        if (color_mode)
         {
             std::string col = "\033[0";
             std::string back_col = "m";

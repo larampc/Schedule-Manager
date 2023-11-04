@@ -3,7 +3,6 @@
 #include <iomanip>
 #include "color_print.h"
 using namespace std;
-extern bool color_mode;
 
 Student::Student(string name, string studentCode): name(name), studentCode(studentCode), classes() {}
 
@@ -39,8 +38,8 @@ void Student::remove_class_from_uc(string ucCode) {
 }
 
 void Student::print_schedule() const {
-    Color_Print(color_mode, "blue", "Schedule of ");
-    Color_Print(color_mode, "yellow", name, true);
+    Color_Print("blue", "Schedule of ");
+    Color_Print("yellow", name, true);
     set<Lesson> allClasses;
     for(Class* someClass: classes) {
         set<Lesson> thisLessons = someClass->get_lessons();
@@ -50,11 +49,11 @@ void Student::print_schedule() const {
     for(Lesson lesson: allClasses) {
         if (current.empty()) {
             current = lesson.get_weekday();
-            Color_Print(color_mode, "blue", lesson.get_weekday(), true);
+            Color_Print("blue", lesson.get_weekday(), true);
         }
         if (lesson.get_weekday() != current) {
             current = lesson.get_weekday();
-            Color_Print(color_mode, "blue", lesson.get_weekday(), true);
+            Color_Print("blue", lesson.get_weekday(), true);
         }
         string out;
         stringstream outstream;
@@ -64,7 +63,7 @@ void Student::print_schedule() const {
                   setw(2) << setfill('0') << lesson.get_end_time().get_minute() <<
                   "\t" << setw(2) << setfill(' ') << lesson.get_type() << "  " << lesson.get_classCode();
         getline(outstream, out);
-        Color_Print(color_mode, "white", out, true);
+        Color_Print("white", out, true);
     }
 }
 

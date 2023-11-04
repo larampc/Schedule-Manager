@@ -4,7 +4,6 @@
 #include <iostream>
 using namespace std;
 #include "color_print.h"
-extern bool color_mode;
 
 Lesson::Lesson(string thisclass, string weekday, Time starttime, Time endtime, string type): Class(thisclass), weekday(weekday), startTime(starttime), endTime(endtime), type(type) {}
 
@@ -42,7 +41,7 @@ void Lesson::print_lesson() const {
               << setw(2) << setfill('0') << endTime.get_minute()
               << "\t" << setw(2) << setfill(' ') << type << " " << Class;
     getline(outstream, out);
-    Color_Print(color_mode, "white", out, true);
+    Color_Print("white", out, true);
 }
 
 bool Lesson::operator<(const Lesson &l) const{
