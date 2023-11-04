@@ -1119,5 +1119,9 @@ void LEIC::check_pending_requests(){
     }
 }
 
+bool LEIC::pending_request_is_empty() {
+    return requests.empty();
+}
+
 
 

@@ -1,10 +1,14 @@
 #include "script.h"
 #include <cctype>
+#include <limits>
 #include "color_print.h"
 using namespace std;
 extern bool color_mode;
 
-void Script::invalid(){ Color_Print("red", "Invalid Input, please try again", true); }
+void Script::invalid(){
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    Color_Print("red", "Invalid Input, please try again", true);
+}
 
 bool is_number(string s) {
     return all_of(s.begin(),s.end(),  [] (char c){return isdigit(c);});
@@ -154,7 +158,23 @@ void Script::handle_requests() {
                 invalid();
                 cin >> answer;
             }
-            (answer == "1") ? data.process_next_request() : data.process_requests();
+            if (answer == "1") {
+                do {
+                    data.process_next_request();
+                    if(data.pending_request_is_empty()) {
+                        Color_Print("blue", "Processed all requests [Y/N]", true);
+                        return;
+                    }
+                    Color_Print("blue", "Process next request? [Y/N]", true);
+                    cin >> answer;
+                    while (answer != "Y" && answer != "N") {
+                        invalid();
+                        cin >> answer;
+                    }
+                }
+                while(answer == "Y");
+            }
+            else data.process_requests();
             break;
         }
         case '7':{
@@ -441,7 +461,7 @@ void Script::request_file() {
     Color_Print("green", "NEW", true);
     Color_Print("white", "OR Type,StudentCode - if Type is ");
     Color_Print("green", "DELETE", true);
-    Color_Print("blue", "Do you want to process the requests? ");
+    Color_Print("blue", "Do you want to upload the requests? ");
     Color_Print("cyan", "[Y/N]", true);
     string answer;
     cin >> answer;

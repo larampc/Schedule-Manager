@@ -313,8 +313,9 @@ public:
     */
    void list_class_occupations_by_occupation(std::string classCode, bool order);
 
+   void check_pending_requests();
 
-    void check_pending_requests();
+   bool pending_request_is_empty();
 };
 
 #endif
