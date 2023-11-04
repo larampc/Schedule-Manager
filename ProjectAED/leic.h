@@ -259,6 +259,38 @@ public:
      * @return True if by moving from the current Class to the new Class the Class balance improves, false otherwise.
      */
     bool improves_balance(Class *currentClass, Class *newClass);
+
+    /**
+    * \brief Outputs the occupations of the UC with the given UC code menu, handles the respective inputs and prints the occupations of the UC with the given UC code.
+    *
+    * @param UcCode The UC code of the UC to get the occupations.
+    */
+    void list_Uc_occupations(std::string UcCode);
+    /**
+     * \brief Outputs the occupations of the Class with the given Class code menu, handles the respective inputs and prints the occupations of the Class with the given Class code.
+     *
+     * @param classCode The Class code of the Class to get the occupations.
+     */
+    void list_class_occupations(std::string classCode);
+    /**
+     * \brief Outputs the occupations of the given year sorting by UcCode in a given order.
+     *
+     * @param year The year to get the occupations.
+     * @param order The order to sort by True if ascending, false if descending.
+     */
+    void list_year_occupations_by_UC(std::string year, bool order);
+
+    void list_year_occupations_by_classCode(std::string year, bool order);
+
+    void list_year_occupations_by_occupation(std::string year, bool order);
+
+    void list_Uc_occupations_by_classCode(std::string UcCode, bool order);
+
+    void list_Uc_occupations_by_occupation(std::string UcCode, bool order);
+
+    void list_class_occupations_by_occupation(std::string classCode, bool order);
+
+    void list_class_occupations_by_UC(std::string classCode, bool order);
 };
 
 #endif

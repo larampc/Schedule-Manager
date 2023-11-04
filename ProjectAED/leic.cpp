@@ -882,3 +882,207 @@ string LEIC::studentCode_last_request() {
 }
 
 
+void LEIC::list_year_occupations_by_occupation(string year, bool order) {
+    vector<Class> yearClasses;
+    for (Class c: classes) {
+        if (c.get_classCode()[0] == year[0]) yearClasses.push_back(c);
+    }
+    (order) ? sort(yearClasses.begin(),yearClasses.end(), [] (Class c1,Class c2) -> bool { return
+        (c1.get_students().size() < c2.get_students().size()) || (c1.get_students().size() == c2.get_students().size()
+        && ((c1.get_ucCode() < c2.get_ucCode()) || (c1.get_ucCode() == c2.get_ucCode() && c1.get_classCode() < c2.get_classCode())));
+    } )
+            : sort(yearClasses.rbegin(),yearClasses.rend(), [] (Class c1,Class c2) -> bool { return
+        (c1.get_students().size() < c2.get_students().size()) || (c1.get_students().size() == c2.get_students().size()
+        && ((c1.get_ucCode() < c2.get_ucCode()) || (c1.get_ucCode() == c2.get_ucCode() && c1.get_classCode() < c2.get_classCode())));
+    } );
+    Color_Print(color_mode, "blue", "Occupations of year ");
+    Color_Print(color_mode, "yellow", year, true);
+    Color_Print(color_mode, "white", "UC code   \t");
+    Color_Print(color_mode, "green", "| ");
+    Color_Print(color_mode, "white", "Class code ");
+    Color_Print(color_mode, "green", "| ");
+    Color_Print(color_mode, "blue", "Occupation", true);
+    Color_Print(color_mode, "green", "-----------------------------------------", true);
+    for (Class c: yearClasses) {
+        Color_Print(color_mode, "white", c.get_ucCode() + "\t");
+        Color_Print(color_mode, "green", "| ");
+        Color_Print(color_mode, "white", c.get_classCode() + "\t");
+        Color_Print(color_mode, "green", " | ");
+        Color_Print(color_mode, "blue", to_string(c.get_students().size()), true);
+    }
+}
+
+void LEIC::list_year_occupations_by_classCode(string year, bool order) {
+    vector<Class> yearClasses;
+    for (Class c: classes) {
+        if (c.get_classCode()[0] == year[0]) yearClasses.push_back(c);
+    }
+
+    (order) ? sort(yearClasses.begin(), yearClasses.end(), [](Class c1, Class c2) -> bool {
+        return c1.get_classCode() < c2.get_classCode()
+               || (c1.get_classCode() == c2.get_classCode() && c1.get_ucCode() < c2.get_ucCode());
+    })
+            : sort(yearClasses.rbegin(), yearClasses.rend(), [](Class c1, Class c2) -> bool {
+        return c1.get_classCode() < c2.get_classCode()
+               || (c1.get_classCode() == c2.get_classCode() && c1.get_ucCode() < c2.get_ucCode());
+    });
+
+    Color_Print(color_mode, "blue", "Occupations of year ");
+    Color_Print(color_mode, "yellow", year, true);
+    Color_Print(color_mode, "white", "UC code   \t");
+    Color_Print(color_mode, "green", "| ");
+    Color_Print(color_mode, "blue", "Class code ");
+    Color_Print(color_mode, "green", "| ");
+    Color_Print(color_mode, "white", "Occupation", true);
+    Color_Print(color_mode, "green", "-----------------------------------------", true);
+    for (Class c: yearClasses) {
+        Color_Print(color_mode, "white", c.get_ucCode() + "\t");
+        Color_Print(color_mode, "green", "| ");
+        Color_Print(color_mode, "blue", c.get_classCode() + "\t");
+        Color_Print(color_mode, "green", " | ");
+        Color_Print(color_mode, "white", to_string(c.get_students().size()), true);
+    }
+}
+
+void LEIC::list_year_occupations_by_UC(string year, bool order) {
+    vector<Class> yearClasses;
+    for (Class c: classes) {
+        if (c.get_classCode()[0] == year[0]) yearClasses.push_back(c);
+    }
+
+    Color_Print(color_mode, "blue", "Occupations of year ");
+    Color_Print(color_mode, "yellow", year, true);
+    Color_Print(color_mode, "blue", "UC code   \t");
+    Color_Print(color_mode, "green", "| ");
+    Color_Print(color_mode, "white", "Class code ");
+    Color_Print(color_mode, "green", "| ");
+    Color_Print(color_mode, "white", "Occupation", true);
+    Color_Print(color_mode, "green", "-----------------------------------------", true);
+    if(order) {
+        for (Class c: yearClasses) {
+            Color_Print(color_mode, "blue", c.get_ucCode() + "\t");
+            Color_Print(color_mode, "green", "| ");
+            Color_Print(color_mode, "white", c.get_classCode() + "\t");
+            Color_Print(color_mode, "green", " | ");
+            Color_Print(color_mode, "white", to_string(c.get_students().size()), true);
+        }
+        return;
+    }
+    auto itr = yearClasses.end();
+    while(itr-- != yearClasses.begin()){
+        Color_Print(color_mode, "blue", itr->get_ucCode() + "\t");
+        Color_Print(color_mode, "green", "| ");
+        Color_Print(color_mode, "white", itr->get_classCode() + "\t");
+        Color_Print(color_mode, "green", " | ");
+        Color_Print(color_mode, "white", to_string(itr->get_students().size()), true);
+    }
+}
+
+
+void LEIC::list_Uc_occupations_by_classCode(std::string UcCode, bool order) {
+    vector<Class> UcClasses;
+    for (Class c: classes) {
+        if (c.get_ucCode() == UcCode) UcClasses.push_back(c);
+    }
+    Color_Print(color_mode, "blue", "Occupations of UC ");
+    Color_Print(color_mode, "yellow", UcCode, true);
+    Color_Print(color_mode, "blue", "Class code\t");
+    Color_Print(color_mode, "green", "| ");
+    Color_Print(color_mode, "white", "Occupation", true);
+    Color_Print(color_mode, "green", "-------------------------", true);
+    if (order) {
+        for (Class c: UcClasses) {
+            Color_Print(color_mode, "blue", c.get_classCode() + "    \t");
+            Color_Print(color_mode, "green", "| ");
+            Color_Print(color_mode, "white", to_string(c.get_students().size()), true);
+        }
+        return;
+    }
+    auto itr = UcClasses.end();
+    while (itr-- != UcClasses.begin()) {
+        Color_Print(color_mode, "blue", itr->get_classCode() + "    \t");
+        Color_Print(color_mode, "green", "| ");
+        Color_Print(color_mode, "white", to_string(itr->get_students().size()), true);
+    }
+}
+
+void LEIC::list_Uc_occupations_by_occupation(std::string UcCode, bool order) {
+    vector<Class> UcClasses;
+    for (Class c: classes) {
+        if (c.get_ucCode() == UcCode) UcClasses.push_back(c);
+    }
+    Color_Print(color_mode, "blue", "Occupations of UC ");
+    Color_Print(color_mode, "yellow", UcCode, true);
+    Color_Print(color_mode, "white", "Class code\t");
+    Color_Print(color_mode, "green", "| ");
+    Color_Print(color_mode, "blue", "Occupation", true);
+    Color_Print(color_mode, "green", "-------------------------", true);
+    (order) ? sort(UcClasses.begin(),UcClasses.end(), [] (Class c1,Class c2) -> bool {
+        return (c1.get_students().size() < c2.get_students().size())
+        || (c1.get_students().size() == c2.get_students().size() && c1.get_classCode() < c2.get_classCode())  ;})
+            : sort(UcClasses.rbegin(),UcClasses.rend(), [] (Class c1,Class c2) -> bool {
+        return (c1.get_students().size() < c2.get_students().size())
+        || (c1.get_students().size() == c2.get_students().size() && c1.get_classCode() < c2.get_classCode());});
+    for (Class c: UcClasses) {
+        Color_Print(color_mode, "white", c.get_classCode() + "    \t");
+        Color_Print(color_mode, "green", "| ");
+        Color_Print(color_mode, "blue", to_string(c.get_students().size()), true);
+    }
+}
+
+void LEIC::list_class_occupations_by_occupation(std::string classCode, bool order) {
+    vector<Class> classClasses;
+    for (Class c: classes) {
+        if (c.get_classCode() == classCode) classClasses.push_back(c);
+    }
+    Color_Print(color_mode, "blue", "Occupations of Class ");
+    Color_Print(color_mode, "yellow", classCode, true);
+    Color_Print(color_mode, "white", "UC code    \t");
+    Color_Print(color_mode, "green", "| ");
+    Color_Print(color_mode, "blue", "Occupation", true);
+    Color_Print(color_mode, "green", "---------------------------------", true);
+
+    (order) ? sort(classClasses.begin(), classClasses.end(), [](Class c1, Class c2) -> bool {
+        return (c1.get_students().size() < c2.get_students().size())
+               || (c1.get_students().size() == c2.get_students().size() && c1.get_ucCode() < c2.get_ucCode());
+    })
+            : sort(classClasses.rbegin(), classClasses.rend(), [](Class c1, Class c2) -> bool {
+        return (c1.get_students().size() < c2.get_students().size())
+               || (c1.get_students().size() == c2.get_students().size() && c1.get_ucCode() < c2.get_ucCode());
+    });
+    for (Class c: classClasses) {
+        Color_Print(color_mode, "white", c.get_ucCode() + "    \t");
+        Color_Print(color_mode, "green", "| ");
+        Color_Print(color_mode, "blue", to_string(c.get_students().size()), true);
+    }
+}
+
+void LEIC::list_class_occupations_by_UC(std::string classCode, bool order) {
+    vector<Class> classClasses;
+    for (Class c: classes) {
+        if (c.get_classCode() == classCode) classClasses.push_back(c);
+    }
+    Color_Print(color_mode, "blue", "Occupations of Class ");
+    Color_Print(color_mode, "yellow", classCode, true);
+    Color_Print(color_mode, "blue", "UC code    \t");
+    Color_Print(color_mode, "green", "| ");
+    Color_Print(color_mode, "white", "Occupation", true);
+    Color_Print(color_mode, "green", "---------------------------------", true);
+    if(order){
+        for (Class c: classClasses) {
+            Color_Print(color_mode, "blue", c.get_ucCode() + "    \t");
+            Color_Print(color_mode, "green", "| ");
+            Color_Print(color_mode, "white", to_string(c.get_students().size()), true);
+        }
+        return;
+    }
+    auto itr = classClasses.end();
+    while(itr-- != classClasses.begin()){
+        Color_Print(color_mode, "blue", itr->get_ucCode() + "    \t");
+        Color_Print(color_mode, "green", "| ");
+        Color_Print(color_mode, "white", to_string(itr->get_students().size()), true);
+    }
+}
+
+
+

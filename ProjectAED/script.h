@@ -85,27 +85,15 @@ public:
      */
     void occupations();
     /**
-     * \brief Outputs the occupations of the given year menu, handles the respective inputs and prints the occupations of the given year.
-     *
-     * @param year The year to get the occupations.
-     */
-    void list_year_occupations(std:: string year);
-    /**
      * \brief Prints the default message of input error.
      */
     void invalid();
-    /**
-     * \brief Outputs the occupations of the UC with the given UC code menu, handles the respective inputs and prints the occupations of the UC with the given UC code.
-     *
-     * @param UcCode The UC code of the UC to get the occupations.
-     */
-    void list_Uc_occupations(std::string UcCode);
-    /**
-     * \brief Outputs the occupations of the Class with the given Class code menu, handles the respective inputs and prints the occupations of the Class with the given Class code.
-     *
-     * @param classCode The Class code of the Class to get the occupations.
-     */
-    void list_class_occupations(std::string classCode);
+
+    void year_occupations(std::string year);
+
+    void Uc_occupations(std::string UcCode);
+
+    void class_occupations(std::string classCode);
 };
 
 
