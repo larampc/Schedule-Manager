@@ -616,7 +616,8 @@ void Script::listSchedules(){
             Color_Print(color_mode, "yellow", class_, true);
 
             set<Lesson> classLessons;
-            for(Class c : *data.get_classes()){
+            vector<Class> classes = data.get_classes();
+            for(Class c : classes){
                 if (c.get_classCode() == class_) {
                     set<Lesson> lessons = c.get_lessons();
                     classLessons.insert(lessons.begin(),lessons.end());
