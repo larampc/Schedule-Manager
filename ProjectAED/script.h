@@ -88,12 +88,25 @@ public:
      * \brief Prints the default message of input error.
      */
     void invalid();
-
+   /**
+    * \brief Outputs the menu for listing occupations of a given year, handling the respective inputs
+    *
+    * @param year The year to get the occupations.
+    */
     void year_occupations(std::string year);
-
+   /**
+    * \brief Outputs the menu for listing occupations of a given UC, handling the respective inputs
+    *
+    * @param UcCode The UC code to get the occupations.
+    */
     void Uc_occupations(std::string UcCode);
-
+   /**
+    * \brief Outputs the menu for listing occupations of a given Class, handling the respective inputs
+    *
+    * @param classCode The Class code of the Class to get the occupations.
+    */
     void class_occupations(std::string classCode);
+
 };
 
 
