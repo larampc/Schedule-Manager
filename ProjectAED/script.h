@@ -107,6 +107,7 @@ public:
     */
     void class_occupations(std::string classCode);
 
+    void settings();
 };
 
 

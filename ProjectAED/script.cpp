@@ -47,36 +47,7 @@ void Script::run() {
             break;
         }
         case '3': {
-            Color_Print(color_mode, "cyan", "1- ");
-            Color_Print(color_mode, "white", "Change Class CAP (current is " + to_string(data.get_cap()) + ")\t");
-            Color_Print(color_mode, "cyan", "2- ");
-            if (color_mode) Color_Print(color_mode, "yellow", "Disable");
-            else Color_Print(color_mode, "yellow", "Enable");
-            Color_Print(color_mode, "white", " Color Mode\t");
-            Color_Print(color_mode, "cyan", "3- ");
-            Color_Print(color_mode, "red", "Cancel\n");
-
-            cin >> option;
-            while(option != "1" && option != "2" && option != "3") {
-                invalid();
-                cin >> option;
-            }
-            if(option == "1"){
-                Color_Print(color_mode, "blue", "New CAP:", true);
-                string cap;
-                cin >> cap;
-                while (!is_number(cap) || stoi(cap) > 50) {
-                    invalid();
-                   cin >> cap;
-                }
-                data.set_cap(stoi(cap));
-            }
-            else if(option == "2"){
-                color_mode = !color_mode;
-                if (color_mode) Color_Print(color_mode, "cyan", "Color mode enabled", true);
-                else Color_Print(color_mode, "cyan", "Color mode disabled", true);
-            }
-            else run();
+            settings();
             break;
         }
         case '4': {
@@ -94,6 +65,42 @@ void Script::run() {
     option == "Y" ? run() : quit();
 }
 
+void Script::settings(){
+    string option;
+    Color_Print(color_mode, "cyan", "1- ");
+    Color_Print(color_mode, "white", "Change Class CAP (current is " + to_string(data.get_cap()) + ")\t");
+    Color_Print(color_mode, "cyan", "2- ");
+    if (color_mode) Color_Print(color_mode, "yellow", "Disable");
+    else Color_Print(color_mode, "yellow", "Enable");
+    Color_Print(color_mode, "white", " Color Mode\t");
+    Color_Print(color_mode, "cyan", "3- ");
+    Color_Print(color_mode, "red", "Cancel\n");
+
+    cin >> option;
+    while(option != "1" && option != "2" && option != "3") {
+        invalid();
+        cin >> option;
+    }
+    if(option == "1"){
+        Color_Print(color_mode, "blue", "New CAP:", true);
+        string cap;
+        cin >> cap;
+        while (!is_number(cap) || stoi(cap) > 50) {
+            invalid();
+            cin >> cap;
+        }
+        data.set_cap(stoi(cap));
+        return;
+    }
+    if(option == "2"){
+        color_mode = !color_mode;
+        if (color_mode) Color_Print(color_mode, "cyan", "Color mode enabled", true);
+        else Color_Print(color_mode, "cyan", "Color mode disabled", true);
+        return;
+    }
+    run();
+}
+
 void Script::handle_requests() {
     Color_Print(color_mode, "blue", "Select option:", true);
     Color_Print(color_mode, "white", "Add or remove registration");
@@ -104,11 +111,15 @@ void Script::handle_requests() {
     Color_Print(color_mode, "cyan", " - press 3", true);
     Color_Print(color_mode, "white", "Undo Previous Operation");
     Color_Print(color_mode, "cyan", " - press 4", true);
-    Color_Print(color_mode, "red", "Cancel");
+    Color_Print(color_mode, "white", "Check pending requests");
     Color_Print(color_mode, "cyan", " - press 5", true);
+    Color_Print(color_mode, "white", "Process pending requests");
+    Color_Print(color_mode, "cyan", " - press 6", true);
+    Color_Print(color_mode, "red", "Cancel");
+    Color_Print(color_mode, "cyan", " - press 7", true);
 
     string option; cin >> option;
-    while(option != "1" && option != "2" && option != "3" && option != "4" && option != "5") {
+    while(option != "1" && option != "2" && option != "3" && option != "4" && option != "5" && option != "6" && option != "7") {
         invalid();
         cin >> option;
     }
@@ -130,6 +141,21 @@ void Script::handle_requests() {
             break;
         }
         case '5': {
+            data.check_pending_requests();
+            break;
+        }
+        case '6': {
+            string answer;
+            Color_Print(color_mode, "blue", "Process: 1- Next request 2- All requests",true);
+            cin >> answer;
+            while(answer != "1" && answer != "2") {
+                invalid();
+                cin >> answer;
+            }
+            (answer == "1") ? data.process_next_request() : data.process_requests();
+            break;
+        }
+        case '7': {
             run();
         }
     }
@@ -149,12 +175,12 @@ void Script::update_registration(){
 
     cin >> option; while(option != "1" && option != "2" && option != "3" && option != "4") { invalid(); cin >> option; cout << '\n';}
     if(option == "4") {
-        data.process_requests();
+        //data.process_requests(); ?
         handle_requests();
         return;
     }
     if (!data.studentCode_last_request().empty()) {
-        Color_Print(color_mode, "blue", "Is the request for the same student? ");
+        Color_Print(color_mode, "blue", "Is the request for the same previous student? ");
         Color_Print(color_mode, "cyan", "[Y/N]", true);
         string answer;
         cin >> answer;
@@ -184,7 +210,9 @@ void Script::update_registration(){
             cin >> studentCode;
         }
     }
+
     get_request(studentCode, option);
+
     Color_Print(color_mode, "blue", "Would you like to make another request? ");
     Color_Print(color_mode, "cyan", "[Y/N]", true);
     string answer;
@@ -194,7 +222,15 @@ void Script::update_registration(){
         cin >> answer;
     }
     if (answer == "Y") update_registration();
-    data.process_requests();
+
+    Color_Print(color_mode, "blue", "Would you like to process all requests now? ");
+    Color_Print(color_mode, "cyan", "[Y/N]", true);
+    cin >> answer;
+    while(answer != "Y" && answer != "N") {
+        invalid();
+        cin >> answer;
+    }
+    if(answer == "Y") data.process_requests();
 }
 
 void Script::get_request(string studentCode, string option) {
@@ -403,7 +439,18 @@ void Script::request_file() {
         invalid();
         cin >> answer;
     }
-    if (answer == "Y") data.upload_requests();
+    if (answer == "Y") {
+        data.upload_requests();
+
+        Color_Print(color_mode, "blue", "Would you like to process all requests now? ");
+        Color_Print(color_mode, "cyan", "[Y/N]", true);
+        cin >> answer;
+        while (answer != "Y" && answer != "N") {
+            invalid();
+            cin >> answer;
+        }
+        if (answer == "Y") data.process_requests();
+    }
 }
 
 void Script::listings(){

@@ -47,3 +47,21 @@ void Request::set_current_class(std::string classCode) {
 void Request::set_name(std::string name) {
     this->studentName = name;
 }
+
+void Request::print_request(){
+    switch(type[0]) {
+        case 'A' : {
+            cout << type << ' ' << studentCode << ' ' << new_UcCode << ' ' << new_classCode << endl;
+            return;
+        }
+        case 'R' : {
+            cout << type << ' ' << studentCode << ' ' << current_UcCode << endl;
+            return;
+        }
+        case 'S' : {
+            cout << type << ' ' << studentCode << ' ' << current_UcCode << ' ' << new_UcCode << ' ' << new_classCode << endl;
+            return;
+        }
+    }
+    cout << type << ' ' << studentCode << ' ' << studentName << endl;
+}

@@ -4,13 +4,13 @@
 #include <stack>
 #include <map>
 #include <queue>
-#include <iostream>
 #include <fstream>
 #include <sstream>
 #include <iomanip>
 #include <algorithm>
 #include "student.h"
 #include "request.h"
+#include "color_print.h"
 
 /**
  * \class LEIC
@@ -248,8 +248,12 @@ public:
      */
     void process_requests();
     /**
-     * \brief Saves all modifications and all successful Requests to files.
+     * \brief Executes next Request in the queue by checking the type running it.
      */
+    void process_next_request();
+        /**
+         * \brief Saves all modifications and all successful Requests to files.
+         */
     void save_to_files();
     /**
      * \brief Checks if by moving from the current Class to the new Class the Class balance improves.
@@ -310,6 +314,7 @@ public:
    void list_class_occupations_by_occupation(std::string classCode, bool order);
 
 
+    void check_pending_requests();
 };
 
 #endif

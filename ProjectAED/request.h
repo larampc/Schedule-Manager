@@ -1,6 +1,7 @@
 #ifndef AEDPROJECT_REQUEST_H
 #define AEDPROJECT_REQUEST_H
 #include <string>
+#include <iostream>
 #include "student.h"
 
 /**
@@ -97,6 +98,8 @@ public:
      * @param classCode The Class code to set the current_classCode parameter.
      */
     void set_current_class(std::string classCode);
+
+    void print_request();
 };
 
 #endif //AEDPROJECT_REQUEST_H
