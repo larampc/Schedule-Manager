@@ -162,7 +162,7 @@ void Script::handle_requests() {
                 do {
                     data.process_next_request();
                     if(data.pending_request_is_empty()) {
-                        Color_Print("blue", "Processed all requests [Y/N]", true);
+                        Color_Print("blue", "Processed all requests", true);
                         return;
                     }
                     Color_Print("blue", "Process next request? [Y/N]", true);
