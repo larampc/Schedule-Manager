@@ -28,12 +28,6 @@ public:
      */
     Lesson(std::string parentClass, std::string weekday, Time startTime, Time endTime, std::string type);
     /**
-     * \brief Gets the parent Class of the Lesson.
-     *
-     * @return The parent Class of the Lesson.
-     */
-    std::string get_parentClass();
-    /**
      * \brief Gets the weekday of the Lesson.
      *
      * @return The weekday of the Lesson.
@@ -45,18 +39,6 @@ public:
      * @return The type of the Lesson, (T, TP or PL).
      */
     std::string get_type() const;
-    /**
-     * \brief Gets the Start time of the Lesson.
-     *
-     * @return The start time of the Lesson.
-     */
-    Time get_start_time() const;
-    /**
-     * \brief Gets the end time of the Lesson.
-     *
-     * @return The end time of the Lesson.
-     */
-    Time get_end_time() const;
     /**
      * \brief Checks if a Lesson overlaps in time.
      *
@@ -76,7 +58,5 @@ public:
      */
     bool operator<(const Lesson &l) const;
 };
-
-
 
 #endif //PROJECTAED_LESSON_H

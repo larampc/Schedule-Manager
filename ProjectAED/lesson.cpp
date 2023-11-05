@@ -7,20 +7,8 @@ using namespace std;
 
 Lesson::Lesson(string parentClass, string weekday, Time starttime, Time endtime, string type): Class(parentClass), weekday(weekday), startTime(starttime), endTime(endtime), type(type) {}
 
-std::string Lesson::get_parentClass() {
-    return Class;
-}
-
 string Lesson::get_weekday() const {
     return weekday;
-}
-
-Time Lesson::get_start_time() const {
-    return startTime;
-}
-
-Time Lesson::get_end_time() const {
-    return endTime;
 }
 
 string Lesson::get_type() const {

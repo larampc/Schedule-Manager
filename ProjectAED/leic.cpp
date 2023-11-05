@@ -5,48 +5,12 @@ bool is_number2(string s) {
     return all_of(s.begin(),s.end(),  [] (char c){return isdigit(c);});
 }
 
-bool LEIC::improves_balance(Class* currentClass, Class* newClass){
-    if(newClass->get_students().size() < currentClass->get_students().size()) return true;
-    vector<Class*> uc_classes = get_classes_from_UcCode(newClass->get_ucCode());
-    // int avg = 0;
-    int min = currentClass->get_students().size();
-    int max = min;
-    for(Class* c : uc_classes) {
-        if (c == newClass){
-            if (c->get_students().size() < min) min = c->get_students().size()+1;
-            if (c->get_students().size() > max) max = c->get_students().size()+1;
-        }
-        if (c == currentClass){
-            if (c->get_students().size() < min) min = c->get_students().size()-1;
-            if (c->get_students().size() > max) max = c->get_students().size()-1;
-        }
-        else{
-            if (c->get_students().size() < min) min = c->get_students().size();
-            if (c->get_students().size() > max) max = c->get_students().size();
-        }
-       // avg += c->get_students().size();
-    }
-    return (max - min <= 4);
-//    avg /= uc_classes.size();
-//    double current_stddev = 0, new_stddev = 0;
-//    for(Class* c : uc_classes) current_stddev += (c->get_students().size()-avg)*(c->get_students().size()-avg);
-//
-//    for(Class* c : uc_classes) {
-//        if (currentClass->get_ucCode() == newClass->get_ucCode() && c == currentClass)
-//            new_stddev += (c->get_students().size() - 1 - avg) * (c->get_students().size() - 1 - avg);
-//        else if (c == newClass)
-//            new_stddev += (c->get_students().size() + 1 - avg) * (c->get_students().size() + 1 - avg);
-//        else new_stddev += (c->get_students().size() - avg) * (c->get_students().size() - avg);
-//    }
-//   return new_stddev <= current_stddev;
-}
-
 LEIC::LEIC(std::string filenameclasses, std::string filenamestudents, bool save_file) {
     ifstream classesFile(filenameclasses);
     string line;
     getline(classesFile, line);
-    string classcode, uccode, weekday, starthour, duration, type;
-    while (getline(classesFile, line)) {     // read all lines from the given file
+    while (getline(classesFile, line)) {
+        string classcode, uccode, weekday, starthour, duration, type;
         istringstream iss(line);
         getline(iss, classcode, ',');
         getline(iss, uccode, ',');
@@ -83,21 +47,20 @@ LEIC::LEIC(std::string filenameclasses, std::string filenamestudents, bool save_
         CAP = stoi(cap);
     }
     getline(studentsFile, line);
-    string up, name;
-    while (getline(studentsFile, line)) {     // read all lines from the given file
+    while (getline(studentsFile, line)) {
+        string up, name, ucCode, classCode;
         istringstream iss(line);
         getline(iss, up, ',');
         getline(iss, name, ',');
-        getline(iss, uccode, ',');
-        iss >> classcode;
-
+        getline(iss, ucCode, ',');
+        iss >> classCode;
         Student s = Student(name, up);
         auto it = up_students.find(up);
         if(it == up_students.end()){
             up_students.insert({up,s});
         }
-        if (!uccode.empty()) {
-            Class c = Class(classcode,uccode);
+        if (!ucCode.empty()) {
+            Class c = Class(classCode, ucCode);
             auto it2 = find(classes.begin(), classes.end(), c);
             up_students.at(up).add_class(&(*it2));
             it2->add_student(up);
@@ -107,9 +70,9 @@ LEIC::LEIC(std::string filenameclasses, std::string filenamestudents, bool save_
     if(save_file){
         ifstream requestsFile("../accepted_requests.csv");
         getline(requestsFile, line);
-        string StudentCode, studentName, Type,oldUcCode,newUcCode,oldClassCode,newClassCode;
         stack<Request> reverseOrderRequest;
-        while (getline(requestsFile, line)) {     // read all lines from the given file
+        while (getline(requestsFile, line)) {
+            string StudentCode, studentName, Type,oldUcCode,newUcCode,oldClassCode,newClassCode;
             istringstream iss(line);
             getline(iss, Type, ',');
             getline(iss, StudentCode, ',');
@@ -128,7 +91,8 @@ LEIC::LEIC(std::string filenameclasses, std::string filenamestudents, bool save_
 
         ifstream pending_requestsFile("../pending_requests.csv");
         getline(pending_requestsFile, line);
-        while (getline(pending_requestsFile, line)) {     // read all lines from the given file
+        while (getline(pending_requestsFile, line)) {
+            string StudentCode, studentName, Type,oldUcCode,newUcCode,oldClassCode,newClassCode;
             istringstream iss(line);
             getline(iss, Type, ',');
             getline(iss, StudentCode, ',');
@@ -329,6 +293,16 @@ int LEIC::students_in_n_Ucs(int n){
         }
     }
     return count;
+}
+
+bool LEIC::improves_balance(Class* currentClass, Class* newClass){
+    if(newClass->get_students().size() < currentClass->get_students().size()) return true;
+    vector<Class*> uc_classes = get_classes_from_UcCode(newClass->get_ucCode());
+    int min = currentClass->get_students().size() - 1;
+    for(Class* c : uc_classes) {
+        if (c->get_students().size() < min) min = c->get_students().size();
+    }
+    return (newClass->get_students().size() + 1 - min <= 4);
 }
 
 set<Class*> LEIC::class_balance_valid(Student* student, Class* newClass) {
@@ -643,7 +617,7 @@ bool LEIC::request_switch(Request& request) {
 //        Color_Print(color_mode, "red", " violates class balance.", true);
 //        return false;
 //    }
-    if (request.get_current_UcCode() == request.get_new_UcCode()){ // mesma UC
+    if (request.get_current_UcCode() == request.get_new_UcCode()) { // mesma UC
         if (!improves_balance(currentClass, newClass)){
             add_student_to_class(student,currentClass);
             processed_requests.pop();
