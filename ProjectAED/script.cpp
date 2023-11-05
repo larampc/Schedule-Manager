@@ -165,7 +165,8 @@ void Script::handle_requests() {
                         Color_Print("blue", "Processed all requests", true);
                         return;
                     }
-                    Color_Print("blue", "Process next request? [Y/N]", true);
+                    Color_Print("blue", "Process next request? ");
+                    Color_Print("cyan", "[Y/N]", true);
                     cin >> answer;
                     while (answer != "Y" && answer != "N") {
                         invalid();
