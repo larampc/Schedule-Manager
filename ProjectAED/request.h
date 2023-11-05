@@ -99,6 +99,8 @@ public:
      */
     void set_current_class(std::string classCode);
 
+    void set_current_uc(std::string ucCode);
+
     void print_request();
 };
 

@@ -599,8 +599,10 @@ bool LEIC::request_delete(Request& request) {
         Color_Print("red", " doesn't exist.", true);
         return false;
     }
+    request.set_current_uc(to_string(student->get_classes().size()));
     for (Class* c: student->get_classes()) {
-        c->remove_student(request.get_studentCode());
+        Request r = Request("REMOVE", request.get_studentCode(), "", c->get_ucCode());
+        request_remove(r);
     }
     up_students.erase(request.get_studentCode());
     processed_requests.push(request);
@@ -748,7 +750,14 @@ void LEIC::undo_request() {
             processed_requests.pop();
             Color_Print("cyan", "Student with the student code ");
             Color_Print("yellow", thisrequest.get_studentCode());
-            Color_Print("cyan", " was added.", true);
+            Color_Print("cyan", " was added with its previous UCs.", true);
+            Student* student = get_student_from_studentCode(thisrequest.get_studentCode());
+            for (int i = 0; i < stoi(thisrequest.get_current_UcCode()); i++) {
+                Request add_uc = processed_requests.top();
+                Class* newclass = get_class_from_classCode_and_UcCode(add_uc.get_current_classCode(), add_uc.get_current_UcCode());
+                add_student_to_class(student, newclass);
+                processed_requests.pop();
+            }
             return;
         }
     }

@@ -65,3 +65,7 @@ void Request::print_request(){
     }
     cout << type << ' ' << studentCode << ' ' << studentName << endl;
 }
+
+void Request::set_current_uc(std::string ucCode) {
+    current_UcCode = ucCode;
+}
