@@ -36,15 +36,15 @@ public:
      */
     std::string get_ucCode() const;
     /**
-     * \brief Gets all Lesson of the Class.
+     * \brief Gets all Lessons of the Class.
      *
-     * @return All Lesson of the Class.
+     * @return All Lessons of the Class.
      */
     std::set<Lesson> get_lessons() const;
     /**
-     * \brief Gets all Student of the Class.
+     * \brief Gets all Students of the Class.
      *
-     * @return All Student of the Class.
+     * @return All Students of the Class.
      */
     std::set<std::string> get_students() const;
     /**
