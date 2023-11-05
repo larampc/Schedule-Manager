@@ -1,7 +1,7 @@
 var searchData=
 [
   ['save_5fto_5ffiles_0',['save_to_files',['../class_l_e_i_c.html#a14416642527a2f02929b50b0735cb5e8',1,'LEIC']]],
-  ['script_1',['script',['../class_script.html',1,'Script'],['../class_script.html#abfe4bfbb5bfc35131f16531818354349',1,'Script::Script()']]],
+  ['schedule_20management_20program_1',['Welcome to the Schedule Management Program',['../index.html',1,'']]],
   ['set_5fcap_2',['set_cap',['../class_l_e_i_c.html#a5109feb2b28aa7c33c2ec151b51cc635',1,'LEIC']]],
   ['set_5fcurrent_5fclass_3',['set_current_class',['../class_request.html#a3ab470a27c27d9fb2f6064f44245f47c',1,'Request']]],
   ['set_5fcurrent_5fuc_4',['set_current_uc',['../class_request.html#a58ea8700561e55cff6edceab8a91c6cf',1,'Request']]],

@@ -95,10 +95,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a795b4a193f46589066eb166bd809482f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the UC code of the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>.  <br /></td></tr>
 <tr class="separator:a795b4a193f46589066eb166bd809482f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7279f5382fa38c10d6e1e41acc5a242" id="r_ae7279f5382fa38c10d6e1e41acc5a242"><td class="memItemLeft" align="right" valign="top">std::set&lt; <a class="el" href="class_lesson.html">Lesson</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class.html#ae7279f5382fa38c10d6e1e41acc5a242">get_lessons</a> () const</td></tr>
-<tr class="memdesc:ae7279f5382fa38c10d6e1e41acc5a242"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all Lessons of the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>.  <br /></td></tr>
+<tr class="memdesc:ae7279f5382fa38c10d6e1e41acc5a242"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all <a class="el" href="class_lesson.html" title="This is a class for representing Lessons.">Lesson</a> of the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>.  <br /></td></tr>
 <tr class="separator:ae7279f5382fa38c10d6e1e41acc5a242"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe3c1c8781f825145a3331cd6fbd322f" id="r_abe3c1c8781f825145a3331cd6fbd322f"><td class="memItemLeft" align="right" valign="top">std::set&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class.html#abe3c1c8781f825145a3331cd6fbd322f">get_students</a> () const</td></tr>
-<tr class="memdesc:abe3c1c8781f825145a3331cd6fbd322f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all Students of the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>.  <br /></td></tr>
+<tr class="memdesc:abe3c1c8781f825145a3331cd6fbd322f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> of the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>.  <br /></td></tr>
 <tr class="separator:abe3c1c8781f825145a3331cd6fbd322f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a271444f4b07167c333a507d06eb4f9fc" id="r_a271444f4b07167c333a507d06eb4f9fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_class.html#a271444f4b07167c333a507d06eb4f9fc">add_lesson</a> (<a class="el" href="class_lesson.html">Lesson</a> l)</td></tr>
 <tr class="memdesc:a271444f4b07167c333a507d06eb4f9fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new <a class="el" href="class_lesson.html" title="This is a class for representing Lessons.">Lesson</a> to the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>.  <br /></td></tr>
@@ -192,10 +192,11 @@ std::set&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"
 <p>Adds a new <a class="el" href="class_lesson.html" title="This is a class for representing Lessons.">Lesson</a> to the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">l</td><td>The new <a class="el" href="class_lesson.html" title="This is a class for representing Lessons.">Lesson</a> to add. </td></tr>
+    <tr><td class="paramname">l</td><td>The new <a class="el" href="class_lesson.html" title="This is a class for representing Lessons.">Lesson</a> to add.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section user"><dt>Complexity</dt><dd>O(log n) in which n is the number of lessons. </dd></dl>
 
 </div>
 </div>
@@ -218,10 +219,11 @@ std::set&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"
 <p>Adds a new <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">studentCode</td><td>The new <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to add. </td></tr>
+    <tr><td class="paramname">studentCode</td><td>The new <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to add.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section user"><dt>Complexity</dt><dd>O(log n) in which n is the number of students. </dd></dl>
 
 </div>
 </div>
@@ -241,7 +243,8 @@ std::set&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><div class="memdoc">
 
 <p>Gets the class code of the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>. </p>
-<dl class="section return"><dt>Returns</dt><dd>The class code of the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The class code of the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>.</dd></dl>
+<dl class="section user"><dt>Complexity</dt><dd>O(1) </dd></dl>
 
 </div>
 </div>
@@ -260,8 +263,9 @@ std::set&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"
       </table>
 </div><div class="memdoc">
 
-<p>Gets all Lessons of the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>. </p>
-<dl class="section return"><dt>Returns</dt><dd>All Lessons of the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>. </dd></dl>
+<p>Gets all <a class="el" href="class_lesson.html" title="This is a class for representing Lessons.">Lesson</a> of the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>All <a class="el" href="class_lesson.html" title="This is a class for representing Lessons.">Lesson</a> of the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>.</dd></dl>
+<dl class="section user"><dt>Complexity</dt><dd>O(1) </dd></dl>
 
 </div>
 </div>
@@ -280,8 +284,9 @@ std::set&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"
       </table>
 </div><div class="memdoc">
 
-<p>Gets all Students of the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>. </p>
-<dl class="section return"><dt>Returns</dt><dd>All Students of the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>. </dd></dl>
+<p>Gets all <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> of the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>All <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> of the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>.</dd></dl>
+<dl class="section user"><dt>Complexity</dt><dd>O(1) </dd></dl>
 
 </div>
 </div>
@@ -301,7 +306,8 @@ std::set&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><div class="memdoc">
 
 <p>Gets the UC code of the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>. </p>
-<dl class="section return"><dt>Returns</dt><dd>The UC code of the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The UC code of the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>.</dd></dl>
+<dl class="section user"><dt>Complexity</dt><dd>O(1) </dd></dl>
 
 </div>
 </div>
@@ -378,10 +384,11 @@ std::set&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"
 <p>Removes a <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> from the <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">studentCode</td><td>The <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to be removed. </td></tr>
+    <tr><td class="paramname">studentCode</td><td>The <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> to be removed.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section user"><dt>Complexity</dt><dd>O(log n) in which n is the number of students. </dd></dl>
 
 </div>
 </div>

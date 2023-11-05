@@ -15,7 +15,7 @@ var searchData=
   ['list_5fyear_5foccupations_5fby_5fclasscode_12',['list_year_occupations_by_classCode',['../class_l_e_i_c.html#a59ec9d7d1760ba3101b7606a75dca45b',1,'LEIC']]],
   ['list_5fyear_5foccupations_5fby_5foccupation_13',['list_year_occupations_by_occupation',['../class_l_e_i_c.html#aa641ca6305c857156df1ce37a0f796be',1,'LEIC']]],
   ['list_5fyear_5foccupations_5fby_5fuc_14',['list_year_occupations_by_UC',['../class_l_e_i_c.html#a3ff33078061b8da2dd2cbeca8c45397b',1,'LEIC']]],
-  ['listings_15',['listings',['../class_script.html#a9863bffc3b6a510ae8d06e41df0e3f24',1,'Script']]],
-  ['listschedules_16',['listSchedules',['../class_script.html#a8fe85ba7352a612211a0e2a4fe5faddf',1,'Script']]],
-  ['liststudents_17',['listStudents',['../class_script.html#af6ad06bb237712f76973c921eb5caff3',1,'Script']]]
+  ['listings_15',['listings',['../class_menu.html#aa841af433538a8cd972e2c34b0d05c0f',1,'Menu']]],
+  ['listschedules_16',['listSchedules',['../class_menu.html#a4f76e948636fd5c97aa5a70d278f9cdf',1,'Menu']]],
+  ['liststudents_17',['listStudents',['../class_menu.html#ada859139180b36ba0bde9b32288138d1',1,'Menu']]]
 ];
