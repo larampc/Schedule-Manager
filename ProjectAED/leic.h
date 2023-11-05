@@ -281,11 +281,11 @@ public:
      */
     int students_in_n_Ucs(int n);
     /**
-     * \brief Checks if by moving from the current Class to the new Class the Class balance is not disturbed.
+     * \brief Checks if by switching the Student from the current Class to the new Class the class balance is not disturbed.
      *
      * @param currentClass The current Class.
      * @param newClass The new Class.
-     * @return True if by moving from the current Class to the new Class the Class balance is not disturbed, false otherwise.
+     * @return True if by switching from the current Class to the new Class the class balance is not disturbed, false otherwise.
      *
      * \par Complexity
      * O(max(log n, m)) in which n is the number of classes in LEIC and m is the number of classes in the UC.
@@ -296,95 +296,112 @@ public:
      *
      * @param student The Student to add to the Class.
      * @param newClass The Class to add the Student to.
-     * @return References of all Class with the same UC of the given Class that by adding the given Student the class balance and schedule are valid, or empty if by adding a Student into the given Class, the Class Balance and schedule are valid.
+     * @return References to all Class with the same UC of the given Class that by adding the given Student the class balance and schedule are valid, or empty if adding a Student to the given Class, the class balance and schedule are valid.
      *
      * \par Complexity
-     * O(max(log n, m)) in which n is the number of classes in LEIC and m is the number of classes in the UC.
+     * O(q*n*m*r) in which q is the number of classes in the UC, n is the number of lessons of the Class checking, m is the number of classes of the student and r the number of lessons in each class.
      */
     std::vector<Class*> class_balance_valid(Student* student, Class* newClass);
     /**
-     * \brief Gets the Class in the given UC that affects the best to the Class balance and is compatible with the given Student's schedule.
+     * \brief Gets the Class in the given UC that best improves class balance and is compatible with the given Student's schedule.
      *
-     * @param student The Student that must have a compatible schedule with the Class.
+     * @param student The Student which schedule must be compatible with the Class.
      * @param uc The UC code of the UC to get the Class from.
-     * @return The Class in the given UC that affects the best to the Class balance and is compatible with the given Student's schedule.
+     * @return The Class in the given UC that best improves the class balance and is compatible with the given Student's schedule.
+     *
+     * \par Complexity
+     * O(q*n*m*r) in which q is the number of classes in the UC, n is the number of lessons of the Class checking, m is the number of classes of the student and r the number of lessons in each class.
      */
     Class* best_class_balance(Student* student, std::string uc);
     /**
-     * \brief Checks if a Student schedule can accept all TP or PL Lesson of the given Class,
-     *        excluding all of the old Class's Lesson if applicable.
+     * \brief Checks if a Student schedule has no overlapping TP or PL Lesson with the given Class,
+     *        excluding all of the old Class's Lesson, if applicable.
      *
-     * @param student The Student to check Schedule compatibility.
-     * @param newClass The Class to check Schedule compatibility.
+     * @param student The Student to check schedule compatibility.
+     * @param newClass The Class to check schedule compatibility.
      * @param oldClass The Class to exclude from the Student's Schedule, if applicable.
      * @return True if the Student schedule can accept all TP or PL Lesson of the given Class,
-     *        excluding all of the old Class's Lesson if applicable.
+     *        excluding all of the old Class's Lesson, if applicable.
+     *
+     * \par Complexity
+     * O(n*m*r) in which n is the number of lessons of the new Class, m is the number of classes of the student and r the number of lessons in each class.
      */
     bool compatible_schedules(Student* student, Class* newClass, Class* oldClass = nullptr);
     /**
      * \brief Adds the given Student to the given Class, updating the data accordingly.
      *
      * @param student The Student to enroll in the given Class.
-     * @param newClass The Class to enroll the given Student.
+     * @param newClass The Class to enroll the given Student in.
+     *
+     * \par Complexity
+     * O(log n)
      */
     void add_student_to_class(Student* student, Class* newClass);
     /**
      * \brief Adds the given Request to the Request queue to be executed later.
      *
      * @param request The Request to add to the queue.
+     *
+     * \par Complexity
+     * O(log n)
      */
     void add_request_to_process(Request request);
     /**
-     * \brief Uploads all the Request in the requests.csv file to the queue and runs them.
-     */
-    void upload_requests();
-    /**
-     * \brief Runs the given Request of type ADD about the given Student and returns True if it is valid and ran with no errors.
+     * \brief Runs the given Request of type ADD about the given Student.
      *
      * @param request The Request to run.
-     * @return True if the given Request is valid and ran with no errors.
+     * @return True if the given Request is valid and ran with no errors, False otherwise.
      */
     bool request_add(Request& request);
     /**
-     * \brief Runs the given Request of type REMOVE about the given Student and returns True if it is valid and ran with no errors.
+     * \brief Runs the given Request of type REMOVE about the given Student.
      *
      * @param request The Request to run.
-     * @return True if the given Request is valid and ran with no errors.
+     * @return True if the given Request is valid and ran with no errors, False otherwise.
      */
     bool request_remove(Request& request);
     /**
-     * \brief Runs the given Request of type NEW creating a new Student and returns True if it is valid and ran with no errors.
+     * \brief Runs the given Request of type NEW creating a new Student if possible.
      *
      * @param request The Request to run.
-     * @return True if the given Request is valid and ran with no errors.
+     * @return True if the given Request is valid and ran with no errors, False otherwise.
      */
     bool request_new(Request& request);
     /**
-     * \brief Runs the given Request of type DELETE removing a Student and returns True if it is valid and ran with no errors.
+     * \brief Runs the given Request of type DELETE removing the Student, if possible.
      *
      * @param request The Request to run.
-     * @return True if the given Request is valid and ran with no errors.
+     * @return True if the given Request is valid and ran with no errors, False otherwise.
      */
     bool request_delete(Request& request);
     /**
-     * \brief Runs the given Request of type SWITCH about the given Student and returns True if it is valid and ran with no errors.
+     * \brief Runs the given Request of type SWITCH about the given Student.
      *
      * @param request The Request to run.
-     * @return True if the given Request is valid and ran with no errors.
+     * @return True if the given Request is valid and ran with no errors, False otherwise.
      */
     bool request_switch(Request& request);
     /**
      * \brief Checks if there are any pending requests.
      *
      * @return True if there are no pending requests, False otherwise.
+     *
+     * \par Complexity
+     * O(1)
      */
     bool pending_request_is_empty();
     /**
      * \brief Empties the queue of all pending Request.
+     *
+     * \par Complexity
+     * O(n) in which n is the number of pending requests.
      */
     void empty_pending_requests();
     /**
      * \brief Prints the queue of all pending Request.
+     *
+     * \par Complexity
+     * O(n) in which n is the number of pending requests.
      */
     void print_pending_requests();
     /**
@@ -392,16 +409,20 @@ public:
      */
     void undo_request();
     /**
-     * \brief Executes all Request in the queue by checking the type running it.
+     * \brief Executes all Request in the queue by checking its type.
      */
     void process_requests();
     /**
-     * \brief Executes next Request in the queue by checking the type running it.
+     * \brief Executes next Request in the queue by checking its type.
      */
     void process_next_request();
-        /**
-         * \brief Saves all modifications and all successful Requests to files.
-         */
+    /**
+     * \brief Uploads all the Request in the requests.csv file to the queue and runs them.
+     */
+    void upload_requests();
+    /**
+     * \brief Saves all modifications, pending and successful Requests to files.
+     */
     void save_to_files();
 };
 

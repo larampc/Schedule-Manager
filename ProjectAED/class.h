@@ -65,7 +65,7 @@ public:
      * @param l The new Lesson to add.
      *
      * \par Complexity
-     * O(log n)
+     * O(log n) in which n is the number of lessons.
      */
     void add_lesson(Lesson l);
     /**
@@ -74,7 +74,7 @@ public:
      * @param studentCode The new Student to add.
      *
      * \par Complexity
-     * O(log n)
+     * O(log n) in which n is the number of students.
      */
     void add_student(std::string studentCode);
     /**
@@ -83,7 +83,7 @@ public:
      * @param studentCode The Student to be removed.
      *
      * \par Complexity
-     * O(log n)
+     * O(log n) in which n is the number of students.
      */
     void remove_student(std::string studentCode);
     /**

@@ -3,21 +3,36 @@
 #include "leic.h"
 
 /**
- * \mainpage This is the main page
+ * \mainpage Welcome to the Schedule Management Program
  *
  * \section description_sec Project description
  *
- * This program allows the visualization of schedules and related information, new registrations and update existing registrations.
+ * This program was made for AED course unit of Bachelor in Informatics and Computing Engineering at FEUP.
+ * This program allows to visualize schedules and related information and to make different update requests.
  *
  * \section utility_sec What can this project do?
  *
  * \subsection part1_subsec Part 1
  *
- * This program provides several options for consulting data such as sorted lists of students in a given class and number of students in a class.
+ * Choose to import from the original or current dataset.
+ * Get information such as:
+ * - Schedules of a student, class or UC;
+ * - List of students in a course, class or UC sorted by student UP or number;
+ * - List of course, year, UC or class occupations sorted by class code or occupation (descending or ascending order);
+ * - List of students with at least N UCs.
+
  *
  * \subsection part2_subsec Part 2
  *
- * This is part 2.
+ * Make requests such as:
+ * - add or remove a student;
+ * - add, remove or switch UC/class of a given student;
+ * - upload files with the desired operations;
+ * - undo the previous operation;
+ * - check pending requests;
+ * - process next request or all pending requests;
+ * - erase pending requests.
+ * Change settings such as the maximum capacity of a class and enable colour mode.
  */
 
 /**

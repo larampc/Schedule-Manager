@@ -58,7 +58,7 @@ public:
      * @return A pointer to the Class of the given UC.
      *
      * \par Complexity
-     * O(n)
+     * O(n) in which n is the number of classes of the Student.
      */
     Class* get_class_from_uc(std::string ucCode) const;
     /**
@@ -68,7 +68,7 @@ public:
      * @return True if the Student is enrolled in the given UC.
      *
      * \par Complexity
-     * O(n)
+     * O(n) in which n is the number of classes of the Student;
      */
     bool has_uc(std::string ucCode) const;
     /**
@@ -86,14 +86,14 @@ public:
      * @param ucCode The UC code of the Class to remove.
      *
      * \par Complexity
-     * O(n)
+     * O(n) in which n is the number of classes of the Student.
      */
     void remove_class_from_uc(std::string ucCode);
     /**
      * \brief Prints the Student's schedule.
      *
      * \par Complexity
-     * O(n)
+     * O(n) in which n is the number of Lessons of the Student.
      */
     void print_schedule() const;
 };
