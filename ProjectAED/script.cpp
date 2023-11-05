@@ -152,7 +152,11 @@ void Script::handle_requests() {
         }
         case '6': {
             string answer;
-            Color_Print("blue", "Process: 1- Next request 2- All requests", true);
+            Color_Print("blue", "Process: ");
+            Color_Print("cyan", "1- ");
+            Color_Print("white", "Next request ");
+            Color_Print("cyan", "2- ");
+            Color_Print("white", "All requests", true);
             cin >> answer;
             while(answer != "1" && answer != "2") {
                 invalid();
