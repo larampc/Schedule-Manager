@@ -48,7 +48,7 @@ public:
      * @return A list of pointers to all the Class in which a Student is enrolled.
      *
      * \par Complexity
-     * O(n) in which n is the number of classes of the Student.
+     * O(n) in which n is the number of Lessons of the Student.
      */
     std::list<Class*> get_classes() const;
     /**
@@ -58,7 +58,7 @@ public:
      * @return A pointer to the Class of the given UC.
      *
      * \par Complexity
-     * O(n) in which n is the number of classes of the Student.
+     * O(n) in which n is the number of Lessons of the Student.
      */
     Class* get_class_from_uc(std::string ucCode) const;
     /**
@@ -68,7 +68,7 @@ public:
      * @return True if the Student is enrolled in the given UC.
      *
      * \par Complexity
-     * O(n) in which n is the number of classes of the Student;
+     * O(n) in which n is the number of Lessons of the Student.
      */
     bool has_uc(std::string ucCode) const;
     /**
