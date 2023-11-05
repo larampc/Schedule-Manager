@@ -50,28 +50,28 @@ public:
     /**
      * \brief Gets all existing Class in LEIC.
      *
-     * @return All existing Class in LEIC.
+     * @return A vector with all existing Class in LEIC.
      *
      * \par Complexity
-     * O(1)
+     * O(n) in which n is the number of classes in LEIC.
      */
     std::vector<Class> get_classes() const;
     /**
      * \brief Gets the UC codes of all existing UCs.
      *
-     * @return The UC codes of all existing UCs.
+     * @return A set with the UC codes of all existing UCs.
      *
      * \par Complexity
-     * O(1)
+     * O(n) in which n is the number of UCs in LEIC.
      */
     std::set<std::string> get_UcCodes() const;
     /**
      * \brief Gets the class codes of all existing Class.
      *
-     * @return The class codes of all existing Class.
+     * @return A set with the class codes of all existing Class.
      *
      * \par Complexity
-     * O(n) in which n is the number of classes in LEIC.
+     * O(n log m) in which n is the number of classes in LEIC and m is the number of distinct class codes.
      */
     std::set<std::string> get_classCodes() const;
     /**
@@ -89,7 +89,7 @@ public:
      * \brief Gets all Class with the given UC code.
      *
      * @param UcCode The UC code of the Class to get.
-     * @return References to all the Class with the given UC code.
+     * @return A vector of references to all the Class with the given UC code.
      *
      * \par Complexity
      * O(log n) in which n is the number of classes in LEIC.
@@ -168,7 +168,7 @@ public:
      * @param order The order to sort by True if ascending, false if descending.
      *
      * \par Complexity
-     * O(n) in which n is the number of students in LEIC.
+     * O(n log n) in which n is the number of students in LEIC.
      */
     void list_students_by_name(bool order) const;
     /**
@@ -178,7 +178,7 @@ public:
      * @param order The order to sort by True if ascending, false if descending.
      *
      * \par Complexity
-     * O(n) in which n is the number of students in the UC.
+     * O(n m log m) in which n is the number of classes in the UC and m is the number of students in the UC.
      */
     void list_UC_students_by_studentCode(std::string UcCode, bool order);
     /**
@@ -187,6 +187,8 @@ public:
      * @param UcCode The UC code of the UC to print all Student.
      * @param order The order to sort by True if ascending, false if descending.
      *
+     * \par Complexity
+     * O(n m log m) in which n is the number of classes in the UC and m is the number of students in the UC.
      */
     void list_UC_students_by_name(std::string UcCode, bool order);
     /**
@@ -206,7 +208,7 @@ public:
      * @param order The order to sort by True if ascending, false if descending.
      *
      * \par Complexity
-     * O(n) in which n is the number of students in the Class.
+     * O(n log n) in which n is the number of students in the Class.
      */
     void list_class_students_by_name(Class* class_, bool order) const;
     /**
@@ -226,7 +228,7 @@ public:
      * @param order The order to sort by True if ascending, false if descending.
      *
      * \par Complexity
-     * O(n) in which n is the number of classes in LEIC.
+     * O(max(n, m log m)) in which n is the number of classes in LEIC and m is the number of classes in the given year.
      */
     void list_year_occupations_by_classCode(std::string year, bool order);
     /**
@@ -236,7 +238,7 @@ public:
      * @param order The order to sort by True if ascending, false if descending.
      *
      * \par Complexity
-     * O(n) in which n is the number of classes in LEIC.
+     * O(max(n, m log m)) in which n is the number of classes in LEIC and m is the number of classes in the given year.
      */
     void list_year_occupations_by_occupation(std::string year, bool order);
     /**
@@ -246,7 +248,7 @@ public:
      * @param order The order to sort by True if ascending, false if descending.
      *
      * \par Complexity
-     * O(n) in which n is the number of classes in LEIC.
+     * O(max(n, log m)) in which n is the number of classes in the given UC and m is the number of classes in LEIC.
      */
     void list_Uc_occupations_by_classCode(std::string UcCode, bool order);
     /**
@@ -256,7 +258,7 @@ public:
      * @param order The order to sort by True if ascending, false if descending.
      *
      * \par Complexity
-     * O(n) in which n is the number of classes in the UC.
+     * O(max(n, m log m)) in which n is the number of classes in LEIC and m is the number of classes in the given UC.
      */
     void list_Uc_occupations_by_occupation(std::string UcCode, bool order);
     /**
@@ -276,7 +278,7 @@ public:
      * @param order The order to sort by True if ascending, false if descending.
      *
      * \par Complexity
-     * O(n) in which n is the number of classes in LEIC.
+     * O(max(n, m log m)) in which n is the number of classes in LEIC and m is the number of classes with the given class code.
      */
     void list_class_occupations_by_occupation(std::string classCode, bool order);
     /**
@@ -304,7 +306,7 @@ public:
      *
      * @param student The Student to add to the Class.
      * @param newClass The Class to add the Student to.
-     * @return References to all Class with the same UC of the given Class that by adding the given Student the class balance and schedule are valid, or empty if adding a Student to the given Class, the class balance and schedule are valid.
+     * @return A vector of references to all Class with the same UC of the given Class that by adding the given Student the class balance and schedule are valid, or empty if adding a Student to the given Class, the class balance and schedule are valid.
      *
      * \par Complexity
      * O(q*n*m*r) in which q is the number of classes in the UC, n is the number of lessons of the Class checking, m is the number of classes of the student and r the number of lessons in each class.
@@ -351,7 +353,7 @@ public:
      * @param request The Request to add to the queue.
      *
      * \par Complexity
-     * O(log n)
+     * O(1)
      */
     void add_request_to_process(Request request);
     /**

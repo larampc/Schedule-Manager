@@ -54,24 +54,9 @@ public:
      */
     void run();
     /**
-     * \brief Outputs the update registration menu and handles the respective inputs.
-     */
-    void update_registration();
-    /**
-     * \brief Gets from input the information needed for a specific request.
-     *
-     * @param studentCode studentCode from student who is requesting.
-     * @param option Type of request to get.
-     */
-    void get_request(std::string studentCode, std::string option);
-    /**
      * \brief Outputs the listings menu and handles the respective inputs.
      */
     void listings();
-    /**
-     * \brief Handles the creation of a new Student and inserts it into the data.
-     */
-    void handle_registration();
     /**
      * \brief Outputs the schedule listing menu and handles the respective inputs.
      */
@@ -81,45 +66,62 @@ public:
      */
     void listStudents();
     /**
-     * \brief Quits the program and saves all the data to files.
-     */
-    void quit();
-    /**
-     * \brief Outputs the requests menu and handles the respective inputs.
-     */
-    void handle_requests();
-    /**
-     * \brief Outputs the instructions to upload a request file and runs it if user chooses to.
-     */
-    void request_file();
-    /**
      * \brief Outputs the occupations menu and handles the respective inputs.
      */
     void occupations();
     /**
-     * \brief Prints the default message of input error.
-     */
-    void invalid();
-   /**
     * \brief Outputs the menu for listing occupations of a given year, handling the respective inputs
     *
     * @param year The year to get the occupations.
     */
     void year_occupations(std::string year);
-   /**
-    * \brief Outputs the menu for listing occupations of a given UC, handling the respective inputs
-    *
-    * @param UcCode The UC code to get the occupations.
-    */
+    /**
+     * \brief Outputs the menu for listing occupations of a given UC, handling the respective inputs
+     *
+     * @param UcCode The UC code to get the occupations.
+     */
     void Uc_occupations(std::string UcCode);
-   /**
-    * \brief Outputs the menu for listing occupations of a given Class, handling the respective inputs
-    *
-    * @param classCode The Class code of the Class to get the occupations.
-    */
+    /**
+     * \brief Outputs the menu for listing occupations of a given Class, handling the respective inputs
+     *
+     * @param classCode The Class code of the Class to get the occupations.
+     */
     void class_occupations(std::string classCode);
-
+    /**
+     * \brief Outputs the requests menu and handles the respective inputs.
+     */
+    void handle_requests();
+    /**
+     * \brief Outputs the update registration menu and handles the respective inputs.
+     */
+    void update_registration();
+    /**
+     * \brief Handles the creation of a new Student and inserts it into the data.
+     */
+    void handle_registration();
+    /**
+     * \brief Gets from input the information needed for a specific request.
+     *
+     * @param studentCode studentCode from student who is requesting.
+     * @param option Type of request to get.
+     */
+    void get_request(std::string studentCode, std::string option);
+    /**
+     * \brief Outputs the instructions to upload a request file and runs it if user chooses to.
+     */
+    void request_file();
+    /**
+     * \brief Prints the default message of input error.
+     */
+    void invalid();
+    /**
+     * \brief Outputs the settings menu and handles the respective inputs.
+     */
     void settings();
+    /**
+     * \brief Quits the program and saves all the data to files.
+     */
+    void quit();
 };
 
 

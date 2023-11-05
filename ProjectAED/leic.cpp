@@ -22,7 +22,7 @@ LEIC::LEIC(std::string filenameclasses, std::string filenamestudents, bool save_
         ucs.insert(uccode);
         Class c = Class(classcode, uccode);
         string thisclass = uccode + " " + classcode;
-        Lesson lesson = Lesson(thisclass, weekday, Time(starthour), Time(stof(duration)+stof(starthour)), type); // create new lesson
+        Lesson lesson = Lesson(thisclass, weekday, Time(starthour), Time(stof(duration)+stof(starthour)), type);
         auto it = find(classes.begin(), classes.end(), c);
         if(it != classes.end()){
             it->add_lesson(lesson);
@@ -334,18 +334,18 @@ void LEIC::list_class_students_by_name(Class *class_, bool order) const {
     Color_Print("green", "\t| ");
     Color_Print("blue", "NAME", true);
     Color_Print("green", "-----------------------", true);
-    map<string, string> UCstudents_code;
-    for (string code: class_->get_students()) UCstudents_code[code_students.at(code).get_name()] = code;
+    map<string, string> classStudents_code;
+    for (string code: class_->get_students()) classStudents_code[code_students.at(code).get_name()] = code;
     if (!order) {
-        auto it = UCstudents_code.end();
-        while (it-- != UCstudents_code.begin()) {
+        auto it = classStudents_code.end();
+        while (it-- != classStudents_code.begin()) {
             Color_Print("white", it->second);
             Color_Print("green", "\t| ");
             Color_Print("blue", it->first, true);
         }
     }
     else {
-        for (pair<string, string> p: UCstudents_code){
+        for (pair<string, string> p: classStudents_code){
             Color_Print("white", p.second);
             Color_Print("green", "\t| ");
             Color_Print("blue", p.first, true);
@@ -356,7 +356,7 @@ void LEIC::list_class_students_by_name(Class *class_, bool order) const {
     Color_Print("white", " ");
     Color_Print("yellow", class_->get_classCode());
     Color_Print("white", ": ");
-    Color_Print("blue", to_string(UCstudents_code.size()), true);
+    Color_Print("blue", to_string(classStudents_code.size()), true);
 }
 
 void LEIC::list_Uc_occupations_by_classCode(std::string UcCode, bool order) {
@@ -1132,7 +1132,7 @@ void LEIC::upload_requests() {
     string line;
     ifstream requestsFile("../requests.csv");
     int countLines = 1;
-    while (getline(requestsFile, line)) {     // read all lines from the given file
+    while (getline(requestsFile, line)) {
         string StudentCode,Type,oldUcCode,newUcCode,newClassCode, studentName;
         istringstream iss(line);
         getline(iss, Type, ',');

@@ -47,7 +47,7 @@ public:
      * @return All Lesson of the Class.
      *
      * \par Complexity
-     * O(1)
+     * O(n) in which n is the number of Lessons of the Class.
      */
     std::set<Lesson> get_lessons() const;
     /**
@@ -56,7 +56,7 @@ public:
      * @return All Student of the Class.
      *
      * \par Complexity
-     * O(1)
+     * O(n) in which n is the number of students in the Class.
      */
     std::set<std::string> get_students() const;
     /**
