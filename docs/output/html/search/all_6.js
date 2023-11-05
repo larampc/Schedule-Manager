@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['empty_5fpending_5frequests_0',['empty_pending_requests',['../class_l_e_i_c.html#ab902b09fb2be3a8faa78064e44d8b56e',1,'LEIC']]],
-  ['exists_5fclass_1',['exists_class',['../class_l_e_i_c.html#a556e02f8e5dee9c4fc51706198444a14',1,'LEIC']]],
-  ['exists_5fuc_2',['exists_Uc',['../class_l_e_i_c.html#a4b6adf78b0287998080ae7198ad2b5e1',1,'LEIC']]]
+  ['handle_5fregistration_0',['handle_registration',['../class_menu.html#ae886faaa3ab90e8347162002de6abd7f',1,'Menu']]],
+  ['handle_5frequests_1',['handle_requests',['../class_menu.html#a073a6856740836cbd603a8ff0982ae80',1,'Menu']]],
+  ['has_5fuc_2',['has_uc',['../class_student.html#ac7ced5f93a8bee866ba869e1ecd0e039',1,'Student']]]
 ];

@@ -8,5 +8,5 @@ var searchData=
   ['set_5fnew_5fclass_5',['set_new_class',['../class_request.html#a2bc684d017e1a1dfd4f618de503f5e7f',1,'Request']]],
   ['set_5ftype_6',['set_type',['../class_request.html#a48bee5c53e5d88620e247f15bd22b86f',1,'Request']]],
   ['student_7',['Student',['../class_student.html#af16d6fa7b6714fee355433b4ca6ae473',1,'Student']]],
-  ['students_5fin_5fn_5fucs_8',['students_in_n_Ucs',['../class_l_e_i_c.html#a44fb81b853038c3a4be985c6326cdf74',1,'LEIC']]]
+  ['students_5fin_5fn_5fucs_8',['students_in_n_Ucs',['../class_l_e_i_c.html#af5f83c0cdae16e5b97112245a56d2c60',1,'LEIC']]]
 ];

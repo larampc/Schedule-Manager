@@ -1,15 +1,13 @@
 var searchData=
 [
-  ['part_201_0',['Part 1',['../index.html#part1_subsec',1,'']]],
-  ['part_202_1',['Part 2',['../index.html#part2_subsec',1,'']]],
-  ['pending_5frequest_5fis_5fempty_2',['pending_request_is_empty',['../class_l_e_i_c.html#aa64388f33f41ecd846ed8d190422e3a2',1,'LEIC']]],
-  ['print_5flesson_3',['print_lesson',['../class_lesson.html#a9fc7aff09d61ca6f70e0b4820587a55c',1,'Lesson']]],
-  ['print_5fpending_5frequests_4',['print_pending_requests',['../class_l_e_i_c.html#a5d195cbcab597038fbf88a32478b98d2',1,'LEIC']]],
-  ['print_5frequest_5',['print_request',['../class_request.html#ad2c708492c1d960c2de8be29f7b90c22',1,'Request']]],
-  ['print_5fschedule_6',['print_schedule',['../class_student.html#a92af3bc31bd389b670ef2fa1234f00d3',1,'Student']]],
-  ['process_5fnext_5frequest_7',['process_next_request',['../class_l_e_i_c.html#af884b930cc4215bb84a6c15e19de76a2',1,'LEIC']]],
-  ['process_5frequests_8',['process_requests',['../class_l_e_i_c.html#abff22c13b8cf0197447771c8e5787625',1,'LEIC']]],
-  ['program_9',['Welcome to the Schedule Management Program',['../index.html',1,'']]],
-  ['project_20description_10',['Project description',['../index.html#description_sec',1,'']]],
-  ['project_20do_11',['What can this project do?',['../index.html#utility_sec',1,'']]]
+  ['remove_5fclass_5ffrom_5fuc_0',['remove_class_from_uc',['../class_student.html#a901c72d27adf4657d65baf1eb325cb58',1,'Student']]],
+  ['remove_5fstudent_1',['remove_student',['../class_class.html#a8605559a821fdf529cd3330be5ac5a24',1,'Class']]],
+  ['request_2',['request',['../class_request.html',1,'Request'],['../class_request.html#a8a581037ac0536bd363baad922879161',1,'Request::Request()']]],
+  ['request_5fadd_3',['request_add',['../class_l_e_i_c.html#a0274b32015b032dd9301218dee30b6fd',1,'LEIC']]],
+  ['request_5fdelete_4',['request_delete',['../class_l_e_i_c.html#ac096fd94e2e307ee2ba149d1698dcc7b',1,'LEIC']]],
+  ['request_5ffile_5',['request_file',['../class_menu.html#ae8c3751d18faf6109911501d076c7de5',1,'Menu']]],
+  ['request_5fnew_6',['request_new',['../class_l_e_i_c.html#adc75ace142821f69ce40253b69a66132',1,'LEIC']]],
+  ['request_5fremove_7',['request_remove',['../class_l_e_i_c.html#ac635093a63bb281703a425e573a7e3a6',1,'LEIC']]],
+  ['request_5fswitch_8',['request_switch',['../class_l_e_i_c.html#a521f5232f2fd46ceb29a23587446e955',1,'LEIC']]],
+  ['run_9',['run',['../class_menu.html#a35656cd130e24d69383a5c9d0a73a38c',1,'Menu']]]
 ];

@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['add_5fclass_0',['add_class',['../class_student.html#a762237c5bc25a2d4f85357749f16d02c',1,'Student']]],
-  ['add_5flesson_1',['add_lesson',['../class_class.html#a271444f4b07167c333a507d06eb4f9fc',1,'Class']]],
-  ['add_5frequest_5fto_5fprocess_2',['add_request_to_process',['../class_l_e_i_c.html#a8e86a37a3951469f194b667ff8f87e9a',1,'LEIC']]],
-  ['add_5fstudent_3',['add_student',['../class_class.html#aa224d0bfe626cb2b10bb217c33d01d52',1,'Class']]],
-  ['add_5fstudent_5fto_5fclass_4',['add_student_to_class',['../class_l_e_i_c.html#a4e0fcb2b2b58ad8827ba24496688cd02',1,'LEIC']]]
+  ['can_20this_20project_20do_0',['What can this project do?',['../index.html#utility_sec',1,'']]],
+  ['class_1',['class',['../class_class.html',1,'Class'],['../class_class.html#afef8f5af12deaa328731e2e7f523629f',1,'Class::Class()']]],
+  ['class_5fbalance_5fvalid_2',['class_balance_valid',['../class_l_e_i_c.html#a877bb492fe259078f0a278d4764e8d83',1,'LEIC']]],
+  ['class_5foccupations_3',['class_occupations',['../class_menu.html#ad9e711deadda21d21a9d17ec4a4627ed',1,'Menu']]],
+  ['color_5fprint_4',['color_print',['../class_color___print.html',1,'Color_Print'],['../class_color___print.html#a2429c4f633959ebcc63df5d0f3438cee',1,'Color_Print::Color_Print()']]],
+  ['compatible_5fschedules_5',['compatible_schedules',['../class_l_e_i_c.html#a87bc52500d169cf9d3e0ba085d494576',1,'LEIC']]]
 ];

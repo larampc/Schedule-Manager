@@ -1,9 +1,6 @@
 var searchData=
 [
-  ['can_20this_20project_20do_0',['What can this project do?',['../index.html#utility_sec',1,'']]],
-  ['class_1',['class',['../class_class.html',1,'Class'],['../class_class.html#afef8f5af12deaa328731e2e7f523629f',1,'Class::Class()']]],
-  ['class_5fbalance_5fvalid_2',['class_balance_valid',['../class_l_e_i_c.html#a877bb492fe259078f0a278d4764e8d83',1,'LEIC']]],
-  ['class_5foccupations_3',['class_occupations',['../class_menu.html#ad9e711deadda21d21a9d17ec4a4627ed',1,'Menu']]],
-  ['color_5fprint_4',['color_print',['../class_color___print.html',1,'Color_Print'],['../class_color___print.html#a2429c4f633959ebcc63df5d0f3438cee',1,'Color_Print::Color_Print()']]],
-  ['compatible_5fschedules_5',['compatible_schedules',['../class_l_e_i_c.html#a87bc52500d169cf9d3e0ba085d494576',1,'LEIC']]]
+  ['empty_5fpending_5frequests_0',['empty_pending_requests',['../class_l_e_i_c.html#ab902b09fb2be3a8faa78064e44d8b56e',1,'LEIC']]],
+  ['exists_5fclass_1',['exists_class',['../class_l_e_i_c.html#a556e02f8e5dee9c4fc51706198444a14',1,'LEIC']]],
+  ['exists_5fuc_2',['exists_Uc',['../class_l_e_i_c.html#a4b6adf78b0287998080ae7198ad2b5e1',1,'LEIC']]]
 ];

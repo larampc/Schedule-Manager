@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['best_5fclass_5fbalance_0',['best_class_balance',['../class_l_e_i_c.html#ab4d029ee52f5420908ad0df6cbd54aec',1,'LEIC']]]
+  ['description_0',['Project description',['../index.html#description_sec',1,'']]],
+  ['do_1',['What can this project do?',['../index.html#utility_sec',1,'']]]
 ];

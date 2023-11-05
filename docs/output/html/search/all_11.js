@@ -1,13 +1,8 @@
 var searchData=
 [
-  ['save_5fto_5ffiles_0',['save_to_files',['../class_l_e_i_c.html#a14416642527a2f02929b50b0735cb5e8',1,'LEIC']]],
-  ['schedule_20management_20program_1',['Welcome to the Schedule Management Program',['../index.html',1,'']]],
-  ['set_5fcap_2',['set_cap',['../class_l_e_i_c.html#a5109feb2b28aa7c33c2ec151b51cc635',1,'LEIC']]],
-  ['set_5fcurrent_5fclass_3',['set_current_class',['../class_request.html#a3ab470a27c27d9fb2f6064f44245f47c',1,'Request']]],
-  ['set_5fcurrent_5fuc_4',['set_current_uc',['../class_request.html#a58ea8700561e55cff6edceab8a91c6cf',1,'Request']]],
-  ['set_5fname_5',['set_name',['../class_request.html#a2ec66e36a6133d19c5e4cbfab86f532a',1,'Request']]],
-  ['set_5fnew_5fclass_6',['set_new_class',['../class_request.html#a2bc684d017e1a1dfd4f618de503f5e7f',1,'Request']]],
-  ['set_5ftype_7',['set_type',['../class_request.html#a48bee5c53e5d88620e247f15bd22b86f',1,'Request']]],
-  ['student_8',['student',['../class_student.html',1,'Student'],['../class_student.html#af16d6fa7b6714fee355433b4ca6ae473',1,'Student::Student()']]],
-  ['students_5fin_5fn_5fucs_9',['students_in_n_Ucs',['../class_l_e_i_c.html#a44fb81b853038c3a4be985c6326cdf74',1,'LEIC']]]
+  ['uc_5fhas_5fvacancy_0',['Uc_has_vacancy',['../class_l_e_i_c.html#a5a03dcd18c4066822f1839c9a9f65055',1,'LEIC']]],
+  ['uc_5foccupations_1',['Uc_occupations',['../class_menu.html#a1f5197012147cc9c7ad648a1b27da88c',1,'Menu']]],
+  ['undo_5frequest_2',['undo_request',['../class_l_e_i_c.html#a725190f8a76d9a00ba5eb7383b02722e',1,'LEIC']]],
+  ['update_5fregistration_3',['update_registration',['../class_menu.html#af62c1b757abc28aa1f63947264aeb0a0',1,'Menu']]],
+  ['upload_5frequests_4',['upload_requests',['../class_l_e_i_c.html#a084c6a212ebe811ea94e486e7e6748d6',1,'LEIC']]]
 ];

@@ -163,9 +163,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3c3db3542c1ebfaffa2b7374a1b880a7" id="r_a3c3db3542c1ebfaffa2b7374a1b880a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a3c3db3542c1ebfaffa2b7374a1b880a7">list_class_occupations_by_occupation</a> (std::string classCode, bool order)</td></tr>
 <tr class="memdesc:a3c3db3542c1ebfaffa2b7374a1b880a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outputs the occupations of the given class sorting by its occupation in a given order.  <br /></td></tr>
 <tr class="separator:a3c3db3542c1ebfaffa2b7374a1b880a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44fb81b853038c3a4be985c6326cdf74" id="r_a44fb81b853038c3a4be985c6326cdf74"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a44fb81b853038c3a4be985c6326cdf74">students_in_n_Ucs</a> (int n)</td></tr>
-<tr class="memdesc:a44fb81b853038c3a4be985c6326cdf74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> with at least the given number of UCs.  <br /></td></tr>
-<tr class="separator:a44fb81b853038c3a4be985c6326cdf74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5f83c0cdae16e5b97112245a56d2c60" id="r_af5f83c0cdae16e5b97112245a56d2c60"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#af5f83c0cdae16e5b97112245a56d2c60">students_in_n_Ucs</a> (int n)</td></tr>
+<tr class="memdesc:af5f83c0cdae16e5b97112245a56d2c60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints all Students with at least the given number of UCs.  <br /></td></tr>
+<tr class="separator:af5f83c0cdae16e5b97112245a56d2c60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af298e15bd3347a2b743f69c09c76b714" id="r_af298e15bd3347a2b743f69c09c76b714"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#af298e15bd3347a2b743f69c09c76b714">not_disturb_balance</a> (<a class="el" href="class_class.html">Class</a> *currentClass, <a class="el" href="class_class.html">Class</a> *newClass)</td></tr>
 <tr class="memdesc:af298e15bd3347a2b743f69c09c76b714"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if by switching the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> from the current <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> to the new <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> the class balance is not disturbed.  <br /></td></tr>
 <tr class="separator:af298e15bd3347a2b743f69c09c76b714"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1431,14 +1431,14 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>CAP</b> = 30</td></tr>
 
 </div>
 </div>
-<a id="a44fb81b853038c3a4be985c6326cdf74" name="a44fb81b853038c3a4be985c6326cdf74"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a44fb81b853038c3a4be985c6326cdf74">&#9670;&#160;</a></span>students_in_n_Ucs()</h2>
+<a id="af5f83c0cdae16e5b97112245a56d2c60" name="af5f83c0cdae16e5b97112245a56d2c60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5f83c0cdae16e5b97112245a56d2c60">&#9670;&#160;</a></span>students_in_n_Ucs()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int LEIC::students_in_n_Ucs </td>
+          <td class="memname">void LEIC::students_in_n_Ucs </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>n</em></td><td>)</td>
@@ -1447,14 +1447,13 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>CAP</b> = 30</td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gets the number of <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> with at least the given number of UCs. </p>
+<p>Prints all Students with at least the given number of UCs. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">n</td><td>The number of UCs to check. </td></tr>
+    <tr><td class="paramname">n</td><td>The number of UCs to check.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The number of <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> with at least the given number of UCs.</dd></dl>
 <dl class="section user"><dt>Complexity</dt><dd>O(n) in which n is the number of students in <a class="el" href="class_l_e_i_c.html" title="This is a class for the course LEIC.">LEIC</a>. </dd></dl>
 
 </div>
