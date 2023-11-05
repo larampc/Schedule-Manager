@@ -292,11 +292,14 @@ public:
      */
     bool not_disturb_balance(Class *currentClass, Class *newClass);
     /**
-     * \brief Checks if by inserting a Student into a Class, the Class Balance and schedule are valid.
+     * \brief Checks if by adding a Student into a Class, the class balance and schedule are valid.
      *
-     * @param student The Student to insert into the Class to check.
-     * @param newClass The Class to insert a Student to check.
-     * @return References of all Class with the same UC of the given Class that by inserting the given Student the Class Balance and schedule are valid, or empty if by inserting a Student into the given Class, the Class Balance and schedule are valid.
+     * @param student The Student to add to the Class.
+     * @param newClass The Class to add the Student to.
+     * @return References of all Class with the same UC of the given Class that by adding the given Student the class balance and schedule are valid, or empty if by adding a Student into the given Class, the Class Balance and schedule are valid.
+     *
+     * \par Complexity
+     * O(max(log n, m)) in which n is the number of classes in LEIC and m is the number of classes in the UC.
      */
     std::vector<Class*> class_balance_valid(Student* student, Class* newClass);
     /**

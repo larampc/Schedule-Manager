@@ -548,11 +548,11 @@ vector<Class*> LEIC::class_balance_valid(Student* student, Class* newClass) {
     }
     if(newClass->get_students().size() + 1 - min <= 4) return {};
     for (Class* c: classes_in_uc) {
-        if ((c->get_students().size() + 1 - min <= 4) && compatible_schedules(student, c)) res.push_back(c);
+        if ((c->get_students().size() + 1 - min <= 4) && compatible_schedules(student, c) && c->get_students().size() < CAP) res.push_back(c);
     }
     if (res.empty() && max == newClass->get_students().size()) {
         for (Class* c: classes_in_uc) {
-            if ((c->get_students().size() < max) && compatible_schedules(student, c)) res.push_back(c);
+            if ((c->get_students().size() < max) && compatible_schedules(student, c) && c->get_students().size() < CAP) res.push_back(c);
         }
     }
     return res;
@@ -758,7 +758,15 @@ bool LEIC::request_switch(Request& request) {
     Student* student = get_student_from_studentCode(request.get_studentCode());
     Class* newClass = get_class_from_classCode_and_UcCode(request.get_new_classCode(), request.get_new_UcCode());
     Class* currentClass = get_class_from_classCode_and_UcCode(request.get_current_classCode(), request.get_current_UcCode());
-    if (request.get_current_UcCode() == request.get_new_UcCode()) { // mesma UC
+    if (request.get_current_UcCode() == request.get_new_UcCode()) {
+        if (newClass->get_students().size() >= CAP) {
+            Color_Print("red", "Request rejected. The class ");
+            Color_Print("yellow", request.get_new_classCode());
+            Color_Print("red", " from UC ");
+            Color_Print("yellow", request.get_new_UcCode());
+            Color_Print("red", " it's full.", true);
+            return false;
+        }
         if (!not_disturb_balance(currentClass, newClass)){
             add_student_to_class(student,currentClass);
             processed_requests.pop();
