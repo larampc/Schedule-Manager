@@ -113,7 +113,7 @@ void Script::handle_requests() {
     Color_Print("cyan", " - press 2", true);
     Color_Print("white", "Upload file with changes");
     Color_Print("cyan", " - press 3", true);
-    Color_Print("white", "Undo Previous Operation");
+    Color_Print("white", "Undo Previous request");
     Color_Print("cyan", " - press 4", true);
     Color_Print("white", "Check pending requests");
     Color_Print("cyan", " - press 5", true);
@@ -438,12 +438,19 @@ void Script::handle_registration() {
             break;
         }
         case '3': {
-            data.process_requests();
             handle_requests();
             return;
         }
     }
-    data.process_requests();
+    Color_Print("blue", "Would you like to process all requests now? ");
+    Color_Print("cyan", "[Y/N]", true);
+    string answer;
+    cin >> answer;
+    while(answer != "Y" && answer != "N") {
+        invalid();
+        cin >> answer;
+    }
+    if(answer == "Y") data.process_requests();
 }
 
 void Script::request_file() {
