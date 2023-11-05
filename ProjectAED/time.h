@@ -27,18 +27,27 @@ public:
      * \brief Gets the hour.
      *
      * @return The hour of the Time.
+     *
+     * \paragraph Complexity
+     * O(n)
      */
     int get_hour() const;
     /**
      * \brief Gets the minutes.
      *
      * @return The minutes of the Time.
+     *
+     * \paragraph Complexity
+     * O(n)
      */
     int get_minute() const;
     /**
      * \brief Gets the Time in float format.
      *
      * @return The Time in float format.
+     *
+     * \paragraph Complexity
+     * O(n)
      */
     float get_time_in_float() const;
     /**
