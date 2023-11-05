@@ -1,14 +1,13 @@
 var searchData=
 [
-  ['save_5fto_5ffiles_0',['save_to_files',['../class_l_e_i_c.html#a14416642527a2f02929b50b0735cb5e8',1,'LEIC']]],
-  ['script_1',['Script',['../class_script.html#abfe4bfbb5bfc35131f16531818354349',1,'Script']]],
-  ['set_5fcap_2',['set_cap',['../class_l_e_i_c.html#a5109feb2b28aa7c33c2ec151b51cc635',1,'LEIC']]],
-  ['set_5fcurrent_5fclass_3',['set_current_class',['../class_request.html#a3ab470a27c27d9fb2f6064f44245f47c',1,'Request']]],
-  ['set_5fcurrent_5fuc_4',['set_current_uc',['../class_request.html#a58ea8700561e55cff6edceab8a91c6cf',1,'Request']]],
-  ['set_5fname_5',['set_name',['../class_request.html#a2ec66e36a6133d19c5e4cbfab86f532a',1,'Request']]],
-  ['set_5fnew_5fclass_6',['set_new_class',['../class_request.html#a2bc684d017e1a1dfd4f618de503f5e7f',1,'Request']]],
-  ['set_5ftype_7',['set_type',['../class_request.html#a48bee5c53e5d88620e247f15bd22b86f',1,'Request']]],
-  ['student_8',['Student',['../class_student.html#af16d6fa7b6714fee355433b4ca6ae473',1,'Student']]],
-  ['studentcode_5flast_5frequest_9',['studentCode_last_request',['../class_l_e_i_c.html#a2234321ab8a3ab3e93ef13a92408519d',1,'LEIC']]],
-  ['students_5fin_5fn_5fucs_10',['students_in_n_Ucs',['../class_l_e_i_c.html#a44fb81b853038c3a4be985c6326cdf74',1,'LEIC']]]
+  ['remove_5fclass_5ffrom_5fuc_0',['remove_class_from_uc',['../class_student.html#a901c72d27adf4657d65baf1eb325cb58',1,'Student']]],
+  ['remove_5fstudent_1',['remove_student',['../class_class.html#a8605559a821fdf529cd3330be5ac5a24',1,'Class']]],
+  ['request_2',['Request',['../class_request.html#a8a581037ac0536bd363baad922879161',1,'Request']]],
+  ['request_5fadd_3',['request_add',['../class_l_e_i_c.html#a0274b32015b032dd9301218dee30b6fd',1,'LEIC']]],
+  ['request_5fdelete_4',['request_delete',['../class_l_e_i_c.html#ac096fd94e2e307ee2ba149d1698dcc7b',1,'LEIC']]],
+  ['request_5ffile_5',['request_file',['../class_script.html#aa283e4281051f847bbcf41b29e70dbd3',1,'Script']]],
+  ['request_5fnew_6',['request_new',['../class_l_e_i_c.html#adc75ace142821f69ce40253b69a66132',1,'LEIC']]],
+  ['request_5fremove_7',['request_remove',['../class_l_e_i_c.html#ac635093a63bb281703a425e573a7e3a6',1,'LEIC']]],
+  ['request_5fswitch_8',['request_switch',['../class_l_e_i_c.html#a521f5232f2fd46ceb29a23587446e955',1,'LEIC']]],
+  ['run_9',['run',['../class_script.html#a73a1254b03be5b6150f8029f898615da',1,'Script']]]
 ];

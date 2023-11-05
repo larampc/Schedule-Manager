@@ -18,11 +18,12 @@ var searchData=
   ['get_5frequest_15',['get_request',['../class_script.html#afba07dde0dde60de0416ec7af5ca0222',1,'Script']]],
   ['get_5fstudent_5ffrom_5fstudentcode_16',['get_student_from_studentCode',['../class_l_e_i_c.html#ad20a17e77f772697f2966a2dc4e84890',1,'LEIC']]],
   ['get_5fstudentcode_17',['get_studentcode',['../class_request.html#a872322799413929d2b975ef2dad151e2',1,'Request::get_studentCode()'],['../class_student.html#ae4b4fc6733883d16bf85670f11b3ad2b',1,'Student::get_studentCode()']]],
-  ['get_5fstudentname_18',['get_studentName',['../class_request.html#a93db6cac9f20e255b80e28b28b9318f5',1,'Request']]],
-  ['get_5fstudents_19',['get_students',['../class_class.html#abe3c1c8781f825145a3331cd6fbd322f',1,'Class']]],
-  ['get_5ftime_5fin_5ffloat_20',['get_time_in_float',['../class_time.html#a198e638b1dc8400dcec9ac910fbf43a9',1,'Time']]],
-  ['get_5ftype_21',['get_type',['../class_lesson.html#a3b50cbd5c5f032c6d1b6f0e6d04b261f',1,'Lesson::get_type()'],['../class_request.html#a09c5a9f28e449be3771ee354a064f095',1,'Request::get_type()']]],
-  ['get_5fuccode_22',['get_ucCode',['../class_class.html#a795b4a193f46589066eb166bd809482f',1,'Class']]],
-  ['get_5fuccodes_23',['get_UcCodes',['../class_l_e_i_c.html#a481934200e6d538987a5beb4679d6661',1,'LEIC']]],
-  ['get_5fweekday_24',['get_weekday',['../class_lesson.html#a7e2996ef61ab3373746caa965f1c97c6',1,'Lesson']]]
+  ['get_5fstudentcode_5flast_5frequest_18',['get_studentCode_last_request',['../class_l_e_i_c.html#ae9ce5b9c149aa7544ef3c43eda6c914a',1,'LEIC']]],
+  ['get_5fstudentname_19',['get_studentName',['../class_request.html#a93db6cac9f20e255b80e28b28b9318f5',1,'Request']]],
+  ['get_5fstudents_20',['get_students',['../class_class.html#abe3c1c8781f825145a3331cd6fbd322f',1,'Class']]],
+  ['get_5ftime_5fin_5ffloat_21',['get_time_in_float',['../class_time.html#a198e638b1dc8400dcec9ac910fbf43a9',1,'Time']]],
+  ['get_5ftype_22',['get_type',['../class_lesson.html#a3b50cbd5c5f032c6d1b6f0e6d04b261f',1,'Lesson::get_type()'],['../class_request.html#a09c5a9f28e449be3771ee354a064f095',1,'Request::get_type()']]],
+  ['get_5fuccode_23',['get_ucCode',['../class_class.html#a795b4a193f46589066eb166bd809482f',1,'Class']]],
+  ['get_5fuccodes_24',['get_UcCodes',['../class_l_e_i_c.html#a481934200e6d538987a5beb4679d6661',1,'LEIC']]],
+  ['get_5fweekday_25',['get_weekday',['../class_lesson.html#a7e2996ef61ab3373746caa965f1c97c6',1,'Lesson']]]
 ];
