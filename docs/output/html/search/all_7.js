@@ -15,7 +15,7 @@ var searchData=
   ['get_5fname_12',['get_name',['../class_student.html#ae489956a740c6fb570344c7010aa6841',1,'Student']]],
   ['get_5fnew_5fclasscode_13',['get_new_classCode',['../class_request.html#a9c147913d03ced5284d7537ea19b8aae',1,'Request']]],
   ['get_5fnew_5fuccode_14',['get_new_UcCode',['../class_request.html#a19fbf1c949b74bbd5c4c6de3656c10ea',1,'Request']]],
-  ['get_5frequest_15',['get_request',['../class_script.html#afba07dde0dde60de0416ec7af5ca0222',1,'Script']]],
+  ['get_5frequest_15',['get_request',['../class_menu.html#abebd187e73627fae881c9d4bee301f50',1,'Menu']]],
   ['get_5fstudent_5ffrom_5fstudentcode_16',['get_student_from_studentCode',['../class_l_e_i_c.html#ad20a17e77f772697f2966a2dc4e84890',1,'LEIC']]],
   ['get_5fstudentcode_17',['get_studentcode',['../class_request.html#a872322799413929d2b975ef2dad151e2',1,'Request::get_studentCode()'],['../class_student.html#ae4b4fc6733883d16bf85670f11b3ad2b',1,'Student::get_studentCode()']]],
   ['get_5fstudentcode_5flast_5frequest_18',['get_studentCode_last_request',['../class_l_e_i_c.html#ae9ce5b9c149aa7544ef3c43eda6c914a',1,'LEIC']]],

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['quit_0',['quit',['../class_script.html#a097280ad987859834eea0db739e27449',1,'Script']]]
+  ['quit_0',['quit',['../class_menu.html#a5072c4d7aca8f9071c9ee9025a7019f9',1,'Menu']]]
 ];
