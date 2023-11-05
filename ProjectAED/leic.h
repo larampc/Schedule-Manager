@@ -153,53 +153,54 @@ public:
      * O(max(log n, m)) in which n is the number of classes in LEIC and m is the number of classes in the UC.
      */
     bool Uc_has_vacancy(std::string UcCode);
+    void list_students_by_studentCode(bool order) const;
     /**
-     * \brief Prints all of the Student enrolled in the course sorted by their student code.
+     * \brief Prints all of the Student enrolled in the course sorted by their name in a given order.
+     *
+     * @param order The order to sort by True if ascending, false if descending.
      *
      * \par Complexity
      * O(n) in which n is the number of students in LEIC.
      */
-    void list_students_by_studentCode();
+    void list_students_by_name(bool order) const;
     /**
-     * \brief Prints all of the Student enrolled in the course sorted by their name.
+     * \brief Prints all of the Student enrolled in the given UC sorted by their up in a given order.
      *
-     * \par Complexity
-     * O(n) in which n is the number of students in LEIC.
-     */
-    void list_students_by_name();
-    /**
-     * \brief Prints all of the Student enrolled in the given UC sorted by their up.
-     *
-     * @param uc The UC code of the UC to print all Student.
+     * @param UcCode The UC code of the UC to print all Student.
+     * @param order The order to sort by True if ascending, false if descending.
      *
      * \par Complexity
      * O(n) in which n is the number of students in the UC.
      */
-    void list_UC_students_by_studentCode(std::string UcCode);
+    void list_UC_students_by_studentCode(std::string UcCode, bool order);
     /**
-     * \brief Prints all of the Student enrolled in the given UC sorted by their name.
+     * \brief Prints all of the Student enrolled in the given UC sorted by their name in a given order.
      *
-     * @param uc The UC code of the UC to print all Student.
+     * @param UcCode The UC code of the UC to print all Student.
+     * @param order The order to sort by True if ascending, false if descending.
+     *
      */
-    void list_UC_students_by_name(std::string UcCode);
+    void list_UC_students_by_name(std::string UcCode, bool order);
     /**
-     * \brief Prints all of the Student enrolled in the given Class sorted by their up.
+     * \brief Prints all of the Student enrolled in the given Class sorted by their up in a given order.
      *
      * @param class_ The Class to print all Student.
+     * @param order The order to sort by True if ascending, false if descending.
      *
      * \par Complexity
      * O(n) in which n is the number of students in the Class.
      */
-    void list_class_students_by_studentCode(Class* class_) const;
+    void list_class_students_by_studentCode(Class* class_, bool order) const;
     /**
-     * \brief Prints all of the Student enrolled in the given Class sorted by their name.
+     * \brief Prints all of the Student enrolled in the given Class sorted by their name in a given order.
      *
      * @param class_ The Class to print all Student.
+     * @param order The order to sort by True if ascending, false if descending.
      *
      * \par Complexity
      * O(n) in which n is the number of students in the Class.
      */
-    void list_class_students_by_name(Class* class_) const;
+    void list_class_students_by_name(Class* class_, bool order) const;
     /**
      * \brief Outputs the occupations of the given year sorting by UcCode in a given order.
      *

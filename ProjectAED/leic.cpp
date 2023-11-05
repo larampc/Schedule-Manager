@@ -169,43 +169,63 @@ bool LEIC::Uc_has_vacancy(std::string uccode) {
     return false;
 }
 
-void LEIC::list_students_by_studentCode() {
+void LEIC::list_students_by_studentCode(bool order) const{
     Color_Print("blue", "Students of Course ");
     Color_Print("yellow", "LEIC", true);
     Color_Print("blue", "StudentCode");
     Color_Print("green", "\t| ");
     Color_Print("white", "NAME", true);
     Color_Print("green", "-----------------------", true);
-    for(pair<string, Student> p : code_students){
-        Color_Print("blue", p.first);
-        Color_Print("green", "\t| ");
-        Color_Print("white", p.second.get_name(), true);
+    if(!order){
+        auto it = code_students.end();
+        while(it-- != code_students.begin()){
+            Color_Print("blue", it->first);
+            Color_Print("green", "\t| ");
+            Color_Print("white", it->second.get_name(), true);
+        }
+    }
+    else{
+        for(pair<string, Student> p : code_students){
+            Color_Print("blue", p.first);
+            Color_Print("green", "\t| ");
+            Color_Print("white", p.second.get_name(), true);
+        }
     }
     Color_Print("white", "Total number of students: ");
     Color_Print("blue", to_string(code_students.size()));
 }
 
-void LEIC::list_students_by_name(){
+void LEIC::list_students_by_name(bool order) const{
     Color_Print("blue", "Students of Course ");
     Color_Print("yellow", "LEIC", true);
     Color_Print("white", "StudentCode");
     Color_Print("green", "\t| ");
     Color_Print("blue", "NAME", true);
     Color_Print("green", "-----------------------", true);
-    map<string, string> students_up;
+    map<string, string> students_code;
     for(pair<string, Student> p : code_students){
-        students_up[p.second.get_name()] = p.first;
+        students_code[p.second.get_name()] = p.first;
     }
-    for(pair<string, string> p : students_up){
-        Color_Print("white", p.second);
-        Color_Print("green", "\t| ");
-        Color_Print("blue", p.first, true);
+    if(!order){
+        auto it = students_code.end();
+        while(it-- != students_code.begin()){
+            Color_Print("white", it->second);
+            Color_Print("green", "\t| ");
+            Color_Print("blue", it->first, true);
+        }
+    }
+    else{
+        for(pair<string, string> p : students_code){
+            Color_Print("white", p.second);
+            Color_Print("green", "\t| ");
+            Color_Print("blue", p.first, true);
+        }
     }
     Color_Print("white", "Total number of students: ");
     Color_Print("blue", to_string(code_students.size()));
 }
 
-void LEIC::list_UC_students_by_studentCode(std::string UcCode) {
+void LEIC::list_UC_students_by_studentCode(std::string UcCode, bool order) {
     Color_Print("blue", "Students of UC ");
     Color_Print("yellow", UcCode, true);
     Color_Print("blue", "StudentCode");
@@ -218,10 +238,20 @@ void LEIC::list_UC_students_by_studentCode(std::string UcCode) {
         set<string> studentUC = c->get_students();
         studentinUC.insert(studentUC.begin(), studentUC.end());
     }
-    for(string code : studentinUC){
-        Color_Print("blue", code);
-        Color_Print("green", "\t| ");
-        Color_Print("white", code_students.at(code).get_name(), true);
+    if(!order){
+        auto it = studentinUC.end();
+        while(it-- != studentinUC.begin()){
+            Color_Print("blue", *it);
+            Color_Print("green", "\t| ");
+            Color_Print("white", code_students.at(*it).get_name(), true);
+        }
+    }
+    else {
+        for(string code : studentinUC){
+            Color_Print("blue", code);
+            Color_Print("green", "\t| ");
+            Color_Print("white", code_students.at(code).get_name(), true);
+        }
     }
     Color_Print("white", "Total students in the UC ");
     Color_Print("yellow", UcCode);
@@ -229,7 +259,7 @@ void LEIC::list_UC_students_by_studentCode(std::string UcCode) {
     Color_Print("blue", to_string(studentinUC.size()), true);
 }
 
-void LEIC::list_UC_students_by_name(std::string ucCode) {
+void LEIC::list_UC_students_by_name(std::string ucCode, bool order) {
     Color_Print("blue", "Students of UC ");
     Color_Print("yellow", ucCode, true);
     Color_Print("white", "StudentCode");
@@ -239,12 +269,22 @@ void LEIC::list_UC_students_by_name(std::string ucCode) {
     map<string, string> UCstudents_code;
     vector<Class*> classes_uc = get_classes_from_UcCode(ucCode);
     for(Class* c : classes_uc){
-        for (string up: c->get_students()) UCstudents_code[code_students.at(up).get_name()] = up;
+        for (string code: c->get_students()) UCstudents_code[code_students.at(code).get_name()] = code;
     }
-    for (pair<string, string> p: UCstudents_code){
-        Color_Print("white", p.second);
-        Color_Print("green", "\t| ");
-        Color_Print("blue", p.first, true);
+    if (!order) {
+        auto it = UCstudents_code.end();
+        while(it-- != UCstudents_code.begin()) {
+            Color_Print("white", it->second);
+            Color_Print("green", "\t| ");
+            Color_Print("blue", it->first, true);
+        }
+    }
+    else {
+        for (pair<string, string> p: UCstudents_code){
+            Color_Print("white", p.second);
+            Color_Print("green", "\t| ");
+            Color_Print("blue", p.first, true);
+        }
     }
     Color_Print("white", "Total students in the UC ");
     Color_Print("yellow", ucCode);
@@ -252,7 +292,7 @@ void LEIC::list_UC_students_by_name(std::string ucCode) {
     Color_Print("blue", to_string(UCstudents_code.size()), true);
 }
 
-void LEIC::list_class_students_by_studentCode(Class *class_) const {
+void LEIC::list_class_students_by_studentCode(Class *class_, bool order) const {
     Color_Print("blue", "Students of Class ");
     Color_Print("yellow", class_->get_classCode());
     Color_Print("blue", " of UC ");
@@ -261,10 +301,21 @@ void LEIC::list_class_students_by_studentCode(Class *class_) const {
     Color_Print("green", "\t| ");
     Color_Print("white", "NAME", true);
     Color_Print("green", "-----------------------", true);
-    for(string up : class_->get_students()){
-        Color_Print("blue", up);
-        Color_Print("green", "\t| ");
-        Color_Print("white", code_students.at(up).get_name(), true);
+    set<string> class_students = class_->get_students();
+    if (!order) {
+        auto it = class_students.end();
+        while (it-- != class_students.begin()) {
+            Color_Print("blue", *it);
+            Color_Print("green", "\t| ");
+            Color_Print("white", code_students.at(*it).get_name(), true);
+        }
+    }
+    else {
+        for(string code : class_students){
+            Color_Print("blue", code);
+            Color_Print("green", "\t| ");
+            Color_Print("white", code_students.at(code).get_name(), true);
+        }
     }
     Color_Print("white", "Total students in the class ");
     Color_Print("yellow", class_->get_ucCode());
@@ -274,7 +325,7 @@ void LEIC::list_class_students_by_studentCode(Class *class_) const {
     Color_Print("blue", to_string(class_->get_students().size()), true);
 }
 
-void LEIC::list_class_students_by_name(Class *class_) const {
+void LEIC::list_class_students_by_name(Class *class_, bool order) const {
     Color_Print("blue", "Students of Class ");
     Color_Print("yellow", class_->get_classCode());
     Color_Print("blue", " of UC ");
@@ -284,11 +335,21 @@ void LEIC::list_class_students_by_name(Class *class_) const {
     Color_Print("blue", "NAME", true);
     Color_Print("green", "-----------------------", true);
     map<string, string> UCstudents_code;
-    for (string up: class_->get_students()) UCstudents_code[code_students.at(up).get_name()] = up;
-    for (pair<string, string> p: UCstudents_code){
-        Color_Print("white", p.second);
-        Color_Print("green", "\t| ");
-        Color_Print("blue", p.first, true);
+    for (string code: class_->get_students()) UCstudents_code[code_students.at(code).get_name()] = code;
+    if (!order) {
+        auto it = UCstudents_code.end();
+        while (it-- != UCstudents_code.begin()) {
+            Color_Print("white", it->second);
+            Color_Print("green", "\t| ");
+            Color_Print("blue", it->first, true);
+        }
+    }
+    else {
+        for (pair<string, string> p: UCstudents_code){
+            Color_Print("white", p.second);
+            Color_Print("green", "\t| ");
+            Color_Print("blue", p.first, true);
+        }
     }
     Color_Print("white", "Total students in the class ");
     Color_Print("yellow", class_->get_ucCode());

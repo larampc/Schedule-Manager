@@ -742,8 +742,19 @@ void Menu::listStudents() {
                 invalid();
                 cin >> option;
             }
-            if(option == "1") data.list_students_by_studentCode();
-            else data.list_students_by_name();
+            Color_Print("blue", "Pick: ");
+            Color_Print("cyan", "1- ");
+            Color_Print("white", "Ascending Order ");
+            Color_Print("cyan", "2- ");
+            Color_Print("white", "Descending Order", true);
+            string order;
+            cin >> order;
+            while(order != "1" && order != "2"){
+                invalid();
+                cin >> order;
+            }
+            if(option == "1") data.list_students_by_studentCode(order == "1");
+            else data.list_students_by_name(order == "1");
             break;
         }
         case '2': {
@@ -765,8 +776,19 @@ void Menu::listStudents() {
                 invalid();
                 cin >> option;
             }
-            if(option == "1") data.list_UC_students_by_studentCode(UC);
-            else data.list_UC_students_by_name(UC);
+            string order;
+            Color_Print("blue", "Pick: ");
+            Color_Print("cyan", "1- ");
+            Color_Print("white", "Ascending Order ");
+            Color_Print("cyan", "2- ");
+            Color_Print("white", "Descending Order", true);
+            cin >> order;
+            while(order != "1" && order != "2"){
+                invalid();
+                cin >> order;
+            }
+            if(option == "1") data.list_UC_students_by_studentCode(UC, order == "1");
+            else data.list_UC_students_by_name(UC, order == "1");
             break;
         }
         case '3': {
@@ -797,8 +819,19 @@ void Menu::listStudents() {
                 invalid();
                 cin >> option;
             }
-            if(option == "1") data.list_class_students_by_studentCode(data.get_class_from_classCode_and_UcCode(class_, UC));
-            else data.list_class_students_by_name(data.get_class_from_classCode_and_UcCode(class_, UC));
+            string order;
+            Color_Print("blue", "Pick: ");
+            Color_Print("cyan", "1- ");
+            Color_Print("white", "Ascending Order ");
+            Color_Print("cyan", "2- ");
+            Color_Print("white", "Descending Order", true);
+            cin >> order;
+            while(order != "1" && order != "2"){
+                invalid();
+                cin >> order;
+            }
+            if(option == "1") data.list_class_students_by_studentCode(data.get_class_from_classCode_and_UcCode(class_, UC), order == "1");
+            else data.list_class_students_by_name(data.get_class_from_classCode_and_UcCode(class_, UC), order == "1");
             break;
         }
         case '4': listings();
