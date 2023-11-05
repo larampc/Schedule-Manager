@@ -533,7 +533,7 @@ void Menu::listings(){
                 invalid();
                 cin >> n;
             }
-            (data.students_in_n_Ucs(stoi(n)));
+            data.students_in_n_Ucs(stoi(n));
             break;
         }
         case '5': run();

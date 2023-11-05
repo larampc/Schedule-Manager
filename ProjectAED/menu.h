@@ -12,8 +12,6 @@
  *
  * \section utility_sec What can this project do?
  *
- * \subsection part1_subsec Part 1
- *
  * Choose to import from the original or current dataset.
  * Get information such as:
  * - Schedules of a student, class or UC;
@@ -21,9 +19,6 @@
  * - List of course, year, UC or class occupations sorted by class code or occupation (descending or ascending order);
  * - List of students with at least N UCs.
 
- *
- * \subsection part2_subsec Part 2
- *
  * Make requests such as:
  * - add or remove a student;
  * - add, remove or switch UC/class of a given student;
@@ -32,6 +27,7 @@
  * - check pending requests;
  * - process next request or all pending requests;
  * - erase pending requests.
+
  * Change settings such as the maximum capacity of a class and enable colour mode.
  */
 
