@@ -40,10 +40,10 @@ public:
      */
     std::string get_type() const;
     /**
-     * \brief Checks if a Lesson overlaps in time.
+     * \brief Checks if the Lesson overlaps with a given Lesson.
      *
      * @param l The Lesson to check.
-     * @return True if the Lesson overlaps in time.
+     * @return True if the Lesson overlaps with the given Lesson.
      */
     bool overlap(Lesson l) const;
     /**

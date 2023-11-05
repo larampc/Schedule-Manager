@@ -91,9 +91,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad20a17e77f772697f2966a2dc4e84890" id="r_ad20a17e77f772697f2966a2dc4e84890"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_student.html">Student</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#ad20a17e77f772697f2966a2dc4e84890">get_student_from_studentCode</a> (std::string studentCode)</td></tr>
 <tr class="memdesc:ad20a17e77f772697f2966a2dc4e84890"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the <a class="el" href="class_student.html" title="This is a class for representing students.">Student</a> with the given up.  <br /></td></tr>
 <tr class="separator:ad20a17e77f772697f2966a2dc4e84890"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7414556831901e7bccc97e60fc8e7dc" id="r_ad7414556831901e7bccc97e60fc8e7dc"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="class_class.html">Class</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#ad7414556831901e7bccc97e60fc8e7dc">get_classes</a> () const</td></tr>
-<tr class="memdesc:ad7414556831901e7bccc97e60fc8e7dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all existing <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> in <a class="el" href="class_l_e_i_c.html" title="This is a class for the course LEIC.">LEIC</a>.  <br /></td></tr>
-<tr class="separator:ad7414556831901e7bccc97e60fc8e7dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2188aa471f572f3e501ed22d44dae33b" id="r_a2188aa471f572f3e501ed22d44dae33b"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_class.html">Class</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a2188aa471f572f3e501ed22d44dae33b">get_classes</a> () const</td></tr>
+<tr class="memdesc:a2188aa471f572f3e501ed22d44dae33b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all existing <a class="el" href="class_class.html" title="This is a class for representing Classes.">Class</a> in <a class="el" href="class_l_e_i_c.html" title="This is a class for the course LEIC.">LEIC</a>.  <br /></td></tr>
+<tr class="separator:a2188aa471f572f3e501ed22d44dae33b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a481934200e6d538987a5beb4679d6661" id="r_a481934200e6d538987a5beb4679d6661"><td class="memItemLeft" align="right" valign="top">std::set&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a481934200e6d538987a5beb4679d6661">get_UcCodes</a> () const</td></tr>
 <tr class="memdesc:a481934200e6d538987a5beb4679d6661"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the UC codes of all existing UC.  <br /></td></tr>
 <tr class="separator:a481934200e6d538987a5beb4679d6661"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -193,6 +193,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>undo_request</b> ()</
 void&#160;</td><td class="memItemRight" valign="bottom"><b>process_requests</b> ()</td></tr>
 <tr class="memdesc:abff22c13b8cf0197447771c8e5787625"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes all <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> in the queue by checking the type running it. <br /></td></tr>
 <tr class="separator:abff22c13b8cf0197447771c8e5787625"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af884b930cc4215bb84a6c15e19de76a2" id="r_af884b930cc4215bb84a6c15e19de76a2"><td class="memItemLeft" align="right" valign="top"><a id="af884b930cc4215bb84a6c15e19de76a2" name="af884b930cc4215bb84a6c15e19de76a2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>process_next_request</b> ()</td></tr>
+<tr class="memdesc:af884b930cc4215bb84a6c15e19de76a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes next <a class="el" href="class_request.html" title="This is a class for representing requests.">Request</a> in the queue by checking the type running it. <br /></td></tr>
+<tr class="separator:af884b930cc4215bb84a6c15e19de76a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14416642527a2f02929b50b0735cb5e8" id="r_a14416642527a2f02929b50b0735cb5e8"><td class="memItemLeft" align="right" valign="top"><a id="a14416642527a2f02929b50b0735cb5e8" name="a14416642527a2f02929b50b0735cb5e8"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>save_to_files</b> ()</td></tr>
 <tr class="memdesc:a14416642527a2f02929b50b0735cb5e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves all modifications and all successful Requests to files. <br /></td></tr>
@@ -221,6 +225,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>save_to_files</b> ()<
 <tr class="memitem:a3c3db3542c1ebfaffa2b7374a1b880a7" id="r_a3c3db3542c1ebfaffa2b7374a1b880a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_l_e_i_c.html#a3c3db3542c1ebfaffa2b7374a1b880a7">list_class_occupations_by_occupation</a> (std::string classCode, bool order)</td></tr>
 <tr class="memdesc:a3c3db3542c1ebfaffa2b7374a1b880a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outputs the occupations of the given class sorting by its occupation in a given order.  <br /></td></tr>
 <tr class="separator:a3c3db3542c1ebfaffa2b7374a1b880a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c18bdca560e670985b8559bc927f405" id="r_a5c18bdca560e670985b8559bc927f405"><td class="memItemLeft" align="right" valign="top"><a id="a5c18bdca560e670985b8559bc927f405" name="a5c18bdca560e670985b8559bc927f405"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>check_pending_requests</b> ()</td></tr>
+<tr class="separator:a5c18bdca560e670985b8559bc927f405"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa64388f33f41ecd846ed8d190422e3a2" id="r_aa64388f33f41ecd846ed8d190422e3a2"><td class="memItemLeft" align="right" valign="top"><a id="aa64388f33f41ecd846ed8d190422e3a2" name="aa64388f33f41ecd846ed8d190422e3a2"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>pending_request_is_empty</b> ()</td></tr>
+<tr class="separator:aa64388f33f41ecd846ed8d190422e3a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -620,14 +630,14 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>CAP</b> = 30</td></tr>
 
 </div>
 </div>
-<a id="ad7414556831901e7bccc97e60fc8e7dc" name="ad7414556831901e7bccc97e60fc8e7dc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad7414556831901e7bccc97e60fc8e7dc">&#9670;&#160;</a></span>get_classes()</h2>
+<a id="a2188aa471f572f3e501ed22d44dae33b" name="a2188aa471f572f3e501ed22d44dae33b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2188aa471f572f3e501ed22d44dae33b">&#9670;&#160;</a></span>get_classes()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const vector&lt; <a class="el" href="class_class.html">Class</a> &gt; * LEIC::get_classes </td>
+          <td class="memname">vector&lt; <a class="el" href="class_class.html">Class</a> &gt; LEIC::get_classes </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>

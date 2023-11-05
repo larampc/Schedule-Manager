@@ -498,9 +498,9 @@ bool LEIC::request_add(Request& request) {
             string option;
             cin >> option;
             while(!is_number2(option) || stoi(option) >= i || stoi(option) == 0) {
-                Color_Print("red",
-                            "Invalid Input, please try again",
-                            true); cin >> option;}
+                Color_Print("red","Invalid Input, please try again",true);
+                cin >> option;
+            }
             if (option == "1") return false;
             else {
                 it = suggestions.begin();
@@ -913,17 +913,25 @@ void LEIC::list_year_occupations_by_occupation(string year, bool order) {
     } );
     Color_Print("blue", "Occupations of year ");
     Color_Print("yellow", year, true);
-    Color_Print("white", "UC code   \t");
+    Color_Print("white", "UC code  ");
     Color_Print("green", "| ");
     Color_Print("white", "Class code ");
     Color_Print("green", "| ");
     Color_Print("blue", "Occupation", true);
-    Color_Print("green", "-----------------------------------------", true);
+    Color_Print("green", "-----------------------------------", true);
+    string out;
+    stringstream outstream;
     for (Class c: yearClasses) {
-        Color_Print("white", c.get_ucCode() + "\t");
+        outstream << left << setw(9) << setfill(' ') << c.get_ucCode();
+        getline(outstream, out);
+        Color_Print("white", out);
+        outstream.clear();
+        outstream << left << setw(11) << setfill(' ') << c.get_classCode();
+        getline(outstream, out);
         Color_Print("green", "| ");
-        Color_Print("white", c.get_classCode() + "\t");
-        Color_Print("green", " | ");
+        Color_Print("white", out);
+        outstream.clear();
+        Color_Print("green", "| ");
         Color_Print("blue", to_string(c.get_students().size()), true);
     }
 }
@@ -945,17 +953,25 @@ void LEIC::list_year_occupations_by_classCode(string year, bool order) {
 
     Color_Print("blue", "Occupations of year ");
     Color_Print("yellow", year, true);
-    Color_Print("white", "UC code   \t");
+    Color_Print("white", "UC code  ");
     Color_Print("green", "| ");
     Color_Print("blue", "Class code ");
     Color_Print("green", "| ");
     Color_Print("white", "Occupation", true);
-    Color_Print("green", "-----------------------------------------", true);
+    Color_Print("green", "-----------------------------------", true);
+    string out;
+    stringstream outstream;
     for (Class c: yearClasses) {
-        Color_Print("white", c.get_ucCode() + "\t");
+        outstream << left << setw(9) << setfill(' ') << c.get_ucCode();
+        getline(outstream, out);
+        Color_Print("white", out);
+        outstream.clear();
+        outstream << left << setw(11) << setfill(' ') << c.get_classCode();
+        getline(outstream, out);
         Color_Print("green", "| ");
-        Color_Print("blue", c.get_classCode() + "\t");
-        Color_Print("green", " | ");
+        Color_Print("blue", out);
+        outstream.clear();
+        Color_Print("green", "| ");
         Color_Print("white", to_string(c.get_students().size()), true);
     }
 }
@@ -968,28 +984,44 @@ void LEIC::list_year_occupations_by_UC(string year, bool order) {
 
     Color_Print("blue", "Occupations of year ");
     Color_Print("yellow", year, true);
-    Color_Print("blue", "UC code   \t");
+    Color_Print("blue", "UC code  ");
     Color_Print("green", "| ");
     Color_Print("white", "Class code ");
     Color_Print("green", "| ");
     Color_Print("white", "Occupation", true);
-    Color_Print("green", "-----------------------------------------", true);
+    Color_Print("green", "-----------------------------------", true);
     if(order) {
+        string out;
+        stringstream outstream;
         for (Class c: yearClasses) {
-            Color_Print("blue", c.get_ucCode() + "\t");
+            outstream << left << setw(9) << setfill(' ') << c.get_ucCode();
+            getline(outstream, out);
+            Color_Print("blue", out);
+            outstream.clear();
+            outstream << left << setw(11) << setfill(' ') << c.get_classCode();
+            getline(outstream, out);
             Color_Print("green", "| ");
-            Color_Print("white", c.get_classCode() + "\t");
-            Color_Print("green", " | ");
+            Color_Print("white", out);
+            outstream.clear();
+            Color_Print("green", "| ");
             Color_Print("white", to_string(c.get_students().size()), true);
         }
         return;
     }
+    string out;
+    stringstream outstream;
     auto itr = yearClasses.end();
     while(itr-- != yearClasses.begin()){
-        Color_Print("blue", itr->get_ucCode() + "\t");
+        outstream << left << setw(9) << setfill(' ') << itr->get_ucCode();
+        getline(outstream, out);
+        Color_Print("blue", out);
+        outstream.clear();
+        outstream << left << setw(11) << setfill(' ') << itr->get_classCode();
+        getline(outstream, out);
         Color_Print("green", "| ");
-        Color_Print("white", itr->get_classCode() + "\t");
-        Color_Print("green", " | ");
+        Color_Print("white", out);
+        outstream.clear();
+        Color_Print("green", "| ");
         Color_Print("white", to_string(itr->get_students().size()), true);
     }
 }
