@@ -153,6 +153,14 @@ public:
      * O(max(log n, m)) in which n is the number of classes in LEIC and m is the number of classes in the UC.
      */
     bool Uc_has_vacancy(std::string UcCode);
+    /**
+     * \brief Prints all of the Student enrolled in the course sorted by their student code in a given order
+     *
+     * @param order The order to sort by True if ascending, false if descending..
+     *
+     * \par Complexity
+     * O(n) in which n is the number of students in LEIC.
+     */
     void list_students_by_studentCode(bool order) const;
     /**
      * \brief Prints all of the Student enrolled in the course sorted by their name in a given order.
@@ -347,35 +355,35 @@ public:
      */
     void add_request_to_process(Request request);
     /**
-     * \brief Runs the given Request of type ADD about the given Student.
+     * \brief Executes the given Request of type ADD about the given Student, if possible.
      *
      * @param request The Request to run.
      * @return True if the given Request is valid and ran with no errors, False otherwise.
      */
     bool request_add(Request& request);
     /**
-     * \brief Runs the given Request of type REMOVE about the given Student.
+     * \brief Executes the given Request of type REMOVE about the given Student, if possible.
      *
      * @param request The Request to run.
      * @return True if the given Request is valid and ran with no errors, False otherwise.
      */
     bool request_remove(Request& request);
     /**
-     * \brief Runs the given Request of type NEW creating a new Student if possible.
+     * \brief Executes the given Request of type NEW creating a new Student, if possible.
      *
      * @param request The Request to run.
      * @return True if the given Request is valid and ran with no errors, False otherwise.
      */
     bool request_new(Request& request);
     /**
-     * \brief Runs the given Request of type DELETE removing the Student, if possible.
+     * \brief Executes the given Request of type DELETE removing the Student, if possible.
      *
      * @param request The Request to run.
      * @return True if the given Request is valid and ran with no errors, False otherwise.
      */
     bool request_delete(Request& request);
     /**
-     * \brief Runs the given Request of type SWITCH about the given Student.
+     * \brief Executes the given Request of type SWITCH about the given Student, if possible.
      *
      * @param request The Request to run.
      * @return True if the given Request is valid and ran with no errors, False otherwise.
