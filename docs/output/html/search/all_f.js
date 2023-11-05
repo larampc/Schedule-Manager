@@ -8,6 +8,7 @@ var searchData=
   ['set_5fname_5',['set_name',['../class_request.html#a2ec66e36a6133d19c5e4cbfab86f532a',1,'Request']]],
   ['set_5fnew_5fclass_6',['set_new_class',['../class_request.html#a2bc684d017e1a1dfd4f618de503f5e7f',1,'Request']]],
   ['set_5ftype_7',['set_type',['../class_request.html#a48bee5c53e5d88620e247f15bd22b86f',1,'Request']]],
-  ['student_8',['student',['../class_student.html',1,'Student'],['../class_student.html#af16d6fa7b6714fee355433b4ca6ae473',1,'Student::Student()']]],
-  ['students_5fin_5fn_5fucs_9',['students_in_n_Ucs',['../class_l_e_i_c.html#af5f83c0cdae16e5b97112245a56d2c60',1,'LEIC']]]
+  ['settings_8',['settings',['../class_menu.html#a6e524f61c2d1b76d806a7ebe4f852c30',1,'Menu']]],
+  ['student_9',['student',['../class_student.html',1,'Student'],['../class_student.html#af16d6fa7b6714fee355433b4ca6ae473',1,'Student::Student()']]],
+  ['students_5fin_5fn_5fucs_10',['students_in_n_Ucs',['../class_l_e_i_c.html#af5f83c0cdae16e5b97112245a56d2c60',1,'LEIC']]]
 ];
