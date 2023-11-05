@@ -11,7 +11,7 @@ int main() {
         cout << "Invalid Input, please try again\n";
         cin >> option;
     }
-    Script s = Script(option == "2");
+    Menu s = Menu(option == "2");
     s.run();
     return 0;
 }
