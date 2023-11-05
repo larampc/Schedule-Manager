@@ -27,42 +27,63 @@ public:
      * \brief Gets the class code of the Class.
      *
      * @return The class code of the Class.
+     *
+     * \par Complexity
+     * O(1)
      */
     std::string get_classCode() const;
     /**
      * \brief Gets the UC code of the Class.
      *
      * @return The UC code of the Class.
+     *
+     * \par Complexity
+     * O(1)
      */
     std::string get_ucCode() const;
     /**
-     * \brief Gets all Lessons of the Class.
+     * \brief Gets all Lesson of the Class.
      *
-     * @return All Lessons of the Class.
+     * @return All Lesson of the Class.
+     *
+     * \par Complexity
+     * O(1)
      */
     std::set<Lesson> get_lessons() const;
     /**
-     * \brief Gets all Students of the Class.
+     * \brief Gets all Student of the Class.
      *
-     * @return All Students of the Class.
+     * @return All Student of the Class.
+     *
+     * \par Complexity
+     * O(1)
      */
     std::set<std::string> get_students() const;
     /**
      * \brief Adds a new Lesson to the Class.
      *
      * @param l The new Lesson to add.
+     *
+     * \par Complexity
+     * O(log n)
      */
     void add_lesson(Lesson l);
     /**
      * \brief Adds a new Student to the Class.
      *
      * @param studentCode The new Student to add.
+     *
+     * \par Complexity
+     * O(log n)
      */
     void add_student(std::string studentCode);
     /**
      * \brief Removes a Student from the Class.
      *
      * @param studentCode The Student to be removed.
+     *
+     * \par Complexity
+     * O(log n)
      */
     void remove_student(std::string studentCode);
     /**

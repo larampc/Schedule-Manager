@@ -36,76 +36,115 @@ public:
      * \brief Gets the type of the Request.
      *
      * @return The type of the Request (ADD, REMOVE, SWITCH, NEW, DELETE).
+     *
+     * \par Complexity
+     * O(1)
      */
     std::string get_type() const;
     /**
      * \brief Gets the name of the Student the Request is related to.
      *
-     * @return The Student's name.
+     * @return The student's name.
+     *
+     * \par Complexity
+     * O(1)
      */
     std::string get_studentName() const;
     /**
-     * \brief Gets the Student's code.
+     * \brief Gets the student's code.
      *
-     * @return The Student's code.
+     * @return The student's code.
+     *
+     * \par Complexity
+     * O(1)
      */
     std::string get_studentCode() const;
     /**
-     * \brief Gets the current Class code.
+     * \brief Gets the current class code.
      *
-     * @return The current Class code, empty string if not applicable.
+     * @return The current class code, empty string if not applicable.
+     *
+     * \par Complexity
+     * O(1)
      */
     std::string get_current_classCode() const;
     /**
      * \brief Gets the new Class code.
      *
      * @return The new Class code, empty string if not applicable.
+     *
+     * \par Complexity
+     * O(1)
      */
     std::string get_new_classCode() const;
     /**
      * \brief Gets the current UC code.
      *
      * @return The current UC code, empty string if not applicable.
+     *
+     * \par Complexity
+     * O(1)
      */
     std::string get_current_UcCode() const;
     /**
      * \brief Gets the new UC code.
      *
      * @return The new UC code, empty string if not applicable.
+     *
+     * \par Complexity
+     * O(1)
      */
     std::string get_new_UcCode() const;
     /**
      * \brief Sets the type of the Request.
      *
      * @param type The type (ADD, REMOVE, SWITCH, NEW, DELETE).
+     *
+     * \par Complexity
+     * O(1)
      */
     void set_type(std::string type);
     /**
      * \brief Sets the name of the Student in the Request.
      *
      * @param name The name of the Student.
+     *
+     * \par Complexity
+     * O(1)
      */
     void set_name(std::string name);
     /**
      * \brief Sets the new Class code of the Request.
      *
      * @param classCode The Class code.
+     *
+     * \par Complexity
+     * O(1)
      */
     void set_new_class(std::string classCode);
     /**
      * \brief Sets the current Class code of the Request.
      *
      * @param classCode The Class code.
+     *
+     * \par Complexity
+     * O(1)
      */
     void set_current_class(std::string classCode);
     /**
      * \brief Sets the current UC code of the Request.
      *
      * @param classCode The UC code.
+     *
+     * \par Complexity
+     * O(1)
      */
     void set_current_uc(std::string ucCode);
     /**
      * \brief Prints the Request.
+     *
+     * \par Complexity
+     * O(1)
      */
     void print_request() const;
 };

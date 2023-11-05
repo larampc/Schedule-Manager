@@ -31,12 +31,18 @@ public:
      * \brief Gets the weekday of the Lesson.
      *
      * @return The weekday of the Lesson.
+     *
+     * \par Complexity
+     * O(1)
      */
     std::string get_weekday() const;
     /**
      * \brief Gets the type of the Lesson.
      *
      * @return The type of the Lesson, (T, TP or PL).
+     *
+     * \par Complexity
+     * O(1)
      */
     std::string get_type() const;
     /**
@@ -44,10 +50,16 @@ public:
      *
      * @param l The Lesson to check.
      * @return True if the Lesson overlaps with the given Lesson.
+     *
+     * \par Complexity
+     * O(1)
      */
     bool overlap(Lesson l) const;
     /**
      * \brief Prints the Lesson.
+     *
+     * \par Complexity
+     * O(1)
      */
     void print_lesson() const;
     /**

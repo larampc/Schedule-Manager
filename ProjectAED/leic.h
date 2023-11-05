@@ -16,15 +16,15 @@
  * \class LEIC
  * \brief This is a class for the course LEIC.
  *
- * This class keeps track of all of LEIC's Classes, UC's, Students and respective changes.
+ * This class keeps track of all LEIC's Classes, UC's, Students and respective changes.
  */
 class LEIC {
 private:
   std::vector<Class> classes;
   std::set<std::string> ucs;
-  std::map<std::string, Student> up_students;
-  std::queue<Request> requests; //pedidos para serem tratados
-  std::stack<Request> processed_requests; //últimos pedidos
+  std::map<std::string, Student> code_students;
+  std::queue<Request> pending_requests;
+  std::stack<Request> processed_requests;
   int CAP = 30;
 public:
     /**
@@ -32,75 +32,105 @@ public:
      *
      * Reads the files and populates the data in LEIC.
      *
-     * @param filenameclasses The file name and location for the Classes file.
-     * @param filenamestudents The file name and location for the Students file.
+     * @param filenameclasses The file path for the Class file.
+     * @param filenamestudents The file path for the Student file.
      * @param save_file Whether to read the modified files or the original files, True or False.
      */
     LEIC(std::string filenameclasses, std::string filenamestudents, bool save_file);
     /**
-    * \brief Gets the Student with the given up.
-    *
-    * @param studentCode The studentCode of the Student to get.
-    * @return Reference to the Student with the given up.
-    */
+     * \brief Gets the Student with the given student code.
+     *
+     * @param studentCode The student code of the Student to get.
+     * @return Reference to the Student with the given student code.
+     *
+     * \par Complexity
+     * O(log n) in which n is the number of students in LEIC.
+     */
     Student* get_student_from_studentCode(std::string studentCode);
     /**
-    * \brief Gets all existing Class in LEIC.
-    *
-    * @return All existing Class in LEIC.
-    */
+     * \brief Gets all existing Class in LEIC.
+     *
+     * @return All existing Class in LEIC.
+     *
+     * \par Complexity
+     * O(1)
+     */
     std::vector<Class> get_classes() const;
     /**
-    * \brief Gets the UC codes of all existing UC.
-    *
-    * @return The UC codes of all existing UC.
-    */
+     * \brief Gets the UC codes of all existing UCs.
+     *
+     * @return The UC codes of all existing UCs.
+     *
+     * \par Complexity
+     * O(1)
+     */
     std::set<std::string> get_UcCodes() const;
     /**
-    * \brief Gets the Class codes of all existing Class.
-    *
-    * @return The Class codes of all existing Class.
-    */
+     * \brief Gets the class codes of all existing Class.
+     *
+     * @return The class codes of all existing Class.
+     *
+     * \par Complexity
+     * O(n) in which n is the number of classes in LEIC.
+     */
     std::set<std::string> get_classCodes() const;
     /**
-     * \brief Gets the Class with the given Class code and UC code.
+     * \brief Gets the Class with the given class code and UC code.
      *
-     * @param classCode The Class code of the Class to get.
+     * @param classCode The class code of the Class to get.
      * @param UcCode The UC code of the Class to get.
-     * @return Reference to the Class with the given Class code and UC code.
+     * @return Reference to the Class with the given class code and UC code.
+     *
+     * \par Complexity
+     * O(log n) in which n is the number of classes in LEIC.
      */
     Class* get_class_from_classCode_and_UcCode(std::string classCode, std::string UcCode);
     /**
      * \brief Gets all Class with the given UC code.
      *
-     * @param UcCode The UC code of all Class to get.
-     * @return References of all Class with the given UC code.
+     * @param UcCode The UC code of the Class to get.
+     * @return References to all the Class with the given UC code.
+     *
+     * \par Complexity
+     * O(log n) in which n is the number of classes in LEIC.
      */
     std::vector<Class*> get_classes_from_UcCode(std::string UcCode);
     /**
-     * \brief Gets the student code of the last pending Request that was made.
+     * \brief Gets the student code of the last pending Request.
      *
      * @return The student code or empty string if there are no pending Request.
+     *
+     * \par Complexity
+     * O(1)
      */
     std::string get_studentCode_last_request() const;
     /**
-     * \brief Gets the Cap, the max number of Student that can be in a Class.
+     * \brief Gets the Cap, the maximum number of Student that can be in a Class.
      *
      * @return The Cap.
+     *
+     * \par Complexity
+     * O(1)
      */
     int get_cap();
     /**
-     * \brief Sets a new Cap, the max number of Student that can be in a Class.
+     * \brief Sets a new Cap, the maximum number of Student that can be in a Class.
      *
      * @param cap The value to set the Cap.
+     *
+     * \par Complexity
+     * O(1)
      */
     void set_cap(int cap);
     /**
-     * \brief Checks using binary search if a Class with the given Class code and UC code exists.
+     * \brief Checks, using binary search, if a Class with the given class code and UC code exists.
      *
      * @param UcCode The UC code of the Class to check.
-     * @param classCode The Class code of the Class to check.
-     * @return True if a Class with the given Class code and UC code exists.
+     * @param classCode The class code of the Class to check.
+     * @return True if the Class with the given class code and UC code exists.
+     *
+     * \par Complexity
+     * O(log n) in which n is the number of classes in LEIC.
      */
     bool exists_class(std::string UcCode, std::string classCode);
     /**
@@ -108,6 +138,9 @@ public:
      *
      * @param UcCode The UC code of the UC to check.
      * @return True if a UC with the given UC code exists.
+     *
+     * \par Complexity
+     * O(log n) in which n is the number of classes in LEIC.
      */
     bool exists_Uc(std::string UcCode);
     /**
@@ -115,20 +148,32 @@ public:
      *
      * @param UcCode The UC code of the UC to check.
      * @return True if any Class with the given UC code has less Student than the Cap.
+     *
+     * \par Complexity
+     * O(max(log n, m)) in which n is the number of classes in LEIC and m is the number of classes in the UC.
      */
     bool Uc_has_vacancy(std::string UcCode);
     /**
-     * \brief Prints all of the Student enrolled in the course sorted by their up.
+     * \brief Prints all of the Student enrolled in the course sorted by their student code.
+     *
+     * \par Complexity
+     * O(n) in which n is the number of students in LEIC.
      */
     void list_students_by_studentCode();
     /**
      * \brief Prints all of the Student enrolled in the course sorted by their name.
+     *
+     * \par Complexity
+     * O(n) in which n is the number of students in LEIC.
      */
     void list_students_by_name();
     /**
      * \brief Prints all of the Student enrolled in the given UC sorted by their up.
      *
      * @param uc The UC code of the UC to print all Student.
+     *
+     * \par Complexity
+     * O(n) in which n is the number of students in the UC.
      */
     void list_UC_students_by_studentCode(std::string UcCode);
     /**
@@ -141,12 +186,18 @@ public:
      * \brief Prints all of the Student enrolled in the given Class sorted by their up.
      *
      * @param class_ The Class to print all Student.
+     *
+     * \par Complexity
+     * O(n) in which n is the number of students in the Class.
      */
     void list_class_students_by_studentCode(Class* class_) const;
     /**
      * \brief Prints all of the Student enrolled in the given Class sorted by their name.
      *
      * @param class_ The Class to print all Student.
+     *
+     * \par Complexity
+     * O(n) in which n is the number of students in the Class.
      */
     void list_class_students_by_name(Class* class_) const;
     /**
@@ -154,6 +205,9 @@ public:
      *
      * @param year The year to get the occupations.
      * @param order The order to sort by True if ascending, false if descending.
+     *
+     * \par Complexity
+     * O(n) in which n is the number of classes in LEIC.
      */
     void list_year_occupations_by_UC(std::string year, bool order);
     /**
@@ -161,6 +215,9 @@ public:
      *
      * @param year The year to get the occupations.
      * @param order The order to sort by True if ascending, false if descending.
+     *
+     * \par Complexity
+     * O(n) in which n is the number of classes in LEIC.
      */
     void list_year_occupations_by_classCode(std::string year, bool order);
     /**
@@ -168,6 +225,9 @@ public:
      *
      * @param year The year to get the occupations.
      * @param order The order to sort by True if ascending, false if descending.
+     *
+     * \par Complexity
+     * O(n) in which n is the number of classes in LEIC.
      */
     void list_year_occupations_by_occupation(std::string year, bool order);
     /**
@@ -175,6 +235,9 @@ public:
      *
      * @param UcCode The UC code of the UC to get the occupations.
      * @param order The order to sort by True if ascending, false if descending.
+     *
+     * \par Complexity
+     * O(n) in which n is the number of classes in LEIC.
      */
     void list_Uc_occupations_by_classCode(std::string UcCode, bool order);
     /**
@@ -182,6 +245,9 @@ public:
      *
      * @param UcCode The UC code of the UC to get the occupations.
      * @param order The order to sort by True if ascending, false if descending.
+     *
+     * \par Complexity
+     * O(n) in which n is the number of classes in the UC.
      */
     void list_Uc_occupations_by_occupation(std::string UcCode, bool order);
     /**
@@ -189,6 +255,9 @@ public:
      *
      * @param classCode The class code of the UC to get the occupations.
      * @param order The order to sort by True if ascending, false if descending.
+     *
+     * \par Complexity
+     * O(n) in which n is the number of classes in LEIC.
      */
     void list_class_occupations_by_UC(std::string classCode, bool order);
     /**
@@ -196,6 +265,9 @@ public:
      *
      * @param classCode The class code of the UC to get the occupations.
      * @param order The order to sort by True if ascending, false if descending.
+     *
+     * \par Complexity
+     * O(n) in which n is the number of classes in LEIC.
      */
     void list_class_occupations_by_occupation(std::string classCode, bool order);
     /**
@@ -203,8 +275,22 @@ public:
      *
      * @param n The number of UCs to check.
      * @return The number of Student with at least the given number of UCs.
+     *
+     * \par Complexity
+     * O(n) in which n is the number of students in LEIC.
      */
     int students_in_n_Ucs(int n);
+    /**
+     * \brief Checks if by moving from the current Class to the new Class the Class balance is not disturbed.
+     *
+     * @param currentClass The current Class.
+     * @param newClass The new Class.
+     * @return True if by moving from the current Class to the new Class the Class balance is not disturbed, false otherwise.
+     *
+     * \par Complexity
+     * O(max(log n, m)) in which n is the number of classes in LEIC and m is the number of classes in the UC.
+     */
+    bool not_disturb_balance(Class *currentClass, Class *newClass);
     /**
      * \brief Checks if by inserting a Student into a Class, the Class Balance and schedule are valid.
      *
@@ -314,14 +400,6 @@ public:
          * \brief Saves all modifications and all successful Requests to files.
          */
     void save_to_files();
-    /**
-     * \brief Checks if by moving from the current Class to the new Class the Class balance improves.
-     *
-     * @param currentClass The current Class to check.
-     * @param newClass The new Class to check.
-     * @return True if by moving from the current Class to the new Class the Class balance improves, false otherwise.
-     */
-    bool not_disturb_balance(Class *currentClass, Class *newClass);
 };
 
 #endif

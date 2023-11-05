@@ -18,58 +18,82 @@ private:
     std::list<Class*> classes;
 public:
     /**
-     * \brief Creates a new student.
+     * \brief Creates a new Student.
      *
-     * @param name The student's name.
-     * @param studentCode The student's code.
+     * @param name The Student's name.
+     * @param studentCode The Student's code.
      */
     Student(std::string name, std::string studentCode);
     /**
-     * \brief Gets student's name.
+     * \brief Gets Student's name.
      *
-     * @return The student's name.
+     * @return The Student's name.
+     *
+     * \par Complexity
+     * O(1)
      */
     std::string get_name() const;
     /**
-     * \brief Gets student's code.
+     * \brief Gets Student's code.
      *
-     * @return The student's code.
+     * @return The Student's code.
+     *
+     * \par Complexity
+     * O(1)
      */
     std::string get_studentCode() const;
     /**
      * \brief Gets classes in which the student is enrolled.
      *
-     * @return A list of pointers to the classes in which a student is enrolled.
+     * @return A list of pointers to all the Class in which a Student is enrolled.
+     *
+     * \par Complexity
+     * O(1)
      */
     std::list<Class*> get_classes() const;
     /**
-     * \brief Gets the Class of the given UC in which the student is enrolled.
+     * \brief Gets the Class of the given UC in which the Student is enrolled.
      *
      * @param ucCode The UC code of the class.
      * @return A pointer to the Class of the given UC.
+     *
+     * \par Complexity
+     * O(n)
      */
     Class* get_class_from_uc(std::string ucCode) const;
     /**
-     * \brief Checks if the student is enrolled in the given UC.
+     * \brief Checks if the Student is enrolled in the given UC.
      *
      * @param ucCode The code of the UC to check.
-     * @return True if the student is enrolled in the given UC.
+     * @return True if the Student is enrolled in the given UC.
+     *
+     * \par Complexity
+     * O(n)
      */
     bool has_uc(std::string ucCode) const;
     /**
      * \brief Adds a new Class.
      *
      * @param c A pointer to the new Class to add.
+     *
+     * \par Complexity
+     * O(1)
      */
     void add_class(Class* c);
     /**
      * \brief Removes a Class based on its UC code.
      *
      * @param ucCode The UC code of the Class to remove.
+     *
+     * \par Complexity
+     * O(n)
      */
     void remove_class_from_uc(std::string ucCode);
     /**
-     * \brief Prints the student's schedule.
+     * \brief Prints the Student's schedule.
+     *
+     * \par Complexity
+     * O(n)
      */
     void print_schedule() const;
 };
