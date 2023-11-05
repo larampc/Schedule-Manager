@@ -5,9 +5,9 @@
 using namespace std;
 #include "color_print.h"
 
-Lesson::Lesson(string thisclass, string weekday, Time starttime, Time endtime, string type): Class(thisclass), weekday(weekday), startTime(starttime), endTime(endtime), type(type) {}
+Lesson::Lesson(string parentClass, string weekday, Time starttime, Time endtime, string type): Class(parentClass), weekday(weekday), startTime(starttime), endTime(endtime), type(type) {}
 
-std::string Lesson::get_classCode() {
+std::string Lesson::get_parentClass() {
     return Class;
 }
 

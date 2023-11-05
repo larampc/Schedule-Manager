@@ -12,7 +12,7 @@
 class Lesson {
 private:
     std::string Class;
-    std::string weekday; //int??
+    std::string weekday;
     const Time startTime;
     const Time endTime;
     std::string type;
@@ -20,19 +20,19 @@ public:
     /**
      * \brief Creates a new Lesson.
      *
-     * @param classCode Parent Class code.
+     * @param parentClass Parent Class (UC code + Class code).
      * @param weekday Weekday of the Lesson.
      * @param startTime Start time of the Lesson.
      * @param endTime End time of the Lesson.
      * @param type Type of the lesson, (T, TP or PL).
      */
-    Lesson(std::string classCode, std::string weekday, Time startTime, Time endTime, std::string type);
+    Lesson(std::string parentClass, std::string weekday, Time startTime, Time endTime, std::string type);
     /**
      * \brief Gets the parent Class of the Lesson.
      *
      * @return The parent Class of the Lesson.
      */
-    std::string get_classCode();
+    std::string get_parentClass();
     /**
      * \brief Gets the weekday of the Lesson.
      *

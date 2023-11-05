@@ -55,15 +55,7 @@ void Student::print_schedule() const {
             current = lesson.get_weekday();
             Color_Print("blue", lesson.get_weekday(), true);
         }
-        string out;
-        stringstream outstream;
-        outstream << setw(2) << setfill('0') << lesson.get_start_time().get_hour() << ":" <<
-                  setw(2) << setfill('0') << lesson.get_start_time().get_minute() <<
-                  " - " << setw(2) << setfill('0') << lesson.get_end_time().get_hour() << ":" <<
-                  setw(2) << setfill('0') << lesson.get_end_time().get_minute() <<
-                  "\t" << setw(2) << setfill(' ') << lesson.get_type() << "  " << lesson.get_classCode();
-        getline(outstream, out);
-        Color_Print("white", out, true);
+        lesson.print_lesson();
     }
 }
 

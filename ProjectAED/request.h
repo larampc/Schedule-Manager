@@ -8,7 +8,7 @@
  * \class Request
  * \brief This is a class for representing requests.
  *
- * This class keeps track of the type of request, the student's up to execute the update_registration on and the needed parameters to execute that Request if applicable.
+ * This class keeps track of the type of request and the needed parameters to execute that Request.
  */
 class Request {
 private:
@@ -21,87 +21,93 @@ private:
     std::string new_classCode;
 public:
     /**
-     * \brief Creates a new Request.
+     * \brief Creates a new Request for a given student.
      *
-     * @param type The type of Request.
-     * @param studentCode The Student's up to execute the Request on.
-     * @param studentName The Student's name to execute the Request on, if applicable.
-     * @param current_UcCode The current UC code of the Student to execute the Request on, if applicable.
-     * @param current_classCode The current Class code of the Student to execute the Request on, if applicable.
-     * @param new_UcCode The new UC code for the Student to execute the Request on, if applicable.
-     * @param new_classCode The new Class code for the Student to execute the Request on, if applicable.
+     * @param type The type of Request (NEW, DELETE, ADD, REMOVE, SWITCH).
+     * @param studentCode The Student's code.
+     * @param studentName The Student's name, if applicable (NEW, DELETE).
+     * @param current_UcCode The current UC code, if applicable (REMOVE, SWITCH), or the number of UCs removed (DELETE).
+     * @param current_classCode The current Class code, set automatically by the program if applicable (REMOVE, SWITCH).
+     * @param new_UcCode The new UC code, if applicable (ADD, SWITCH).
+     * @param new_classCode The new Class code, if applicable (ADD, SWITCH).
      */
     Request(std::string type, std::string studentCode, std::string studentName = "", std::string current_UcCode = "", std::string current_classCode = "", std::string new_UcCode = "", std::string new_classCode = "");
     /**
      * \brief Gets the type of the Request.
      *
-     * @return The type of the Request, ADD, REMOVE, SWITCH, NEW or DELETE.
+     * @return The type of the Request (ADD, REMOVE, SWITCH, NEW, DELETE).
      */
-    std::string get_type();
+    std::string get_type() const;
     /**
-     * \brief Gets the name of the student the update_registration is related to.
+     * \brief Gets the name of the Student the Request is related to.
      *
-     * @return The student's name.
+     * @return The Student's name.
      */
-    std::string get_studentName();
+    std::string get_studentName() const;
     /**
-     * \brief Gets the Student's up to execute the Request on.
+     * \brief Gets the Student's code.
      *
-     * @return The Student's up to execute the Request on.
+     * @return The Student's code.
      */
-    std::string get_studentCode();
+    std::string get_studentCode() const;
     /**
-     * \brief Gets the current Class code of the Student to execute the Request on, if applicable.
+     * \brief Gets the current Class code.
      *
-     * @return The current Class code of the Student to execute the Request on, if applicable.
+     * @return The current Class code, empty string if not applicable.
      */
-    std::string get_current_classCode();
+    std::string get_current_classCode() const;
     /**
-     * \brief Gets the new Class code for the Student to execute the Request on, if applicable.
+     * \brief Gets the new Class code.
      *
-     * @return The new Class code for the Student to execute the Request on, if applicable.
+     * @return The new Class code, empty string if not applicable.
      */
-    std::string get_new_classCode();
+    std::string get_new_classCode() const;
     /**
-     * \brief Gets the current UC code of the Student to execute the Request on, if applicable.
+     * \brief Gets the current UC code.
      *
-     * @return The current UC code of the Student to execute the Request on, if applicable.
+     * @return The current UC code, empty string if not applicable.
      */
-    std::string get_current_UcCode();
+    std::string get_current_UcCode() const;
     /**
-     * \brief Gets the new UC code for the Student to execute the Request on, if applicable.
+     * \brief Gets the new UC code.
      *
-     * @return The new UC code for the Student to execute the Request on, if applicable.
+     * @return The new UC code, empty string if not applicable.
      */
-    std::string get_new_UcCode();
+    std::string get_new_UcCode() const;
     /**
      * \brief Sets the type of the Request.
      *
-     * @param type The type to set the Request, ADD, REMOVE, SWITCH, NEW or DELETE.
+     * @param type The type (ADD, REMOVE, SWITCH, NEW, DELETE).
      */
     void set_type(std::string type);
     /**
-     * \brief Sets the name of the student in the Request.
+     * \brief Sets the name of the Student in the Request.
      *
-     * @param name The name of the student to set in the Request.
+     * @param name The name of the Student.
      */
     void set_name(std::string name);
     /**
-     * \brief Sets the new_classCode parameter of the Request.
+     * \brief Sets the new Class code of the Request.
      *
-     * @param classCode The Class code to set the new_classCode parameter.
+     * @param classCode The Class code.
      */
     void set_new_class(std::string classCode);
     /**
-     * \brief Sets the current_classCode parameter of the Request.
+     * \brief Sets the current Class code of the Request.
      *
-     * @param classCode The Class code to set the current_classCode parameter.
+     * @param classCode The Class code.
      */
     void set_current_class(std::string classCode);
-
+    /**
+     * \brief Sets the current UC code of the Request.
+     *
+     * @param classCode The UC code.
+     */
     void set_current_uc(std::string ucCode);
-
-    void print_request();
+    /**
+     * \brief Prints the Request.
+     */
+    void print_request() const;
 };
 
 #endif //AEDPROJECT_REQUEST_H

@@ -72,6 +72,16 @@ LEIC::LEIC(std::string filenameclasses, std::string filenamestudents, bool save_
     sort(classes.begin(),classes.end());
 
     ifstream studentsFile(filenamestudents);
+    if (save_file) {
+        studentsFile.ignore(5);
+        string cap;
+        getline(studentsFile, cap);
+        if (cap.empty()) {
+            cout << "No current dataset to import.";
+            exit(0);
+        }
+        CAP = stoi(cap);
+    }
     getline(studentsFile, line);
     string up, name;
     while (getline(studentsFile, line)) {     // read all lines from the given file
@@ -858,6 +868,7 @@ void LEIC::save_to_files() {
     ofstream students_classesSaveFile("../students_classes_save.csv", ofstream::out | ofstream::trunc);
     ofstream accepted_requests("../accepted_requests.csv", ofstream::out | ofstream::trunc);
     ofstream pending_requests("../pending_requests.csv", ofstream::out | ofstream::trunc);
+    students_classesSaveFile << "CAP = " << CAP << endl;
     students_classesSaveFile << "StudentCode,StudentName,UcCode,ClassCode" << endl;
     accepted_requests << "Type,StudentCode,StudentName,oldUcCode,newUcCode,oldClassCode,newClassCode" << endl;
     pending_requests << "Type,StudentCode,StudentName,oldUcCode,newUcCode,oldClassCode,newClassCode" << endl;
