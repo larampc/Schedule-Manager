@@ -435,7 +435,7 @@ void Script::handle_registration() {
             Color_Print("green", "(e.g. 202020047)");
             Color_Print("blue", ":", true);
             cin >> studentCode;
-            while (!is_number(studentCode) || studentCode.length() != 9 || data.get_student_from_studentCode(studentCode) == nullptr) {
+            while (!is_number(studentCode) || studentCode.length() != 9) {
                 invalid();
                 cin >> studentCode;
             }
