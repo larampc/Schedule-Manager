@@ -534,10 +534,6 @@ void Menu::listings(){
                 cin >> n;
             }
             string total = to_string(data.students_in_n_Ucs(stoi(n)));
-            Color_Print("white", "Total students with ");
-            Color_Print("yellow", n);
-            Color_Print("white", " UC's: ");
-            Color_Print("blue", total, true);
             break;
         }
         case '5': run();

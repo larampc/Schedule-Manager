@@ -181,6 +181,8 @@ void LEIC::list_students_by_studentCode() {
         Color_Print("green", "\t| ");
         Color_Print("white", p.second.get_name(), true);
     }
+    Color_Print("white", "Total number of students: ");
+    Color_Print("blue", to_string(code_students.size()));
 }
 
 void LEIC::list_students_by_name(){
@@ -199,6 +201,8 @@ void LEIC::list_students_by_name(){
         Color_Print("green", "\t| ");
         Color_Print("blue", p.first, true);
     }
+    Color_Print("white", "Total number of students: ");
+    Color_Print("blue", to_string(code_students.size()));
 }
 
 void LEIC::list_UC_students_by_studentCode(std::string UcCode) {
@@ -219,6 +223,10 @@ void LEIC::list_UC_students_by_studentCode(std::string UcCode) {
         Color_Print("green", "\t| ");
         Color_Print("white", code_students.at(code).get_name(), true);
     }
+    Color_Print("white", "Total students in the UC ");
+    Color_Print("yellow", UcCode);
+    Color_Print("white", ": ");
+    Color_Print("blue", to_string(studentinUC.size()), true);
 }
 
 void LEIC::list_UC_students_by_name(std::string ucCode) {
@@ -228,16 +236,20 @@ void LEIC::list_UC_students_by_name(std::string ucCode) {
     Color_Print("green", "\t| ");
     Color_Print("blue", "NAME", true);
     Color_Print("green", "-----------------------", true);
-    map<string, string> UCstudents_up;
+    map<string, string> UCstudents_code;
     vector<Class*> classes_uc = get_classes_from_UcCode(ucCode);
     for(Class* c : classes_uc){
-        for (string up: c->get_students()) UCstudents_up[code_students.at(up).get_name()] = up;
+        for (string up: c->get_students()) UCstudents_code[code_students.at(up).get_name()] = up;
     }
-    for (pair<string, string> p: UCstudents_up){
+    for (pair<string, string> p: UCstudents_code){
         Color_Print("white", p.second);
         Color_Print("green", "\t| ");
         Color_Print("blue", p.first, true);
     }
+    Color_Print("white", "Total students in the UC ");
+    Color_Print("yellow", ucCode);
+    Color_Print("white", ": ");
+    Color_Print("blue", to_string(UCstudents_code.size()), true);
 }
 
 void LEIC::list_class_students_by_studentCode(Class *class_) const {
@@ -254,6 +266,12 @@ void LEIC::list_class_students_by_studentCode(Class *class_) const {
         Color_Print("green", "\t| ");
         Color_Print("white", code_students.at(up).get_name(), true);
     }
+    Color_Print("white", "Total students in the class ");
+    Color_Print("yellow", class_->get_ucCode());
+    Color_Print("white", " ");
+    Color_Print("yellow", class_->get_classCode());
+    Color_Print("white", ": ");
+    Color_Print("blue", to_string(class_->get_students().size()), true);
 }
 
 void LEIC::list_class_students_by_name(Class *class_) const {
@@ -265,13 +283,19 @@ void LEIC::list_class_students_by_name(Class *class_) const {
     Color_Print("green", "\t| ");
     Color_Print("blue", "NAME", true);
     Color_Print("green", "-----------------------", true);
-    map<string, string> UCstudents_up;
-    for (string up: class_->get_students()) UCstudents_up[code_students.at(up).get_name()] = up;
-    for (pair<string, string> p: UCstudents_up){
+    map<string, string> UCstudents_code;
+    for (string up: class_->get_students()) UCstudents_code[code_students.at(up).get_name()] = up;
+    for (pair<string, string> p: UCstudents_code){
         Color_Print("white", p.second);
         Color_Print("green", "\t| ");
         Color_Print("blue", p.first, true);
     }
+    Color_Print("white", "Total students in the class ");
+    Color_Print("yellow", class_->get_ucCode());
+    Color_Print("white", " ");
+    Color_Print("yellow", class_->get_classCode());
+    Color_Print("white", ": ");
+    Color_Print("blue", to_string(UCstudents_code.size()), true);
 }
 
 void LEIC::list_Uc_occupations_by_classCode(std::string UcCode, bool order) {
@@ -296,6 +320,10 @@ void LEIC::list_Uc_occupations_by_classCode(std::string UcCode, bool order) {
         Color_Print("green", "| ");
         Color_Print("white", to_string((*itr)->get_students().size()), true);
     }
+    Color_Print("white", "Total classes in the UC ");
+    Color_Print("yellow", UcCode);
+    Color_Print("white", ": ");
+    Color_Print("blue", to_string(UcClasses.size()), true);
 }
 
 void LEIC::list_Uc_occupations_by_occupation(std::string UcCode, bool order) {
@@ -320,6 +348,10 @@ void LEIC::list_Uc_occupations_by_occupation(std::string UcCode, bool order) {
         Color_Print("green", "| ");
         Color_Print("blue", to_string(c.get_students().size()), true);
     }
+    Color_Print("white", "Total classes in the UC ");
+    Color_Print("yellow", UcCode);
+    Color_Print("white", ": ");
+    Color_Print("blue", to_string(UcClasses.size()), true);
 }
 
 void LEIC::list_class_occupations_by_occupation(std::string classCode, bool order) {
@@ -347,6 +379,10 @@ void LEIC::list_class_occupations_by_occupation(std::string classCode, bool orde
         Color_Print("green", "| ");
         Color_Print("blue", to_string(c.get_students().size()), true);
     }
+    Color_Print("white", "Total UCs in the class ");
+    Color_Print("yellow", classCode);
+    Color_Print("white", ": ");
+    Color_Print("blue", to_string(classClasses.size()), true);
 }
 
 void LEIC::list_class_occupations_by_UC(std::string classCode, bool order) {
@@ -374,6 +410,10 @@ void LEIC::list_class_occupations_by_UC(std::string classCode, bool order) {
         Color_Print("green", "| ");
         Color_Print("white", to_string(itr->get_students().size()), true);
     }
+    Color_Print("white", "Total UCs in the class ");
+    Color_Print("yellow", classCode);
+    Color_Print("white", ": ");
+    Color_Print("blue", to_string(classClasses.size()), true);
 }
 
 void LEIC::list_year_occupations_by_occupation(string year, bool order) {
@@ -412,6 +452,10 @@ void LEIC::list_year_occupations_by_occupation(string year, bool order) {
         Color_Print("green", "| ");
         Color_Print("blue", to_string(c.get_students().size()), true);
     }
+    Color_Print("white", "Total classes in the ");
+    Color_Print("yellow", year);
+    Color_Print("white", " year: ");
+    Color_Print("blue", to_string(yearClasses.size()), true);
 }
 
 void LEIC::list_year_occupations_by_classCode(string year, bool order) {
@@ -452,6 +496,10 @@ void LEIC::list_year_occupations_by_classCode(string year, bool order) {
         Color_Print("green", "| ");
         Color_Print("white", to_string(c.get_students().size()), true);
     }
+    Color_Print("white", "Total classes in the ");
+    Color_Print("yellow", year);
+    Color_Print("white", " year: ");
+    Color_Print("blue", to_string(yearClasses.size()), true);
 }
 
 void LEIC::list_year_occupations_by_UC(string year, bool order) {
@@ -501,9 +549,13 @@ void LEIC::list_year_occupations_by_UC(string year, bool order) {
         Color_Print("green", "| ");
         Color_Print("white", to_string(itr->get_students().size()), true);
     }
+    Color_Print("white", "Total classes in the ");
+    Color_Print("yellow", year);
+    Color_Print("white", " year: ");
+    Color_Print("blue", to_string(yearClasses.size()), true);
 }
 
-int LEIC::students_in_n_Ucs(int n){
+void LEIC::students_in_n_Ucs(int n){
     Color_Print("blue", "Students with ");
     Color_Print("yellow", to_string(n));
     Color_Print("white", " UC's:", true);
@@ -524,7 +576,10 @@ int LEIC::students_in_n_Ucs(int n){
             Color_Print("white", p.second.get_name(), true);
         }
     }
-    return count;
+    Color_Print("white", "Total students with ");
+    Color_Print("yellow", to_string(n));
+    Color_Print("white", " UC's: ");
+    Color_Print("blue", to_string(count), true);
 }
 
 bool LEIC::not_disturb_balance(Class* currentClass, Class* newClass){

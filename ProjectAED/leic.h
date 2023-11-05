@@ -271,15 +271,14 @@ public:
      */
     void list_class_occupations_by_occupation(std::string classCode, bool order);
     /**
-     * \brief Gets the number of Student with at least the given number of UCs.
+     * \brief Prints all Students with at least the given number of UCs.
      *
      * @param n The number of UCs to check.
-     * @return The number of Student with at least the given number of UCs.
      *
      * \par Complexity
      * O(n) in which n is the number of students in LEIC.
      */
-    int students_in_n_Ucs(int n);
+    void students_in_n_Ucs(int n);
     /**
      * \brief Checks if by switching the Student from the current Class to the new Class the class balance is not disturbed.
      *
