@@ -29,7 +29,7 @@ public:
      * @return The hour of the Time.
      *
      * \paragraph Complexity
-     * O(n)
+     *  O(n)
      */
     int get_hour() const;
     /**
