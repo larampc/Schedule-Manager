@@ -28,7 +28,8 @@ public:
      *
      * @return The hour of the Time.
      *
-     * \paragraph Complexit O(1)
+     * \par Complexity
+     * O(1)
      */
     int get_hour() const;
     /**
@@ -36,7 +37,8 @@ public:
      *
      * @return The minutes of the Time.
      *
-     * \paragraph Complexity O(1)
+     * \par Complexity
+     * O(1)
      */
     int get_minute() const;
     /**
@@ -44,7 +46,8 @@ public:
      *
      * @return The Time in float format.
      *
-     * \paragraph Complexity O(1)
+     * \par Complexity
+     * O(1)
      */
     float get_time_in_float() const;
     /**
