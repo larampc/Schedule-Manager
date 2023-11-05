@@ -23,11 +23,17 @@ bool Lesson::overlap(Lesson l) const {
 void Lesson::print_lesson() const {
     string out;
     stringstream outstream;
+    string uc;
+    string cl;
+    stringstream ss(Class);
+    getline(ss, uc, ' ');
+    getline(ss, cl, ' ');
     outstream << setw(2) << setfill('0') << startTime.get_hour() << ":"
               << setw(2) << setfill('0') << startTime.get_minute()
               << " - " << setw(2) << setfill('0') << endTime.get_hour() << ":"
               << setw(2) << setfill('0') << endTime.get_minute()
-              << "\t" << setw(2) << setfill(' ') << type << " " << Class;
+              << "\t" << setw(2) << setfill(' ') << type << " "
+              << left << setw(9) << setfill(' ') << uc << cl;
     getline(outstream, out);
     Color_Print("white", out, true);
 }
