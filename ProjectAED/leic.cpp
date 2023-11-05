@@ -1,3 +1,4 @@
+#include <limits>
 #include "leic.h"
 using namespace std;
 
@@ -17,7 +18,7 @@ LEIC::LEIC(std::string filenameclasses, std::string filenamestudents, bool save_
         getline(iss, weekday, ',');
         getline(iss, starthour, ',');
         getline(iss, duration, ',');
-        iss >> type; // to do: try with getline
+        iss >> type;
         ucs.insert(uccode);
         Class c = Class(classcode, uccode);
         string thisclass = uccode + " " + classcode;
@@ -137,6 +138,11 @@ vector<Class*> LEIC::get_classes_from_UcCode(std::string ucCode) {
     auto first_itr = lower_bound(classes.begin(),classes.end(),Class("",ucCode));
     while(first_itr->get_ucCode() == ucCode) classes_ucCode.push_back(&(*(first_itr++)));
     return classes_ucCode;
+}
+
+string LEIC::get_studentCode_last_request() const {
+    if (requests.empty()) return "";
+    return requests.back().get_studentCode();
 }
 
 int LEIC::get_cap() {
@@ -271,632 +277,110 @@ void LEIC::list_class_students_by_name(Class *class_) const {
     }
 }
 
-int LEIC::students_in_n_Ucs(int n){
-    Color_Print("blue", "Students with ");
-    Color_Print("yellow", to_string(n));
-    Color_Print("white", " UC's:", true);
-    Color_Print("blue", "UC's");
-    Color_Print("green", " - ");
-    Color_Print("white", "StudentCode ");
+void LEIC::list_Uc_occupations_by_classCode(std::string UcCode, bool order) {
+    vector<Class> UcClasses;
+    for (Class c: classes) {
+        if (c.get_ucCode() == UcCode) UcClasses.push_back(c);
+    }
+    Color_Print("blue", "Occupations of UC ");
+    Color_Print("yellow", UcCode, true);
+    Color_Print("blue", "Class code\t");
     Color_Print("green", "| ");
-    Color_Print("white", "Name", true);
-    Color_Print("green", "------------------------------------", true);
-    int count = 0;
-    for (pair<string, Student> p: up_students) {
-        if(p.second.get_classes().size() >= n) {
-            count++;
-            Color_Print("blue", " " + to_string(p.second.get_classes().size()));
-            Color_Print("green", "   -  ");
-            Color_Print("white", p.first);
-            Color_Print("green", "  |  ");
-            Color_Print("white", p.second.get_name(), true);
+    Color_Print("white", "Occupation", true);
+    Color_Print("green", "-------------------------", true);
+    if (order) {
+        for (Class c: UcClasses) {
+            Color_Print("blue", c.get_classCode() + "    \t");
+            Color_Print("green", "| ");
+            Color_Print("white", to_string(c.get_students().size()), true);
         }
-    }
-    return count;
-}
-
-bool LEIC::improves_balance(Class* currentClass, Class* newClass){
-    if(newClass->get_students().size() < currentClass->get_students().size()) return true;
-    vector<Class*> uc_classes = get_classes_from_UcCode(newClass->get_ucCode());
-    int min = currentClass->get_students().size() - 1;
-    for(Class* c : uc_classes) {
-        if (c->get_students().size() < min) min = c->get_students().size();
-    }
-    return (newClass->get_students().size() + 1 - min <= 4);
-}
-
-set<Class*> LEIC::class_balance_valid(Student* student, Class* newClass) {
-    int min = newClass->get_students().size();
-    int max = min;
-    set<Class*> res;
-    vector<Class*> classes_in_uc = get_classes_from_UcCode(newClass->get_ucCode());
-    for (Class* c: classes_in_uc) {
-        if (c->get_students().size() < min) min = c->get_students().size();
-        if (c->get_students().size() > max) max = c->get_students().size();
-    }
-    if(newClass->get_students().size() + 1 - min <= 4) return {};
-    for (Class* c: classes_in_uc) {
-        if ((c->get_students().size() + 1 - min <= 4) && compatible_schedules(student, c)) res.insert(c);
-    }
-    if (res.empty() && max == newClass->get_students().size()) {
-        for (Class* c: classes_in_uc) {
-            if ((c->get_students().size() < max) && compatible_schedules(student, c)) res.insert(c);
-        }
-    }
-    return res;
-}
-
-Class* LEIC::best_class_balance(Student* student, std::string uc) {
-    vector<Class*> classes_in_uc = get_classes_from_UcCode(uc);
-    Class* min = classes_in_uc[0];
-    for (Class* c: classes_in_uc) if ((c->get_students().size() < min->get_students().size()) && compatible_schedules(student, c)) min = c;
-    return min;
-}
-
-bool LEIC::compatible_schedules(Student* student, Class* newclass, Class* oldclass) {
-    for (Lesson newlesson: newclass->get_lessons()) {
-        if (newlesson.get_type() == "PL" || newlesson.get_type() == "TP") {
-            for (Class* c: student->get_classes()) {
-                if (c == oldclass) {
-                    continue;
-                }
-                for (Lesson currentlesson: c->get_lessons()) {
-                    if (currentlesson.get_type() == "PL" || currentlesson.get_type() == "TP") {
-                        if (newlesson.overlap(currentlesson)) return false;
-                    }
-                }
-
-            }
-        }
-    }
-    return true;
-}
-
-
-void LEIC::add_student_to_class(Student* student, Class *newclass) {
-    newclass->add_student(student->get_studentCode());
-    student->add_class(newclass);
-}
-
-void LEIC::add_request_to_process(Request request) {
-    requests.push(request);
-}
-
-void LEIC::upload_requests() {
-    queue<Request> file_requests;
-    string line;
-    ifstream requestsFile("../requests.csv");
-    int countLines = 1;
-    while (getline(requestsFile, line)) {     // read all lines from the given file
-        string StudentCode,Type,oldUcCode,newUcCode,newClassCode, studentName;
-        istringstream iss(line);
-        getline(iss, Type, ',');
-        bool add = Type == "ADD";
-        bool remove = Type == "REMOVE";
-        bool Switch = Type == "SWITCH";
-        if (Type == "NEW") {
-            getline(iss, StudentCode, ',');
-            if (!(is_number2(StudentCode) && StudentCode.length() == 9)) {
-                Color_Print("red", "Invalid input in the given file. Line ");
-                Color_Print("yellow", to_string(countLines), true);
-                return;
-            }
-            getline(iss,studentName);
-            file_requests.emplace(Type,StudentCode, studentName,"","","", "");
-        }
-        else if (Type == "DELETE") {
-            iss >> StudentCode;
-            if (!is_number2(StudentCode) || StudentCode.length() != 9) {
-                Color_Print("red", "Invalid input in the given file. Line ");
-                Color_Print("yellow", to_string(countLines), true);
-                return;
-            }
-            getline(iss,studentName);
-            file_requests.emplace(Type,StudentCode, "","","","", "");
-        }
-        else if (add || remove || Switch) {
-            getline(iss, StudentCode, ',');
-            if (!is_number2(StudentCode) || StudentCode.length() != 9) {
-                Color_Print("red", "Invalid input in the given file. Line ");
-                Color_Print("yellow", to_string(countLines), true);
-                return;
-            }
-            getline(iss, oldUcCode, ',');
-            if ((add && !oldUcCode.empty())
-                || ((!add) && (!exists_Uc(oldUcCode) || oldUcCode.empty()))) {
-                Color_Print("red", "Invalid input in the given file. Line ");
-                Color_Print("yellow", to_string(countLines), true);
-                return;
-            }
-            getline(iss, newUcCode, ',');
-            if ((!remove) && (!exists_Uc(newUcCode))
-                || (remove && !newUcCode.empty())) {
-                Color_Print("red", "Invalid input in the given file. Line ");
-                Color_Print("yellow", to_string(countLines), true);
-                return;
-            }
-            iss >> newClassCode;
-            if (((!remove) && !exists_class(newUcCode,newClassCode))
-                || (remove && !newClassCode.empty())) {
-                Color_Print("red", "Invalid input in the given file. Line ");
-                Color_Print("yellow", to_string(countLines), true);
-                return;
-            }
-            file_requests.emplace(Type,StudentCode, "",oldUcCode,"",newUcCode, newClassCode);
-        }
-        else {
-            Color_Print("red", "Invalid input in the given file. Line ");
-            Color_Print("yellow", to_string(countLines), true);
-            return;
-        }
-        countLines++;
-    }
-    requestsFile.close();
-    while(!file_requests.empty()) {
-        add_request_to_process(file_requests.front());
-        file_requests.pop();
-    }
-}
-
-bool LEIC::request_add(Request& request) {
-    Student* student = get_student_from_studentCode(request.get_studentCode());
-    if (student == nullptr) {
-        Color_Print("red", "Invalid request. The student ");
-        Color_Print("yellow", request.get_studentCode());
-        Color_Print("red", " doesn't exist.", true);
-        return false;
-    }
-    if (student->get_classes().size() >= 7) {
-        Color_Print("red", "The student ");
-        Color_Print("yellow", request.get_studentCode());
-        Color_Print("red", " already has 7 UC's.", true);
-        return false;
-    }
-    if (student->has_uc(request.get_new_UcCode())) {
-        Color_Print("red", "Invalid request. Student ");
-        Color_Print("yellow", request.get_studentCode());
-        Color_Print("red", " is already in UC ");
-        Color_Print("yellow", request.get_new_UcCode());
-        Color_Print("red", ".", true);
-        return false;
-    }
-    if (!request.get_new_classCode().empty()) {
-        Class* newclass = get_class_from_classCode_and_UcCode(request.get_new_classCode(), request.get_new_UcCode());
-        if (newclass->get_students().size() >= CAP){
-            Color_Print("red", "Request rejected. The class ");
-            Color_Print("yellow", request.get_new_classCode());
-            Color_Print("red", " from UC ");
-            Color_Print("yellow", request.get_new_UcCode());
-            Color_Print("red", " it's full.", true);
-            return false;
-        }
-        if (!compatible_schedules(student, newclass)){
-            Color_Print("red", "Request rejected. The schedule of class ");
-            Color_Print("yellow", request.get_new_classCode());
-            Color_Print("red", " from UC ");
-            Color_Print("yellow", request.get_new_UcCode());
-            Color_Print("red", " it's not compatible.", true);
-            return false;
-        }
-        set<Class*> suggestions = class_balance_valid(student, newclass);
-        if (!suggestions.empty()) {
-            Color_Print("yellow", request.get_studentCode());
-            Color_Print("red", " joining class ");
-            Color_Print("yellow", request.get_new_classCode());
-            Color_Print("red", " in UC ");
-            Color_Print("yellow", request.get_new_UcCode());
-            Color_Print("red", " affects class balance.");
-            Color_Print("blue", " Do you want to:", true);
-            Color_Print("cyan", "1- ");
-            Color_Print("red", "Cancel operation", true);
-            auto it = suggestions.begin();
-            int i = 2;
-            for (Class* c: suggestions) {
-                Color_Print("cyan", to_string(i++) + "- ");
-                Color_Print("white", "Change to class " + (*it++)->get_classCode(), true);
-            }
-            string option;
-            cin >> option;
-            while(!is_number2(option) || stoi(option) >= i || stoi(option) == 0) {
-                Color_Print("red","Invalid Input, please try again",true);
-                cin >> option;
-            }
-            if (option == "1") return false;
-            else {
-                it = suggestions.begin();
-                advance(it, stoi(option) - 2);
-                Class* suggestion = *it;
-                add_student_to_class(student, suggestion);
-                request.set_new_class(suggestion->get_classCode());
-                processed_requests.emplace("ADD", request.get_studentCode(), "", "", "", suggestion->get_ucCode(),suggestion->get_classCode());
-                return true;
-            }
-        }
-        add_student_to_class(student, newclass);
-        processed_requests.push(request);
-        return true;
-    }
-    else {
-        if (!Uc_has_vacancy(request.get_new_UcCode())) {
-            Color_Print("red", "All classes from UC ");
-            Color_Print("yellow", request.get_new_UcCode());
-            Color_Print("red", " are full.", true);
-            return false;
-        }
-        vector<Class*> classes_uccode = get_classes_from_UcCode(request.get_new_UcCode());
-        for (Class* c: classes_uccode) {
-            if (best_class_balance(student, request.get_new_UcCode())) {
-                add_student_to_class(student, c);
-                request.set_new_class(c->get_classCode());
-                processed_requests.push(request);
-                return true;
-            }
-        }
-        Color_Print("red", "No compatible classes.", true);
-        return false;
-    }
-}
-
-bool LEIC::request_remove(Request& request) {
-    Student* student = get_student_from_studentCode(request.get_studentCode());
-    if (student == nullptr) {
-        Color_Print("red", "Invalid request. The student ");
-        Color_Print("yellow", request.get_studentCode());
-        Color_Print("red", " doesn't exist.", true);
-        return false;
-    }
-    Class* currentClass = student->get_class_from_uc(request.get_current_UcCode());
-    if (currentClass == nullptr) {
-        Color_Print("red", "Invalid request. The student ");
-        Color_Print("yellow", request.get_studentCode());
-        Color_Print("red", " doesn't have UC ");
-        Color_Print("yellow", request.get_current_UcCode(), true);
-        return false;
-    }
-    string currentclass = currentClass->get_classCode();
-    string currentUc = request.get_current_UcCode();
-    request.set_current_class(currentclass);
-    currentClass->remove_student(student->get_studentCode());
-    student->remove_class_from_uc(currentClass->get_ucCode());
-    processed_requests.push(request);
-    return true;
-}
-
-bool LEIC::request_new(Request &request) {
-    if (get_student_from_studentCode(request.get_studentCode()) == nullptr) {
-        up_students.insert({request.get_studentCode(), Student(request.get_studentName(), request.get_studentCode())});
-        processed_requests.push(request);
-        return true;
-    }
-    Color_Print("red", "The student ");
-    Color_Print("yellow", request.get_studentCode());
-    Color_Print("red", " already exists.", true);
-    return false;
-}
-
-bool LEIC::request_delete(Request& request) {
-    Student* student = get_student_from_studentCode(request.get_studentCode());
-    request.set_name(student->get_name());
-    if (student == nullptr) {
-        Color_Print("red", "The student ");
-        Color_Print("yellow", request.get_studentCode());
-        Color_Print("red", " doesn't exist.", true);
-        return false;
-    }
-    request.set_current_uc(to_string(student->get_classes().size()));
-    for (Class* c: student->get_classes()) {
-        Request r = Request("REMOVE", request.get_studentCode(), "", c->get_ucCode());
-        request_remove(r);
-    }
-    up_students.erase(request.get_studentCode());
-    processed_requests.push(request);
-    return true;
-}
-
-bool LEIC::request_switch(Request& request) {
-    request.set_type("REMOVE");
-    if (!request_remove(request)) return false;
-    request.set_type("ADD");
-    Student* student = get_student_from_studentCode(request.get_studentCode());
-    Class* newClass = get_class_from_classCode_and_UcCode(request.get_new_classCode(), request.get_new_UcCode());
-    Class* currentClass = get_class_from_classCode_and_UcCode(request.get_current_classCode(), request.get_current_UcCode());
-
-//    if (!request.get_new_classCode().empty() && !improves_balance(currentClass, newClass)) {
-//        add_student_to_class(student,currentClass);
-//        processed_requests.pop();
-//        Color_Print(color_mode, "red", "Invalid request. Switching class ");
-//        Color_Print(color_mode, "yellow", request.get_current_classCode());
-//        if (request.get_new_UcCode() != request.get_current_UcCode()) {
-//            Color_Print(color_mode, "red", " in UC ");
-//            Color_Print(color_mode, "yellow", request.get_current_UcCode());
-//        }
-//        Color_Print(color_mode, "red", " for ");
-//        Color_Print(color_mode, "yellow", request.get_new_classCode());
-//        Color_Print(color_mode, "red", " in UC ");
-//        Color_Print(color_mode, "yellow", request.get_new_UcCode());
-//        Color_Print(color_mode, "red", " violates class balance.", true);
-//        return false;
-//    }
-    if (request.get_current_UcCode() == request.get_new_UcCode()) { // mesma UC
-        if (!improves_balance(currentClass, newClass)){
-            add_student_to_class(student,currentClass);
-            processed_requests.pop();
-            Color_Print("red", "Invalid request. Switching class ");
-            Color_Print("yellow", request.get_current_classCode());
-            Color_Print("red", " for ");
-            Color_Print("yellow", request.get_new_classCode());
-            Color_Print("red", " in UC ");
-            Color_Print("yellow", request.get_new_UcCode());
-            Color_Print("red", " violates class balance.", true);
-            return false;
-        }
-        add_student_to_class(get_student_from_studentCode(request.get_studentCode()), newClass);
-        processed_requests.pop();
-        request.set_type("SWITCH");
-        processed_requests.push(request);
-        return true;
-    }
-    if (request_add(request)) {
-        processed_requests.pop();
-        processed_requests.pop();
-        request.set_type("SWITCH");
-        processed_requests.push(request);
-        return true;
-    }
-    else {
-        add_student_to_class(get_student_from_studentCode(request.get_studentCode()),
-                             get_class_from_classCode_and_UcCode(request.get_current_classCode(), request.get_current_UcCode()));
-        processed_requests.pop();
-    }
-    return false;
-}
-
-void LEIC::undo_request() {
-    if(processed_requests.empty()) {
-        Color_Print("cyan", "There are no requests to undo", true);
         return;
     }
-    Request thisrequest = processed_requests.top();
-    processed_requests.pop();
-    switch (thisrequest.get_type()[0]) {
-        case 'A': {
-            Request newrequest = Request("REMOVE", thisrequest.get_studentCode(), thisrequest.get_studentName(),thisrequest.get_new_UcCode(),"","", "");
-            if (request_remove(newrequest)) {
-                Color_Print("cyan", "Student ");
-                Color_Print("yellow", newrequest.get_studentCode());
-                Color_Print("cyan", " was removed from class ");
-                Color_Print("yellow", newrequest.get_current_classCode());
-                Color_Print("cyan", " in UC ");
-                Color_Print("yellow", newrequest.get_current_UcCode(), true);
-                processed_requests.pop();
-            }
-            if (get_student_from_studentCode(newrequest.get_studentCode())->get_classes().empty()) {
-                Color_Print("red", "The student ");
-                Color_Print("yellow", newrequest.get_studentCode());
-                Color_Print("red", " no longer has classes.");
-                Color_Print("blue", " Do you want to delete him?");
-                Color_Print("cyan", " [Y/N]", true);
-                string answer;
-                cin >> answer;
-                while(answer != "Y" && answer != "N") {
-                    Color_Print("red", "Invalid Input, please try again", true);
-                    cin >> answer;
-                }
-                if (answer == "Y") {
-                    Request thisrequest = Request("DELETE", newrequest.get_studentCode(), newrequest.get_studentName());
-                    request_delete(thisrequest);
-                }
-            }
-            return;
-        }
-        case 'R': {
-            Request newrequest = Request("ADD", thisrequest.get_studentCode(), thisrequest.get_studentName(), "", "", thisrequest.get_current_UcCode(), thisrequest.get_current_classCode());
-            if (request_add(newrequest)) {
-                Color_Print("cyan", "Student ");
-                Color_Print("yellow", newrequest.get_studentCode());
-                Color_Print("cyan", " is now in class ");
-                Color_Print("yellow", newrequest.get_new_classCode());
-                Color_Print("cyan", " in UC ");
-                Color_Print("yellow", newrequest.get_new_UcCode(), true);
-                processed_requests.pop();
-            }
-            return;
-        }
-        case 'S': {
-            Request newrequest = Request("SWITCH", thisrequest.get_studentCode(), thisrequest.get_studentName(), thisrequest.get_new_UcCode(), thisrequest.get_new_classCode(), thisrequest.get_current_UcCode(), thisrequest.get_current_classCode());
-            if (request_switch(newrequest)) {
-                Color_Print("cyan", "Student ");
-                Color_Print("yellow", newrequest.get_studentCode());
-                Color_Print("cyan", " was removed from class ");
-                Color_Print("yellow", newrequest.get_current_classCode());
-                Color_Print("cyan", " in UC ");
-                Color_Print("yellow", newrequest.get_current_UcCode());
-                Color_Print("cyan", " and is now in class ");
-                Color_Print("yellow", newrequest.get_new_classCode());
-                Color_Print("cyan", " in UC ");
-                Color_Print("yellow", newrequest.get_new_UcCode(), true);
-                processed_requests.pop();
-            }
-            return;
-        }
-        case 'N': {
-            thisrequest.set_type("DELETE");
-            request_delete(thisrequest);
-            processed_requests.pop();
-            Color_Print("cyan", "Student with the student code ");
-            Color_Print("yellow", thisrequest.get_studentCode());
-            Color_Print("cyan", " was removed.", true);
-            return;
-        }
-        case 'D': {
-            thisrequest.set_type("NEW");
-            request_new(thisrequest);
-            processed_requests.pop();
-            Color_Print("cyan", "Student with the student code ");
-            Color_Print("yellow", thisrequest.get_studentCode());
-            Color_Print("cyan", " was added with its previous UCs.", true);
-            Student* student = get_student_from_studentCode(thisrequest.get_studentCode());
-            for (int i = 0; i < stoi(thisrequest.get_current_UcCode()); i++) {
-                Request add_uc = processed_requests.top();
-                Class* newclass = get_class_from_classCode_and_UcCode(add_uc.get_current_classCode(), add_uc.get_current_UcCode());
-                add_student_to_class(student, newclass);
-                processed_requests.pop();
-            }
-            return;
-        }
+    auto itr = UcClasses.end();
+    while (itr-- != UcClasses.begin()) {
+        Color_Print("blue", itr->get_classCode() + "    \t");
+        Color_Print("green", "| ");
+        Color_Print("white", to_string(itr->get_students().size()), true);
     }
 }
 
-void LEIC::process_next_request() {
-    if(requests.empty()) {
-        Color_Print("cyan", "There are no requests to process", true);
+void LEIC::list_Uc_occupations_by_occupation(std::string UcCode, bool order) {
+    vector<Class> UcClasses;
+    for (Class c: classes) {
+        if (c.get_ucCode() == UcCode) UcClasses.push_back(c);
+    }
+    Color_Print("blue", "Occupations of UC ");
+    Color_Print("yellow", UcCode, true);
+    Color_Print("white", "Class code\t");
+    Color_Print("green", "| ");
+    Color_Print("blue", "Occupation", true);
+    Color_Print("green", "-------------------------", true);
+    (order) ? sort(UcClasses.begin(),UcClasses.end(), [] (Class c1,Class c2) -> bool {
+        return (c1.get_students().size() < c2.get_students().size())
+               || (c1.get_students().size() == c2.get_students().size() && c1.get_classCode() < c2.get_classCode())  ;})
+            : sort(UcClasses.rbegin(),UcClasses.rend(), [] (Class c1,Class c2) -> bool {
+        return (c1.get_students().size() < c2.get_students().size())
+               || (c1.get_students().size() == c2.get_students().size() && c1.get_classCode() < c2.get_classCode());});
+    for (Class c: UcClasses) {
+        Color_Print("white", c.get_classCode() + "    \t");
+        Color_Print("green", "| ");
+        Color_Print("blue", to_string(c.get_students().size()), true);
+    }
+}
+
+void LEIC::list_class_occupations_by_occupation(std::string classCode, bool order) {
+    vector<Class> classClasses;
+    for (Class c: classes) {
+        if (c.get_classCode() == classCode) classClasses.push_back(c);
+    }
+    Color_Print("blue", "Occupations of Class ");
+    Color_Print("yellow", classCode, true);
+    Color_Print("white", "UC code    \t");
+    Color_Print("green", "| ");
+    Color_Print("blue", "Occupation", true);
+    Color_Print("green", "---------------------------------", true);
+
+    (order) ? sort(classClasses.begin(), classClasses.end(), [](Class c1, Class c2) -> bool {
+        return (c1.get_students().size() < c2.get_students().size())
+               || (c1.get_students().size() == c2.get_students().size() && c1.get_ucCode() < c2.get_ucCode());
+    })
+            : sort(classClasses.rbegin(), classClasses.rend(), [](Class c1, Class c2) -> bool {
+        return (c1.get_students().size() < c2.get_students().size())
+               || (c1.get_students().size() == c2.get_students().size() && c1.get_ucCode() < c2.get_ucCode());
+    });
+    for (Class c: classClasses) {
+        Color_Print("white", c.get_ucCode() + "    \t");
+        Color_Print("green", "| ");
+        Color_Print("blue", to_string(c.get_students().size()), true);
+    }
+}
+
+void LEIC::list_class_occupations_by_UC(std::string classCode, bool order) {
+    vector<Class> classClasses;
+    for (Class c: classes) {
+        if (c.get_classCode() == classCode) classClasses.push_back(c);
+    }
+    Color_Print("blue", "Occupations of Class ");
+    Color_Print("yellow", classCode, true);
+    Color_Print("blue", "UC code    \t");
+    Color_Print("green", "| ");
+    Color_Print("white", "Occupation", true);
+    Color_Print("green", "---------------------------------", true);
+    if(order){
+        for (Class c: classClasses) {
+            Color_Print("blue", c.get_ucCode() + "    \t");
+            Color_Print("green", "| ");
+            Color_Print("white", to_string(c.get_students().size()), true);
+        }
         return;
     }
-    Request request = requests.front();
-    requests.pop();
-    switch (request.get_type()[0]) {
-        case 'A': {
-            if (request_add(request)) {
-                Color_Print("cyan", "Student ");
-                Color_Print("yellow", request.get_studentCode());
-                Color_Print("cyan", " is now in class ");
-                Color_Print("yellow", request.get_new_classCode());
-                Color_Print("cyan", " in UC ");
-                Color_Print("yellow", request.get_new_UcCode(), true);
-            }
-            break;
-        }
-        case 'R': {
-            if (request_remove(request)){
-                Color_Print("cyan", "Student ");
-                Color_Print("yellow", request.get_studentCode());
-                Color_Print("cyan", " was removed from class ");
-                Color_Print("yellow", request.get_current_classCode());
-                Color_Print("cyan", " in UC ");
-                Color_Print("yellow", request.get_current_UcCode(), true);
-            }
-            if (get_student_from_studentCode(request.get_studentCode())->get_classes().empty()) {
-                Color_Print("red", "The student ");
-                Color_Print("yellow", request.get_studentCode());
-                Color_Print("red", " no longer has classes.");
-                Color_Print("blue", " Do you want to delete him?");
-                Color_Print("cyan", " [Y/N]", true);
-                string answer;
-                cin >> answer;
-                while(answer != "Y" && answer != "N") {
-                    Color_Print("red", "Invalid Input, please try again", true);
-                    cin >> answer;
-                }
-                if (answer == "Y") {
-                    Request thisrequest = Request("DELETE", request.get_studentCode(), request.get_studentName());
-                    request_delete(thisrequest);
-                }
-            }
-            break;
-        }
-        case 'S': {
-            if (request_switch(request)) {
-                Color_Print("cyan", "Student ");
-                Color_Print("yellow", request.get_studentCode());
-                Color_Print("cyan", " was removed from class ");
-                Color_Print("yellow", request.get_current_classCode());
-                Color_Print("cyan", " in UC ");
-                Color_Print("yellow", request.get_current_UcCode());
-                Color_Print("cyan", " and is now in class ");
-                Color_Print("yellow", request.get_new_classCode());
-                Color_Print("cyan", " in UC ");
-                Color_Print("yellow", request.get_new_UcCode(), true);
-            }
-            break;
-        }
-        case 'N': {
-            if(request_new(request)){
-                Color_Print("cyan", "The student with code ");
-                Color_Print("yellow", request.get_studentCode());
-                Color_Print("cyan", " was added.", true);
-            }
-            break;
-        }
-        case 'D': {
-            if (request_delete(request)){
-                Color_Print("cyan", "The student with code ");
-                Color_Print("yellow", request.get_studentCode());
-                Color_Print("cyan", " was removed.", true);
-            }
-            break;
-        }
+    auto itr = classClasses.end();
+    while(itr-- != classClasses.begin()){
+        Color_Print("blue", itr->get_ucCode() + "    \t");
+        Color_Print("green", "| ");
+        Color_Print("white", to_string(itr->get_students().size()), true);
     }
 }
-
-void LEIC::process_requests() {
-    if(requests.empty()) {
-        Color_Print("cyan", "There are no requests to process", true);
-        return;
-    }
-    while (!requests.empty()) {
-        process_next_request();
-    }
-}
-
-void LEIC::save_to_files() {
-    ofstream students_classesSaveFile("../students_classes_save.csv", ofstream::out | ofstream::trunc);
-    ofstream accepted_requests("../accepted_requests.csv", ofstream::out | ofstream::trunc);
-    ofstream pending_requests("../pending_requests.csv", ofstream::out | ofstream::trunc);
-    students_classesSaveFile << "CAP = " << CAP << endl;
-    students_classesSaveFile << "StudentCode,StudentName,UcCode,ClassCode" << endl;
-    accepted_requests << "Type,StudentCode,StudentName,oldUcCode,newUcCode,oldClassCode,newClassCode" << endl;
-    pending_requests << "Type,StudentCode,StudentName,oldUcCode,newUcCode,oldClassCode,newClassCode" << endl;
-
-    for (pair<string, Student> up_s: up_students) {
-        if (up_s.second.get_classes().empty()) {
-            students_classesSaveFile << up_s.first << ','
-                                     << up_s.second.get_name() << ',' << ',' << endl;
-        }
-        for (Class *c: up_s.second.get_classes()) {
-            students_classesSaveFile << up_s.first << ','
-                                     << up_s.second.get_name() << ','
-                                     << c->get_ucCode() << ','
-                                     << c->get_classCode() << endl;
-        }
-    }
-    while(!processed_requests.empty()){
-        Request r = processed_requests.top();
-        processed_requests.pop();
-        accepted_requests << r.get_type() << ','
-                          << r.get_studentCode() << ','
-                          << r.get_studentName() << ','
-                          << r.get_current_UcCode() << ','
-                          << r.get_current_classCode() << ','
-                          << r.get_new_UcCode() << ','
-                          << r.get_new_classCode() << endl;
-    }
-    while(!requests.empty()){
-        Request r = requests.front();
-        requests.pop();
-        pending_requests << r.get_type() << ','
-                          << r.get_studentCode() << ','
-                          << r.get_studentName() << ','
-                          << r.get_current_UcCode() << ','
-                          << r.get_current_classCode() << ','
-                          << r.get_new_UcCode() << ','
-                          << r.get_new_classCode() << endl;
-    }
-    students_classesSaveFile.close();
-    accepted_requests.close();
-    pending_requests.close();
-}
-
-void LEIC::empty_pending_requests() {
-    while (!requests.empty()) {
-        requests.pop();
-    }
-}
-
-string LEIC::studentCode_last_request() {
-    if (requests.empty()) return "";
-    return requests.back().get_studentCode();
-}
-
 
 void LEIC::list_year_occupations_by_occupation(string year, bool order) {
     vector<Class> yearClasses;
@@ -904,12 +388,12 @@ void LEIC::list_year_occupations_by_occupation(string year, bool order) {
         if (c.get_classCode()[0] == year[0]) yearClasses.push_back(c);
     }
     (order) ? sort(yearClasses.begin(),yearClasses.end(), [] (Class c1,Class c2) -> bool { return
-        (c1.get_students().size() < c2.get_students().size()) || (c1.get_students().size() == c2.get_students().size()
-        && ((c1.get_ucCode() < c2.get_ucCode()) || (c1.get_ucCode() == c2.get_ucCode() && c1.get_classCode() < c2.get_classCode())));
+            (c1.get_students().size() < c2.get_students().size()) || (c1.get_students().size() == c2.get_students().size()
+                                                                      && ((c1.get_ucCode() < c2.get_ucCode()) || (c1.get_ucCode() == c2.get_ucCode() && c1.get_classCode() < c2.get_classCode())));
     } )
             : sort(yearClasses.rbegin(),yearClasses.rend(), [] (Class c1,Class c2) -> bool { return
-        (c1.get_students().size() < c2.get_students().size()) || (c1.get_students().size() == c2.get_students().size()
-        && ((c1.get_ucCode() < c2.get_ucCode()) || (c1.get_ucCode() == c2.get_ucCode() && c1.get_classCode() < c2.get_classCode())));
+            (c1.get_students().size() < c2.get_students().size()) || (c1.get_students().size() == c2.get_students().size()
+                                                                      && ((c1.get_ucCode() < c2.get_ucCode()) || (c1.get_ucCode() == c2.get_ucCode() && c1.get_classCode() < c2.get_classCode())));
     } );
     Color_Print("blue", "Occupations of year ");
     Color_Print("yellow", year, true);
@@ -1026,128 +510,626 @@ void LEIC::list_year_occupations_by_UC(string year, bool order) {
     }
 }
 
-
-void LEIC::list_Uc_occupations_by_classCode(std::string UcCode, bool order) {
-    vector<Class> UcClasses;
-    for (Class c: classes) {
-        if (c.get_ucCode() == UcCode) UcClasses.push_back(c);
-    }
-    Color_Print("blue", "Occupations of UC ");
-    Color_Print("yellow", UcCode, true);
-    Color_Print("blue", "Class code\t");
+int LEIC::students_in_n_Ucs(int n){
+    Color_Print("blue", "Students with ");
+    Color_Print("yellow", to_string(n));
+    Color_Print("white", " UC's:", true);
+    Color_Print("blue", "UC's");
+    Color_Print("green", " - ");
+    Color_Print("white", "StudentCode ");
     Color_Print("green", "| ");
-    Color_Print("white", "Occupation", true);
-    Color_Print("green", "-------------------------", true);
-    if (order) {
-        for (Class c: UcClasses) {
-            Color_Print("blue", c.get_classCode() + "    \t");
-            Color_Print("green", "| ");
-            Color_Print("white", to_string(c.get_students().size()), true);
+    Color_Print("white", "Name", true);
+    Color_Print("green", "------------------------------------", true);
+    int count = 0;
+    for (pair<string, Student> p: up_students) {
+        if(p.second.get_classes().size() >= n) {
+            count++;
+            Color_Print("blue", " " + to_string(p.second.get_classes().size()));
+            Color_Print("green", "   -  ");
+            Color_Print("white", p.first);
+            Color_Print("green", "  |  ");
+            Color_Print("white", p.second.get_name(), true);
         }
-        return;
     }
-    auto itr = UcClasses.end();
-    while (itr-- != UcClasses.begin()) {
-        Color_Print("blue", itr->get_classCode() + "    \t");
-        Color_Print("green", "| ");
-        Color_Print("white", to_string(itr->get_students().size()), true);
-    }
+    return count;
 }
 
-void LEIC::list_Uc_occupations_by_occupation(std::string UcCode, bool order) {
-    vector<Class> UcClasses;
-    for (Class c: classes) {
-        if (c.get_ucCode() == UcCode) UcClasses.push_back(c);
+bool LEIC::not_disturb_balance(Class* currentClass, Class* newClass){
+    if(newClass->get_students().size() < currentClass->get_students().size()) return true;
+    vector<Class*> uc_classes = get_classes_from_UcCode(newClass->get_ucCode());
+    int min = currentClass->get_students().size() - 1;
+    for(Class* c : uc_classes) {
+        if (c->get_students().size() < min) min = c->get_students().size();
     }
-    Color_Print("blue", "Occupations of UC ");
-    Color_Print("yellow", UcCode, true);
-    Color_Print("white", "Class code\t");
-    Color_Print("green", "| ");
-    Color_Print("blue", "Occupation", true);
-    Color_Print("green", "-------------------------", true);
-    (order) ? sort(UcClasses.begin(),UcClasses.end(), [] (Class c1,Class c2) -> bool {
-        return (c1.get_students().size() < c2.get_students().size())
-        || (c1.get_students().size() == c2.get_students().size() && c1.get_classCode() < c2.get_classCode())  ;})
-            : sort(UcClasses.rbegin(),UcClasses.rend(), [] (Class c1,Class c2) -> bool {
-        return (c1.get_students().size() < c2.get_students().size())
-        || (c1.get_students().size() == c2.get_students().size() && c1.get_classCode() < c2.get_classCode());});
-    for (Class c: UcClasses) {
-        Color_Print("white", c.get_classCode() + "    \t");
-        Color_Print("green", "| ");
-        Color_Print("blue", to_string(c.get_students().size()), true);
-    }
+    return (newClass->get_students().size() + 1 - min <= 4);
 }
 
-void LEIC::list_class_occupations_by_occupation(std::string classCode, bool order) {
-    vector<Class> classClasses;
-    for (Class c: classes) {
-        if (c.get_classCode() == classCode) classClasses.push_back(c);
+vector<Class*> LEIC::class_balance_valid(Student* student, Class* newClass) {
+    int min = newClass->get_students().size();
+    int max = min;
+    vector<Class*> res;
+    vector<Class*> classes_in_uc = get_classes_from_UcCode(newClass->get_ucCode());
+    for (Class* c: classes_in_uc) {
+        if (c->get_students().size() < min) min = c->get_students().size();
+        if (c->get_students().size() > max) max = c->get_students().size();
     }
-    Color_Print("blue", "Occupations of Class ");
-    Color_Print("yellow", classCode, true);
-    Color_Print("white", "UC code    \t");
-    Color_Print("green", "| ");
-    Color_Print("blue", "Occupation", true);
-    Color_Print("green", "---------------------------------", true);
-
-    (order) ? sort(classClasses.begin(), classClasses.end(), [](Class c1, Class c2) -> bool {
-        return (c1.get_students().size() < c2.get_students().size())
-               || (c1.get_students().size() == c2.get_students().size() && c1.get_ucCode() < c2.get_ucCode());
-    })
-            : sort(classClasses.rbegin(), classClasses.rend(), [](Class c1, Class c2) -> bool {
-        return (c1.get_students().size() < c2.get_students().size())
-               || (c1.get_students().size() == c2.get_students().size() && c1.get_ucCode() < c2.get_ucCode());
-    });
-    for (Class c: classClasses) {
-        Color_Print("white", c.get_ucCode() + "    \t");
-        Color_Print("green", "| ");
-        Color_Print("blue", to_string(c.get_students().size()), true);
+    if(newClass->get_students().size() + 1 - min <= 4) return {};
+    for (Class* c: classes_in_uc) {
+        if ((c->get_students().size() + 1 - min <= 4) && compatible_schedules(student, c)) res.push_back(c);
     }
-}
-
-void LEIC::list_class_occupations_by_UC(std::string classCode, bool order) {
-    vector<Class> classClasses;
-    for (Class c: classes) {
-        if (c.get_classCode() == classCode) classClasses.push_back(c);
-    }
-    Color_Print("blue", "Occupations of Class ");
-    Color_Print("yellow", classCode, true);
-    Color_Print("blue", "UC code    \t");
-    Color_Print("green", "| ");
-    Color_Print("white", "Occupation", true);
-    Color_Print("green", "---------------------------------", true);
-    if(order){
-        for (Class c: classClasses) {
-            Color_Print("blue", c.get_ucCode() + "    \t");
-            Color_Print("green", "| ");
-            Color_Print("white", to_string(c.get_students().size()), true);
+    if (res.empty() && max == newClass->get_students().size()) {
+        for (Class* c: classes_in_uc) {
+            if ((c->get_students().size() < max) && compatible_schedules(student, c)) res.push_back(c);
         }
-        return;
     }
-    auto itr = classClasses.end();
-    while(itr-- != classClasses.begin()){
-        Color_Print("blue", itr->get_ucCode() + "    \t");
-        Color_Print("green", "| ");
-        Color_Print("white", to_string(itr->get_students().size()), true);
+    return res;
+}
+
+Class* LEIC::best_class_balance(Student* student, std::string uc) {
+    vector<Class*> classes_in_uc = get_classes_from_UcCode(uc);
+    Class* min = classes_in_uc[0];
+    for (Class* c: classes_in_uc) if ((c->get_students().size() < min->get_students().size()) && compatible_schedules(student, c)) min = c;
+    return min;
+}
+
+bool LEIC::compatible_schedules(Student* student, Class* newclass, Class* oldclass) {
+    for (Lesson newlesson: newclass->get_lessons()) {
+        if (newlesson.get_type() == "PL" || newlesson.get_type() == "TP") {
+            for (Class* c: student->get_classes()) {
+                if (c == oldclass) {
+                    continue;
+                }
+                for (Lesson currentlesson: c->get_lessons()) {
+                    if (currentlesson.get_type() == "PL" || currentlesson.get_type() == "TP") {
+                        if (newlesson.overlap(currentlesson)) return false;
+                    }
+                }
+
+            }
+        }
+    }
+    return true;
+}
+
+
+void LEIC::add_student_to_class(Student* student, Class *newclass) {
+    newclass->add_student(student->get_studentCode());
+    student->add_class(newclass);
+}
+
+void LEIC::add_request_to_process(Request request) {
+    requests.push(request);
+}
+
+
+bool LEIC::request_add(Request& request) {
+    Student* student = get_student_from_studentCode(request.get_studentCode());
+    if (student == nullptr) {
+        Color_Print("red", "Invalid request. The student ");
+        Color_Print("yellow", request.get_studentCode());
+        Color_Print("red", " doesn't exist.", true);
+        return false;
+    }
+    if (student->get_classes().size() >= 7) {
+        Color_Print("red", "The student ");
+        Color_Print("yellow", request.get_studentCode());
+        Color_Print("red", " already has 7 UC's.", true);
+        return false;
+    }
+    if (student->has_uc(request.get_new_UcCode())) {
+        Color_Print("red", "Invalid request. Student ");
+        Color_Print("yellow", request.get_studentCode());
+        Color_Print("red", " is already in UC ");
+        Color_Print("yellow", request.get_new_UcCode());
+        Color_Print("red", ".", true);
+        return false;
+    }
+    if (!request.get_new_classCode().empty()) {
+        Class* newclass = get_class_from_classCode_and_UcCode(request.get_new_classCode(), request.get_new_UcCode());
+        if (newclass->get_students().size() >= CAP){
+            Color_Print("red", "Request rejected. The class ");
+            Color_Print("yellow", request.get_new_classCode());
+            Color_Print("red", " from UC ");
+            Color_Print("yellow", request.get_new_UcCode());
+            Color_Print("red", " it's full.", true);
+            return false;
+        }
+        if (!compatible_schedules(student, newclass)){
+            Color_Print("red", "Request rejected. The schedule of class ");
+            Color_Print("yellow", request.get_new_classCode());
+            Color_Print("red", " from UC ");
+            Color_Print("yellow", request.get_new_UcCode());
+            Color_Print("red", " it's not compatible.", true);
+            return false;
+        }
+        vector<Class*> suggestions = class_balance_valid(student, newclass);
+        if (!suggestions.empty()) {
+            Color_Print("yellow", request.get_studentCode());
+            Color_Print("red", " joining class ");
+            Color_Print("yellow", request.get_new_classCode());
+            Color_Print("red", " in UC ");
+            Color_Print("yellow", request.get_new_UcCode());
+            Color_Print("red", " affects class balance.");
+            Color_Print("blue", " Do you want to:", true);
+            Color_Print("cyan", "1- ");
+            Color_Print("red", "Cancel operation", true);
+            auto it = suggestions.begin();
+            int i = 2;
+            for (Class* c: suggestions) {
+                Color_Print("cyan", to_string(i++) + "- ");
+                Color_Print("white", "Change to class " + (*it++)->get_classCode(), true);
+            }
+            string option;
+            cin >> option;
+            while(!is_number2(option) || stoi(option) >= i || stoi(option) == 0) {
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                Color_Print("red","Invalid Input, please try again",true);
+                cin >> option;
+            }
+            if (option == "1") return false;
+            else {
+                it = suggestions.begin();
+                advance(it, stoi(option) - 2);
+                Class* suggestion = *it;
+                add_student_to_class(student, suggestion);
+                request.set_new_class(suggestion->get_classCode());
+                processed_requests.emplace("ADD", request.get_studentCode(), "", "", "", suggestion->get_ucCode(),suggestion->get_classCode());
+                return true;
+            }
+        }
+        add_student_to_class(student, newclass);
+        processed_requests.push(request);
+        return true;
+    }
+    else {
+        if (!Uc_has_vacancy(request.get_new_UcCode())) {
+            Color_Print("red", "All classes from UC ");
+            Color_Print("yellow", request.get_new_UcCode());
+            Color_Print("red", " are full.", true);
+            return false;
+        }
+        vector<Class*> classes_uccode = get_classes_from_UcCode(request.get_new_UcCode());
+        for (Class* c: classes_uccode) {
+            if (best_class_balance(student, request.get_new_UcCode())) {
+                add_student_to_class(student, c);
+                request.set_new_class(c->get_classCode());
+                processed_requests.push(request);
+                return true;
+            }
+        }
+        Color_Print("red", "No compatible classes.", true);
+        return false;
     }
 }
 
-void LEIC::check_pending_requests(){
-    if(requests.empty()) {
-        Color_Print("cyan", "There are no pending requests", true);
-        return;
+bool LEIC::request_remove(Request& request) {
+    Student* student = get_student_from_studentCode(request.get_studentCode());
+    if (student == nullptr) {
+        Color_Print("red", "Invalid request. The student ");
+        Color_Print("yellow", request.get_studentCode());
+        Color_Print("red", " doesn't exist.", true);
+        return false;
     }
-    for (size_t i = 0; i < requests.size(); i++)
-    {
-        requests.front().print_request();
-        requests.push(requests.front());
-        requests.pop();
+    Class* currentClass = student->get_class_from_uc(request.get_current_UcCode());
+    if (currentClass == nullptr) {
+        Color_Print("red", "Invalid request. The student ");
+        Color_Print("yellow", request.get_studentCode());
+        Color_Print("red", " doesn't have UC ");
+        Color_Print("yellow", request.get_current_UcCode(), true);
+        return false;
     }
+    string currentclass = currentClass->get_classCode();
+    string currentUc = request.get_current_UcCode();
+    request.set_current_class(currentclass);
+    currentClass->remove_student(student->get_studentCode());
+    student->remove_class_from_uc(currentClass->get_ucCode());
+    processed_requests.push(request);
+    return true;
+}
+
+bool LEIC::request_new(Request &request) {
+    if (get_student_from_studentCode(request.get_studentCode()) == nullptr) {
+        up_students.insert({request.get_studentCode(), Student(request.get_studentName(), request.get_studentCode())});
+        processed_requests.push(request);
+        return true;
+    }
+    Color_Print("red", "The student ");
+    Color_Print("yellow", request.get_studentCode());
+    Color_Print("red", " already exists.", true);
+    return false;
+}
+
+bool LEIC::request_delete(Request& request) {
+    Student* student = get_student_from_studentCode(request.get_studentCode());
+    request.set_name(student->get_name());
+    if (student == nullptr) {
+        Color_Print("red", "The student ");
+        Color_Print("yellow", request.get_studentCode());
+        Color_Print("red", " doesn't exist.", true);
+        return false;
+    }
+    request.set_current_uc(to_string(student->get_classes().size()));
+    for (Class* c: student->get_classes()) {
+        Request r = Request("REMOVE", request.get_studentCode(), "", c->get_ucCode());
+        request_remove(r);
+    }
+    up_students.erase(request.get_studentCode());
+    processed_requests.push(request);
+    return true;
+}
+
+bool LEIC::request_switch(Request& request) {
+    request.set_type("REMOVE");
+    if (!request_remove(request)) return false;
+    request.set_type("ADD");
+    Student* student = get_student_from_studentCode(request.get_studentCode());
+    Class* newClass = get_class_from_classCode_and_UcCode(request.get_new_classCode(), request.get_new_UcCode());
+    Class* currentClass = get_class_from_classCode_and_UcCode(request.get_current_classCode(), request.get_current_UcCode());
+    if (request.get_current_UcCode() == request.get_new_UcCode()) { // mesma UC
+        if (!not_disturb_balance(currentClass, newClass)){
+            add_student_to_class(student,currentClass);
+            processed_requests.pop();
+            Color_Print("red", "Invalid request. Switching class ");
+            Color_Print("yellow", request.get_current_classCode());
+            Color_Print("red", " for ");
+            Color_Print("yellow", request.get_new_classCode());
+            Color_Print("red", " in UC ");
+            Color_Print("yellow", request.get_new_UcCode());
+            Color_Print("red", " violates class balance.", true);
+            return false;
+        }
+        add_student_to_class(get_student_from_studentCode(request.get_studentCode()), newClass);
+        processed_requests.pop();
+        request.set_type("SWITCH");
+        processed_requests.push(request);
+        return true;
+    }
+    if (request_add(request)) {
+        processed_requests.pop();
+        processed_requests.pop();
+        request.set_type("SWITCH");
+        processed_requests.push(request);
+        return true;
+    }
+    else {
+        add_student_to_class(get_student_from_studentCode(request.get_studentCode()),
+                             get_class_from_classCode_and_UcCode(request.get_current_classCode(), request.get_current_UcCode()));
+        processed_requests.pop();
+    }
+    return false;
 }
 
 bool LEIC::pending_request_is_empty() {
     return requests.empty();
 }
 
+void LEIC::empty_pending_requests() {
+    while (!requests.empty()) {
+        requests.pop();
+    }
+}
 
+void LEIC::print_pending_requests(){
+    if(requests.empty()) {
+        Color_Print("cyan", "There are no pending requests", true);
+        return;
+    }
+    for (size_t i = 0; i < requests.size(); i++) {
+        requests.front().print_request();
+        requests.push(requests.front());
+        requests.pop();
+    }
+}
 
+void LEIC::undo_request() {
+    if(processed_requests.empty()) {
+        Color_Print("cyan", "There are no requests to undo", true);
+        return;
+    }
+    Request thisrequest = processed_requests.top();
+    processed_requests.pop();
+    switch (thisrequest.get_type()[0]) {
+        case 'A': {
+            Request newrequest = Request("REMOVE", thisrequest.get_studentCode(), thisrequest.get_studentName(),thisrequest.get_new_UcCode(),"","", "");
+            if (request_remove(newrequest)) {
+                Color_Print("cyan", "Student ");
+                Color_Print("yellow", newrequest.get_studentCode());
+                Color_Print("cyan", " was removed from class ");
+                Color_Print("yellow", newrequest.get_current_classCode());
+                Color_Print("cyan", " in UC ");
+                Color_Print("yellow", newrequest.get_current_UcCode(), true);
+                processed_requests.pop();
+            }
+            if (get_student_from_studentCode(newrequest.get_studentCode())->get_classes().empty()) {
+                Color_Print("red", "The student ");
+                Color_Print("yellow", newrequest.get_studentCode());
+                Color_Print("red", " no longer has classes.");
+                Color_Print("blue", " Do you want to delete him?");
+                Color_Print("cyan", " [Y/N]", true);
+                string answer;
+                cin >> answer;
+                while(answer != "Y" && answer != "N") {
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    Color_Print("red", "Invalid Input, please try again", true);
+                    cin >> answer;
+                }
+                if (answer == "Y") {
+                    Request thisrequest = Request("DELETE", newrequest.get_studentCode(), newrequest.get_studentName());
+                    request_delete(thisrequest);
+                }
+            }
+            return;
+        }
+        case 'R': {
+            Request newrequest = Request("ADD", thisrequest.get_studentCode(), thisrequest.get_studentName(), "", "", thisrequest.get_current_UcCode(), thisrequest.get_current_classCode());
+            if (request_add(newrequest)) {
+                Color_Print("cyan", "Student ");
+                Color_Print("yellow", newrequest.get_studentCode());
+                Color_Print("cyan", " is now in class ");
+                Color_Print("yellow", newrequest.get_new_classCode());
+                Color_Print("cyan", " in UC ");
+                Color_Print("yellow", newrequest.get_new_UcCode(), true);
+                processed_requests.pop();
+            }
+            return;
+        }
+        case 'S': {
+            Request newrequest = Request("SWITCH", thisrequest.get_studentCode(), thisrequest.get_studentName(), thisrequest.get_new_UcCode(), thisrequest.get_new_classCode(), thisrequest.get_current_UcCode(), thisrequest.get_current_classCode());
+            if (request_switch(newrequest)) {
+                Color_Print("cyan", "Student ");
+                Color_Print("yellow", newrequest.get_studentCode());
+                Color_Print("cyan", " was removed from class ");
+                Color_Print("yellow", newrequest.get_current_classCode());
+                Color_Print("cyan", " in UC ");
+                Color_Print("yellow", newrequest.get_current_UcCode());
+                Color_Print("cyan", " and is now in class ");
+                Color_Print("yellow", newrequest.get_new_classCode());
+                Color_Print("cyan", " in UC ");
+                Color_Print("yellow", newrequest.get_new_UcCode(), true);
+                processed_requests.pop();
+            }
+            return;
+        }
+        case 'N': {
+            thisrequest.set_type("DELETE");
+            request_delete(thisrequest);
+            processed_requests.pop();
+            Color_Print("cyan", "Student with the student code ");
+            Color_Print("yellow", thisrequest.get_studentCode());
+            Color_Print("cyan", " was removed.", true);
+            return;
+        }
+        case 'D': {
+            thisrequest.set_type("NEW");
+            request_new(thisrequest);
+            processed_requests.pop();
+            Color_Print("cyan", "Student with the student code ");
+            Color_Print("yellow", thisrequest.get_studentCode());
+            Color_Print("cyan", " was added with its previous UCs.", true);
+            Student* student = get_student_from_studentCode(thisrequest.get_studentCode());
+            for (int i = 0; i < stoi(thisrequest.get_current_UcCode()); i++) {
+                Request add_uc = processed_requests.top();
+                Class* newclass = get_class_from_classCode_and_UcCode(add_uc.get_current_classCode(), add_uc.get_current_UcCode());
+                add_student_to_class(student, newclass);
+                processed_requests.pop();
+            }
+            return;
+        }
+    }
+}
+
+void LEIC::process_next_request() {
+    if(requests.empty()) {
+        Color_Print("cyan", "There are no requests to process", true);
+        return;
+    }
+    Request request = requests.front();
+    requests.pop();
+    switch (request.get_type()[0]) {
+        case 'A': {
+            if (request_add(request)) {
+                Color_Print("cyan", "Student ");
+                Color_Print("yellow", request.get_studentCode());
+                Color_Print("cyan", " is now in class ");
+                Color_Print("yellow", request.get_new_classCode());
+                Color_Print("cyan", " in UC ");
+                Color_Print("yellow", request.get_new_UcCode(), true);
+            }
+            break;
+        }
+        case 'R': {
+            if (request_remove(request)){
+                Color_Print("cyan", "Student ");
+                Color_Print("yellow", request.get_studentCode());
+                Color_Print("cyan", " was removed from class ");
+                Color_Print("yellow", request.get_current_classCode());
+                Color_Print("cyan", " in UC ");
+                Color_Print("yellow", request.get_current_UcCode(), true);
+            }
+            if (get_student_from_studentCode(request.get_studentCode())->get_classes().empty()) {
+                Color_Print("red", "The student ");
+                Color_Print("yellow", request.get_studentCode());
+                Color_Print("red", " no longer has classes.");
+                Color_Print("blue", " Do you want to delete him?");
+                Color_Print("cyan", " [Y/N]", true);
+                string answer;
+                cin >> answer;
+                while(answer != "Y" && answer != "N") {
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    Color_Print("red", "Invalid Input, please try again", true);
+                    cin >> answer;
+                }
+                if (answer == "Y") {
+                    Request thisrequest = Request("DELETE", request.get_studentCode(), request.get_studentName());
+                    request_delete(thisrequest);
+                }
+            }
+            break;
+        }
+        case 'S': {
+            if (request_switch(request)) {
+                Color_Print("cyan", "Student ");
+                Color_Print("yellow", request.get_studentCode());
+                Color_Print("cyan", " was removed from class ");
+                Color_Print("yellow", request.get_current_classCode());
+                Color_Print("cyan", " in UC ");
+                Color_Print("yellow", request.get_current_UcCode());
+                Color_Print("cyan", " and is now in class ");
+                Color_Print("yellow", request.get_new_classCode());
+                Color_Print("cyan", " in UC ");
+                Color_Print("yellow", request.get_new_UcCode(), true);
+            }
+            break;
+        }
+        case 'N': {
+            if(request_new(request)){
+                Color_Print("cyan", "The student with code ");
+                Color_Print("yellow", request.get_studentCode());
+                Color_Print("cyan", " was added.", true);
+            }
+            break;
+        }
+        case 'D': {
+            if (request_delete(request)){
+                Color_Print("cyan", "The student with code ");
+                Color_Print("yellow", request.get_studentCode());
+                Color_Print("cyan", " was removed.", true);
+            }
+            break;
+        }
+    }
+}
+
+void LEIC::process_requests() {
+    if(requests.empty()) {
+        Color_Print("cyan", "There are no requests to process", true);
+        return;
+    }
+    while (!requests.empty()) {
+        process_next_request();
+    }
+}
+
+void LEIC::upload_requests() {
+    queue<Request> file_requests;
+    string line;
+    ifstream requestsFile("../requests.csv");
+    int countLines = 1;
+    while (getline(requestsFile, line)) {     // read all lines from the given file
+        string StudentCode,Type,oldUcCode,newUcCode,newClassCode, studentName;
+        istringstream iss(line);
+        getline(iss, Type, ',');
+        bool add = Type == "ADD";
+        bool remove = Type == "REMOVE";
+        bool Switch = Type == "SWITCH";
+        if (Type == "NEW") {
+            getline(iss, StudentCode, ',');
+            if (!(is_number2(StudentCode) && StudentCode.length() == 9)) {
+                Color_Print("red", "Invalid input in the given file. Line ");
+                Color_Print("yellow", to_string(countLines), true);
+                return;
+            }
+            getline(iss,studentName);
+            file_requests.emplace(Type,StudentCode, studentName,"","","", "");
+        }
+        else if (Type == "DELETE") {
+            iss >> StudentCode;
+            if (!is_number2(StudentCode) || StudentCode.length() != 9) {
+                Color_Print("red", "Invalid input in the given file. Line ");
+                Color_Print("yellow", to_string(countLines), true);
+                return;
+            }
+            getline(iss,studentName);
+            file_requests.emplace(Type,StudentCode, "","","","", "");
+        }
+        else if (add || remove || Switch) {
+            getline(iss, StudentCode, ',');
+            if (!is_number2(StudentCode) || StudentCode.length() != 9) {
+                Color_Print("red", "Invalid input in the given file. Line ");
+                Color_Print("yellow", to_string(countLines), true);
+                return;
+            }
+            getline(iss, oldUcCode, ',');
+            if ((add && !oldUcCode.empty())
+                || ((!add) && (!exists_Uc(oldUcCode) || oldUcCode.empty()))) {
+                Color_Print("red", "Invalid input in the given file. Line ");
+                Color_Print("yellow", to_string(countLines), true);
+                return;
+            }
+            getline(iss, newUcCode, ',');
+            if ((!remove) && (!exists_Uc(newUcCode))
+                || (remove && !newUcCode.empty())) {
+                Color_Print("red", "Invalid input in the given file. Line ");
+                Color_Print("yellow", to_string(countLines), true);
+                return;
+            }
+            iss >> newClassCode;
+            if (((!remove) && !exists_class(newUcCode,newClassCode))
+                || (remove && !newClassCode.empty())) {
+                Color_Print("red", "Invalid input in the given file. Line ");
+                Color_Print("yellow", to_string(countLines), true);
+                return;
+            }
+            file_requests.emplace(Type,StudentCode, "",oldUcCode,"",newUcCode, newClassCode);
+        }
+        else {
+            Color_Print("red", "Invalid input in the given file. Line ");
+            Color_Print("yellow", to_string(countLines), true);
+            return;
+        }
+        countLines++;
+    }
+    requestsFile.close();
+    while(!file_requests.empty()) {
+        add_request_to_process(file_requests.front());
+        file_requests.pop();
+    }
+}
+
+void LEIC::save_to_files() {
+    ofstream students_classesSaveFile("../students_classes_save.csv", ofstream::out | ofstream::trunc);
+    ofstream accepted_requests("../accepted_requests.csv", ofstream::out | ofstream::trunc);
+    ofstream pending_requests("../pending_requests.csv", ofstream::out | ofstream::trunc);
+    students_classesSaveFile << "CAP = " << CAP << endl;
+    students_classesSaveFile << "StudentCode,StudentName,UcCode,ClassCode" << endl;
+    accepted_requests << "Type,StudentCode,StudentName,oldUcCode,newUcCode,oldClassCode,newClassCode" << endl;
+    pending_requests << "Type,StudentCode,StudentName,oldUcCode,newUcCode,oldClassCode,newClassCode" << endl;
+
+    for (pair<string, Student> up_s: up_students) {
+        if (up_s.second.get_classes().empty()) {
+            students_classesSaveFile << up_s.first << ','
+                                     << up_s.second.get_name() << ',' << ',' << endl;
+        }
+        for (Class *c: up_s.second.get_classes()) {
+            students_classesSaveFile << up_s.first << ','
+                                     << up_s.second.get_name() << ','
+                                     << c->get_ucCode() << ','
+                                     << c->get_classCode() << endl;
+        }
+    }
+    while(!processed_requests.empty()){
+        Request r = processed_requests.top();
+        processed_requests.pop();
+        accepted_requests << r.get_type() << ','
+                          << r.get_studentCode() << ','
+                          << r.get_studentName() << ','
+                          << r.get_current_UcCode() << ','
+                          << r.get_current_classCode() << ','
+                          << r.get_new_UcCode() << ','
+                          << r.get_new_classCode() << endl;
+    }
+    while(!requests.empty()){
+        Request r = requests.front();
+        requests.pop();
+        pending_requests << r.get_type() << ','
+                          << r.get_studentCode() << ','
+                          << r.get_studentName() << ','
+                          << r.get_current_UcCode() << ','
+                          << r.get_current_classCode() << ','
+                          << r.get_new_UcCode() << ','
+                          << r.get_new_classCode() << endl;
+    }
+    students_classesSaveFile.close();
+    accepted_requests.close();
+    pending_requests.close();
+}

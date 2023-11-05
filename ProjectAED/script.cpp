@@ -147,7 +147,7 @@ void Script::handle_requests() {
             break;
         }
         case '5': {
-            data.check_pending_requests();
+            data.print_pending_requests();
             break;
         }
         case '6': {
@@ -211,7 +211,7 @@ void Script::update_registration(){
         handle_requests();
         return;
     }
-    if (!data.studentCode_last_request().empty()) {
+    if (!data.get_studentCode_last_request().empty()) {
         Color_Print("blue", "Is the request for the same previous student? ");
         Color_Print("cyan", "[Y/N]", true);
         string answer;
@@ -220,7 +220,7 @@ void Script::update_registration(){
             invalid();
             cin >> answer;
         }
-        if (answer == "Y") studentCode = data.studentCode_last_request();
+        if (answer == "Y") studentCode = data.get_studentCode_last_request();
         else {
             Color_Print("blue", "Enter StudentCode ");
             Color_Print("green", "(e.g. 202020047)");

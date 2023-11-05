@@ -78,26 +78,22 @@ public:
      */
     std::vector<Class*> get_classes_from_UcCode(std::string UcCode);
     /**
-     * \brief Empties the queue of all pending Request.
+     * \brief Gets the student code of the last pending Request that was made.
+     *
+     * @return The student code or empty string if there are no pending Request.
      */
-    void empty_pending_requests();
+    std::string get_studentCode_last_request() const;
     /**
-    * \brief Gets the student code of the last pending Request that was made.
-    *
-    * @return The student code or empty string if there are no pending Request.
-    */
-    std::string studentCode_last_request();
-    /**
-    * \brief Gets the Cap, the max number of Student that can be in a Class.
-    *
-    * @return The Cap.
-    */
+     * \brief Gets the Cap, the max number of Student that can be in a Class.
+     *
+     * @return The Cap.
+     */
     int get_cap();
     /**
-    * \brief Sets a new Cap, the max number of Student that can be in a Class.
-    *
-    * @param cap The value to set the Cap.
-    */
+     * \brief Sets a new Cap, the max number of Student that can be in a Class.
+     *
+     * @param cap The value to set the Cap.
+     */
     void set_cap(int cap);
     /**
      * \brief Checks using binary search if a Class with the given Class code and UC code exists.
@@ -108,11 +104,11 @@ public:
      */
     bool exists_class(std::string UcCode, std::string classCode);
     /**
-    * \brief Checks if a UC with the given UC code exists.
-    *
-    * @param UcCode The UC code of the UC to check.
-    * @return True if a UC with the given UC code exists.
-    */
+     * \brief Checks if a UC with the given UC code exists.
+     *
+     * @param UcCode The UC code of the UC to check.
+     * @return True if a UC with the given UC code exists.
+     */
     bool exists_Uc(std::string UcCode);
     /**
      * \brief Checks if any Class with the given UC code has less Student than the Cap.
@@ -122,12 +118,12 @@ public:
      */
     bool Uc_has_vacancy(std::string UcCode);
     /**
-    * \brief Prints all of the Student enrolled in the course sorted by their up.
-    */
+     * \brief Prints all of the Student enrolled in the course sorted by their up.
+     */
     void list_students_by_studentCode();
     /**
-    * \brief Prints all of the Student enrolled in the course sorted by their name.
-    */
+     * \brief Prints all of the Student enrolled in the course sorted by their name.
+     */
     void list_students_by_name();
     /**
      * \brief Prints all of the Student enrolled in the given UC sorted by their up.
@@ -154,6 +150,55 @@ public:
      */
     void list_class_students_by_name(Class* class_) const;
     /**
+     * \brief Outputs the occupations of the given year sorting by UcCode in a given order.
+     *
+     * @param year The year to get the occupations.
+     * @param order The order to sort by True if ascending, false if descending.
+     */
+    void list_year_occupations_by_UC(std::string year, bool order);
+    /**
+     * \brief Outputs the occupations of the given year sorting by Class code in a given order.
+     *
+     * @param year The year to get the occupations.
+     * @param order The order to sort by True if ascending, false if descending.
+     */
+    void list_year_occupations_by_classCode(std::string year, bool order);
+    /**
+     * \brief Outputs the occupations of the given year sorting by its occupation in a given order.
+     *
+     * @param year The year to get the occupations.
+     * @param order The order to sort by True if ascending, false if descending.
+     */
+    void list_year_occupations_by_occupation(std::string year, bool order);
+    /**
+     * \brief Outputs the occupations of the given UC sorting by Class code in a given order
+     *
+     * @param UcCode The UC code of the UC to get the occupations.
+     * @param order The order to sort by True if ascending, false if descending.
+     */
+    void list_Uc_occupations_by_classCode(std::string UcCode, bool order);
+    /**
+     * \brief Outputs the occupations of the given UC sorting by its occupation in a given order
+     *
+     * @param UcCode The UC code of the UC to get the occupations.
+     * @param order The order to sort by True if ascending, false if descending.
+     */
+    void list_Uc_occupations_by_occupation(std::string UcCode, bool order);
+    /**
+     * \brief Outputs the occupations of the given class sorting by UC coder in a given order
+     *
+     * @param classCode The class code of the UC to get the occupations.
+     * @param order The order to sort by True if ascending, false if descending.
+     */
+    void list_class_occupations_by_UC(std::string classCode, bool order);
+    /**
+     * \brief Outputs the occupations of the given class sorting by its occupation in a given order
+     *
+     * @param classCode The class code of the UC to get the occupations.
+     * @param order The order to sort by True if ascending, false if descending.
+     */
+    void list_class_occupations_by_occupation(std::string classCode, bool order);
+    /**
      * \brief Gets the number of Student with at least the given number of UCs.
      *
      * @param n The number of UCs to check.
@@ -167,7 +212,7 @@ public:
      * @param newClass The Class to insert a Student to check.
      * @return References of all Class with the same UC of the given Class that by inserting the given Student the Class Balance and schedule are valid, or empty if by inserting a Student into the given Class, the Class Balance and schedule are valid.
      */
-    std::set<Class*> class_balance_valid(Student* student, Class* newClass);
+    std::vector<Class*> class_balance_valid(Student* student, Class* newClass);
     /**
      * \brief Gets the Class in the given UC that affects the best to the Class balance and is compatible with the given Student's schedule.
      *
@@ -240,6 +285,20 @@ public:
      */
     bool request_switch(Request& request);
     /**
+     * \brief Checks if there are any pending requests.
+     *
+     * @return True if there are no pending requests, False otherwise.
+     */
+    bool pending_request_is_empty();
+    /**
+     * \brief Empties the queue of all pending Request.
+     */
+    void empty_pending_requests();
+    /**
+     * \brief Prints the queue of all pending Request.
+     */
+    void print_pending_requests();
+    /**
      * \brief Undoes the last Request that was done successfully.
      */
     void undo_request();
@@ -262,60 +321,7 @@ public:
      * @param newClass The new Class to check.
      * @return True if by moving from the current Class to the new Class the Class balance improves, false otherwise.
      */
-    bool improves_balance(Class *currentClass, Class *newClass);
-    /**
-     * \brief Outputs the occupations of the given year sorting by UcCode in a given order.
-     *
-     * @param year The year to get the occupations.
-     * @param order The order to sort by True if ascending, false if descending.
-     */
-    void list_year_occupations_by_UC(std::string year, bool order);
-    /**
-     * \brief Outputs the occupations of the given year sorting by Class code in a given order.
-     *
-     * @param year The year to get the occupations.
-     * @param order The order to sort by True if ascending, false if descending.
-     */
-    void list_year_occupations_by_classCode(std::string year, bool order);
-    /**
-     * \brief Outputs the occupations of the given year sorting by its occupation in a given order.
-     *
-     * @param year The year to get the occupations.
-     * @param order The order to sort by True if ascending, false if descending.
-     */
-    void list_year_occupations_by_occupation(std::string year, bool order);
-   /**
-    * \brief Outputs the occupations of the given UC sorting by Class code in a given order
-    *
-    * @param UcCode The UC code of the UC to get the occupations.
-    * @param order The order to sort by True if ascending, false if descending.
-    */
-    void list_Uc_occupations_by_classCode(std::string UcCode, bool order);
-   /**
-    * \brief Outputs the occupations of the given UC sorting by its occupation in a given order
-    *
-    * @param UcCode The UC code of the UC to get the occupations.
-    * @param order The order to sort by True if ascending, false if descending.
-    */
-    void list_Uc_occupations_by_occupation(std::string UcCode, bool order);
-   /**
-    * \brief Outputs the occupations of the given class sorting by UC coder in a given order
-    *
-    * @param classCode The class code of the UC to get the occupations.
-    * @param order The order to sort by True if ascending, false if descending.
-    */
-   void list_class_occupations_by_UC(std::string classCode, bool order);
-   /**
-    * \brief Outputs the occupations of the given class sorting by its occupation in a given order
-    *
-    * @param classCode The class code of the UC to get the occupations.
-    * @param order The order to sort by True if ascending, false if descending.
-    */
-   void list_class_occupations_by_occupation(std::string classCode, bool order);
-
-   void check_pending_requests();
-
-   bool pending_request_is_empty();
+    bool not_disturb_balance(Class *currentClass, Class *newClass);
 };
 
 #endif
