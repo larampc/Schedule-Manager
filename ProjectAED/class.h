@@ -28,25 +28,25 @@ public:
      *
      * @return The class code of the Class.
      */
-    std::string get_classCode();
+    std::string get_classCode() const;
     /**
      * \brief Gets the UC code of the Class.
      *
      * @return The UC code of the Class.
      */
-    std::string get_ucCode();
+    std::string get_ucCode() const;
     /**
      * \brief Gets all Lesson of the Class.
      *
      * @return All Lesson of the Class.
      */
-    std::set<Lesson> get_lessons();
+    std::set<Lesson> get_lessons() const;
     /**
      * \brief Gets all Student of the Class.
      *
      * @return All Student of the Class.
      */
-    std::set<std::string> get_students();
+    std::set<std::string> get_students() const;
     /**
      * \brief Adds a new Lesson to the Class.
      *

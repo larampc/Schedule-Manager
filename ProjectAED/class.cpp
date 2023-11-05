@@ -3,23 +3,23 @@ using namespace std;
 
 Class::Class(std::string classCode, std::string ucCode): classCode(classCode), ucCode(ucCode), studentsCode(set<string>()), lessons(set<Lesson>()) {}
 
-string Class::get_classCode(){
+string Class::get_classCode() const {
     return classCode;
 }
 
-std::string Class::get_ucCode() {
+std::string Class::get_ucCode() const {
     return ucCode;
 }
 
-set<Lesson> Class::get_lessons() {
+set<Lesson> Class::get_lessons() const {
     return lessons;
 }
 
-set<std::string> Class::get_students() {
+set<std::string> Class::get_students() const {
     return studentsCode;
 }
 
-void Class::add_lesson(Lesson l){
+void Class::add_lesson(Lesson l) {
     lessons.insert(l);
 }
 
