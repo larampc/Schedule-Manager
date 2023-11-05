@@ -13,6 +13,7 @@
  * \section utility_sec What can this project do?
  *
  * Choose to import from the original or current dataset.
+
  * Get information such as:
  * - Schedules of a student, class or UC;
  * - List of students in a course, class or UC sorted by student UP or number;

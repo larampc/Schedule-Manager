@@ -304,7 +304,7 @@ public:
     /**
      * \brief Gets the Class in the given UC that best improves class balance and is compatible with the given Student's schedule.
      *
-     * @param student The Student which schedule must be compatible with the Class.
+     * @param student The Student whose schedule must be compatible with the Class.
      * @param uc The UC code of the UC to get the Class from.
      * @return The Class in the given UC that best improves the class balance and is compatible with the given Student's schedule.
      *
