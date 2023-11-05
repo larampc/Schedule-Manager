@@ -48,7 +48,7 @@ public:
      * @return A list of pointers to all the Class in which a Student is enrolled.
      *
      * \par Complexity
-     * O(1)
+     * O(n) in which n is the number of classes of the Student.
      */
     std::list<Class*> get_classes() const;
     /**
