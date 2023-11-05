@@ -1,5 +1,5 @@
-#ifndef AEDPROJECT_SCRIPT_H
-#define AEDPROJECT_SCRIPT_H
+#ifndef AEDPROJECT_MENU_H
+#define AEDPROJECT_MENU_H
 #include "leic.h"
 
 /**
@@ -36,22 +36,22 @@
  */
 
 /**
- * \class Script
+ * \class Menu
  * \brief This class handles and runs the different commands.
  *
  * This class has the course LEIC and different functions to handle alterations to that data.
  * It is also responsible for handling inputs and outputs.
  */
-class Script {
+class Menu {
 private:
     LEIC data;
 public:
     /**
-     * \brief Creates a new Script.
+     * \brief Creates a new Menu session.
      *
      * @param save_file True to use saved data, false to use original data.
      */
-    Script(bool save_file);
+    Menu(bool save_file);
     /**
      * \brief Outputs the main menu and handles the respective inputs.
      */
@@ -126,4 +126,4 @@ public:
 };
 
 
-#endif //AEDPROJECT_SCRIPT_H
+#endif //AEDPROJECT_MENU_H

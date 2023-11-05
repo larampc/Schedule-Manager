@@ -36,8 +36,8 @@ add_executable(AEDProject main.cpp
         ProjectAED/class.cpp
         ProjectAED/student.cpp
         ProjectAED/leic.cpp
-        ProjectAED/script.cpp
-        ProjectAED/script.h
+        ProjectAED/menu.cpp
+        ProjectAED/menu.h
         ProjectAED/request.cpp
         ProjectAED/request.h
         ProjectAED/color_print.cpp

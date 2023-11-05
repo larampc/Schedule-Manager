@@ -1,11 +1,11 @@
-#include "script.h"
+#include "menu.h"
 #include <cctype>
 #include <limits>
 #include "color_print.h"
 using namespace std;
 extern bool color_mode;
 
-void Script::invalid(){
+void Menu::invalid(){
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     Color_Print("red", "Invalid Input, please try again", true);
 }
@@ -14,14 +14,14 @@ bool is_number(string s) {
     return all_of(s.begin(),s.end(),  [] (char c){return isdigit(c);});
 }
 
-Script::Script(bool save_file) : data(LEIC("../classes.csv", save_file ? "../students_classes_save.csv" : "../students_classes.csv" , save_file)){}
+Menu::Menu(bool save_file) : data(LEIC("../classes.csv", save_file ? "../students_classes_save.csv" : "../students_classes.csv" , save_file)){}
 
-void Script::quit(){
+void Menu::quit(){
     data.save_to_files();
     exit(0);
 }
 
-void Script::run() {
+void Menu::run() {
     cout << "\n\n";
     Color_Print("blue", "-----------------------------------", true);
     Color_Print("blue", "\tSchedule Management System", true);
@@ -69,7 +69,7 @@ void Script::run() {
     option == "Y" ? run() : quit();
 }
 
-void Script::settings(){
+void Menu::settings(){
     string option;
     Color_Print("cyan", "1- ");
     Color_Print("white", "Change Class CAP (current is " + to_string(data.get_cap()) + ")\t");
@@ -105,7 +105,7 @@ void Script::settings(){
     run();
 }
 
-void Script::handle_requests() {
+void Menu::handle_requests() {
     Color_Print("blue", "Select option:", true);
     Color_Print("white", "Add or remove registration");
     Color_Print("cyan", " - press 1", true);
@@ -193,7 +193,7 @@ void Script::handle_requests() {
     }
 }
 
-void Script::update_registration(){
+void Menu::update_registration(){
     string type, option, uc_or_class, studentCode, current_class, new_class, current_uc, new_uc;
     Color_Print("blue", "Pick: ");
     Color_Print("cyan", "1- ");
@@ -268,7 +268,7 @@ void Script::update_registration(){
     if(answer == "Y") data.process_requests();
 }
 
-void Script::get_request(string studentCode, string option) {
+void Menu::get_request(string studentCode, string option) {
     string type, uc_or_class, current_class, new_class, current_uc, new_uc;
     switch (option[0]) {
         case '1': {
@@ -381,7 +381,7 @@ void Script::get_request(string studentCode, string option) {
     data.add_request_to_process(Request(type, studentCode, "", current_uc, current_class, new_uc, new_class));
 }
 
-void Script::handle_registration() {
+void Menu::handle_registration() {
     string option, type;
     Color_Print("blue", "Pick: ");
     Color_Print("cyan", "1- ");
@@ -458,7 +458,7 @@ void Script::handle_registration() {
     if(answer == "Y") data.process_requests();
 }
 
-void Script::request_file() {
+void Menu::request_file() {
     Color_Print("white", "Save the file to this directory with the name ");
     Color_Print("green", "requests.csv ");
     Color_Print("white", "with the following structure:", true);
@@ -495,7 +495,7 @@ void Script::request_file() {
     }
 }
 
-void Script::listings(){
+void Menu::listings(){
     Color_Print("blue", "What would you like to check?", true);
     Color_Print("cyan", "1- ");
     Color_Print("white", "Schedules ");
@@ -544,7 +544,7 @@ void Script::listings(){
     }
 }
 
-void Script::occupations(){
+void Menu::occupations(){
     Color_Print("blue", "What would you like to check?", true);
     Color_Print("cyan", "1- ");
     Color_Print("white", "Year ");
@@ -614,7 +614,7 @@ void Script::occupations(){
     }
 }
 
-void Script::listSchedules(){
+void Menu::listSchedules(){
     Color_Print("blue", "Consult schedule of: ");
     Color_Print("cyan", "1- ");
     Color_Print("white", "Student ");
@@ -718,7 +718,7 @@ void Script::listSchedules(){
     }
 }
 
-void Script::listStudents() {
+void Menu::listStudents() {
     Color_Print("blue", "Consult list of students of: ");
     Color_Print("cyan", "1- ");
     Color_Print("white", "Course ");
@@ -809,7 +809,7 @@ void Script::listStudents() {
     }
 }
 
-void Script::year_occupations(string year) {
+void Menu::year_occupations(string year) {
     string option, order;
     Color_Print("blue", "Sort by? ");
     Color_Print("cyan", "1- ");
@@ -844,7 +844,7 @@ void Script::year_occupations(string year) {
 
 
 
-void Script::Uc_occupations(std::string UcCode) {
+void Menu::Uc_occupations(std::string UcCode) {
     string option, order;
     Color_Print("blue", "Sort by? ");
     Color_Print("cyan", "1- ");
@@ -874,7 +874,7 @@ void Script::Uc_occupations(std::string UcCode) {
 }
 
 
-void Script::class_occupations(std::string classCode) {
+void Menu::class_occupations(std::string classCode) {
     string option, order;
     Color_Print("blue", "Sort by? ");
     Color_Print("cyan", "1- ");
